@@ -6,8 +6,12 @@ https://fdelmazo.github.io/7506-Datos/
 
 ---
 
-El repo contiene dos hooks:
+Es muy importante configurar el pre-commit hook del repo para que cada vez que se haga git add de un notebook, se limpie su output. Hecho con [nbstripoout](https://github.com/kynan/nbstripout). 
 
-* Pre-commit hook: Cada vez que se hace git add de un notebook, se limpia su output. Hecho con [nbstripoout](https://github.com/kynan/nbstripout)
+```shell
+// Desde el root del repo
+conda install -c conda-forge nbstripout
+nbstripout --install
+```
 
-* Jupyter notebook save hook: Cada vez que se graba un notebook, se exporta su contenido a un .html para poder ser vistio desde el sitio web. Esto se consigue con el archivo [jupyter_notebook_config.py](jupyter_notebook_config.py). Idea sacada de: [Jupyter notebook best practices for data science](https://www.svds.com/jupyter-notebook-best-practices-for-data-science/)
+Por otro lado, cada vez que se graba un notebook se exporta su contenido a un .html para poder ser visto desde el sitio web. Esto se consigue con el archivo [jupyter_notebook_config.py](jupyter_notebook_config.py). Idea sacada de: [Jupyter notebook best practices for data science](https://www.svds.com/jupyter-notebook-best-practices-for-data-science/)
