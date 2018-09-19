@@ -13,14 +13,14 @@
 \newcommand{\cuatrimestre}{Segundo cuatrimestre de 2018}
 \newcommand{\grupo}{Grupo Datatouille}
 \newcommand{\repo}{https://github.com/FdelMazo/7506-Datos/}
+\newcommand{\kernel}{https://kaggle.com/datatouille2018/7506-TP1/}
 \newcommand{\alumnos}{
-    del Mazo, Federico & 100029 & delMazoFederico@gmail.com\\
+    del Mazo, Federico & 100029 & delmazofederico@gmail.com\\
     Bojman, Camila & 101055 &  camiboj@gmail.com\\
     Hortas, Cecilia & 100687 & ceci.hortas@gmail.com\\
-    Souto, Rodrigo & 97649 & ceci.hortas@gmail.com\\
+    Souto, Rodrigo & 97649 & rnsoutob@gmail.com\\
 }
 \newcommand{\curso}{Curso 01}
-\newcommand{\bigO}[1]{\(\mathcal{O}(#1)\)}
 \newcommand{\docentes}{
     \item Argerich, Luis Argerich
     \item Golmar, Natalia
@@ -43,8 +43,8 @@
 \renewcommand{\footrulewidth}{0.4pt}
 
 \begin{document}
+\pagenumbering{gobble}
 
-\pagenumbering{roman}
 \begin{titlepage}
 	\hfill\includegraphics[width=6cm]{fiuba.jpg}
     \begin{center}
@@ -65,7 +65,8 @@
 	\hline
 	\end{tabular}
     \begin{flushleft} 
-    \url{\repo}
+    \url{\repo} \\
+    \url{\kernel}
     \end{flushleft}
     \vskip1cm
     \end{center}
@@ -74,86 +75,59 @@
         \docentes
     \end{itemize}
 \end{titlepage}
-
+\pagenumbering{roman}
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
 \section{Introducción}
-\subsection{Ejemplo}
-\subsubsection{Ejemplo2}
 
  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies justo nisi, in ultrices lorem sollicitudin sed. Donec diam velit, aliquet et neque ac, tempus condimentum dolor. Maecenas scelerisque malesuada dignissim. Morbi sollicitudin est eu varius vestibulum. Duis sollicitudin non sapien quis iaculis. Quisque et luctus massa. In vitae odio vitae erat dapibus laoreet vitae in massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc eu nunc tellus. Proin dignissim venenatis justo, vel rhoncus nibh commodo tincidunt. Suspendisse eleifend massa eget ligula viverra lacinia. Mauris egestas nisl a tincidunt rhoncus. 
 
-Ejemplo de ecuación matemática: 
+\section{Análisis y desarrollo}
 
-\[ \text{Pitágoras: }x^2 + y^2 = z^2 \]
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies justo nisi, in ultrices lorem sollicitudin sed. Donec diam velit, aliquet et neque ac, tempus condimentum dolor. Maecenas scelerisque malesuada dignissim. Morbi sollicitudin est eu varius vestibulum. Duis sollicitudin non sapien quis iaculis. Quisque et luctus massa. In vitae odio vitae erat dapibus laoreet vitae in massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc eu nunc tellus. Proin dignissim venenatis justo, vel rhoncus nibh commodo tincidunt. Suspendisse eleifend massa eget ligula viverra lacinia. Mauris egestas nisl a tincidunt rhoncus. 
 
-También sobre el mismo texto: \( \text{Pitágoras: }x^2 + y^2 = z^2 \)
+La figura \ref{fig:radar_chart} es una gran figura.
 
-\subsubsection{Aun más ejemplos}
-
-Ejemplo de items:
-
-\begin{itemize}
-\item Primer item
-\item Segundo item
-\end{itemize}
-
-\section{Más ejemplos}
-
-Ejemplo de notas al pie de página\footnote{Pie de página}.
-
-Ejemplo de citas \cite{Cormen}.
-
-Ejemplo de urls: \url{http://www.example.com}.
-
-\section{Ya no se}
-
-La figura \ref{fig:fiuba} es una gran figura.
 \begin{figure}[!hb]
   \centering
-    \includegraphics[width=0.5\textwidth]{fiuba.jpg}
-  \caption{Caption de figura}
-  \label{fig:fiuba}
+    \includegraphics[width=0.5\textwidth]{figures/radar_chart.png}
+  \caption{Radar chart}
+  \label{fig:radar_chart}
 \end{figure}
+
+\section{Conclusiones, insights y aportes}
+
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies justo nisi, in ultrices lorem sollicitudin sed. Donec diam velit, aliquet et neque ac, tempus condimentum dolor. Maecenas scelerisque malesuada dignissim. Morbi sollicitudin est eu varius vestibulum. Duis sollicitudin non sapien quis iaculis. Quisque et luctus massa. In vitae odio vitae erat dapibus laoreet vitae in massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc eu nunc tellus. Proin dignissim venenatis justo, vel rhoncus nibh commodo tincidunt. Suspendisse eleifend massa eget ligula viverra lacinia. Mauris egestas nisl a tincidunt rhoncus. 
+
 
 \newpage
 \appendix
 
-\section{Primer apéndice}
+\section{Ejecución}
 
-Todo el trabajo fue codificado en Python 3.6.1.
+El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Para poder replicarlo, además instalar las siguientes librerías adicionales:
 
-\begin{lstlisting}
-def pitagoras(x,y):
-    return x**2 + y**2
+\begin{itemize}
+\item{Squarify: Para }
+\end{itemize}
+
+\begin{lstlisting}[language=sh]
+conda install -c conda-forge geopandas
+pip install squarify
+pip install wordcloud
 \end{lstlisting}
 
-Este algoritmo es \bigO{1} pero podría haber sido \bigO{n^2} si no supiese codear.
+\section{Datasets adicionales}
+
+Los datasets adicionales y sus fuentes son:
+
+\begin{itemize}
+\item{Mapas de Brazil y Estados unidos: Sacados de geonames \footnote{\url{http://www.geonames.org/}} }
+\end{itemize}
 
 \newpage
 
-
-\phantomsection 
-\addcontentsline{toc}{section}{Referencias} 
-\begin{thebibliography}{9}
-\bibitem{Cormen} 
-Cormen, Thomas H.; Leiserson Charles E.; Rivest Ronald L; Stein Clifford:
-\textit{Introduction to Algorithms}. 
-The MIT Press, 2009
-
-\end{thebibliography}
-\phantomsection 
-\addcontentsline{toc}{section}{Bibliografía}
-\renewcommand\refname{Bibliografía}
-\begin{thebibliography}{9}
-
-\bibitem{Kruse} 
-Kruse, Robert Leroy; Tondon, Clovis L.; Leung, Bruce P: 
-\textit{Data structures and program design in C}
-Prentice-Hall, 1997.
-
-\end{thebibliography}
 \end{document}
