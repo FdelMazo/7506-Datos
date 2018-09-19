@@ -11790,23 +11790,22 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">squarify</span> <span class="c1"># https://github.com/laserson/squarify ( pip install squarify )</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span> <span class="c1"># http://geopandas.org/install.html ( conda install -c conda-forge geopandas )</span>
-<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="k">import</span> <span class="n">WordCloud</span> <span class="c1"># pip install wordcloud</span>
+<span class="kn">import</span> <span class="nn">squarify</span> <span class="c1"># pip install squarify</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span> <span class="c1">#  conda install -c conda-forge geopandas</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="k">import</span> <span class="n">WordCloud</span> <span class="c1"># conda install -c conda-forge wordcloud</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="k">import</span> <span class="n">Point</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">strptime</span>
 <span class="kn">import</span> <span class="nn">calendar</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/events.csv&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11816,7 +11815,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
@@ -11841,7 +11840,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">option_context</span><span class="p">(</span><span class="s1">&#39;display.max_column&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">):</span>
@@ -11905,123 +11904,19 @@ div#notebook {
       <th>operating_system_version</th>
       <th>browser_version</th>
     </tr>
-    <tr>
-      <th>timestamp</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>2018-06-13 12:44:39</th>
-      <td>2018-06-13 12:44:39</td>
+      <th>783214</th>
+      <td>2018-04-06 21:48:59</td>
       <td>viewed product</td>
-      <td>163c595e</td>
+      <td>c8e71ed9</td>
       <td>NaN</td>
-      <td>8121.0</td>
-      <td>Samsung Galaxy S6 Edge</td>
-      <td>Bom</td>
-      <td>64GB</td>
-      <td>Verde</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2018-03-10 14:52:00</th>
-      <td>2018-03-10 14:52:00</td>
-      <td>searched products</td>
-      <td>9aa68a69</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>2692,2699,2691,2830,2711,3647,1302,2693,6791,2...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2018-06-01 16:49:48</th>
-      <td>2018-06-01 16:49:48</td>
-      <td>viewed product</td>
-      <td>673c27c8</td>
-      <td>NaN</td>
-      <td>8568.0</td>
-      <td>Motorola Moto X Style</td>
-      <td>Muito Bom</td>
-      <td>32GB</td>
-      <td>Preto</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2018-05-18 21:04:41</th>
-      <td>2018-05-18 21:04:41</td>
-      <td>viewed product</td>
-      <td>a5da35da</td>
-      <td>NaN</td>
-      <td>1301.0</td>
-      <td>iPhone 6</td>
+      <td>1381.0</td>
+      <td>iPhone 6 Plus</td>
       <td>Excelente</td>
       <td>16GB</td>
-      <td>Prateado</td>
+      <td>Cinza espacial</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -12038,16 +11933,94 @@ div#notebook {
       <td>NaN</td>
     </tr>
     <tr>
-      <th>2018-03-28 01:59:02</th>
-      <td>2018-03-28 01:59:02</td>
-      <td>viewed product</td>
-      <td>38c1a101</td>
+      <th>199395</th>
+      <td>2018-06-15 20:28:31</td>
+      <td>brand listing</td>
+      <td>347a9f49</td>
       <td>NaN</td>
-      <td>8441.0</td>
-      <td>Samsung Galaxy S7</td>
-      <td>Excelente</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8485,6413,8471,6371,2718,12744,3179,2741,6399,...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>655993</th>
+      <td>2018-06-05 18:30:18</td>
+      <td>ad campaign hit</td>
+      <td>a89d4692</td>
+      <td>/comprar/samsung</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>google</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>718559</th>
+      <td>2018-05-18 23:10:30</td>
+      <td>visited site</td>
+      <td>b903ec02</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Paid</td>
+      <td>Returning</td>
+      <td>Unknown</td>
+      <td>Unknown</td>
+      <td>Brazil</td>
+      <td>Computer</td>
+      <td>1366x768</td>
+      <td>Windows 10</td>
+      <td>Chrome 66.0</td>
+    </tr>
+    <tr>
+      <th>702754</th>
+      <td>2018-05-09 01:05:25</td>
+      <td>viewed product</td>
+      <td>b51c6285</td>
+      <td>NaN</td>
+      <td>8541.0</td>
+      <td>Samsung Galaxy S7 Edge</td>
+      <td>Bom</td>
       <td>32GB</td>
-      <td>Preto</td>
+      <td>Dourado</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -12076,13 +12049,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bytes_used</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Memoria usada: </span><span class="si">{:.2f}</span><span class="s1">MB&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bytes_used</span><span class="o">/</span><span class="mi">1000000</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> atributos y </span><span class="si">{}</span><span class="s1"> registros en el dataframe.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Primer registro: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">Último registro: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Primer registro: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">Último registro: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
 </pre></div>
 
 </div>
@@ -12099,7 +12072,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Memoria usada: 194.17MB
+<pre>Memoria usada: 186.08MB
 23 atributos y 1011288 registros en el dataframe.
 
 Primer registro: 2018-01-01 07:32:26 
@@ -12114,7 +12087,7 @@ Primer registro: 2018-01-01 07:32:26
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
@@ -12433,13 +12406,14 @@ Primer registro: 2018-01-01 07:32:26
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pasado el vistazo general a los datos, se pueden transformar datos en sus tipos correspondientes para mejor manejo de estos y para ahorro de memoria.</p>
+<p>Todo el código respecto a la creación de nuevos dataframes está ubicado en <code>anexo.ipynb</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Los atributos con pocos valores posibles se pasan a variables categoricas para ahorrar memoria</span>
@@ -12451,7 +12425,7 @@ Primer registro: 2018-01-01 07:32:26
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;device_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;device_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
 
 <span class="c1"># El tiempo es mejor manejarlo como tal</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
 
 <span class="c1"># Chequeo</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -12461,10 +12435,55 @@ Primer registro: 2018-01-01 07:32:26
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 1011288 entries, 0 to 1011287
+Data columns (total 23 columns):
+timestamp                   1011288 non-null datetime64[ns]
+event                       1011288 non-null category
+person                      1011288 non-null object
+url                         82756 non-null object
+sku                         563838 non-null object
+model                       564284 non-null object
+condition                   563836 non-null category
+storage                     563836 non-null category
+color                       563836 non-null object
+skus                        221699 non-null object
+search_term                 48967 non-null object
+staticpage                  3598 non-null object
+campaign_source             82796 non-null object
+search_engine               50957 non-null category
+channel                     87378 non-null category
+new_vs_returning            87378 non-null object
+city                        87378 non-null object
+region                      87378 non-null object
+country                     87378 non-null object
+device_type                 87378 non-null category
+screen_resolution           87378 non-null object
+operating_system_version    87378 non-null object
+browser_version             87378 non-null object
+dtypes: category(6), datetime64[ns](1), object(16)
+memory usage: 137.0+ MB
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ahorro</span> <span class="o">=</span> <span class="p">(</span><span class="n">bytes_used</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
@@ -12476,32 +12495,116 @@ Primer registro: 2018-01-01 07:32:26
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Memoria ahorrada: 42.4723MB (22.83%)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Se extrajo de la columna <code>model</code> la marca de cada producto generándose un archivo <code>brands.csv</code> y luego se hace un <em>inner join</em> con el dataframe original.</p>
-<p>Todo el código respecto a la creación de nuevos dataframes está ubicado en <code>anexo.ipynb</code> para poder replicar.</p>
+<p>Se extrajo de la columna <code>model</code> la marca de cada producto generándose un archivo <code>brands.csv</code> y luego se hace un <em>left join</em> con el dataframe original.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_brands</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/brands.csv&#39;</span><span class="p">)</span>
-
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_brands</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;brand&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;brand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;brand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())]</span>
+<span class="n">sample</span><span class="p">[[</span><span class="s1">&#39;model&#39;</span><span class="p">,</span><span class="s1">&#39;brand&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[47]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>model</th>
+      <th>brand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>iPhone 5s</td>
+      <td>iphone</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>iPhone 5s</td>
+      <td>iphone</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Samsung Galaxy S8</td>
+      <td>samsung</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Samsung Galaxy S8</td>
+      <td>samsung</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Motorola Moto Z Play</td>
+      <td>motorola</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12510,26 +12613,93 @@ Primer registro: 2018-01-01 07:32:26
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Se extrajo de la columna <code>operating_system_version</code> la marca de cada producto generándose un archivo <code>os.csv</code> y luego se hace un <em>inner join</em> con el dataframe original.</p>
+<p>Se extrajo de la columna <code>operating_system_version</code> la marca de cada producto generándose un archivo <code>os.csv</code> y luego se hace un <em>left join</em> con el dataframe original.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_os</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/os.csv&#39;</span><span class="p">)</span>
-
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_os</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_system&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())]</span>
+<span class="n">sample</span><span class="p">[[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_system&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[48]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>operating_system_version</th>
+      <th>operating_system</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Android 6</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Android 5.1.1</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Windows 10</td>
+      <td>windows</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Windows 10</td>
+      <td>windows</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Windows 10</td>
+      <td>windows</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12538,23 +12708,117 @@ Primer registro: 2018-01-01 07:32:26
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Se extrajo de la columna <code>browser_version</code> la marca de cada producto generándose un archivo <code>browsers.csv</code> y luego se hace un <em>inner join</em> con el dataframe original.</p>
+<p>Se extrajo de la columna <code>browser_version</code> la marca de cada producto generándose un archivo <code>browsers.csv</code> y luego se hace un <em>left join</em> con el dataframe original.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_browsers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/browsers.csv&#39;</span><span class="p">)</span>
-
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_browsers</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;browser_version&#39;</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;browser&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;browser&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())]</span>
+<span class="n">sample</span><span class="p">[[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span><span class="s1">&#39;browser&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
 
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[49]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>browser_version</th>
+      <th>browser</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Chrome Mobile 39</td>
+      <td>chrome mobile</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Android 5.1</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Chrome 65.0</td>
+      <td>chrome</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Chrome 66.0</td>
+      <td>chrome</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Chrome 65.0</td>
+      <td>chrome</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Extracción de información de las fechas.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;month_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;week_day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;week_day_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday_name</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_dom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_doy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span>
 </pre></div>
 
 </div>
@@ -12566,22 +12830,17 @@ Primer registro: 2018-01-01 07:32:26
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Extracción de información de las fechas</p>
+<p>Se usa el timestamp como un id de los eventos, es decir, un índice del dataframe.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;month_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;week_day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">weekday</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;week_day_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">weekday_name</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_dom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">day</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_doy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofyear</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12600,7 +12859,7 @@ Primer registro: 2018-01-01 07:32:26
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">event</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span>
@@ -12614,10 +12873,114 @@ Primer registro: 2018-01-01 07:32:26
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>description</th>
+      <th>value_counts</th>
+    </tr>
+    <tr>
+      <th>event</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>viewed product</th>
+      <td>El usuario visita una página de producto.</td>
+      <td>528931</td>
+    </tr>
+    <tr>
+      <th>brand listing</th>
+      <td>El usuario visita un listado específico de una marca viendo un conjunto de productos.</td>
+      <td>98635</td>
+    </tr>
+    <tr>
+      <th>visited site</th>
+      <td>El usuario ingresa al sitio a una determinada url.</td>
+      <td>87378</td>
+    </tr>
+    <tr>
+      <th>ad campaign hit</th>
+      <td>El usuario ingresa al sitio mediante una campana de marketing online.</td>
+      <td>82827</td>
+    </tr>
+    <tr>
+      <th>generic listing</th>
+      <td>El usuario visita la homepage.</td>
+      <td>67534</td>
+    </tr>
+    <tr>
+      <th>searched products</th>
+      <td>El usuario realiza una búsqueda de productos en la interfaz de búsqueda del site.</td>
+      <td>56073</td>
+    </tr>
+    <tr>
+      <th>search engine hit</th>
+      <td>El usuario ingresa al sitio mediante un motor de búsqueda web.</td>
+      <td>50957</td>
+    </tr>
+    <tr>
+      <th>checkout</th>
+      <td>El usuario ingresa al checkout de compra de un producto.</td>
+      <td>33735</td>
+    </tr>
+    <tr>
+      <th>staticpage</th>
+      <td>El usuario visita una página</td>
+      <td>3598</td>
+    </tr>
+    <tr>
+      <th>conversion</th>
+      <td>El usuario realiza una conversión comprando un producto.</td>
+      <td>1172</td>
+    </tr>
+    <tr>
+      <th>lead</th>
+      <td>El usuario se registra para recibir una notificación de disponibilidad de stock para un producto que no se encontraba disponible en ese momento.</td>
+      <td>448</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">orden</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
@@ -12626,6 +12989,41 @@ Primer registro: 2018-01-01 07:32:26
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[58]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0.5,1,&#39;Cantidad de visitas segun evento&#39;)</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABcsAAAN0CAYAAABr2HBMAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi4zLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvIxREBQAAIABJREFUeJzs3XmU13Wh//HXDCAqgoCCIhqJFRKDgiCKQogblIgglYjaVVxyQf2laJSFexpiZSBommnu166JCje6SlfJyi3pXFxONzQzBRdWRVmcmd8fHuY6AoKGg/p+PM7xHL6f9f39fr7+85z3vKeitra2NgAAAAAAULDKjT0AAAAAAADY2MRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AEChnnjiiZx++unp06dPqqqqsscee+SYY47Jr3/961RXV38k93z66aczYcKELFq0aLV9nTp1yoQJE9Z5jaOOOipHHXXUBhvTmDFjsu+++36ocx9++OF06tQpDz/88AYbz0dxzwkTJqRTp051r5csWZIJEybkySef/CiGyMeIZw0AsP4ab+wBAADQ8K6//vpceuml2XPPPTN69Oi0b98+ixcvzkMPPZTzzjsvzZs3z/7777/B7/v0009n4sSJGTx4cFq2bFlv3+23355tt912g9/z06ZLly65/fbb87nPfW69z/na176Wvn371r1esmRJJk6cmG233TZdunT5KIbJx4RnDQCw/sRyAIDCPProo7n00ktz5JFH5nvf+169ffvvv3+OOeaYvPnmmw0+rm7dujX4PT+Jtthiiw/8WW277bZ+EAEAAOtgGRYAgMJcc8012XLLLXPWWWetcf9nPvOZ7LzzzkmSBQsWZOzYsRkwYEB23XXX9OvXL2eeeWZefvnleuesWubj73//e0444YR07949/fv3z8SJE1NTU5MkufPOO/Od73wnSXLggQemU6dO6dSpU/75z38mWfMyLFOnTs3AgQNTVVWVgw46KP/1X/+12niXL1+eH/zgBxk0aFC6d++evffeOyeeeGLmzJmz2rF//OMfM3To0HTt2jX7779/brvttvX+3BYsWJAzzzwzu+22W3r27Jmzzz47r7/++hqP/e1vf5uvf/3r2XXXXdOzZ8+cdtppeemll973+ueff3722muvvP322/W2r1ixIrvvvnsuuuiiJGtehmXmzJkZPnx4evToke7du2fAgAGZOHFi3f53L8Pyz3/+M/vtt1+S5Hvf+17dc7jzzjuTJL///e9z/PHHp0+fPtl1110zaNCgXHfddastzXPPPfdkyJAh6d69e3bbbbccfPDB6/w8n3vuuZxyyinp3bt3unbtmn322SennXZavfe86jvXt2/fVFVVZeDAgbn99ttXu9Yf/vCHDBkyJF27ds0BBxyQO+64Y7Uldda2ZM2dd95Z77uXJPvuu29Gjx6dqVOn5stf/nK6deuWQw89NI899tj7vqdVnnnmmZx44onZfffds8suu2T48OH1zr322mtTVVWVhQsXrnbuV77ylZx00kl1r996661cdtll2XfffVNVVZV99903kydPrvt/6d3v7f77788FF1yQPfbYI3vssUdGjx6dJUuWJFn3s66trc3111+fAQMGpKqqKn369MkFF1yQN954Y73eMwDAp42Z5QAABamurs7DDz+c/fffP02bNl3n8YsWLcomm2ySM844I61bt84rr7yS6667Locffnj+8z//c7VrjBo1KoceemiOPvrozJgxIxMmTEi7du0ybNiw7LPPPjnppJMyefLkXHHFFXUzndu2bbvGe//hD3/ImWeemX322SdjxozJggULcvHFF+ftt9/OjjvuWHfcihUrsnTp0px00klp06ZNFi9enFtuuSXDhw/PtGnT0qZNmyTJnDlzcvzxx6eqqio//vGPs2LFikyYMCFvvvlmGjVqtM7PYtSoUXnmmWdyxhlnpEOHDpk2bVouvPDC1Y679dZbc9555+XQQw/NKaeckqVLl2bChAk58sgjc/fdd2eLLbZY4/UPOeSQ3HLLLXnooYfSr1+/uu2/+93vsmTJkgwZMmSN573wwgs56aSTMmDAgJx88slp0qRJnn/++bzwwgtrPL5t27aZOHFiRo0alW9+85t1cfkzn/lM3fV69+6dI488Mk2bNs3s2bMzYcKELFiwIKNHj06SPPbYYznrrLNy1FFH5eyzz05NTU2effbZuki7Nt/85jfTokWLnHfeeWnVqlVefvnlPPDAA3UR+I033sjhhx+e5cuX59RTT83222+fmTNn5rzzzsuKFSvq1qr/29/+lhNOOCG77LJL3bOcPHlyXn/99VRWfvj5QI8//niee+65nH766WnatGmuuOKKnHjiiZkxY0ZatGix1vOefPLJHHHEEencuXMuvPDCbLbZZrn11ltz9NFH57bbbktVVVUOPvjgXH755Zk2bVqOOOKIunNnz56dOXPm5PTTT0+SvP322zn22GMzZ86cnHTSSenUqVNmzZqVSZMmZfHixRkzZky9e1988cXp379/Lr/88jz33HO57LLL0qhRo/zwhz9c57P+8Y9/nKuvvjpHHHFE+vfvnzlz5uSKK67IM888k5tuuulf+iwBAD6JxHIAgIIsXLgwy5Yty3bbbbdex3fs2LHeUi3V1dXZbbfdss8+++TBBx/MAQccUO/4Y445JsOGDUuS7LXXXnn44YczderUDBs2LK1bt66LdJ07d06HDh3e994//elP07Fjx0yaNKku2nXs2DGHHXZYvVjevHnzXHzxxfXG2KdPn+y1116ZOnVqjj766CTJpEmT0qxZs1x33XXZfPPNkyTdu3fPAQccsNZgv8pDDz2Uxx9/PD/60Y9y0EEHJUn69u2b4447LvPmzas7bunSpRk/fnwOPfTQXHLJJXXbu3btmi9/+cv51a9+VTee9+rWrVs++9nPZsqUKfVi+ZQpU7LTTjulqqpqjec9+eSTWblyZc4///y6EN+7d++1vpdNNtkknTt3TpLssMMOqy3pcvjhh9f9u7a2Nj179szKlStz3XXX5YwzzkhlZWX+8pe/pEWLFjnnnHPqju3Tp89a75m8M2P8+eefz6RJk+pmOyfJwQcfXPfvG264IS+99FLuueeefPazn03yzvfo9ddfz8SJE3P44YencePGmTx5crbYYov8/Oc/z2abbZYk6dmzZ/bbb7+6H458GG+88UbuuuuubLnllkmSrbfeOl/96lfzwAMP1Bvne40bNy7t2rXLDTfckE022STJO5/HoEGDMmnSpEyaNCnbbLNN9txzz9x99931YvmUKVPSokWL9O/fP0ly77335vHHH89NN92U3XffPcn/Pc8rr7wyxx9/fLbaaqu683ffffd8//vfr7vnc889lzvuuCOXXnrp+z7rRYsW5brrrsvQoUMzduzYJO98p1u1apWzzz47v/vd7+o9JwCAEpgqAADA+7rlllsyePDgdO/ePV/84hezzz77JHlnSY33WrVvlc9//vPrXH5kTaqrqzN79uwMGDCg3uzWbt26pX379qsdP23atHzta19Lz54988UvfjHdunXLm2++mWeffbbumFmzZqVfv351oTxJ2rVrl+7du69zPE888UQaNWqUAw88sN72VeH83fd44403Mnjw4Lz99tt1/7Vr1y477rjjOpf0GDx4cO6///66ZTAWLlyYBx98MIcccshaz+ncuXOaNGmSb33rW/nNb36T+fPnr/P9vJ9XXnklY8eOTf/+/VNVVZUuXbrkJz/5SZYsWVJ37a5du2bx4sUZPXp03cz3dWnVqlV22GGHXH755fn3f//3/P3vf1/tmJkzZ2bXXXfN9ttvX+/z69OnTxYtWpS//e1vSf7vWa4K5ck7M+bX51m+n27dutWF8iR1S9fMnTt3recsW7Ysjz76aAYOHJjKysq6MdfW1mavvfaq98wPOeSQzJo1K88//3ySd2aRr1r2ZVVknzlzZtq3b5/u3bvX+wz23nvvrFy5MrNmzap3/3f/YCVJvvCFL2TFihV57bXX3ve9/uUvf8nKlSszePDgetsPOuigNG7cOI8++uj7ng8A8GlkZjkAQEFatmyZTTfddL0D9o033piLLrooxxxzTPr06ZMWLVqktrY2X//617N8+fLVjn93aEzemcW8YsWKDzzOhQsXZuXKldl6661X2/febTNmzMi3vvWtDB06NKNGjUqrVq1SUVGRE044od69X3311Xozct99vRdffPF9x/Pqq6+mRYsWadKkSb3t773eqpi8ttnj7/183mvw4MGZMGFCpk+fnmHDhmXatGl5++23Vwua79ahQ4dce+21ueaaa3L22WdnxYoV2WWXXTJ69Oj06tXrfe/3XjU1NTnppJPyyiuv5NRTT03Hjh3TtGnT3HfffbnqqqvqnnmvXr1yxRVX5KabbsqoUaOSvDPDecyYMXXr3b9XRUVFfvGLX2TChAm5/PLLs2jRomy//fY59thjM2LEiCT/N/u8S5cua7zGokWLkrzzPFq3br3a/q233rreOuQf1Jq+v0nW+F1fZfHixamurq6bQb4mNTU1qayszIEHHpjzzz8/U6ZMyWmnnZaHHnoo8+fPr/fDkAULFuTFF19c52ewSsuWLT/wmN99nffOxG/cuHFatmyZxYsXv+/5AACfRmI5AEBBGjdunF69euWhhx7KihUr6sLa2kydOjW9e/eut07y2tbC3pBatWqVJk2arHF27GuvvVZvdvnUqVPToUOHXHrppXXbVq5cuVrsa9OmzRpnXa9rBu6qc5csWZKVK1fWC+bvvd6qcHnppZfmc5/73GrXadas2fveZ4cddshuu+2Wu+++O8OGDcs999yTXr16pV27du973p577pk999wzK1asyOOPP56f/vSn+eY3v5n7779/jVF5bf7xj39k9uzZGTduXL2A+7vf/W61YwcOHJiBAwdm6dKleeSRRzJ+/Pgcd9xxefDBB9e61vUOO+yQcePGpba2tm5d7PPPPz/t27dPv3790rJly7Ru3bre8i7vtmr5nTZt2mTBggWr7X/vs1y1pv7KlSvrbX9vcP5XNG/ePJWVlTniiCPW+hsAqz6PzTffPPvvv3/uueeenHbaabn77ruzww47pEePHnXHtmzZMttvv31+8pOfrPFaa/rNig9j1Xf1tddey+c///m67W+//XYWLVq0zh/sAAB8GlmGBQCgMCeccEIWLVqUcePGrXH/Cy+8kGeeeSbJO0tMNG5cf37FnXfe+aHvvSrOL1u27H2Pa9SoUaqqqjJ9+vS6P/6YvLN0xHtngS9btmy1P9A5ZcqUVFdX19vWrVu3PPDAA3nzzTfrts2dOzdPPPHEOsfdvXv3VFdX57e//W297VOnTq33erfddkuzZs3y/PPPp2vXrqv917Fjx3Xea8iQIXnkkUfy8MMP54knnnjfJVjea5NNNknv3r1z3HHH5c0331zrLOu1PYdVr9/9A4GVK1fmnnvuWes9mzVrlv79++ewww7Lq6++ul4huqKiIp07d853vvOdJMn//u//Jnlnzeznnnsu22233Ro/v1Vrsq96lm+99VbdNV955ZX8+c9/rnefVWvzr7r+Kv/93/+9zjGur8033zw9e/bMM888ky5duqxx3O82ZMiQ/OMf/8jMmTNz3333rfZbA3379s28efOy+eabr/FaH+SHH8nan/Wuu+6aJk2arPYdXvXbDB/0txIAAD4NzCwHACjMquUyLr300syZMydDhw7Ndtttl8WLF+ePf/xjfvWrX2X8+PHZeeed07dv31xzzTW56qqrsssuu+RPf/pTpk+f/qHvvWq29c0335yhQ4emcePG6dSp0xpnuJ922mkZOXJkTj755AwfPjwLFizIhAkTVls2om/fvrnvvvvygx/8IP3798///M//5KabbkqLFi3qHXfyySdn+vTpGTlyZI477risWLEiEydOXOPSLO+19957p0ePHhk7dmwWLlyYDh06ZNq0aatF2C222CJnn312LrjggixYsCBf+tKX0rx587z88st59NFH06tXr/f9Q5HJOzO2L7zwwpx11lnZdNNNM2DAgPc9/tZbb81jjz2WL33pS2nXrl0WLlyYq6++Om3bts0XvvCFNZ6z9dZbp2XLlpk6dWo6deqUzTbbLNtvv306duyY9u3b58c//nEqKyvTuHHj3HDDDaudf8UVV2T+/PnZY4890rZt28ybNy833nhjOnfuvNaY+8wzz+Tiiy/OV77ylXTo0CHV1dX59a9/ncaNG2fPPfdM8s7yNdOmTcuIESNy9NFHZ8cdd8xbb72VZ599No899lgmT56cJDnppJMyffr0HHvssRk5cmRWrFiRyZMnZ+utt05FRUXdPdu2bZtevXrl6quvTqtWrdK6devcfffd/9JSLWsyZsyYHHnkkTn22GPz1a9+NW3atMnChQvz1FNPpbq6OqNHj647tnfv3mnbtm3OOeecLFu2bLUfhhx88MG58847c/TRR2fkyJHZeeeds2LFirzwwguZMWNGrrzyynprta/L2p51q1atMnLkyFx99dXZbLPN0q9fv8yZMyc/+clP0qNHj9X+/gAAQAnEcgCAAh199NHZZZddcv3112fcuHFZuHBhmjVrlqqqqpx//vnZd999kySnnHJKlixZkuuvvz7Lly9Pr169cu2112b//ff/UPfdeeedc+qpp+b222/PHXfckZqamtx///3ZfvvtVzt2r732yvjx4zNhwoSMGjUqHTp0yHe/+9388pe/rHfc17/+9cydOzf/8R//kdtvvz1du3bNVVddVbeW9io77bRTfvazn2XcuHH5f//v/2WbbbbJ8ccfn1mzZuWRRx5Z59gnTpyYiy66KJdffnkaNWqUfffdN9///vdzyimn1Dtu+PDhadeuXa699trce++9qa6uzjbbbJMePXqkc+fO67xPixYt0r9//0yfPj2DBg2qm029NjvvvHMefPDB/OhHP8r8+fPTsmXL7Lbbbhk/fnw23XTTNZ5TWVmZiy++OD/60Y9yzDHH5O23384ll1ySQw89NFdeeWUuuOCCfPvb386WW26ZYcOGZbvttsv3vve9uvN33XXX3HjjjbnkkkuyaNGibLXVVtl7771z+umnr3Wcbdq0yXbbbZfrr78+8+bNS9OmTfOF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AAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AAAAAADFE8sBAAAAACieWA4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAAIDiieUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AAAAAADFE8sBAAAAACieWA4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAAIDiieUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AAAAAADFE8sBAAAAACieWA4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAAIDiieUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACKJ5YDAAAAAFA8sRwAAAAAgOKJ5QAAAAAAFE8sBwAAAACgeGI5AAAAAADFE8sBAAAAACieWA4AAAAAQPHEcgAAAAAAiieWAwAAAABQPLEcAAAAAIDiieUAAAAAABRPLAcAAAAAoHhiOQAAAAAAxRPLAQAAAAAonlgOAAAAAEDxxHIAAAAAAIonlgMAAAAAUDyxHAAAAACA4onlAAAAAAAUTywHAAAAAKB4YjkAAAAAAMUTywEAAAAAKJ5YDgAAAABA8cRyAAAAAACK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fmvcXlFRkfvuu2+DDQgAAAAAABraesfyF198cY3bKyoqNthgAAAAAABgY1jvWP7LX/6y7t/V1dX561//mokTJ+boo4/+KMYFAAAAAAANZr1jea9eveq97t27d+bNm5cZM2bklFNO2eADAwAAAACAhrLesfyuu+6q9/qNN97I9OnTs2jRog0+KAAAAAAAaEjrHcvHjBmz2vrktbW1+dKXvrTBBwUAAAAAAA1pvWP57rvvXu/15ptvns6dO+eYY47Z4IMCAAAAAICGtN6x/MYbb/woxwEAAAAAABvNesfyJJk1a1ZuuummvPTSS2nfvn1GjBiR7t27f1RjAwAAAACABrHesXzmzJk58cQTU11dnST585//nKlTp2by5Mnp16/fRzZAAAAAAAD4qK13LJ84cWIqKiryb//2b+nYsWOeffbZ3HzzzZk0aZJYDgAAAADAJ9p6x/K//e1vOeigg/Kd73ynbtuiRYty3333fSQDA/j/7N17nFVlvfjx78AwgHIHIxIstFCJA6gIipGAHEFFAbUwM3/J64hZliXFRSsvKImaN9LM9OihvHQRJdDCsrQLDt5QM1KRUCEVEJA7c31+f/BiH+4OHJhBn/f7L2b2zFrPDGvNs9Znr702AAAAANSWejX9wmbNmsXcuXOjrKwsIiLKyspi7ty50axZsz02OAAAAAAAqA01vrK8d+/e8cADD0Tv3r2jXbt28fbbb8fatWvj1FNP3ZPjAwAAAACAPa7GV5aPGjUqunXrFmvWrInXXnst1qxZE926dYtRo0btyfEBAAAAAMAeV+Mry996660477zzok2bNvHvf/879t9//1iyZEm89dZb0apVqz05RgAAAAAA2KNqHMtHjx4dzZs3j/vuuy+6du0aERFf+tKXYvny5TF9+vQ9NkAAAAAAANjTanwbloULF8anPvWpzT7XsWPHWLBgwW4fFAAAAAAA1KYax/I2bdrE008/HeXl5RERUV5eHk8//XS0bt16jw0OAAAAAABqQ41vw3LkkUfG1KlTY8CAAdGpU6d49dVXY8mSJTFkyJA9OT4AAAAAANjjahzLL7roonj++efjjTfeiMWLF0dExMc//vH41re+tccGBwAAAAAAtaHGsbxt27YxderUeOKJJ2LhwoXRvn37OPbYY6NRo0Z7cnwAAAAAALDH1TiWR0Q0atQoBg4cuKfGAgAA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KaXdsvYPiJdeeinGjBkTDz/8cOFzJ554Ylx77bXx6U9/ug5HBgAAAABAXcnyNiwAAAAAALCp7GJ5u3btYtGiRVFVVRUREVVVVbF48eJo165dHY8MAAAAAIC6kl0sb926dRx66KExffr0iIiYPn16HHrooTW+XzkAAAAAAB8+2d2zPCJi3rx5MXbs2Fi5cmU0a9YsJk6cGAceeGBdDwsAAAAAgDqSZSwHAAAAAIBNZXcbFgAAAAAA2JJYDgAAAABA9sRyAAAAAACyJ5YDAAAAAJA9sZydct9998Xdd99d6+sdO3Zs/PznP6/VdX7pS1+KP/3pT7v8/VOmTIn58+fvxhHxQXDwwQfHmjVranWd29s/Fi5cGL169Sp8PGTIkFi/fv12l7Ny5cr46U9/utnnLrnkknjmmWd232ChBmoy19x0003xyCOPRETErFmz4q9//esurWvWrMv4s2UAAB2sSURBVFlx6qmn7tT3bLov3X333bF06dJdWjdE7No2WJcee+yxmDhx4m5d5o6OuTadh/7whz/Eiy++uFvXDRttOq/UVP/+/ePVV1+NiJodM205Z9TVuRV52nR7/b+o7fOdLc9pdta2znFgR3bXvrIr9sS8sKN91nnNthXX9QD4YPnCF75Q10PYZZWVlVFcXHub/IMPPhgtW7aMjh071to6+eCo7e0xImLq1Kk7fHzlypVxxx13xLnnnlv43FVXXbWnhwVbqclcc+GFFxb+/dRTT8XatWvjM5/5zJ4cVsGm+9LkyZOjd+/e0bp161pZN9S14447Lo477rhaW9+m89Af/vCH6NKlS3Tt2rXW1k8eqqqqNptXdkVNjpm2nDM+yOdW7H3q4vxiV1RXV0dRUVEUFRXVyvq2dY5D3vbmfaW25wXnNdu2d24d1Klbb7013nvvvbj44osjImL58uUxaNCg+NOf/hR33nlnrF27NsaMGRMREbfffns8+uijUVVVFW3bto3x48fHfvvtF3369ImHHnooWrduHeeee24UFRXF7bffHkuXLo1hw4bFn//85ygvL48bbrghnn766SgvL4+DDz44Lrvssth3331j0aJFMXr06FiyZEnsv//+Ua/etl8EsXDhwjjttNNi2LBh8be//S0iIi699NLo0aNH4bFTTz01SktL4/Of/3yccsopceWVV8bf//73iNjwLNrGSfO1116LcePGxdq1a6NTp05RVlZWWE///v3jtttui06dOm318bx58+Kqq66KJUuWRETEiBEjorq6Ol566aW48sor48Ybb4wxY8ZE796998D/FnujO++8Mx577LFYv359XHTRRTFw4MCI2PCM7gUXXBCPP/549OnTJ0444YS4/PLLY926dVFWVhaf//zn48tf/nJEbLhavKSkJF5//fV45513onv37jFx4sQoKiqq8f6xpYMPPjiee+65aNy4cVxxxRVRWloaJSUlsc8++8T9998fV1xxRaxatSqGDBkSjRs3jvvvvz++9KUvxYgRI6Jfv341GtO7774bHTp0iIiIz3zmM3HWWWftkd8xH3w1nWuee+65GD9+fFRXV0dlZWWcf/75MXjw4Bg7dmx06dIljjzyyLj//vujuro6Zs6cGSeddFKMHDkynnjiifjxj38c5eXl0aBBgxg3blx07949IiJuuOGGeOSRR6JZs2bRs2fP7Y7xRz/6UUyfPj0aNmwYRUVFMXny5GjWrFlhX5o8eXIsXrw4vvGNb0TDhg3jhz/8YRxwwAHbndvIy6hRo2L+/PlRUVERBxxwQEyYMCGaN28eETXfBhctWhRXXnllvP766xERMXjw4DjvvPNi2rRpMXny5KioqIiIiDFjxsTRRx8dERuOUU4++eQoLS2NRYsWxahRo2Lp0qUxffr0WLFiRUyYMCGOPPLIHR5DVVZWxnnnnRfLly+PsrKy6Nq1a1x++eVRUlISU6ZMiccffzxuvvnmzX6WFi1aRM+ePePJJ5+MKVOmxKxZs2LChAnRrVu3mD17dhQVFcUNN9wQBx100DZ/1qeeeipuv/32WLx4cZxwwgnx7W9/OyKiMA8VFxfHH//4x5g5c2b86le/inPOOSeGDh36f/+PYq8xY8aMuOGGG6JRo0YxaNCguOGGG+K5556LfffdN1544YW47rrrClfGfeMb34i+ffsWtuMzzjgjnnjiiVi3bl1cddVV0aNHj4iI7c4Fs2bNiiuvvDK6dOkSc+bMiW9+85sxY8aM6NKlS5x11lmF85S//OUvUa9evejQoUPccsstOxz/psdMv/jFL+Luu++OkpKSqK6ujhtvvDEeffTRreaM3/72t4X5bsqUKTF9+vRo1qxZzJ07N5o2bRqTJk2K/fbbL8rLy2P8+PHx1FNPRatWreLQQw+Nd999t7Af8sGxbt26GDNmTLz22mtRXFwcHTt2jJtuuikiNlxsde+990ZVVVU0adIkLrvssjjwwAPjlVde2eE5Q/369WP+/PmxZs2amDp1asyePTuuueaawv4yevTowgUFv/3tb+N73/teLFmyJEaMGFE4Vv/Xv/4VEyZMiOXLl0dFRUX8v//3/+K0006LiIhHH300rr/++mjYsGEcf/zx2/3ZJk2aFK+99losX748Fi9eHJ/61KdiwoQJhW157ty5sXr16njrrbfiF7/4Rbzxxhtx1VVXxdq1a2OfffaJSy65pPBk6D333BN33313NGnSJI499tjCOmbNmhUTJ06MKVOmbPPjX//61zF58uSIiGjQoEH85Cc/2eY5zvaO8dh77K37ypa218QmTZoU8+fPj1WrVsWCBQvigAMOiJtuuikaN24cq1atiosvvjjmzp0bbdu2jbZt20br1q1jzJgxMWnSpBrNCzta97b87Gc/i9///vfx3nvvxejRozdrFNs7r/nkJz+52/4/P3ASbOHf//53OuaYY1JFRUVKKaXJkyensWPHppRSuvnmm9PVV1+dUkrpoYceSt/97ndTVVVVSimle+65J1100UUppZRGjRqVpk+fnsrLy9OgQYPSCSeckMrLy9O0adPSt7/97ZRSSrfccku65ZZbCuu95ppr0vXXX59SSumCCy5IkyZNSiml9Oabb6bu3bunn/3sZ1uNdcGCBalTp07pwQcfTCmlVFpamvr06ZPKysoKjz388MObrWP06NGpuro6rVq1Kp144onp8ccfTymlNGzYsDRlypSUUkqzZ89OhxxySPrjH/+YUkqpX79+6ZVXXiksZ+PHFRUV6fjjj0+PPPJI4bFly5allFI666yzCt9PPjp16lTYdufNm5d69uyZ3n333cJjP/nJTwpfu2rVqlRWVpZSSmn16tXphBNOSK+99lpKKaUxY8akM844I61fvz6VlZWlE088Mf31r39NKe3c/tGzZ8/NxrZ69er0j3/8Iw0aNKiw77733nvb/PqUNt+O329MG/fnhQsXpsMOO2ybY4KNajrXfOUrX0nTpk1LKaVUXV2dVqxYkVLasD1u3MY2/fqUUnrjjTfS5z//+bRq1aqUUkqvvvpqOvbYY1NKKT322GNp8ODBafXq1amysjKdd955adiwYVuNb/ny5emII45I69atSylt2F83jnXjvpTS1vPDjuY28rJ06dLCv6+//vp07bXXppRqvg2mtOFv8E9/+tOtlrls2bJUXV2dUtow1/Tp06fwNf369SvsDy+88ELq1q1b+vnPf55SSunhhx9OZ5xxRkppx8dQ1dXVheOZ6urq9J3vfCfde++9KaWUHnjggfT1r3+98LOcfPLJac2aNamqqip97WtfK/wspaWlqXPnzukf//hHSimlW2+9tXCcuK2f88ILL0xVVVVp5cqVqWfPnmn+/PmFxzadh8wtH05LlizZ7P/9rrvuKvytXbFiRRoyZEhatGhRSimlRYsWpT59+qQVK1YUtuON28jUqVPT8OHDU0o7ngtKS0vTIYcckp577rnCGDbdviZNmpS+9rWvFY7TNt2fN7XpHLDptnr44YcXxltWVpbWrl271dentPn89cADD6QePXqkt956K6WU0iWXXFKYPyZPnpxGjBiRKioq0vr169PnPve5wn7IB8ujjz6aRowYUfh443H4008/nc4999zCNvf4448XtuX3O2cYNmxYWrNmTUppw/FL796907PPPptSSqmysrKwjk3nhwULFqTu3bun1atXp4qKijRs2LDCMletWpWOP/749NprrxX2zXnz5qWUUrr99ts3Ow7a1M0335yOOeaYtGTJkpRSSmPHji2s7+abb07HHntsYV8qKytLxx57bJo5c2ZKKaW//e1v6dhjj01lZWXpn//852bLufTSSwvnKKWlpZvNmZt+XFpamgYMGJAWL15c+F2tX79+q3OcHR3jsffYG/eVLe2oid18883pP//zP9OKFStSdXV1Ouecc9IvfvGLlFJKP/jBD9LFF19cGMem66vpvLCjdW+pU6dOhfntmWeeSZ/5zGc2e2x75zU5c2U5W/nYxz4Wn/zkJ+OJJ56I4447Lh588MEYN27cVl/3xz/+MV566aUYNmxYREThWb2IiKOPPjpmzpwZbdu2je7du0dKKV544YWYOXNmHHXUUYXvX716dcyYMSMiIsrLy+OQQw6JiA3PEH/3u9+NiIgOHToUrpbalgYNGsQpp5wSERG9evWKRo0axb/+9a9o0qRJNGzYME444YTC1z755JNx8cUXR1FRUTRp0iROOumkePLJJ+OII46IV199NYYMGRIREd27dy9cRb4j8+fPj8rKys3W0bJly/f9Pj7cPve5z0VExIEHHhidO3eO559/vvCS9Y37S0TE+vXr47LLLotXXnklioqKYvHixfHyyy8XrrobMGBANGzYMCIiOnfuHG+++WYcc8wxO7V/bEuHDh2isrIyLrnkkujVq1f069evxt9bkzHtv//+Oz0m8lPTuaZXr17x4x//uLCtdevW7X2X/Ze//CXefPPN+OIXv1j4XGVlZbz77rsxa9asOPHEEwtXep9++ulx6623brWMpk2bxgEHHFC4wqRv376FOW5HdjS3kZepU6fGtGnToqKiItauXRuf+MQnIiJqvA2uWbMmZs+eHXfddVfhc61atYqIiAULFsSoUaNi0aJFUVxcHO+++24sWbKkcDXRiSeeGBERn/70p2PdunWF45QuXbrEm2++WVje9o6hPvWpT8V///d/x5///Oeorq6OFStWRKNGjbYa46xZs+KEE06IffbZJyIihg4dutnP0rFjx+jcuXNEbDi22tF7wQwaNCjq1asXTZs2jYMOOijefPPNwu+MD78XXnghOnfuXPg/P+200+IHP/hBRETMnj07Fi5cuNktFIqKiuKNN96Ili1bxj777FM4ltn4qreIHc8FEREf//jH47DDDtvmeP70pz8VXlEX8b/7Xk0dddRRMXbs2OjXr1/07du38Kq793P44YdHu3btIiKiW7duMXPmzIjYsK8NGTIkiouLo7i4OE466aR49tlnd2pM7B0OOeSQmDdvXlx++eXRs2fP6Nu3b0RsOH54+eWXC+cRKaVYuXJlRLz/OcOgQYMKf4eff/75OOigg+Lwww+PiIj69esXXtUU8b/zQ/v27aNZs2bxzjvvREop5s2bFxdddFHh6yoqKuJf//pX1KtXLzp37hwHHnhgREQMHz48rrvuuu3+fH379o02bdpExIb57corryw89tnPfrawL82fPz8aNGhQOGfo3bt3NGjQIObPnx9PPfXUZssZPnx4/Pa3v33f3+3jjz8eQ4YMKcyF23tV364e41G79sZ9ZctXx+2oiUVseKX1xlcsdO3atXAMtum5c4sWLWLAgAHb/T1sb154v3VvaePP071791i8eHGUlZUVzuvZmljONg0bNiweeuihaN++faxatarwUsZNpZTi/PPPj9NPP32rx4466qi45ZZb4qMf/WgcddRRkVKK0tLSKC0tjQsuuKDw/ZdeeukejWqNGzfeLfdCq1+/flRXVxc+3vQWLbAzNk7OERHXX3997LfffnH11VdHcXFxjBgxYrNta9PJq379+lFVVbVbxtC0adN4+OGHY9asWTFz5sy47rrr4sEHH6zR9+6pMZGnmsw1X/7yl6N///4xc+bMGD9+fBxzzDHxrW99632X3adPn7jmmmt2eWz169ePX/7yl/Hcc89FaWlpnHrqqXHHHXe8b/iujbmNvd8zzzwT9913X9x///3RqlWrmDZtWvzyl7/cbcu/6KKLYuzYsTFgwICorq6Obt26bXP+qF+//mYf16tXLyorK993+dOmTYtnn3027rnnnmjSpEncdttthVvB7IyNobEm6za/sD0ppTj44IPjnnvu2eqxhQsX7nA7295cMG/evM2OyXa3H/3oR/H3v/89SktL4+yzz47LLrtss1tJbI/94MOvQ4cOMX369CgtLY0///nPccMNN8S0adMipRSnnXbaNu+d/37nDDuzLW9rGysqKoqWLVtu8/2NHnvssZ38Cbdvd9ySrn79+pFSKny8K+flu3qMR+3aG/eVLe2oiW1rGbuyvW5vHO+37u0tZ+OxYWVlpVi+AzW70S3ZOf744+Ppp5+Ou+66K4YNG7bN4Ny/f/+49957Y8WKFRGx4eq5l19+OSI2XFlav379ePDBB+Poo4+Oo48+OqZMmRLFxcXxsY99rPD9d999d+Gdd1evXh3z5s2LiA2x/YEHHoiIDVdPPfnkk9sda0VFRUybNi0iNpycrl+/vvDM95aOPvroeOCBByKlFKtXr45HHnkkevfuHU2aNIlOnToVlvPiiy9u9u7HBxxwQOE+508++WThipSOHTtGcXHxZs90L1++PCI2HAysWrVq+79kPrQ2bruvv/56zJkzp3Cf5C2tWrUqPvrRj0ZxcXG8+uqr8cwzz9Ro+Tuzf2zLsmXLYt26ddGnT5/49re/HU2bNo0FCxZEkyZNYv369TUKKVvq2bNnIbi//fbbUVpautPLID81mWvmz58fBxxwQJxxxhlx9tlnF/4Wb6pJkyab/b095phj4i9/+UvMnTu38LkXX3wxIjbsPxvvEVtVVVXYl7a0evXqWLZsWfTs2TO+8Y1vRKdOnTZb3kZb/q3f0dxGPlauXBlNmjSJFi1aRHl5+WbbWU23wX333TcOO+ywuPvuuwufW7ZsWURsmD/at28fERvmnPLy8l0a5/aOoVatWhUtW7Ys7FvTp0/f5vf37NkzZsyYEevWrYvq6ur4zW9+s0vjqKkt93U+PLp16xZz5swpXHW36ZP4hx12WLzxxhubHVu8+OKLmwWzbdnRXPB++vXrF//zP/9T2Lc27ns1UVlZGQsWLIiuXbvGyJEj45hjjol//vOfEbHr5wc9e/aMadOmRWVlZZSVldXoKlv2Tu+8807Ur18/BgwYEOPGjYtly5bFe++9F/3794+pU6fGO++8ExEbrhJ96aWXImLnzhm6d+8e8+bNi9mzZxeWs/F8fXs6duwYjRo1ioceeqjwuXnz5sXq1auje/fuMWfOnMITpr/61a92uKzHH3+8sL9MmTKl8Kryba2zoqKisF8/+eSTUVlZGR07doyePXvGE088EUuXLo2IDfch36hDhw6xYMGCWLFiRaSU4uGHHy481rdv35g6dWrhXH3NmjVRVla21TlOTY/xqFt7476ypR01sR3p2bNn4cmplStX7tKTUru67h3RsP6XK8vZpsaNG8dxxx0XU6ZM2e6OO3To0HjvvfcKb3SQUoovfOELhWdkjz766Hj22WfjIx/5SERENGrUaLOrBkeOHBk/+tGP4vTTTy+8G/YFF1wQBx10UFxyySUxevTomD59erRv3z569eq13bG2aNEiXn755bjjjjsiYsOziZteYbKpr371qzF+/Pg4+eSTIyLilFNOic9+9rMREXHNNdfEuHHj4qc//Wl06tQp/uM//qPwfRdeeGGMHTs2fv7zn8dRRx1VCP7FxcVx6623xhVXXBG33nprFBUVxYgRI2Lo0KExfPjwuPrqq+POO+/0Bp+ZqaqqiqFDh8a6deviiiuu2O67SZ9//vkxevTo+PWvfx0dO3aMI488skbL35n9Y1vefvvt+N73vheVlZVRVVUVn/3sZ6N79+5Rr169OPnkk+Pkk0+O5s2bx/3331/jZW4c07Rp06J9+/bRtWtXL2fkfdVkrvnZz34Ws2bNigYNGkRJSUnhJYubGjBgQDz00EMxZMiQwht8XnvttXHJJZfE+vXro6KiIg4//PDo2rVr9OvXL55//vkYMmRI4c0VFy1atNUyV69eHV//+tdj/fr1kVKKzp07b/NNrc4+++y4+OKLo1GjRvHDH/5wh3Mb+ejTp0/85je/iYEDB0bLli2jR48ehSd6aroNRkRcd911cfnll8fgwYOjXr16MXjw4Bg5cmSMGzcuvvrVr0bz5s2j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
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
 
