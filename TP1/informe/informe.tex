@@ -108,16 +108,20 @@ La figura \ref{fig:radar_chart} es una gran figura.
 
 \section{Ejecución}
 
-El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Para poder replicarlo, además instalar las siguientes librerías adicionales:
+El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Para poder replicar el trabajo, hay que también instalar las siguientes librerías adicionales:
 
 \begin{itemize}
-\item{Squarify: Para }
+\item{Squarify \footnote{\url{https://github.com/laserson/squarify}}: Para los treemaps.}
+\item{Geopandas \footnote{\url{http://geopandas.org/}}: Para poder graficar sobre mapas geográficos.}
+\item{Wordcloud \footnote{\url{https://github.com/amueller/word_cloud/}}: Para poder visualizar los términos más buscados.}
 \end{itemize}
 
+Estos pueden ser instalados con los siguientes comandos: 
+
 \begin{lstlisting}[language=sh]
-conda install -c conda-forge geopandas
 pip install squarify
-pip install wordcloud
+conda install -c conda-forge geopandas
+conda install -c conda-forge wordcloud
 \end{lstlisting}
 
 \section{Datasets adicionales}
@@ -125,7 +129,7 @@ pip install wordcloud
 Los datasets adicionales y sus fuentes son:
 
 \begin{itemize}
-\item{Mapas de Brazil y Estados unidos: Sacados de geonames \footnote{\url{http://www.geonames.org/}} }
+\item{Mapas de Brazil y Estados unidos: Sacados de Geonames \footnote{\url{http://www.geonames.org/}} }
 \end{itemize}
 
 \newpage
