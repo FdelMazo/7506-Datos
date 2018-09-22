@@ -83,7 +83,101 @@
 
 \section{Introducción}
 
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies justo nisi, in ultrices lorem sollicitudin sed. Donec diam velit, aliquet et neque ac, tempus condimentum dolor. Maecenas scelerisque malesuada dignissim. Morbi sollicitudin est eu varius vestibulum. Duis sollicitudin non sapien quis iaculis. Quisque et luctus massa. In vitae odio vitae erat dapibus laoreet vitae in massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc eu nunc tellus. Proin dignissim venenatis justo, vel rhoncus nibh commodo tincidunt. Suspendisse eleifend massa eget ligula viverra lacinia. Mauris egestas nisl a tincidunt rhoncus. 
+Se propone analizar en el presente informe los datos obtenidos de usuarios que visitaron \texttt{www.trocafone.com}, un sitio de e-commerce de compra y venta de celulares reacondicionados, con operaciones principalmente en Brasil. Para ello, la empresa Trocafone nos proporcionó acceso a los datos a través del archivo \texttt{events.csv}.
+
+El objetivo de este informe es realizar un análisis de dicho set de datos para obtener un listado de \textit{insights} aprendidos sobre los mismos. Se propone específicamente:
+ 
+ \begin{itemize}
+	 \item Descubrir features en el campo \texttt{model}
+	 \item Identificar patrones de usuarios que realizan checkouts y conversiones
+	 \item Analizar las búsquedas que realizan los usuarios y las \textit{keywords} utilizadas
+	 \item Analizar los distintos lugares de dónde se originan las visitas a Trocafone
+	 \item Descubrir features jerarquizando alguno de los campos disponibles
+	 \item \textbf{agregar más items a medida que desarrollamos el informe}
+\end{itemize}
+
+Finalmente se busca realizar un aporte a la empresa Trocafone con datos que sirvan para mejorar sus servicios. 
+
+\section{Información general sobre los datos}
+
+En el archivo proporcionado por la empresa Trocafone se observan las siguientes columnas:
+
+\begin{itemize}
+	\item \textbf{timestamp}: Fecha y hora cuando ocurrió el evento.
+	\item \textbf{event}: Tipo de evento.
+	\item \textbf{person}: Identificador de cliente que realizó el evento.
+	\item \textbf{url}: Url visitada por el usuario.
+	\item \textbf{sku}: Identificador de producto relacionado al evento.
+	\item \textbf{model}: Nombre descriptivo del producto incluyendo marca y modelo.
+	\item \textbf{condition}: Condición de venta del producto.
+	\item \textbf{storage}: Cantidad de almacenamiento del producto.
+	\item \textbf{color}: Color del producto.	
+	\item \textbf{skus}: Identificadores de productos visualizados en el evento.
+	\item \textbf{search\_term}: Téŕminos de búsqueda utilizados en el evento.
+	\item \textbf{static\_page}: Identificador de página estática visitada.
+	\item \textbf{campagn\_source}: Origen de campaña, si el tráfico se originó de una campaña de marketing.
+	\item \textbf{text\_engine}: Motor de búsqueda desde donde se originó el evento, si aplica.
+	\item \textbf{channel}: Tipo de canal desde donde se originó el evento.
+	\item \textbf{new\_vs\_returning}: Indicador de si el evento fue generado por un usuario nuevo (New) o por un usuario que previamente había visitado el sitio (Returning) según el motor de analytics.
+	\item \textbf{city}: Ciudad desde donde se originó el evento.
+	\item \textbf{region}: Región desde donde se originó el evento.
+	\item \textbf{country}: País desde donde se originó el evento.
+	\item \textbf{device\_type}: Tipo de dispositivo desde donde se genero el evento.
+	\item \textbf{screen\_resolution}: Resolución de pantalla que se está utilizando en el dispositivo desde donde se generó el evento.
+	\item \textbf{operating\_system\_version}: Versión de sistema operativo desde donde se originó el evento.
+	\item \textbf{browser\_version}: Versión del browser utilizado en el evento.
+\end{itemize}
+
+Asímismo, hay una serie de distintos tipos de valores categóricos que puede adquirir el campo \texttt{event} y que se describen como sigue:
+
+\begin{itemize}
+	\item \textbf{"viewed product"}: El usuario visita una página de producto.
+	\item \textbf{"brand listing"}: El usuario visita un listado específico de una marca viendo un conjunto de productos.
+	\item \textbf{"visited site"}:  El usuario ingresa al sitio a una determinada url.
+	\item \textbf{"ad campaign hit"}: El usuario ingresa al sitio mediante una campana de marketing online.
+	\item \textbf{"generic listing"}: El usuario visita la homepage.
+	\item \textbf{"searched products"}: El usuario realiza una búsqueda de productos en la interfaz de búsqueda del site.
+	\item \textbf{"search engine hit"}: El usuario ingresa al sitio mediante un motor de búsqueda web.
+	\item \textbf{"checkout"}: El usuario ingresa al checkout de compra de un producto.
+	\item \textbf{"static page"}:  El usuario visita una página.
+	\item \textbf{"conversion"}: El usuario realiza una conversión, comprando un producto.
+	\item \textbf{"lead"}: El usuario se registra para recibir una notificación de disponibilidad de stock, para un producto que no se encontraba disponible en ese momento.					
+\end{itemize}
+
+\section{Datasets adicionales incoporados para el análisis}
+
+Se utilizan adicionalmente los siguientes archivos para realizar el análisis:
+
+\begin{itemize}
+	\item {Mapas de Brazil y Estados unidos: Sacados de Geonames \footnote{\url{http://www.geonames.org/}} }
+	\item \texttt{brands.csv} para extraer información del modelo
+	\footnote{Detallado en \texttt{anexo.ipynb}}
+	\item \texttt{os.csv} para extraer información del sistema operativo
+	\footnote{Detallado en \texttt{anexo.ipynb}}
+    \item \texttt{browsers.csv} para extraer información de la versión del browser
+	\footnote{Detallado en \texttt{anexo.ipynb}}
+\end{itemize}
+
+
+\section{Ejecución}
+
+El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Para poder replicar el trabajo, hay que también instalar las siguientes librerías adicionales:
+
+\begin{itemize}
+	\item{Squarify \footnote{\url{https://github.com/laserson/squarify}}: Para los treemaps.}
+	\item{Geopandas \footnote{\url{http://geopandas.org/}}: Para poder graficar sobre mapas geográficos.}
+	\item{Wordcloud \footnote{\url{https://github.com/amueller/word_cloud/}}: Para poder visualizar los términos más buscados.}
+\end{itemize}
+
+Estos pueden ser instalados con los siguientes comandos: 
+
+\begin{lstlisting}[language=sh]
+pip install squarify
+conda install -c conda-forge geopandas
+conda install -c conda-forge wordcloud
+\end{lstlisting}
+
+\end{itemize}
 
 \section{Análisis y desarrollo}
 
@@ -93,7 +187,7 @@ La figura \ref{fig:radar_chart} es una gran figura.
 
 \begin{figure}[!hb]
   \centering
-    \includegraphics[width=0.5\textwidth]{figures/example.png}
+    \includegraphics[width=0.5\textwidth]{figures/13-condicion-stackedbarplot.png}
   \caption{Radar chart}
   \label{fig:radar_chart}
 \end{figure}
@@ -106,31 +200,6 @@ La figura \ref{fig:radar_chart} es una gran figura.
 \newpage
 \appendix
 
-\section{Ejecución}
-
-El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Para poder replicar el trabajo, hay que también instalar las siguientes librerías adicionales:
-
-\begin{itemize}
-\item{Squarify \footnote{\url{https://github.com/laserson/squarify}}: Para los treemaps.}
-\item{Geopandas \footnote{\url{http://geopandas.org/}}: Para poder graficar sobre mapas geográficos.}
-\item{Wordcloud \footnote{\url{https://github.com/amueller/word_cloud/}}: Para poder visualizar los términos más buscados.}
-\end{itemize}
-
-Estos pueden ser instalados con los siguientes comandos: 
-
-\begin{lstlisting}[language=sh]
-pip install squarify
-conda install -c conda-forge geopandas
-conda install -c conda-forge wordcloud
-\end{lstlisting}
-
-\section{Datasets adicionales}
-
-Los datasets adicionales y sus fuentes son:
-
-\begin{itemize}
-\item{Mapas de Brazil y Estados unidos: Sacados de Geonames \footnote{\url{http://www.geonames.org/}} }
-\end{itemize}
 
 \newpage
 
