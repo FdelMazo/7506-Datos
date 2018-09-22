@@ -5,6 +5,7 @@
 *.out
 *.toc
 *.png
+*.gz
 events.csv
 US.csv
 .ipynb_checkpoints/
