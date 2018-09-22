@@ -180,18 +180,23 @@ El campo \texttt{event} puede adquirir distintos tipos de valores categóricos q
 	\item \textbf{"lead"}: El usuario se registra para recibir una notificación de disponibilidad de stock, para un producto que no se encontraba disponible en ese momento.					
 \end{itemize}
 
+\subsection{Hipótesis sobre el truncamiento de los datos}
+
+Se sabe por información de la consigna que el dataset proporcionado no representa el conjunto total de datos de todos los eventos realizados por los usuarios en el período de tiempo determinado. Es por esta razón que se busca elaborar una hipótesis en base al criterio con el que se fijó la selección de los datos. A partir de un análisis de los mismos se observó que todos los usuarios registrados en el dataset realizaron al menos 1 checkout, por lo que la base de datos original se truncó. Sin ir más lejos es evidente que no todos los usuarios que ingresan al sitio de Trocafone van a realizar un checkout.
+
+De esta manera es importante remarcar que las conclusiones a las que se llegará en el desarrollo del Trabajo Práctico se basan en un sector segmentado de los datos, por lo que en ciertos aspectos del análisis no se podrá arribar a conclusiones fundadas.
+
 \subsection{Frecuencia de eventos}
 
-Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se grafica la cantidad registrada de eventos en función de los distintos tipos de eventos.
+Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se grafica la cantidad registrada de eventos en función de los distintos tipos de eventos. Se excluyen del análisis los eventos \texttt{checkout} y \texttt{conversion} ya que serán analizados en detalle a lo largo del informe y los eventos \texttt{lead} y \texttt{static page} ya que no se consideran relevantes al análisis que se quiere realizar.
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{figures/01-eventos-barplot.png}
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{figures/01-eventos-barplot.png}
 	\caption{Frecuencia de eventos}
 	\label{fig:freqeventos}
 \end{figure}
 
-
-
+Se observa en el gráfico que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos es su principal función como sitio.
 
 \section{Conclusiones, insights y aportes}
 
