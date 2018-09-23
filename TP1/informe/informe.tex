@@ -128,22 +128,6 @@ En el archivo proporcionado por la empresa Trocafone se observan las siguientes 
 	\item \textbf{browser\_version}: Versión del browser utilizado en el evento.
 \end{itemize}
 
-Asímismo, hay una serie de distintos tipos de valores categóricos que puede adquirir el campo \texttt{event} y que se describen como sigue:
-
-\begin{itemize}
-	\item \textbf{"viewed product"}: El usuario visita una página de producto.
-	\item \textbf{"brand listing"}: El usuario visita un listado específico de una marca viendo un conjunto de productos.
-	\item \textbf{"visited site"}:  El usuario ingresa al sitio a una determinada url.
-	\item \textbf{"ad campaign hit"}: El usuario ingresa al sitio mediante una campana de marketing online.
-	\item \textbf{"generic listing"}: El usuario visita la homepage.
-	\item \textbf{"searched products"}: El usuario realiza una búsqueda de productos en la interfaz de búsqueda del site.
-	\item \textbf{"search engine hit"}: El usuario ingresa al sitio mediante un motor de búsqueda web.
-	\item \textbf{"checkout"}: El usuario ingresa al checkout de compra de un producto.
-	\item \textbf{"static page"}:  El usuario visita una página.
-	\item \textbf{"conversion"}: El usuario realiza una conversión, comprando un producto.
-	\item \textbf{"lead"}: El usuario se registra para recibir una notificación de disponibilidad de stock, para un producto que no se encontraba disponible en ese momento.					
-\end{itemize}
-
 \section{Datasets adicionales incoporados para el análisis}
 
 Se utilizan adicionalmente los siguientes archivos para realizar el análisis:
@@ -170,27 +154,49 @@ El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Par
 \end{itemize}
 
 Estos pueden ser instalados con los siguientes comandos: 
-
 \begin{lstlisting}[language=sh]
 pip install squarify
 conda install -c conda-forge geopandas
 conda install -c conda-forge wordcloud
 \end{lstlisting}
+\end{itemize}
+\section{Análisis de eventos}
 
+En esta sección se propone analizar los distintos tipos de eventos realizados por los usuarios de Trocafone. 
+
+El campo \texttt{event} puede adquirir distintos tipos de valores categóricos que se describen como sigue:
+
+\begin{itemize}
+	\item \textbf{"viewed product"}: El usuario visita una página de producto.
+	\item \textbf{"brand listing"}: El usuario visita un listado específico de una marca viendo un conjunto de productos.
+	\item \textbf{"visited site"}:  El usuario ingresa al sitio a una determinada url.
+	\item \textbf{"ad campaign hit"}: El usuario ingresa al sitio mediante una campana de marketing online.
+	\item \textbf{"generic listing"}: El usuario visita la homepage.
+	\item \textbf{"searched products"}: El usuario realiza una búsqueda de productos en la interfaz de búsqueda del site.
+	\item \textbf{"search engine hit"}: El usuario ingresa al sitio mediante un motor de búsqueda web.
+	\item \textbf{"checkout"}: El usuario ingresa al checkout de compra de un producto.
+	\item \textbf{"static page"}:  El usuario visita una página.
+	\item \textbf{"conversion"}: El usuario realiza una conversión, comprando un producto.
+	\item \textbf{"lead"}: El usuario se registra para recibir una notificación de disponibilidad de stock, para un producto que no se encontraba disponible en ese momento.					
 \end{itemize}
 
-\section{Análisis y desarrollo}
+\subsection{Hipótesis sobre el truncamiento de los datos}
 
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies justo nisi, in ultrices lorem sollicitudin sed. Donec diam velit, aliquet et neque ac, tempus condimentum dolor. Maecenas scelerisque malesuada dignissim. Morbi sollicitudin est eu varius vestibulum. Duis sollicitudin non sapien quis iaculis. Quisque et luctus massa. In vitae odio vitae erat dapibus laoreet vitae in massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc eu nunc tellus. Proin dignissim venenatis justo, vel rhoncus nibh commodo tincidunt. Suspendisse eleifend massa eget ligula viverra lacinia. Mauris egestas nisl a tincidunt rhoncus. 
+Se sabe por información de la consigna que el dataset proporcionado no representa el conjunto total de datos de todos los eventos realizados por los usuarios en el período de tiempo determinado. Es por esta razón que se busca elaborar una hipótesis en base al criterio con el que se fijó la selección de los datos. A partir de un análisis de los mismos se observó que todos los usuarios registrados en el dataset realizaron al menos 1 checkout, por lo que la base de datos original se truncó. Sin ir más lejos es evidente que no todos los usuarios que ingresan al sitio de Trocafone van a realizar un checkout.
 
-La figura \ref{fig:radar_chart} es una gran figura.
+De esta manera es importante remarcar que las conclusiones a las que se llegará en el desarrollo del Trabajo Práctico se basan en un sector segmentado de los datos, por lo que en ciertos aspectos del análisis no se podrá arribar a conclusiones fundadas.
 
-\begin{figure}[!hb]
-  \centering
-    \includegraphics[width=0.5\textwidth]{figures/13-condicion-stackedbarplot.png}
-  \caption{Radar chart}
-  \label{fig:radar_chart}
+\subsection{Frecuencia de eventos}
+
+Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se grafica la cantidad registrada de eventos en función de los distintos tipos de eventos. Se excluyen del análisis los eventos \texttt{checkout} y \texttt{conversion} ya que serán analizados en detalle a lo largo del informe y los eventos \texttt{lead} y \texttt{static page} ya que no se consideran relevantes al análisis que se quiere realizar.
+
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{figures/01-eventos-barplot.png}
+	\caption{Frecuencia de eventos}
+	\label{fig:freqeventos}
 \end{figure}
+
+Se observa en el gráfico que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos es su principal función como sitio.
 
 \section{Conclusiones, insights y aportes}
 
