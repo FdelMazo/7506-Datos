@@ -11775,29 +11775,21 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="[75.06-/-95.58]-Organizaci&#243;n-de-Datos">[75.06 / 95.58] Organizaci&#243;n de Datos<a class="anchor-link" href="#[75.06-/-95.58]-Organizaci&#243;n-de-Datos">&#182;</a></h1><h2 id="Trabajo-Pr&#225;ctico-1:-An&#225;lisis-Exploratorio-de-Datos">Trabajo Pr&#225;ctico 1: An&#225;lisis Exploratorio de Datos<a class="anchor-link" href="#Trabajo-Pr&#225;ctico-1:-An&#225;lisis-Exploratorio-de-Datos">&#182;</a></h2><p><strong>Grupo 30: Datatouille</strong></p>
+<h1 id="[75.06-/-95.58]-Organizaci&#243;n-de-Datos">[75.06 / 95.58] Organizaci&#243;n de Datos<a class="anchor-link" href="#[75.06-/-95.58]-Organizaci&#243;n-de-Datos">&#182;</a></h1><h2 id="Trabajo-Pr&#225;ctico-1:-An&#225;lisis-Exploratorio-de-Datos">Trabajo Pr&#225;ctico 1: An&#225;lisis Exploratorio de Datos<a class="anchor-link" href="#Trabajo-Pr&#225;ctico-1:-An&#225;lisis-Exploratorio-de-Datos">&#182;</a></h2><h3 id="Anexo:-Creaci&#243;n-de-dataframes">Anexo: Creaci&#243;n de dataframes<a class="anchor-link" href="#Anexo:-Creaci&#243;n-de-dataframes">&#182;</a></h3><p><strong>Grupo 30: Datatouille</strong></p>
 <ul>
 <li>101055 - Bojman, Camila</li>
 <li>100029 - del Mazo, Federico</li>
 <li>100687 - Hortas, Cecilia</li>
 <li>97649 - Souto, Rodrigo</li>
 </ul>
-<p><strong><a href="https://github.com/fdelmazo/7506-datos">https://github.com/fdelmazo/7506-datos</a></strong></p>
+<p><strong><a href="https://github.com/FdelMazo/7506-Datos">https://github.com/FdelMazo/7506-Datos</a></strong></p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Anexo:-Creaci&#243;n-de-dataframes">Anexo: Creaci&#243;n de dataframes<a class="anchor-link" href="#Anexo:-Creaci&#243;n-de-dataframes">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -11820,7 +11812,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">checked</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;iphone&#39;</span><span class="p">,</span> <span class="s1">&#39;samsung&#39;</span><span class="p">,</span> <span class="s1">&#39;motorola&#39;</span><span class="p">,</span> <span class="s1">&#39;lenovo&#39;</span><span class="p">,</span> <span class="s1">&#39;sony&#39;</span><span class="p">,</span> <span class="s1">&#39;lg&#39;</span><span class="p">,</span> <span class="s1">&#39;ipad&#39;</span><span class="p">,</span> <span class="s1">&#39;asus&#39;</span><span class="p">,</span> <span class="s1">&#39;quantum&#39;</span><span class="p">,</span> <span class="s1">&#39;blackberry&#39;</span><span class="p">]</span>
@@ -11845,7 +11837,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;brand&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/brands.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -11866,7 +11858,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -11876,10 +11868,63 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([nan, &#39;Android 6&#39;, &#39;Android 5.1.1&#39;, &#39;Windows 10 &#39;, &#39;Windows 7 &#39;,
+       &#39;Windows 8.1 &#39;, &#39;Android 7.1.1&#39;, &#39;Android 7&#39;, &#39;iOS 10.2.1&#39;,
+       &#39;Android 5.0.2&#39;, &#39;Android 4.2.2&#39;, &#39;Android 4.1.2&#39;, &#39;Android 4.4.4&#39;,
+       &#39;Android 6.0.1&#39;, &#39;Linux &#39;, &#39;Android 5.1&#39;, &#39;Mac OS X 10.13.5&#39;,
+       &#39;iOS 11.3&#39;, &#39;Android 7.1.2&#39;, &#39;Windows XP &#39;, &#39;Android 8&#39;,
+       &#39;Android 4.3&#39;, &#39;iOS 11.2.2&#39;, &#39;iOS 11.2.5&#39;, &#39;iOS 10.3.3&#39;,
+       &#39;Android 4.4.2&#39;, &#39;Windows 8 &#39;, &#39;Android 5&#39;, &#39;iOS 9.3.5&#39;,
+       &#39;iOS 7.1.2&#39;, &#39;Android 5.0.1&#39;, &#39;iOS 11.4&#39;, &#39;Windows Phone 8.1&#39;,
+       &#39;Ubuntu &#39;, &#39;Android 8.1&#39;, &#39;Windows Vista &#39;, &#39;Mac OS X 10.10.2&#39;,
+       &#39;iOS 11.2.6&#39;, &#39;Other &#39;, &#39;Android 4.0.4&#39;, &#39;Android 4.4.3&#39;,
+       &#39;iOS 11.1.2&#39;, &#39;Chrome OS 10032.86&#39;, &#39;Windows Phone 10&#39;,
+       &#39;Windows RT &#39;, &#39;iOS 10.3.2&#39;, &#39;Windows Phone 8&#39;, &#39;iOS 11.2.1&#39;,
+       &#39;Mac OS X 10.11.6&#39;, &#39;iOS 10.2&#39;, &#39;Mac OS X 10.13.3&#39;,
+       &#39;Mac OS X 10.6.4&#39;, &#39;Android &#39;, &#39;iOS 10.0.2&#39;, &#39;Mac OS X 10.13.4&#39;,
+       &#39;Android 6.1&#39;, &#39;iOS 3.2&#39;, &#39;Mac OS X 10.12.3&#39;, &#39;iOS 11.1&#39;,
+       &#39;iOS 11.0.1&#39;, &#39;Tizen 3&#39;, &#39;iOS 9.2.1&#39;, &#39;Windows Phone 7.5&#39;,
+       &#39;Mac OS X 10.12.6&#39;, &#39;Chrome OS 10452.96&#39;, &#39;Ubuntu 10.4&#39;,
+       &#39;Mac OS X 10.10.5&#39;, &#39;iOS 4&#39;, &#39;iOS 7.1.1&#39;, &#39;iOS 11.2&#39;,
+       &#39;Mac OS X 10.9.5&#39;, &#39;Mac OS X 10.6.8&#39;, &#39;iOS 10.3.1&#39;,
+       &#39;Mac OS X 10.10&#39;, &#39;iOS 11.0.3&#39;, &#39;iOS 11.0.2&#39;, &#39;Mac OS X 10.12.5&#39;,
+       &#39;Mac OS X 10.10.1&#39;, &#39;Mac OS X 10.13.2&#39;, &#39;Android 4.1.1&#39;,
+       &#39;Chrome OS 10452.99&#39;, &#39;Mac OS X 10.13.1&#39;, &#39;iOS 9.3.4&#39;,
+       &#39;Mac OS X 10.11.3&#39;, &#39;iOS 8.1&#39;, &#39;iOS 11.1.1&#39;, &#39;iOS 5.0.1&#39;, &#39;iOS 12&#39;,
+       &#39;Mac OS X 10.11.1&#39;, &#39;iOS 10.1.1&#39;, &#39;iOS 8.1.3&#39;,
+       &#39;Chrome OS 10032.75&#39;, &#39;Chrome OS 10452.85&#39;, &#39;Tizen 2.4&#39;,
+       &#39;Android 2.3.6&#39;, &#39;iOS 8.3&#39;, &#39;iOS 8.4&#39;, &#39;iOS 8.1.1&#39;,
+       &#39;Mac OS X 10.7.5&#39;, &#39;Chrome OS 10176.66&#39;, &#39;Android 3.2&#39;,
+       &#39;iOS 9.3.2&#39;, &#39;Chrome OS 10323.67&#39;, &#39;Android 6.3&#39;, &#39;iOS 11&#39;,
+       &#39;Chrome OS 10176.76&#39;, &#39;Chrome OS 10323.62&#39;, &#39;Mac OS X 10.11.4&#39;,
+       &#39;Android 4.4.1&#39;, &#39;iOS 11.4.1&#39;, &#39;Android 4.0.3&#39;, &#39;iOS 9.1&#39;,
+       &#39;Android 4.4&#39;, &#39;iOS 10.0.1&#39;, &#39;iOS 6.1.6&#39;, &#39;Android 3.1&#39;,
+       &#39;Chrome OS 10452.74&#39;, &#39;Mac OS X 10.13&#39;, &#39;Mac OS X 10.10.4&#39;,
+       &#39;Chrome OS 10575.54&#39;, &#39;Mac OS X 10.10.3&#39;, &#39;Mac OS X 10.6&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">checked</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;windows&#39;</span><span class="p">,</span> <span class="s1">&#39;android&#39;</span><span class="p">,</span> <span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="s1">&#39;mac&#39;</span><span class="p">,</span> <span class="s1">&#39;ios&#39;</span><span class="p">,</span> <span class="s1">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s1">&#39;chrome os&#39;</span><span class="p">,</span> <span class="s1">&#39;tizen&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">]</span>
@@ -11903,7 +11948,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_system&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -11914,10 +11959,54 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>operating_system_version</th>
+      <th>operating_system</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -11927,10 +12016,39 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>windows      41495
+android      41410
+ios           3539
+mac            406
+linux          293
+ubuntu          97
+chrome os       83
+other           48
+tizen            7
+Name: operating_system, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_system&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/os.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -11943,13 +12061,107 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_system&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>operating_system_version</th>
+      <th>operating_system</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Android 6</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Android 5.1.1</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Windows 10</td>
+      <td>windows</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -11964,7 +12176,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">checked</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mobile safari&#39;</span><span class="p">,</span> <span class="s1">&#39;chrome mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;ie mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;firefox mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;edge mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;opera mobile&#39;</span><span class="p">,</span>
@@ -11991,7 +12203,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;browser&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;mobile&#39;</span><span class="p">)][[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span>
@@ -12001,10 +12213,54 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>browser_version</th>
+      <th>browser</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -12016,10 +12272,89 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>chrome            38081
+chrome mobile     37056
+mobile safari      3239
+firefox            2567
+samsung            1699
+facebook           1415
+edge                893
+opera               648
+ie                  398
+android             347
+edge mobile         252
+ie mobile           245
+safari              163
+uc                  136
+firefox mobile       49
+opera mobile         41
+chromium             40
+vivaldi              38
+other                35
+maxthon              16
+puffin               10
+yandex               10
+Name: browser, dtype: int64</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>browser_version</th>
+      <th>browser</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/browsers.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -12032,7 +12367,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -12042,14 +12377,150 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>browser_version</th>
+      <th>browser</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Chrome Mobile 39</td>
+      <td>chrome mobile</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Android 5.1</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Chrome 65.0</td>
+      <td>chrome</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Chrome 66.0</td>
+      <td>chrome</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Colors">Colors<a class="anchor-link" href="#Colors">&#182;</a></h4>
+
+</div>
+
 </div>
 </div>
+
 </div>
     </div>
   </div>
