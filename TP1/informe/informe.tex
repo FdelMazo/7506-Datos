@@ -297,6 +297,23 @@ Se observa que ambos gráficos confluyen en su máximo a las 19 hs. Esto puede s
 	\label{checkoutclock}
 \end{figure}
 
+\section{Análisis geográfico}
+
+En este apartado se busca analizar las ciudades, países y regiones de dónde provienen los distintos tipos de eventos. Trocafone es una empresa que inició en Brasil y expandió sus comercios a Argentina en el 2015, por lo que se deduce que probablemente Brasil sea la zona de mayor influencia en los eventos.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/050-paises_visitas-treemap.png}
+	\caption{Países de mayor tráfico de la página}
+	\label{brazilrules}
+\end{figure}
+
+Se corroboró la teoría inicial y se procede a eliminar a Brasil del gráfico para poder observar qué otros países intervienen en la página de Trocafone. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es muy factible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/051-paises_visitas_sin_brazil-treemap.png}
+	\caption{Países de mayor tráfico de la página sin contar a Brasil}
+	\label{brazilsucks}
+\end{figure}
 
 
 \end{document}
