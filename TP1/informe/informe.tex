@@ -15,8 +15,8 @@
 \newcommand{\repo}{https://github.com/FdelMazo/7506-Datos/}
 \newcommand{\kernel}{https://kaggle.com/datatouille2018/7506-TP1/}
 \newcommand{\alumnos}{
-    del Mazo, Federico & 100029 & delmazofederico@gmail.com\\
     Bojman, Camila & 101055 &  camiboj@gmail.com\\
+    del Mazo, Federico & 100029 & delmazofederico@gmail.com\\
     Hortas, Cecilia & 100687 & ceci.hortas@gmail.com\\
     Souto, Rodrigo & 97649 & rnsoutob@gmail.com\\
 }
@@ -83,9 +83,9 @@
 
 \section{Introducción}
 
-Se propone analizar en el presente informe los datos obtenidos de usuarios que visitaron \texttt{www.trocafone.com}, un sitio de e-commerce de compra y venta de celulares reacondicionados, con operaciones principalmente en Brasil. Para ello, la empresa Trocafone nos proporcionó acceso a los datos a través del archivo \texttt{events.csv}. Estos datos corresponden al período de tiempo comprendido entre el 1 de enero del 2018 al 16 de junio del 2018.
+Se propone analizar en el presente informe los datos obtenidos de usuarios que visitaron \url{www.trocafone.com}, un sitio de e-commerce de compra y venta de celulares reacondicionados, con operaciones principalmente en Brasil. Para ello, la empresa Trocafone nos proporcionó acceso a los datos a través del archivo \texttt{events.csv}. 
 
-El objetivo de este informe es realizar un análisis de dicho set de datos para obtener un listado de \textit{insights} aprendidos sobre los mismos. Se propone específicamente:
+El objetivo principal de este informe es poder realizar un análisis exploratorio abarcativo donde a medida que se exploren los datos se vayan encontrando tanto las preguntas como las respuestas a hacerse. Se propone específicamente:
  
  \begin{itemize}
 	 \item Descubrir features en el campo \texttt{model}
@@ -96,11 +96,19 @@ El objetivo de este informe es realizar un análisis de dicho set de datos para 
 	 \item \textbf{agregar más items a medida que desarrollamos el informe}
 \end{itemize}
 
-Finalmente se busca realizar un aporte a la empresa Trocafone con datos que sirvan para mejorar sus servicios. 
+Finalmente, entre lo descubierto en el análisis exploratorio y los ites marcados, se busca obtener un listado de \textit{insights} aprendidos sobre los mismos y con ellos realizar un aporte a la empresa Trocafone con datos que sirvan para mejorar sus servicios. 
 
 \section{Información general sobre los datos}
 
-En el archivo proporcionado por la empresa Trocafone se observan las siguientes columnas:
+Lo primero y básico a analizar es la estructura general de los datos proporcionados, para comenzar a tener una idea de que se tiene y que se puede hacer con ello. Se observa que:
+
+\begin{itemize}
+\item Estos datos corresponden al período de tiempo comprendido entre el 1 de enero del 2018 al 16 de junio del 2018.
+\item Son 1011288 registros con 23 atributos, no siempre todos completos.
+\item Son 1011288 registros con 23 atributos, no siempre todos completos.
+\end{itemize}
+
+Los atributos son:
 
 \begin{itemize}
 	\item \textbf{timestamp}: Fecha y hora cuando ocurrió el evento.
@@ -128,20 +136,245 @@ En el archivo proporcionado por la empresa Trocafone se observan las siguientes 
 	\item \textbf{browser\_version}: Versión del browser utilizado en el evento.
 \end{itemize}
 
-\section{Datasets adicionales incoporados para el análisis}
-
-Se utilizan adicionalmente los siguientes archivos para realizar el análisis:
+Es en este momento del análisis donde se tienen que hacer las configuraciones necesarias sobre el set de datos para poder trabajar mejor más tarde. Las operaciones realizadas incluyen:
 
 \begin{itemize}
-	\item {Mapas de Brazil y Estados unidos: Sacados de Geonames \footnote{\url{http://www.geonames.org/}} }
-	\item \texttt{brands.csv} para extraer información del modelo
-	\footnote{Detallado en \texttt{anexo.ipynb}}
-	\item \texttt{os.csv} para extraer información del sistema operativo
-	\footnote{Detallado en \texttt{anexo.ipynb}}
-    \item \texttt{browsers.csv} para extraer información de la versión del browser
-	\footnote{Detallado en \texttt{anexo.ipynb}}
+\item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (que atributo es numérico, que atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener especificamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo `timestamp` como una variable del tipo `datetime`.
+\item \textbf{Lidiar con los nulos}: No todos los registros tienen todos los atributos completos, por motivos obvios (por ejemplo, un evento de compra de producto no tiene asociado una búsqueda de palabras). En la transformación de tipos hay que lidiar con estos, y se tomaron decisiones como que el SKU de un producto `Not a Number` es el SKU `0.0`, así permitiendo que el atributo SKU sea numérico.
+\item \textbf{Data Mining}: Se generan nuevos sets de datos y se extraen atributos importantes de los proporcionados. Por ejemplo, dividir el atributo de tiempo en atributos de mes, día y hora.
+\item \textbf{Limpieza de datos}: Una decisión importante es la de cuando un dato es invalido de entrada. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados.
 \end{itemize}
 
+\subsection{Hipótesis sobre el truncamiento de los datos}
+
+Se sabe que el dataset proporcionado no representa el conjunto total de datos de todos los eventos realizados por los usuarios en el período de tiempo determinado. Es por esta razón que se busca elaborar una hipótesis en base al criterio con el que se fijó la selección de los datos. A partir de un análisis de los mismos se observó que todos los usuarios registrados en el dataset realizaron al menos un checkout, por lo que la base de datos original se truncó. Sin ir más lejos es evidente que no todos los usuarios que ingresan al sitio de Trocafone van a realizar un checkout.
+
+
+A esta información se le adiciona que los datos de entrada son solamente el tráfico del \textit{sitio web} de Trocafone, y no de la empresa entera, que tiene más actividad que la del sitio. Por ejemplo, venderle a sitios terceros \footnote{\url{https://medium.com/trocafone/el-maravilloso-mundo-de-trocafone-5bdc5761856b}}.
+
+Con estos dos datos en mente, es importante remarcar que las conclusiones a las que se llegará en el desarrollo del Trabajo se basan en un sector segmentado de los datos, y que estos datos son un sector segmentado de la empresa, por lo que en ciertos aspectos del análisis no se podrá arribar a conclusiones fundadas sobre la totalidad de los servicios de Trocafone, y que si por momentos la información parece poca para el tamaño de la empresa, esta solo representa el sitio web.
+
+\section{Análisis de eventos}
+
+En esta sección se propone analizar los distintos tipos de eventos realizados por los usuarios de Trocafone. 
+
+El campo \texttt{event} puede adquirir distintos tipos de valores categóricos que se describen como sigue:
+
+\begin{itemize}
+	\item \textbf{viewed product}: El usuario visita una página de producto.
+	\item \textbf{brand listing}: El usuario visita un listado específico de una marca viendo un conjunto de productos.
+	\item \textbf{visited site}:  El usuario ingresa al sitio a una determinada url.
+	\item \textbf{ad campaign hit}: El usuario ingresa al sitio mediante una campana de marketing online.
+	\item \textbf{generic listing}: El usuario visita la homepage.
+	\item \textbf{searched products}: El usuario realiza una búsqueda de productos en la interfaz de búsqueda del site.
+	\item \textbf{search engine hit}: El usuario ingresa al sitio mediante un motor de búsqueda web.
+	\item \textbf{checkout}: El usuario ingresa al checkout de compra de un producto.
+	\item \textbf{static page}:  El usuario visita una página.
+	\item \textbf{conversion}: El usuario realiza una conversión, comprando un producto.
+	\item \textbf{lead}: El usuario se registra para recibir una notificación de disponibilidad de stock, para un producto que no se encontraba disponible en ese momento.					
+\end{itemize}
+
+\subsection{Conversion rate}
+
+En primer lugar se analiza la métrica llamada \textit{conversion rate} o tasa de conversión debido a su importancia en cualquier negocio de e-commerce.
+
+La tasa de conversión es el porcentaje de visitantes que completan un objetivo deseado (en este caso realizar una compra de celular) sobre el total de visitantes. En otras palabras es la razón entre las conversiones y el total de eventos.
+
+Tomando todos los datos del dataset dicha tasa de conversión es de \texttt{0,096}. 
+	
+Se busca analizar la evolución de la \textit{conversion rate} a lo largo del tiempo. Para ello se realiza un gráfico de la conversion rate a lo largo de las semanas del año en la figura \ref{fig:conversionrate}.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/010-conversion_rate_semana-lineplot.png}}
+	\caption{Tasa de conversión a lo largo de las semanas del año}
+	\label{fig:conversionrate}
+\end{figure}
+
+Las mayores tasas de conversiones se registran en las semanas 1,4 y 11, es decir, enero y marzo. Para observar mejor este fenómeno se realiza otro gráfico (figura \ref{fig:conversionratemonthly})que muestre la evolución de la tasa de conversión a lo largo de los meses. 
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/011-conversion_rate_mes-barplot.png}}
+	\caption{Tasa de conversión a lo largo de los meses del año}
+	\label{fig:conversionratemonthly}
+\end{figure}
+
+Se refuerza la teoría de que enero y marzo fueron los meses de mayor tasa de conversión. Así mismo, dicha tasa se mantiene estable por 4 meses para luego tener una baja en los meses de mayo y junio. Más adelante se analizarán estos dos meses en profundidad.
+
+\subsection{Frecuencia de eventos}
+
+Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se grafica la cantidad registrada de eventos en función de los distintos tipos de eventos.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/02-eventos-barplot.png}}
+	\caption{Frecuencia de eventos}
+	\label{fig:freqeventos}
+\end{figure}
+
+Se observa en el gráfico \ref{fig:freqeventos} que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos constituye su principal función como sitio.
+
+\subsection{Evolución de los eventos a través del tiempo}
+
+\subsubsection{Tráfico del sitio de acuerdo al mes y al día}
+
+Otro aspecto a analizar es la cantidad de eventos producidos en cada día de la semana y del mes. Se busca detectar si se mantiene algún comportamiento específico a lo largo de los meses o si la cantidad de eventos registrada depende de algún factor temporal. Un patron esperado a encontrar es el de si hay más visitas o compras de celular en las primeras semanas del mes, lo cual coincidiría con el pago de sueldos mensuales.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/030-eventos_segun_mes-heatmap.png}}
+	\caption{Eventos segun mes y día}
+	\label{fig:mesdiasnormalizado}
+\end{figure}
+
+Para realizar este gráfico los datos fueron normalizados para evitar llegar a la conclusión que el mes con una mayor cantidad de eventos es el mes con más eventos por día \footnote{Lo cual sería un error muy grave en el análisis, famosamente conocido gracias a la ecuación de de Moivre}. 
+
+Se desprende del gráfico \ref{mesdiasnormalizado} que la cantidad de eventos registrada no presenta ningún comportamiento específico. Se observa que dicha cantidad aumenta en la segunda quincena de cada mes pero se considera que la diferencia con el resto de los días no tiene la magnitud suficiente como para extraer alguna conclusión fundada. 
+
+\subsubsection{Tráfico del sitio de acuerdo al mes y al día de la semana}
+
+Sin haber encontrado nada acerca del número de día, se buscar ahora analizar si algún día de la semana se registra una mayor cantidad de eventos. 
+
+Se realiza el gráfico \ref{fig:messemanasnormalizado} del mismo estilo que el anterior y se normaliza por las mismas razones.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/031-eventos_segun_dow-heatmap.png}}
+	\caption{Eventos segun mes y día}
+	\label{fig:messemanasnormalizado}
+\end{figure}
+
+Es notable que durante los días hábiles de la semana el tráfico es mucho mayor que al fin de semana. Esto puede deberse a que los fines de semana suelen ser días de descanso, donde la gente puede no estar pensando en realizar una compra, además de no poder retirarla. En la semana aumenta el tráfico debido a que el envío o el retiro del celular puede realizarse en el momento.
+
+\subsubsection{Tráfico del sitio según mes}
+
+Habiendo analizado las semanas, ahora se hace un enfoque más global, buscando patrones de tráfico según el mes. En este apartado se busca analizar si en algún mes se registró una mayor cantidad de eventos o si la distribución de las visitas fue uniforme a lo largo del tiempo.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/032-eventos_segun_mes-barplot.png}}
+	\caption{Eventos segun mes}
+	\label{fig:mes}
+\end{figure}
+
+La figura \ref{fig:mes} muestra que los meses de mayo y junio registraron una cantidad notablemente mayor de eventos. Este resultado llama la antención por lo que se analiza en mayor profundidad en la próxima sección. Es importante destacar que esta evolución es inversa a la de la tasa de conversión. De estos dos datos se concluye que en mayo si bien no hubo tantas ventas, sí aumentó mucho la cantidad de eventos. 
+
+\subsubsection{¿Por qué mayo y junio registran una mayor cantidad de eventos?}
+
+Para tratar de encontrar una respuesta a esta pregunta se centra el análisis en estos meses y se estudian los tres eventos principales del dataset: \texttt{conversion}, \texttt{checkout} y \texttt{viewed products}.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/033-eventos_mayo_junio_lineplot.png}}
+	\caption{Conversiones, checkouts y viewed products a lo largo de los días del mes de mayo y junio en éscala logarítmica}
+	\label{mayojunio}
+\end{figure}
+
+Los tres eventos presentan su máximo alrededor de los días 14 a 16. Como Trocafone es del país de Brasil y el mayor tráfico proviene de allí, lo cual será verificado posteriormente, se infiere que puede deberse a alguna promoción lanzada en la plataforma o en el mismo país. Esto no puede concluirse con certeza debido a la falta de información en internet y en la plataforma de promociones pasadas.
+
+\subsubsection{Hora de mayor cantidad de conversiones y checkouts}
+
+En un intento de encontrar un patrón por parte de los clientes se grafica la cantidad de conversiones y de checkouts en función de las horas del día. Se busca determinar la hora en la que ambas confluyan en su máximo para analizar el motivo por el que dicha hora registra mayor tráfico.
+
+\begin{figure}[h!]
+	\centering
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/040-hours-conversion-radarchart.png}
+		\caption{Conversiones a lo largo de las horas del día}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/041-hours-checkout-radarchart.png}
+		\caption{Conversiones a lo largo de las horas del día}
+	\end{minipage}
+\end{figure}
+
+Se observa que en ambos gráficos confluyen en su máximo a las 19 hs. Esto puede significar que la mayoría de los usuarios cuando vuelven del trabajo o están finalizando su día deciden realizar conversiones o checkouts. La diferencia entre ambos gráficos es que la cantidad de checkouts realizados se mantiene relativamente constante en las segundas 12 hs del día mientras que las conversiones son mucho menores y presentan picos más marcados en los horarios de la tarde-noche. 
+
+\section{Análisis geográfico}
+
+En este apartado se busca analizar las ciudades, países y regiones de dónde provienen los distintos tipos de eventos. Trocafone es una empresa que inició en Brasil y expandió sus comercios a Argentina en el 2015, por lo que se deduce que probablemente Brasil sea la zona de mayor influencia en los eventos.
+
+\subsection{Países que registran mayor cantidad de eventos} 
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/050-paises_visitas-treemap.png}}
+	\caption{Países de mayor tráfico de la página}
+	\label{fig:brazilrules}
+\end{figure}
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/051-paises_visitas_sin_brazil-treemap.png}}
+	\caption{Países de mayor tráfico de la página sin contar a Brasil}
+	\label{fig:brazilsucks}
+\end{figure}
+
+Se corrobora en \ref{fig:brazilrules} la teoría inicial por lo que se procedió a eliminar a Brasil del gráfico, generando \ref{fig:brazilsucks}, para poder observar qué otros países intervienen en la página de Trocafone y en que diferencia de magnitud y orden lo hacen. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es factible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
+
+\subsection{Regiones y ciudades de Brasil que registran mayor cantidad de eventos}
+
+Se procede a analizar qué ciudades y regiones de Brasil son las que registran mayor cantidad de eventos. Para ello se grafica las regiones con una mayor cantidad de visitas. Se observa que las tres regiones con la mayor cantidad de eventos (San Pablo, Minas Gerais y Rio de Janeiro) están sobre la costa del sudeste. Para visualizar esto de una mejor manera se realiza un gráfico que muestra las ciudades de Brasil más visitadas y se verifica que la mayoría de los eventos se producen sobre la costa sudeste.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/060-regiones_brazil-barplot.png}}
+	\caption{Regiones de Brasil con mayor cantidad de eventos}
+	\label{fig:regionsbrasil}
+\end{figure}
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/061-ciudades_brazil-choropleth.png}}
+	\caption{Ciudades de Brasil con mayor cantidad de eventos}
+	\label{fig:citybrasil}
+\end{figure}
+
+Lo que presentan las figuras \ref{fig:regionsbrasil} y \ref{fig:citybrasil} tiene sentido, considerando que sobre el mayor blanco del gráfico es donde esta la selva brasileña.
+
+\section{Análisis de búsquedas}
+
+La idea de este apartado radica en analizar los términos que buscan los usuarios en la plataforma y así identificar ciertos patrones de búsqueda como por ejemplo cuál es el modelo de celular más buscado. Este análisis se dividirá en dos:
+
+\begin{itemize}
+	\item \underline{Términos ingresados en el buscador}: se utiliza la columna \texttt{search\_term} del dataframe.
+	\item \underline{Productos buscados en la plataforma}: se utiliza la columna \texttt{event} del dataframe para buscar aquellos eventos que correspondan a \texttt{searched\_product}.
+ \end{itemize}
+
+\subsection{Términos ingresados en el buscador}
+
+Se realiza un gráfico para visualizar a grandes rasgos los términos más buscados por los usuarios. Se busca tener una idea aproximada de los modelos de celular más requeridos o deseados por los usuarios. Figuran en el gráfico los términos que fueron buscados como mínimo 300 veces, un número impuesto para fijar un límite mínimo de búsquedas para ser considerado de los más buscados. De no fijar este límite el gráfico estaría sobrecargado y sería difícil de interpretar.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/07-search_terms-wordcloud.png}}
+	\caption{Términos más buscados por los usuarios de Trocafone}
+	\label{searchedterm}
+\end{figure}
+
+Los términos más buscados son iPhone, Motorola y Samsung. Esto era completamente esperable debido a que son las marcas que dominan el sector tecnológico.
+
+\subsection{Productos buscados en la plataforma}
+
+En esta sección se busca obtener los productos más buscados. Esta búsqueda es más específica que la anteriormente mencionada debido a que corresponde a un producto puntual, no el nombre de su marca, buscado por la interfaz del sitio. De esta manera los productos más buscados son los que se detallan en la tabla \ref{table:sencilla} y se representan en el gráfico que le sigue.
+
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabular}{|l|l|}
+			\hline
+			sku & sku\_name \\
+			\hline \hline
+			3371 & Samsung Galaxy S6 Flat 32GB Dourado (Bom) \\ \hline			
+			2777 & Samsung Galaxy S4 i9505 16GB Preto (Bom) \\ \hline
+			6357 & Samsung Galaxy J5 16GB Preto (Bom) \\ \hline
+			6413 & Samsung Galaxy J7 16GB Dourado (Bom) \\ \hline
+			6371 & Samsung Galaxy J5 16GB Dourado (Bom) \\ \hline
+		\end{tabular}
+		\caption{SKUs más buscados y su nombre}
+		\label{table:sencilla}
+	\end{center}
+\end{table}
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/08-skus_buscados-barplot.png}}
+	\caption{Productos más buscados por los usuarios de Trocafone}
+	\label{fig:searchedproduct}
+\end{figure}
+
+Se concluye con el gráfico \ref{fig:searchedproduct} en esta sección que si bien \texttt{iPhone} y \texttt{Motorola} eran los términos más buscados en la plataforma, no sucede lo mismo con los productos buscados ya que todos corresponden a la marca \texttt{Samsung}. Esto puede deberse a un tema de la calidad que ofrece dicha marca o su precio, probablemente más conveniente. Los iPhone se caracterizan por tener un precio difícil de acceder por lo que es probable que sea buscado como término para ver las diferentes opciones globalmente pero que no muchas veces se busque un producto determinado de dicha marca.
+
+\newpage
+\appendix
 
 \section{Ejecución}
 
@@ -160,227 +393,8 @@ conda install -c conda-forge geopandas
 conda install -c conda-forge wordcloud
 \end{lstlisting}
 
-\section{Análisis de eventos}
+\section{Datasets adicionales incoporados para el análisis}
 
-En esta sección se propone analizar los distintos tipos de eventos realizados por los usuarios de Trocafone. 
-
-El campo \texttt{event} puede adquirir distintos tipos de valores categóricos que se describen como sigue:
-
-\begin{itemize}
-	\item \textbf{"viewed product"}: El usuario visita una página de producto.
-	\item \textbf{"brand listing"}: El usuario visita un listado específico de una marca viendo un conjunto de productos.
-	\item \textbf{"visited site"}:  El usuario ingresa al sitio a una determinada url.
-	\item \textbf{"ad campaign hit"}: El usuario ingresa al sitio mediante una campana de marketing online.
-	\item \textbf{"generic listing"}: El usuario visita la homepage.
-	\item \textbf{"searched products"}: El usuario realiza una búsqueda de productos en la interfaz de búsqueda del site.
-	\item \textbf{"search engine hit"}: El usuario ingresa al sitio mediante un motor de búsqueda web.
-	\item \textbf{"checkout"}: El usuario ingresa al checkout de compra de un producto.
-	\item \textbf{"static page"}:  El usuario visita una página.
-	\item \textbf{"conversion"}: El usuario realiza una conversión, comprando un producto.
-	\item \textbf{"lead"}: El usuario se registra para recibir una notificación de disponibilidad de stock, para un producto que no se encontraba disponible en ese momento.					
-\end{itemize}
-
-\subsection{Hipótesis sobre el truncamiento de los datos}
-
-Se sabe por información de la consigna que el dataset proporcionado no representa el conjunto total de datos de todos los eventos realizados por los usuarios en el período de tiempo determinado. Es por esta razón que se busca elaborar una hipótesis en base al criterio con el que se fijó la selección de los datos. A partir de un análisis de los mismos se observó que todos los usuarios registrados en el dataset realizaron al menos 1 checkout, por lo que la base de datos original se truncó. Sin ir más lejos es evidente que no todos los usuarios que ingresan al sitio de Trocafone van a realizar un checkout.
-
-De esta manera es importante remarcar que las conclusiones a las que se llegará en el desarrollo del Trabajo Práctico se basan en un sector segmentado de los datos, por lo que en ciertos aspectos del análisis no se podrá arribar a conclusiones fundadas.
-
-\subsection{Conversion rate}
-
-En primer lugar se analiza la llamada \textit{conversion rate} o tasa de conversión debido a su importancia en cualquier negocio de e-commerce.
-
-La tasa de conversión es el porcentaje de visitantes que completan un objetivo deseado (en este caso realizar una conversión) sobre el total de visitantes. En otras palabras es la razón entre las conversiones y el total de eventos.
-
-Tomando todos los datos del dataset dicha tasa de conversión es de \texttt{0,096}. 
-	
-Se busca analizar la evolución de la \textit{conversion rate} a lo largo del tiempo. Para ello se realiza un gráfico de la conversion rate a lo largo de las semanas del año.
-
-\begin{figure}[h!]
-	\includegraphics[width=\textwidth]{figures/010-conversion_rate_semana-lineplot.png}
-	\caption{Tasa de conversión a lo largo de las semanas del año}
-	\label{fig:conversionrate}
-\end{figure}
-
-Las mayores tasas de conversiones se registran en las semanas 1,4 y 11, es decir, enero y marzo. Para observar mejor este fenómeno se realiza otro gráfico que muestre la evolución de la tasa de conversión a lo largo de los meses. 
-
-Se refuerza la teoría de que enero y marzo fueron los meses de mayor tasa de conversión. Así mismo, dicha tasa se mantiene estable por 4 meses para luego tener una baja en los meses de mayo y junio. Más adelante se analizarán estos dos meses en profundidad.
-
-\begin{figure}[h!]
-	\includegraphics[width=\textwidth]{figures/011-conversion_rate_mes-barplot.png}
-	\caption{Tasa de conversión a lo largo de los meses del año}
-	\label{fig:conversionratemonthly}
-\end{figure}
-
-\subsection{Frecuencia de eventos}
-
-Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se grafica la cantidad registrada de eventos en función de los distintos tipos de eventos. Se excluyen del análisis los eventos \texttt{checkout} y \texttt{conversion} ya que serán analizados en detalle a lo largo del informe y los eventos \texttt{lead} y \texttt{static page} ya que no se consideran relevantes al análisis que se quiere realizar.
-
-\begin{figure}[h!]
-	\includegraphics[width=\textwidth]{figures/02-eventos-barplot.png}
-	\caption{Frecuencia de eventos}
-	\label{fig:freqeventos}
-\end{figure}
-
-Se observa en el gráfico que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos constituye su principal función como sitio.
-
-\subsection{Evolución de los eventos a través del tiempo}
-
-\subsubsection{Tráfico del sitio de acuerdo al mes y al día}
-
-Otro aspecto a analizar es la cantidad de eventos producidos en cada día de la semana y del mes. Se busca detectar si se mantiene algún comportamiento específico a lo largo de los meses o si la cantidad de eventos registrada depende de algún factor temporal.
-
-Para realizar este gráfico los datos fueron normalizados para evitar llegar a la conclusión que el mes con una mayor cantidad de eventos es el mes con más eventos por día. 
-
-Se desprende del gráfico que la cantidad de eventos registrada no presenta ningún comportamiento específico. Se observa que dicha cantidad aumenta en la segunda quincena de cada mes pero se considera que la diferencia con el resto de los días no tiene la magnitud suficiente como para extraer alguna conclusión fundada. 
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/030-eventos_segun_mes-heatmap.png}
-	\caption{Eventos segun mes y día}
-	\label{fig:mesdiasnormalizado}
-\end{figure}
-
-\subsubsection{Tráfico del sitio de acuerdo al mes y al día de la semana}
-
-En este apartado se busca analizar si algún día de la semana se registra una mayor cantidad de eventos. 
-
-Se realiza un gráfico del mismo estilo que el anterior y se normaliza por las mismas razones.
-
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/031-eventos_segun_dow-heatmap.png}
-	\caption{Eventos segun mes y día}
-	\label{fig:messemanasnormalizado}
-\end{figure}
-
-Es notable que durante los días hábiles de la semana el tráfico es mucho mayor que al fin de semana. Esto puede deberse a que los fines de semana suelen ser días de descanso, donde la gente puede no estar pensando en realizar una compra, además de no poder retirarla. En la semana aumenta el tráfico debido a que el envío o el retiro del celular puede realizarse en el momento.
-
-\subsubsection{Tráfico del sitio según mes}
-
-En este apartado se busca analizar si en algún mes se registró una mayor cantidad de eventos o si la distribución de las visitas fue uniforme a lo largo del tiempo.
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/032-eventos_segun_mes-barplot.png}
-	\caption{Eventos segun mes}
-	\label{fig:mes}
-\end{figure}
-
-Los meses de mayo y junio registraron una cantidad notablemente mayor de eventos. Este resultado llama la antención por lo que se analiza en mayor profundidad en la próxima sección. Es importante destacar que esta evolución es inversa a la de la tasa de conversión. Se concluye que en mayo si bien no hubo tantas ventas, sí aumentó mucho la cantidad de eventos. 
-
-\subsubsection{¿Por qué mayo y junio registran una mayor cantidad de eventos?}
-
-Para tratar de encontrar una respuesta a esta pregunta se centraliza el análisis en estos meses y se estudian los tres eventos principales del dataset: \texttt{conversion}, \texttt{checkout} y \texttt{viewed products}.
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/033-eventos_mayo_junio_lineplot.png}
-	\caption{Conversiones, checkouts y viewed products a lo largo de los días del mes de mayo y junio en éscala logarítmica}
-	\label{mayojunio}
-\end{figure}
-
-Los tres eventos presentan su máximo alrededor de los días 14 a 16. Como Trocafone es del país de Brasil y el mayor tráfico proviene de allí, lo cual será verificado posteriormente, se infiere que puede deberse a alguna promoción lanzada en la plataforma o en el mismo país. Esto no puede concluirse con certeza debido a la falta de información en internet y en la plataforma de promociones pasadas.
-
-\subsubsection{Hora de mayor cantidad de conversiones y checkouts}
-
-En un intento de encontrar un comportamiento patrón por parte de los clientes se grafica la cantidad de conversiones y de checkouts en función de las horas del día. Se busca determinar la hora en la que ambas confluyan en su máximo para analizar el motivo por el que dicha hora registra mayor tráfico.
-
-Se observa que ambos gráficos confluyen en su máximo a las 19 hs. Esto puede significar que la mayoría de los usuarios cuando vuelven del trabajo o están finalizando su día deciden realizar conversiones o checkouts. La diferencia entre ambos gráficos es que la cantidad de checkouts realizados se mantiene relativamente constante en las segundas 12 hs del día mientras que las conversiones son mucho menores y presentan picos más marcados en los horarios de la tarde-noche. 
-
-\begin{figure}[h!]
-	\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/040-hours-conversion-radarchart.png}
-	\caption{Conversiones a lo largo de las horas del día}
-	\label{conversionclock}
-\end{figure}
-
-\begin{figure}[h!]
-	\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/041-hours-checkout-radarchart.png}
-	\caption{Checkouts a lo largo de las horas del día}
-	\label{checkoutclock}
-\end{figure}
-
-\section{Análisis geográfico}
-
-En este apartado se busca analizar las ciudades, países y regiones de dónde provienen los distintos tipos de eventos. Trocafone es una empresa que inició en Brasil y expandió sus comercios a Argentina en el 2015, por lo que se deduce que probablemente Brasil sea la zona de mayor influencia en los eventos.
-
-\subsection{Países que registran mayor cantidad de eventos} 
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/050-paises_visitas-treemap.png}
-	\caption{Países de mayor tráfico de la página}
-	\label{brazilrules}
-\end{figure}
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/051-paises_visitas_sin_brazil-treemap.png}
-	\caption{Países de mayor tráfico de la página sin contar a Brasil}
-	\label{brazilsucks}
-\end{figure}
-
-Se corroboró la teoría inicial por lo que se procedió a eliminar a Brasil del gráfico para poder observar qué otros países intervienen en la página de Trocafone. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es mactible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
-
-\subsection{Regiones y ciudades que registran mayor cantidad de eventos}
-
-Se procede a analizar qué ciudades y regiones de Brasil son las que registran mayor cantidad de eventos. Para ello se grafica las regiones con una mayor cantidad de visitas. Se observa que las tres regiones con la mayor cantidad de eventos (San Pablo, Minas Gerais y Rio de Janeiro) están sobre la costa del sudeste. Para visualizar esto de una mejor manera se realiza un gráfico que muestra las ciudades de Brasil más visitadas y se verifica que la mayoría de los eventos se producen sobre la costa sudeste.
-
-\begin{figure}[h!]
-	\includegraphics[width=9cm,height=9cm,keepaspectratio]{figures/060-regiones_brazil-barplot.png}
-	\caption{Regiones de Brasil con mayor cantidad de eventos}
-	\label{regionsbrasil}
-\end{figure}
-
-\begin{figure}[h!]
-	\includegraphics[width=11cm,height=11cm,keepaspectratio]{figures/061-ciudades_brazil-choropleth.png}
-	\caption{Ciudades de Brasil con mayor cantidad de eventos}
-	\label{citybrasil}
-\end{figure}
-
-\section{Análisis de búsquedas}
-
-La idea de este apartado radica en analizar los términos que buscan los usuarios en la plataforma y así identificar ciertos patrones de búsqueda como por ejemplo cuál es el modelo de celular más buscado. Este análisis se dividirá en dos:
-
-\begin{itemize}
-	\item \underline{Términos ingresados en el buscador}: se utiliza la columna \texttt{search\_term} del dataframe.
-	\item \underline{Productos buscados en la plataforma}: se utiliza la columna \texttt{event} del dataframe para buscar aquellos eventos que correspondan a \texttt{searched\_product}.
- \end{itemize}
-
-\subsection{Términos ingresados en el buscador}
-
-Se realiza un gráfico para visualizar a grandes rasgos los términos más buscados por los usuarios. Se busca tener una idea aproximada de los modelos de celular más requeridos o deseados por los usuarios. Figuran en el gráfico los términos que fueron buscados como mínimo 300 veces, un número arbitrario impuesto para fijar un límite mínimo de búsquedas para ser considerado de los más buscados. De no fijar este límite el gráfico estaría sobrecargado y sería difícil de interpretar.
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/07-search_terms-wordcloud.png}
-	\caption{Términos más buscados por los usuarios de Trocafone}
-	\label{searchedterm}
-\end{figure}
-
-Los términos más buscados son iPhone, Motorola y Samsung. Esto era completamente esperable debido a que son las marcas que dominan el sector tecnológico.
-
-\subsection{Productos buscados en la plataforma}
-
-En esta sección se busca obtener los productos más buscados. Esta búsqueda es más específica que la anteriormente mencionada debido a que corresponde a un producto puntual, no el nombre de su marca. De esta manera los productos más buscados son los que se detallan en la \texttt{Tabla 1} y se representan en el gráfico que le sigue.
-
-Se concluye en esta sección que si bien \texttt{iPhone} y \texttt{Motorola} eran los términos más buscados en la plataforma, no sucede lo mismo con los productos buscados ya que todos corresponden a la marca \texttt{Samsung}. Esto puede deberse a un tema de la calidad que ofrece dicha marca o su precio, probablemente más conveniente. Los iPhone se caracterizan por tener un precio difícil de acceder por lo que es probable que sea buscado como término para ver las diferentes opciones globalmente pero que no muchas veces se busque un producto determinado de dicha marca.
-
-\begin{table}[h!]
-	\begin{center}
-		\begin{tabular}{|l|l|}
-			\hline
-			sku & sku\_name \\
-			\hline \hline
-			3371 & Samsung Galaxy S6 Flat 32GB Dourado (Bom) \\ \hline			
-			2777 & Samsung Galaxy S4 i9505 16GB Preto (Bom) \\ \hline
-			6357 & Samsung Galaxy J5 16GB Preto (Bom) \\ \hline
-			6413 & Samsung Galaxy J7 16GB Dourado (Bom) \\ \hline
-			6371 & Samsung Galaxy J5 16GB Dourado (Bom) \\ \hline
-		\end{tabular}
-		\caption{SKUs más buscados y su nombre}
-		\label{tabla:sencilla}
-	\end{center}
-\end{table}
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/08-skus_buscados-barplot.png}
-	\caption{Productos más buscados por los usuarios de Trocafone}
-	\label{searchedproduct}
-\end{figure}
+Se utiliza adicionalmente un dataset del mapa de Brasil y sus ciudades, para el análisis geográfico. Este fue sacado de  Geonames \footnote{\url{http://www.geonames.org/}}, una base de datos publica de paises y regiones del mundo.
 
 \end{document}
