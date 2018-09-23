@@ -301,19 +301,60 @@ Se observa que ambos gráficos confluyen en su máximo a las 19 hs. Esto puede s
 
 En este apartado se busca analizar las ciudades, países y regiones de dónde provienen los distintos tipos de eventos. Trocafone es una empresa que inició en Brasil y expandió sus comercios a Argentina en el 2015, por lo que se deduce que probablemente Brasil sea la zona de mayor influencia en los eventos.
 
+\subsection{Países que registran mayor cantidad de eventos} 
+
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{figures/050-paises_visitas-treemap.png}
 	\caption{Países de mayor tráfico de la página}
 	\label{brazilrules}
 \end{figure}
 
-Se corroboró la teoría inicial y se procede a eliminar a Brasil del gráfico para poder observar qué otros países intervienen en la página de Trocafone. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es muy factible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
-
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{figures/051-paises_visitas_sin_brazil-treemap.png}
 	\caption{Países de mayor tráfico de la página sin contar a Brasil}
 	\label{brazilsucks}
 \end{figure}
+
+Se corroboró la teoría inicial por lo que se procedió a eliminar a Brasil del gráfico para poder observar qué otros países intervienen en la página de Trocafone. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es mactible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
+
+\subsection{Regiones y ciudades que registran mayor cantidad de eventos}
+
+Se procede a analizar qué ciudades y regiones de Brasil son las que registran mayor cantidad de eventos. Para ello se grafica las regiones con una mayor cantidad de visitas. Se observa que las tres regiones con la mayor cantidad de eventos (San Pablo, Minas Gerais y Rio de Janeiro) están sobre la costa del sudeste. Para visualizar esto de una mejor manera se realiza un gráfico que muestra las ciudades de Brasil más visitadas y se verifica que la mayoría de los eventos se producen sobre la costa sudeste.
+
+\begin{figure}[h!]
+	\includegraphics[width=9cm,height=9cm,keepaspectratio]{figures/060-regiones_brazil-barplot.png}
+	\caption{Regiones de Brasil con mayor cantidad de eventos}
+	\label{regionsbrasil}
+\end{figure}
+
+\begin{figure}[h!]
+	\includegraphics[width=11cm,height=11cm,keepaspectratio]{figures/061-ciudades_brazil-choropleth.png}
+	\caption{Ciudades de Brasil con mayor cantidad de eventos}
+	\label{citybrasil}
+\end{figure}
+
+\section{Análisis de búsquedas}
+
+La idea de este apartado radica en analizar los términos que buscan los usuarios en la plataforma y así identificar ciertos patrones de búsqueda como por ejemplo cuál es el modelo de celular más buscado. Este análisis se dividirá en dos:
+
+\begin{itemize}
+	\item \underline{Términos ingresados en el buscador}: se utiliza la columna \texttt{search\_term} del dataframe.
+	\item \underline{Productos buscados en la plataforma}: se utiliza la columna \texttt{event} del dataframe para buscar aquellos eventos que correspondan a \texttt{searched\_product}.
+ \end{itemize}
+
+\subsection{Términos ingresados en el buscador}
+
+Se realiza un gráfico para visualizar a grandes rasgos los términos más buscados por los usuarios. Se busca tener una idea aproximada de los modelos de celular más requeridos o deseados por los usuarios. Figuran en el gráfico los términos que fueron buscados como mínimo 300 veces, un número arbitrario impuesto para fijar un límite mínimo de búsquedas para ser considerado de los más buscados. De no fijar este límite el gráfico estaría sobrecargado y sería difícil de interpretar.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/07-search_terms-wordcloud.png}
+	\caption{Términos más buscados por los usuarios de Trocafone}
+	\label{searchedterm}
+\end{figure}
+
+Los términos más buscados son iPhone, Motorola y Samsung. Esto era completamente esperable debido a que son las marcas que dominan el sector tecnológico.
+
+\subsection{Productos buscados en la plataforma}
 
 
 \end{document}
