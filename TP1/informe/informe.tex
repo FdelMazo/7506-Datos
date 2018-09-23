@@ -407,8 +407,31 @@ Se realiza el recorte necesario para obtener una visualización que refleje fiab
 
 Se observa en la figura \ref{fig:newvsreturning} que la tasa de personas que entra una sola vez es mayor a la de las que regresan. Esta información desfavorece a Trocafone ya que implica que pierde una gran cantidad de clientes\footnote{Nuevamente se recuerda que estamos hablando del subconjunto de usuarios que realiza al menos un \texttt{checkout}, un subconjunto que se asume mucho menor que el global de los usuarios del sitio.}. Para aumentar la tasa de personas que regresan a ĺa página se puede proponer aumentar el presupuesto en publicidad y mejorar la experiencia de usuario de la home para que provea al usuario una experiencia más amena. También podrían ampliarse los métodos de pago o mejorar la página de \texttt{Customer Service} para que el cliente se sienta más contenido y pueda resolver todos los conflictos existentes ante una compra.
 
+\section{Marcas}
+
+Se busca determinar qué marcas son las que reúnen la mayor cantidad de eventos. Esto puede ser ya sea porque son las marcas más compradas, más buscadas, más vistas, entre otros eventos. Este análisis es más bien global ya que no es específico a un evento determinado.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/141-eventos_marca-barplot.png}}
+	\caption{Cantidad de eventos según marca}
+	\label{fig:freqbrands}
+\end{figure}
+
+Se conserva el comportamiento presentado en la sección \texttt{Análisis de búsquedas} con respecto a los términos más buscados. Las marcas que registran mayor cantidad de eventos son iPhone, Motorola y Samsung.
+
+Ahora se busca analizar cuáles marcas son las que realizan una cantidad pareja de checkouts y conversiones. Se predice que las marcas que venden celulares de precios elevados como Apple van a mostrar una cantidad mayor de checkouts a conversiones. Así mismo, las marcas que mantienen un precio más accesible van a tener ambas cantidades más parejas. 
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/142-conversiones_checkouts_marca-barplot.png}
+	\caption{Checkouts vs conversiones según marca en éscala logarítmica}
+	\label{fig:brands}
+\end{figure}
+
+Se observa en la figura \ref{fig:brands} que la relación checkout-conversions para las marcas representadas es relativamente constante para todas las marcas, con algunas excepciones marcadas donde la cantidad de conversiones es muy chica, como asus, ipad o quantum. Igualmente podría afirmarse que la predicción es cierta porque esta relación es mayor en la marca Samsung que en la marca iPhone/Apple.
+
 \newpage
 \appendix
+
 
 \section{Ejecución}
 
