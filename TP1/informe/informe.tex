@@ -2,7 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-
+\usepackage{float}
 \usepackage{fancyhdr,graphicx,listings,amsmath}
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref}
 
@@ -83,7 +83,7 @@
 
 \section{Introducción}
 
-Se propone analizar en el presente informe los datos obtenidos de usuarios que visitaron \texttt{www.trocafone.com}, un sitio de e-commerce de compra y venta de celulares reacondicionados, con operaciones principalmente en Brasil. Para ello, la empresa Trocafone nos proporcionó acceso a los datos a través del archivo \texttt{events.csv}.
+Se propone analizar en el presente informe los datos obtenidos de usuarios que visitaron \texttt{www.trocafone.com}, un sitio de e-commerce de compra y venta de celulares reacondicionados, con operaciones principalmente en Brasil. Para ello, la empresa Trocafone nos proporcionó acceso a los datos a través del archivo \texttt{events.csv}. Estos datos corresponden al período de tiempo comprendido entre el 1 de enero del 2018 al 16 de junio del 2018.
 
 El objetivo de este informe es realizar un análisis de dicho set de datos para obtener un listado de \textit{insights} aprendidos sobre los mismos. Se propone específicamente:
  
@@ -159,7 +159,7 @@ pip install squarify
 conda install -c conda-forge geopandas
 conda install -c conda-forge wordcloud
 \end{lstlisting}
-\end{itemize}
+
 \section{Análisis de eventos}
 
 En esta sección se propone analizar los distintos tipos de eventos realizados por los usuarios de Trocafone. 
@@ -196,12 +196,49 @@ Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se 
 	\label{fig:freqeventos}
 \end{figure}
 
-Se observa en el gráfico que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos es su principal función como sitio.
+Se observa en el gráfico que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos constituye su principal función como sitio.
 
-\section{Conclusiones, insights y aportes}
+\subsection{Tráfico del sitio de acuerdo al mes y al día}
 
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultricies justo nisi, in ultrices lorem sollicitudin sed. Donec diam velit, aliquet et neque ac, tempus condimentum dolor. Maecenas scelerisque malesuada dignissim. Morbi sollicitudin est eu varius vestibulum. Duis sollicitudin non sapien quis iaculis. Quisque et luctus massa. In vitae odio vitae erat dapibus laoreet vitae in massa. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc eu nunc tellus. Proin dignissim venenatis justo, vel rhoncus nibh commodo tincidunt. Suspendisse eleifend massa eget ligula viverra lacinia. Mauris egestas nisl a tincidunt rhoncus. 
+Otro aspecto a analizar es la cantidad de eventos producidos en cada día de la semana y del mes. Se busca detectar si se mantiene algún comportamiento específico a lo largo de los meses o si la cantidad de eventos registrada depende de algún factor temporal.
 
+Para realizar este gráfico los datos fueron normalizados para evitar llegar a la conclusión que el mes con una mayor cantidad de eventos es el mes con más eventos por día. 
+
+Se desprende del gráfico que la cantidad de eventos registrada no presenta ningún comportamiento específico. Se observa que dicha cantidad aumenta en la segunda quincena de cada mes pero se considera que la diferencia con el resto de los días no tiene la magnitud suficiente como para extraer alguna conclusión fundada. 
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/02-eventos_segun_mes-heatmap.png}
+	\caption{Eventos segun mes y día}
+	\label{fig:mesdiasnormalizado}
+\end{figure}
+
+\subsection{Tráfico del sitio de acuerdo al mes y al día de la semana}
+
+En este apartado se busca analizar si algún día de la semana se registra una mayor cantidad de eventos. 
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/03-eventos_segun_dow-heatmap.png}
+	\caption{Eventos segun mes y día}
+	\label{fig:messemanasnormalizado}
+\end{figure}
+
+Se realiza un gráfico del mismo estilo que el anterior y se normaliza por las mismas razones.
+
+Es notable que durante los días hábiles de la semana el tráfico es mucho mayor que al fin de semana. Esto puede deberse a que los fines de semana suelen ser días de descanso, donde la gente puede no estar pensando en realizar una compra, además de no poder retirarla. En la semana aumenta el tráfico debido a que el envío o el retiro del celular puede realizarse en el momento.
+
+\subsection{Tráfico del sitio según mes}
+
+En este apartado se busca analizar si en algún mes se registró una mayor cantidad de eventos o si la distribución de las visitas fue uniforme a lo largo del tiempo.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/04-eventos_segun_mes-barplot.png}
+	\caption{Eventos segun mes}
+	\label{fig:mes}
+\end{figure}
+
+Los meses de mayo y junio registraron una cantidad notablemente mayor de eventos. Este resultado llama la antención por lo que se analiza en mayor profundidad en la próxima sección.
+
+\subsubsection{¿Por qué mayo y junio registran una mayor cantidad de eventos?}
 
 \newpage
 \appendix
