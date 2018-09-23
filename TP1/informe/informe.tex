@@ -186,6 +186,32 @@ Se sabe por información de la consigna que el dataset proporcionado no represen
 
 De esta manera es importante remarcar que las conclusiones a las que se llegará en el desarrollo del Trabajo Práctico se basan en un sector segmentado de los datos, por lo que en ciertos aspectos del análisis no se podrá arribar a conclusiones fundadas.
 
+\subsection{Conversion rate}
+
+En primer lugar se analiza la llamada \textit{conversion rate} o tasa de conversión debido a su importancia en cualquier negocio de e-commerce.
+
+La tasa de conversión es el porcentaje de visitantes que completan un objetivo deseado (en este caso realizar una conversión) sobre el total de visitantes. En otras palabras es la razón entre las conversiones y el total de eventos.
+
+Tomando todos los datos del dataset dicha tasa de conversión es de \texttt{0,096}. 
+	
+Se busca analizar la evolución de la \textit{conversion rate} a lo largo del tiempo. Para ello se realiza un gráfico de la conversion rate a lo largo de las semanas del año.
+
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{figures/010-conversion_rate_semana-lineplot.png}
+	\caption{Tasa de conversión a lo largo de las semanas del año}
+	\label{fig:conversionrate}
+\end{figure}
+
+Las mayores tasas de conversiones se registran en las semanas 1,4 y 11, es decir, enero y marzo. Para observar mejor este fenómeno se realiza otro gráfico que muestre la evolución de la tasa de conversión a lo largo de los meses. 
+
+Se refuerza la teoría de que enero y marzo fueron los meses de mayor tasa de conversión. Así mismo, dicha tasa se mantiene estable por 4 meses para luego tener una baja en los meses de mayo y junio. Más adelante se analizarán estos dos meses en profundidad.
+
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{figures/011-conversion_rate_mes-barplot.png}
+	\caption{Tasa de conversión a lo largo de los meses del año}
+	\label{fig:conversionratemonthly}
+\end{figure}
+
 \subsection{Frecuencia de eventos}
 
 Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se grafica la cantidad registrada de eventos en función de los distintos tipos de eventos. Se excluyen del análisis los eventos \texttt{checkout} y \texttt{conversion} ya que serán analizados en detalle a lo largo del informe y los eventos \texttt{lead} y \texttt{static page} ya que no se consideran relevantes al análisis que se quiere realizar.
@@ -198,7 +224,9 @@ Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se 
 
 Se observa en el gráfico que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos constituye su principal función como sitio.
 
-\subsection{Tráfico del sitio de acuerdo al mes y al día}
+\subsection{Evolución de los eventos a través del tiempo}
+
+\subsubsection{Tráfico del sitio de acuerdo al mes y al día}
 
 Otro aspecto a analizar es la cantidad de eventos producidos en cada día de la semana y del mes. Se busca detectar si se mantiene algún comportamiento específico a lo largo de los meses o si la cantidad de eventos registrada depende de algún factor temporal.
 
@@ -212,9 +240,12 @@ Se desprende del gráfico que la cantidad de eventos registrada no presenta ning
 	\label{fig:mesdiasnormalizado}
 \end{figure}
 
-\subsection{Tráfico del sitio de acuerdo al mes y al día de la semana}
+\subsubsection{Tráfico del sitio de acuerdo al mes y al día de la semana}
 
 En este apartado se busca analizar si algún día de la semana se registra una mayor cantidad de eventos. 
+
+Se realiza un gráfico del mismo estilo que el anterior y se normaliza por las mismas razones.
+
 
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{figures/031-eventos_segun_dow-heatmap.png}
@@ -222,11 +253,9 @@ En este apartado se busca analizar si algún día de la semana se registra una m
 	\label{fig:messemanasnormalizado}
 \end{figure}
 
-Se realiza un gráfico del mismo estilo que el anterior y se normaliza por las mismas razones.
-
 Es notable que durante los días hábiles de la semana el tráfico es mucho mayor que al fin de semana. Esto puede deberse a que los fines de semana suelen ser días de descanso, donde la gente puede no estar pensando en realizar una compra, además de no poder retirarla. En la semana aumenta el tráfico debido a que el envío o el retiro del celular puede realizarse en el momento.
 
-\subsection{Tráfico del sitio según mes}
+\subsubsection{Tráfico del sitio según mes}
 
 En este apartado se busca analizar si en algún mes se registró una mayor cantidad de eventos o si la distribución de las visitas fue uniforme a lo largo del tiempo.
 
@@ -236,14 +265,55 @@ En este apartado se busca analizar si en algún mes se registró una mayor canti
 	\label{fig:mes}
 \end{figure}
 
-Los meses de mayo y junio registraron una cantidad notablemente mayor de eventos. Este resultado llama la antención por lo que se analiza en mayor profundidad en la próxima sección.
+Los meses de mayo y junio registraron una cantidad notablemente mayor de eventos. Este resultado llama la antención por lo que se analiza en mayor profundidad en la próxima sección. Es importante destacar que esta evolución es inversa a la de la tasa de conversión. Se concluye que en mayo si bien no hubo tantas ventas, sí aumentó mucho la cantidad de eventos. 
 
 \subsubsection{¿Por qué mayo y junio registran una mayor cantidad de eventos?}
 
-\newpage
-\appendix
+Para tratar de encontrar una respuesta a esta pregunta se centraliza el análisis en estos meses y se estudian los tres eventos principales del dataset: \texttt{conversion}, \texttt{checkout} y \texttt{viewed products}.
 
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/033-eventos_mayo_junio_lineplot.png}
+	\caption{Conversiones, checkouts y viewed products a lo largo de los días del mes de mayo y junio en éscala logarítmica}
+	\label{mayojunio}
+\end{figure}
 
-\newpage
+Los tres eventos presentan su máximo alrededor de los días 14 a 16. Como Trocafone es del país de Brasil y el mayor tráfico proviene de allí, lo cual será verificado posteriormente, se infiere que puede deberse a alguna promoción lanzada en la plataforma o en el mismo país. Esto no puede concluirse con certeza debido a la falta de información en internet y en la plataforma de promociones pasadas.
+
+\subsubsection{Hora de mayor cantidad de conversiones y checkouts}
+
+En un intento de encontrar un comportamiento patrón por parte de los clientes se grafica la cantidad de conversiones y de checkouts en función de las horas del día. Se busca determinar la hora en la que ambas confluyan en su máximo para analizar el motivo por el que dicha hora registra mayor tráfico.
+
+Se observa que ambos gráficos confluyen en su máximo a las 19 hs. Esto puede significar que la mayoría de los usuarios cuando vuelven del trabajo o están finalizando su día deciden realizar conversiones o checkouts. La diferencia entre ambos gráficos es que la cantidad de checkouts realizados se mantiene relativamente constante en las segundas 12 hs del día mientras que las conversiones son mucho menores y presentan picos más marcados en los horarios de la tarde-noche. 
+
+\begin{figure}[h!]
+	\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/040-hours-conversion-radarchart.png}
+	\caption{Conversiones a lo largo de las horas del día}
+	\label{conversionclock}
+\end{figure}
+
+\begin{figure}[h!]
+	\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/041-hours-checkout-radarchart.png}
+	\caption{Checkouts a lo largo de las horas del día}
+	\label{checkoutclock}
+\end{figure}
+
+\section{Análisis geográfico}
+
+En este apartado se busca analizar las ciudades, países y regiones de dónde provienen los distintos tipos de eventos. Trocafone es una empresa que inició en Brasil y expandió sus comercios a Argentina en el 2015, por lo que se deduce que probablemente Brasil sea la zona de mayor influencia en los eventos.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/050-paises_visitas-treemap.png}
+	\caption{Países de mayor tráfico de la página}
+	\label{brazilrules}
+\end{figure}
+
+Se corroboró la teoría inicial y se procede a eliminar a Brasil del gráfico para poder observar qué otros países intervienen en la página de Trocafone. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es muy factible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/051-paises_visitas_sin_brazil-treemap.png}
+	\caption{Países de mayor tráfico de la página sin contar a Brasil}
+	\label{brazilsucks}
+\end{figure}
+
 
 \end{document}
