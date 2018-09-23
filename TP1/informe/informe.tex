@@ -383,4 +383,38 @@ Se concluye en esta sección que si bien \texttt{iPhone} y \texttt{Motorola} era
 	\label{searchedproduct}
 \end{figure}
 
+\section{Análisis de páginas estáticas}
+
+Se propone comparar la cantidad de visitas al \texttt{FAQ} \footnote{Frequently Asked Questions: lista de preguntas y respuestas que surgen comúnmente en un contexto determinado.} con las de \texttt{Customer Service}.
+
+La cantidad de visitas a \texttt{Customer Service} es mucho mayor que la cantidad de visitas al \texttt{FAQ}. Para mantener la página de \texttt{Customer Service} es necesario disponer de empleados constantemente para responder las consultas requeridas. Por lo tanto, se podría optimizar recursos redireccionando parte del tráfico a FAQ, haciendo más visibles los links a la página, agregando contenido común y mejorandola de ser necesario.
+
+\begin{figure}[h!]
+	\includegraphics[width=11cm,height=11cm,keepaspectratio]{figures/12-static_pages-barplot.png}
+	\caption{Comparación entre cantidad de visitas al FAQ y a Customer Service}
+	\label{staticpage}
+\end{figure}
+
+\section{Análisis de New Vs Returning}
+
+En esta sección se busca determinar la proporción de usuarios del sitio que entraron una sola vez a la página y no volvieron a hacerlo. Para ello se grafica en un primer lugar la cantidad de usuarios calificados como \texttt{New} contra los que son calificados como \texttt{Returning}.
+
+\begin{figure}[h!]
+	\includegraphics[width=11cm,height=11cm,keepaspectratio]{figures/130-eventos_new_returning-barplot.png}
+	\caption{Comparación entre cantidad de usuarios que entran por primera vez al sitio contra los que volvieron}
+	\label{newvsreturningfalse}
+\end{figure}
+
+Es necesario remarcar que este gráfico no es representativo porque todos los usuarios calificados como \texttt{returning} en algún momento fueron registrados como \texttt{new}. A simple vista se podría concluir que la proporción de usuarios que regresa es mucho mayor a los que entran solo 1 vez. 
+
+Se realiza el recorte necesario para obtener una visualización que refleje fiablemente la cantidad de visitantes que entra al sitio 1 sola vez contra los que vuelven otras veces. 
+
+\begin{figure}[h!]
+	\includegraphics[width=11cm,height=11cm,keepaspectratio]{figures/131-tipos_usuarios-barplot.png}
+	\caption{Comparación entre cantidad de usuarios que entran por primera vez al sitio contra los que volvieron}
+	\label{newvsreturning}
+\end{figure}
+
+Se observa que la tasa de personas que entra una sola vez es mayor a la de las que regresan. Esta información desfavorece a Trocafone ya que implica que pierde una gran cantidad de clientes. Para aumentar la tasa de personas que regresan a ĺa página se puede proponer aumentar el presupuesto en publicidad y mejorar la experiencia de usuario de la home para que provea al usuario una experiencia más amena. También podrían ampliarse los métodos de pago o mejorar la página de \texttt{Customer Service} para que el cliente se sienta más contenido y pueda resolver todos los conflictos existentes ante una compra.
+
 \end{document}
