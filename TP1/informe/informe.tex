@@ -373,6 +373,40 @@ En esta sección se busca obtener los productos más buscados. Esta búsqueda es
 
 Se concluye con el gráfico \ref{fig:searchedproduct} en esta sección que si bien \texttt{iPhone} y \texttt{Motorola} eran los términos más buscados en la plataforma, no sucede lo mismo con los productos buscados ya que todos corresponden a la marca \texttt{Samsung}. Esto puede deberse a un tema de la calidad que ofrece dicha marca o su precio, probablemente más conveniente. Los iPhone se caracterizan por tener un precio difícil de acceder por lo que es probable que sea buscado como término para ver las diferentes opciones globalmente pero que no muchas veces se busque un producto determinado de dicha marca.
 
+\section{Análisis de páginas estáticas}
+
+Se propone comparar la cantidad de visitas al \texttt{FAQ} \footnote{Frequently Asked Questions: lista de preguntas y respuestas que surgen comúnmente en un contexto determinado.} con las de \texttt{Customer Service}.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/12-static_pages-barplot.png}}
+	\caption{Comparación entre cantidad de visitas al FAQ y a Customer Service}
+	\label{fig:staticpage}
+\end{figure}
+
+De \ref{fig:staticpage} se ve que la cantidad de visitas a \texttt{Customer Service} es mucho mayor que la cantidad de visitas al \texttt{FAQ}. Para mantener la página de \texttt{Customer Service} es necesario disponer de empleados constantemente para responder las consultas requeridas. Por lo tanto, se podría optimizar recursos redireccionando parte del tráfico a FAQ, haciendo más visibles los links a la página, agregando contenido común y mejorandola de ser necesario.
+
+\section{Análisis de nuevos usuarios vs usuarios que regresan al sitio}
+
+En esta sección se busca determinar la proporción de usuarios del sitio que entraron una sola vez a la página y no volvieron a hacerlo. Para ello se grafica en un primer lugar la cantidad de usuarios calificados como \texttt{New} contra los que son calificados como \texttt{Returning}.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/130-eventos_new_returning-barplot.png}}
+	\caption{Comparación entre cantidad de usuarios que entran por primera vez al sitio contra los que volvieron}
+	\label{fig:newvsreturningfalse}
+\end{figure}
+
+Es necesario remarcar que el gráfico \ref{fig:newvsreturningfalse} no es representativo porque todos los usuarios calificados como \texttt{returning} en algún momento fueron registrados como \texttt{new} (su primera vez ingresando al sitio). A simple vista se podría concluir que la proporción de usuarios que regresa es mucho mayor a los que entran solo 1 vez. 
+
+Se realiza el recorte necesario para obtener una visualización que refleje fiablemente la cantidad de visitantes que entra al sitio una sola vez contra los que vuelven otras veces. 
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/131-tipos_usuarios-barplot.png}}
+	\caption{Comparación entre cantidad de usuarios que entran por primera vez al sitio contra los que volvieron}
+	\label{fig:newvsreturning}
+\end{figure}
+
+Se observa en la figura \ref{fig:newvsreturning} que la tasa de personas que entra una sola vez es mayor a la de las que regresan. Esta información desfavorece a Trocafone ya que implica que pierde una gran cantidad de clientes\footnote{Nuevamente se recuerda que estamos hablando del subconjunto de usuarios que realiza al menos un \texttt{checkout}, un subconjunto que se asume mucho menor que el global de los usuarios del sitio.}. Para aumentar la tasa de personas que regresan a ĺa página se puede proponer aumentar el presupuesto en publicidad y mejorar la experiencia de usuario de la home para que provea al usuario una experiencia más amena. También podrían ampliarse los métodos de pago o mejorar la página de \texttt{Customer Service} para que el cliente se sienta más contenido y pueda resolver todos los conflictos existentes ante una compra.
+
 \newpage
 \appendix
 
