@@ -11789,7 +11789,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[314]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -12064,7 +12064,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[315]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
@@ -12077,11 +12077,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[317]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">FIRST_SESSION</span> <span class="o">=</span> <span class="mf">0.0000000000000001</span>
-<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;person&#39;</span><span class="p">)[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;person&#39;</span><span class="p">)[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
 <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;time_diff_min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">)</span>
 </pre></div>
@@ -12093,7 +12092,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[318]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># minutes</span>
@@ -12110,7 +12109,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[319]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gb</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">])</span>
@@ -12128,7 +12127,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[320]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;time_diff_min&#39;</span><span class="p">,</span> \
@@ -12141,20 +12140,2494 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[320]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>person</th>
+      <th>timestamp</th>
+      <th>time_diff_min</th>
+      <th>session_id</th>
+      <th>event</th>
+      <th>session_total_events</th>
+      <th>session_cumno</th>
+      <th>session_first</th>
+      <th>session_last</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:05</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>4</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:05</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>4</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:09</td>
+      <td>0.066667</td>
+      <td>0</td>
+      <td>viewed product</td>
+      <td>4</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:40</td>
+      <td>0.516667</td>
+      <td>0</td>
+      <td>checkout</td>
+      <td>4</td>
+      <td>3</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:25</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>viewed product</td>
+      <td>4</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:26</td>
+      <td>0.016667</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>4</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:27</td>
+      <td>0.016667</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>4</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:35</td>
+      <td>0.133333</td>
+      <td>0</td>
+      <td>checkout</td>
+      <td>4</td>
+      <td>3</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:31</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>generic listing</td>
+      <td>7</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:31</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>7</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:31</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>search engine hit</td>
+      <td>7</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:31</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>7</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:53</td>
+      <td>0.366667</td>
+      <td>0</td>
+      <td>brand listing</td>
+      <td>7</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:13:14</td>
+      <td>0.350000</td>
+      <td>0</td>
+      <td>viewed product</td>
+      <td>7</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:13:20</td>
+      <td>0.100000</td>
+      <td>0</td>
+      <td>brand listing</td>
+      <td>7</td>
+      <td>6</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:07</td>
+      <td>64267.783333</td>
+      <td>1</td>
+      <td>ad campaign hit</td>
+      <td>30</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:07</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>visited site</td>
+      <td>30</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:07</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>search engine hit</td>
+      <td>30</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:08</td>
+      <td>0.016667</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>30</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:26:34</td>
+      <td>5.433333</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>30</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:26:53</td>
+      <td>0.316667</td>
+      <td>1</td>
+      <td>brand listing</td>
+      <td>30</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:26:56</td>
+      <td>0.050000</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>30</td>
+      <td>6</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:27:47</td>
+      <td>0.850000</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>7</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:27:50</td>
+      <td>0.050000</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>30</td>
+      <td>8</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:28:10</td>
+      <td>0.333333</td>
+      <td>1</td>
+      <td>brand listing</td>
+      <td>30</td>
+      <td>9</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:28:36</td>
+      <td>0.433333</td>
+      <td>1</td>
+      <td>brand listing</td>
+      <td>30</td>
+      <td>10</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:28:59</td>
+      <td>0.383333</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>11</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:29:06</td>
+      <td>0.116667</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>12</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:29:14</td>
+      <td>0.133333</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>13</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:29:16</td>
+      <td>0.033333</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>14</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1011258</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:40:05</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>visited site</td>
+      <td>7</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011259</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:40:05</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>search engine hit</td>
+      <td>7</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011260</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:40:05</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>7</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011261</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:42:05</td>
+      <td>2.000000</td>
+      <td>1</td>
+      <td>searched products</td>
+      <td>7</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011262</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:43:43</td>
+      <td>1.633333</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>7</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011263</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:43:52</td>
+      <td>0.150000</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>7</td>
+      <td>6</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011264</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:33:23</td>
+      <td>109.516667</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011265</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:33:30</td>
+      <td>0.116667</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011266</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:34:46</td>
+      <td>1.266667</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011267</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:35:00</td>
+      <td>0.233333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011268</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:35:11</td>
+      <td>0.183333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011269</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:35:13</td>
+      <td>0.033333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011270</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:35:18</td>
+      <td>0.083333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>6</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011271</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:39:05</td>
+      <td>3.783333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>7</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011272</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:39:07</td>
+      <td>0.033333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>8</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011273</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:39:56</td>
+      <td>0.816667</td>
+      <td>2</td>
+      <td>visited site</td>
+      <td>12</td>
+      <td>9</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011274</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:41:29</td>
+      <td>1.550000</td>
+      <td>2</td>
+      <td>generic listing</td>
+      <td>12</td>
+      <td>10</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011275</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:43:29</td>
+      <td>2.000000</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>11</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011276</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:25:40</td>
+      <td>2682.183333</td>
+      <td>3</td>
+      <td>search engine hit</td>
+      <td>8</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011277</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:25:40</td>
+      <td>0.000000</td>
+      <td>3</td>
+      <td>visited site</td>
+      <td>8</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011278</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:25:40</td>
+      <td>0.000000</td>
+      <td>3</td>
+      <td>ad campaign hit</td>
+      <td>8</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011279</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:25:41</td>
+      <td>0.016667</td>
+      <td>3</td>
+      <td>generic listing</td>
+      <td>8</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011280</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:28:47</td>
+      <td>3.100000</td>
+      <td>3</td>
+      <td>searched products</td>
+      <td>8</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011281</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:29:11</td>
+      <td>0.400000</td>
+      <td>3</td>
+      <td>viewed product</td>
+      <td>8</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011282</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:29:14</td>
+      <td>0.050000</td>
+      <td>3</td>
+      <td>viewed product</td>
+      <td>8</td>
+      <td>6</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011283</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:31:49</td>
+      <td>2.583333</td>
+      <td>3</td>
+      <td>checkout</td>
+      <td>8</td>
+      <td>7</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011284</th>
+      <td>ffffac8a</td>
+      <td>2018-06-04 23:18:03</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>4</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011285</th>
+      <td>ffffac8a</td>
+      <td>2018-06-04 23:18:03</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>4</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011286</th>
+      <td>ffffac8a</td>
+      <td>2018-06-04 23:18:03</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>viewed product</td>
+      <td>4</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011287</th>
+      <td>ffffac8a</td>
+      <td>2018-06-04 23:18:10</td>
+      <td>0.116667</td>
+      <td>0</td>
+      <td>checkout</td>
+      <td>4</td>
+      <td>3</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>1011288 rows × 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[340]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;is_conversion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;conversion&#39;</span>
+<span class="n">gb</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">])</span>
+<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_conversion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gb</span><span class="p">[</span><span class="s1">&#39;is_conversion&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_conversion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_conversion&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel2</span><span class="p">[</span><span class="n">funnel2</span><span class="p">[</span><span class="s1">&#39;session_conversion&#39;</span><span class="p">]][</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[352]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;is_checkout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;checkout&#39;</span>
+<span class="n">gb</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">])</span>
+<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_checkout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gb</span><span class="p">[</span><span class="s1">&#39;is_checkout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_checkout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_checkout&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[343]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel2</span><span class="p">[</span><span class="n">funnel2</span><span class="p">[</span><span class="s1">&#39;session_checkout&#39;</span><span class="p">]][</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[343]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>person</th>
+      <th>timestamp</th>
+      <th>time_diff_min</th>
+      <th>session_id</th>
+      <th>event</th>
+      <th>session_total_events</th>
+      <th>session_cumno</th>
+      <th>session_first</th>
+      <th>session_last</th>
+      <th>session_conversion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>220</th>
+      <td>00204059</td>
+      <td>2018-03-20 17:46:12</td>
+      <td>47118.483333</td>
+      <td>11</td>
+      <td>conversion</td>
+      <td>1</td>
+      <td>0</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2265</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:09:53</td>
+      <td>104.866667</td>
+      <td>2</td>
+      <td>generic listing</td>
+      <td>19</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2266</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:09:53</td>
+      <td>0.000000</td>
+      <td>2</td>
+      <td>visited site</td>
+      <td>19</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2267</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:11:46</td>
+      <td>1.883333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>19</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2268</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:11:48</td>
+      <td>0.033333</td>
+      <td>2</td>
+      <td>generic listing</td>
+      <td>19</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2269</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:13:06</td>
+      <td>1.300000</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>19</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2270</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:13:37</td>
+      <td>0.516667</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>19</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2271</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:15:27</td>
+      <td>1.833333</td>
+      <td>2</td>
+      <td>checkout</td>
+      <td>19</td>
+      <td>6</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2272</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:16:51</td>
+      <td>1.400000</td>
+      <td>2</td>
+      <td>checkout</td>
+      <td>19</td>
+      <td>7</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2273</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:18:46</td>
+      <td>1.916667</td>
+      <td>2</td>
+      <td>search engine hit</td>
+      <td>19</td>
+      <td>8</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[348]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;ad_origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ad campaign hit&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_first&#39;</span><span class="p">]</span>
+<span class="n">gb</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">])</span>
+<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_organic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gb</span><span class="p">[</span><span class="s1">&#39;add_origin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_organic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_organic&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[351]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[351]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>person</th>
+      <th>timestamp</th>
+      <th>time_diff_min</th>
+      <th>session_id</th>
+      <th>event</th>
+      <th>session_total_events</th>
+      <th>session_cumno</th>
+      <th>session_first</th>
+      <th>session_last</th>
+      <th>session_conversion</th>
+      <th>session_organic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:05</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>4</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:05</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>4</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:09</td>
+      <td>0.066667</td>
+      <td>0</td>
+      <td>viewed product</td>
+      <td>4</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:40</td>
+      <td>0.516667</td>
+      <td>0</td>
+      <td>checkout</td>
+      <td>4</td>
+      <td>3</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:25</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>viewed product</td>
+      <td>4</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:26</td>
+      <td>0.016667</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>4</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:27</td>
+      <td>0.016667</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>4</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:35</td>
+      <td>0.133333</td>
+      <td>0</td>
+      <td>checkout</td>
+      <td>4</td>
+      <td>3</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:31</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>generic listing</td>
+      <td>7</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:31</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>7</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:31</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>search engine hit</td>
+      <td>7</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:31</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>7</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:12:53</td>
+      <td>0.366667</td>
+      <td>0</td>
+      <td>brand listing</td>
+      <td>7</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:13:14</td>
+      <td>0.350000</td>
+      <td>0</td>
+      <td>viewed product</td>
+      <td>7</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>000a54b2</td>
+      <td>2018-04-09 20:13:20</td>
+      <td>0.100000</td>
+      <td>0</td>
+      <td>brand listing</td>
+      <td>7</td>
+      <td>6</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:07</td>
+      <td>64267.783333</td>
+      <td>1</td>
+      <td>ad campaign hit</td>
+      <td>30</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:07</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>visited site</td>
+      <td>30</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:07</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>search engine hit</td>
+      <td>30</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:08</td>
+      <td>0.016667</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>30</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:26:34</td>
+      <td>5.433333</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>30</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:26:53</td>
+      <td>0.316667</td>
+      <td>1</td>
+      <td>brand listing</td>
+      <td>30</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:26:56</td>
+      <td>0.050000</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>30</td>
+      <td>6</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:27:47</td>
+      <td>0.850000</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>7</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:27:50</td>
+      <td>0.050000</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>30</td>
+      <td>8</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:28:10</td>
+      <td>0.333333</td>
+      <td>1</td>
+      <td>brand listing</td>
+      <td>30</td>
+      <td>9</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:28:36</td>
+      <td>0.433333</td>
+      <td>1</td>
+      <td>brand listing</td>
+      <td>30</td>
+      <td>10</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:28:59</td>
+      <td>0.383333</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>11</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:29:06</td>
+      <td>0.116667</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>12</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:29:14</td>
+      <td>0.133333</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>13</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:29:16</td>
+      <td>0.033333</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>30</td>
+      <td>14</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1011258</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:40:05</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>visited site</td>
+      <td>7</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011259</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:40:05</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>search engine hit</td>
+      <td>7</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011260</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:40:05</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>generic listing</td>
+      <td>7</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011261</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:42:05</td>
+      <td>2.000000</td>
+      <td>1</td>
+      <td>searched products</td>
+      <td>7</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011262</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:43:43</td>
+      <td>1.633333</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>7</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011263</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 13:43:52</td>
+      <td>0.150000</td>
+      <td>1</td>
+      <td>viewed product</td>
+      <td>7</td>
+      <td>6</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1011264</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:33:23</td>
+      <td>109.516667</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011265</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:33:30</td>
+      <td>0.116667</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011266</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:34:46</td>
+      <td>1.266667</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011267</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:35:00</td>
+      <td>0.233333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011268</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:35:11</td>
+      <td>0.183333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011269</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:35:13</td>
+      <td>0.033333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011270</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:35:18</td>
+      <td>0.083333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>6</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011271</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:39:05</td>
+      <td>3.783333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>7</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011272</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:39:07</td>
+      <td>0.033333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>8</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011273</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:39:56</td>
+      <td>0.816667</td>
+      <td>2</td>
+      <td>visited site</td>
+      <td>12</td>
+      <td>9</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011274</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:41:29</td>
+      <td>1.550000</td>
+      <td>2</td>
+      <td>generic listing</td>
+      <td>12</td>
+      <td>10</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011275</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-09 15:43:29</td>
+      <td>2.000000</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>12</td>
+      <td>11</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011276</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:25:40</td>
+      <td>2682.183333</td>
+      <td>3</td>
+      <td>search engine hit</td>
+      <td>8</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011277</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:25:40</td>
+      <td>0.000000</td>
+      <td>3</td>
+      <td>visited site</td>
+      <td>8</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011278</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:25:40</td>
+      <td>0.000000</td>
+      <td>3</td>
+      <td>ad campaign hit</td>
+      <td>8</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011279</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:25:41</td>
+      <td>0.016667</td>
+      <td>3</td>
+      <td>generic listing</td>
+      <td>8</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011280</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:28:47</td>
+      <td>3.100000</td>
+      <td>3</td>
+      <td>searched products</td>
+      <td>8</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011281</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:29:11</td>
+      <td>0.400000</td>
+      <td>3</td>
+      <td>viewed product</td>
+      <td>8</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011282</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:29:14</td>
+      <td>0.050000</td>
+      <td>3</td>
+      <td>viewed product</td>
+      <td>8</td>
+      <td>6</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011283</th>
+      <td>ffffa8d1</td>
+      <td>2018-06-11 12:31:49</td>
+      <td>2.583333</td>
+      <td>3</td>
+      <td>checkout</td>
+      <td>8</td>
+      <td>7</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011284</th>
+      <td>ffffac8a</td>
+      <td>2018-06-04 23:18:03</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>4</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011285</th>
+      <td>ffffac8a</td>
+      <td>2018-06-04 23:18:03</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>4</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011286</th>
+      <td>ffffac8a</td>
+      <td>2018-06-04 23:18:03</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>viewed product</td>
+      <td>4</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1011287</th>
+      <td>ffffac8a</td>
+      <td>2018-06-04 23:18:10</td>
+      <td>0.116667</td>
+      <td>0</td>
+      <td>checkout</td>
+      <td>4</td>
+      <td>3</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>1011288 rows × 11 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[353]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_csv</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time_diff_min&#39;</span><span class="p">,</span> \
         <span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;session_total_events&#39;</span><span class="p">,</span> \
-        <span class="s1">&#39;session_cumno&#39;</span><span class="p">,</span> <span class="s1">&#39;session_first&#39;</span><span class="p">,</span> <span class="s1">&#39;session_last&#39;</span><span class="p">]</span>
+        <span class="s1">&#39;session_cumno&#39;</span><span class="p">,</span> <span class="s1">&#39;session_first&#39;</span><span class="p">,</span> <span class="s1">&#39;session_last&#39;</span><span class="p">,</span> \
+        <span class="s1">&#39;session_conversion&#39;</span><span class="p">,</span> <span class="s1">&#39;session_checkout&#39;</span><span class="p">,</span> <span class="s1">&#39;session_organic&#39;</span><span class="p">]</span>
 
 <span class="n">funnel</span><span class="p">[</span><span class="n">cols_csv</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/sessions.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[355]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">funnel</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Funnel-graph">Funnel graph<a class="anchor-link" href="#Funnel-graph">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[674]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span>
+<span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="k">as</span> <span class="nn">py</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
+
+<span class="n">plotly</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">set_credentials_file</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;datatouille&#39;</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;GJ7Foc8nFWf23VZfzFSK&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[675]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfunnel</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>\
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;generic listing&#39;</span><span class="p">)</span> <span class="o">|</span> \
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;brand listing&#39;</span><span class="p">)</span> <span class="o">|</span> \
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;searched products&#39;</span><span class="p">)</span> <span class="o">|</span> \
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;viewed product&#39;</span><span class="p">)</span> <span class="o">|</span> \
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;checkout&#39;</span><span class="p">)</span> <span class="o">|</span> \
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;conversion&#39;</span><span class="p">)</span> \
+<span class="p">]</span>
+
+<span class="c1"># color for each segment</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rgb(63,92,128)&#39;</span><span class="p">,</span> <span class="s1">&#39;rgb(90,131,182)&#39;</span><span class="p">,</span> <span class="s1">&#39;rgb(255,255,255)&#39;</span><span class="p">,</span> <span class="s1">&#39;rgb(127,127,127)&#39;</span><span class="p">,</span> <span class="s1">&#39;rgb(84,73,75)&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rgb(63,92,128)&#39;</span><span class="p">,</span> <span class="s1">&#39;rgb(84,73,75)&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[676]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;skus&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;event&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[676]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>brand listing        98324
+generic listing      67421
+searched products    55954
+Name: event, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[677]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfunnel</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="s1">&#39;session_organic&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;session_organic&#39;</span><span class="p">)</span>
+<span class="n">dfunnel</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[677]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>session_organic</th>
+      <th>False</th>
+      <th>True</th>
+    </tr>
+    <tr>
+      <th>event</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>brand listing</th>
+      <td>14015</td>
+      <td>84620</td>
+    </tr>
+    <tr>
+      <th>checkout</th>
+      <td>6457</td>
+      <td>27278</td>
+    </tr>
+    <tr>
+      <th>conversion</th>
+      <td>116</td>
+      <td>1056</td>
+    </tr>
+    <tr>
+      <th>generic listing</th>
+      <td>8807</td>
+      <td>58727</td>
+    </tr>
+    <tr>
+      <th>searched products</th>
+      <td>8013</td>
+      <td>48060</td>
+    </tr>
+    <tr>
+      <th>viewed product</th>
+      <td>82432</td>
+      <td>446499</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[678]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">group_lists</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;brand listing&#39;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;generic listing&#39;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="s1">&#39;searched products&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;listed&#39;</span>
+    <span class="k">return</span> <span class="n">event</span>
+
+<span class="n">dfunnel</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ad&#39;</span><span class="p">,</span> <span class="s1">&#39;Organic&#39;</span><span class="p">]</span>
+<span class="n">dfunnel</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">dfunnel</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">group_lists</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">dfunnel</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">&#39;listed&#39;</span><span class="p">,</span> \
+                 <span class="s1">&#39;viewed product&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="s1">&#39;conversion&#39;</span><span class="p">])</span>
+<span class="n">dfunnel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfunnel</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[679]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfunnel</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[679]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Ad</th>
+      <th>Organic</th>
+    </tr>
+    <tr>
+      <th>event</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>listed</th>
+      <td>10.336406</td>
+      <td>12.162157</td>
+    </tr>
+    <tr>
+      <th>viewed product</th>
+      <td>11.319729</td>
+      <td>13.009192</td>
+    </tr>
+    <tr>
+      <th>checkout</th>
+      <td>8.772920</td>
+      <td>10.213836</td>
+    </tr>
+    <tr>
+      <th>conversion</th>
+      <td>4.753590</td>
+      <td>6.962243</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[686]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[687]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_phase</span><span class="p">,</span> <span class="n">n_seg</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[688]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_width</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">unit_width</span> <span class="o">=</span> <span class="n">plot_width</span> <span class="o">/</span> <span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+ 
+<span class="n">phase_w</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span> <span class="o">*</span> <span class="n">unit_width</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">total</span><span class="p">]</span>
+ 
+<span class="c1"># height of a section and difference between sections </span>
+<span class="n">section_h</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">section_d</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># shapes of the plot</span>
+<span class="n">shapes</span> <span class="o">=</span> <span class="p">[]</span>
+ 
+<span class="c1"># plot traces data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+ 
+<span class="c1"># height of the phase labels</span>
+<span class="n">label_y</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[689]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">height</span> <span class="o">=</span> <span class="n">section_h</span> <span class="o">*</span> <span class="n">n_phase</span> <span class="o">+</span> <span class="n">section_d</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_phase</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># rows of the DataFrame</span>
+<span class="n">df_rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dfunnel</span><span class="o">.</span><span class="n">iterrows</span><span class="p">())</span>
+
+<span class="c1"># iteration over all the phases</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_phase</span><span class="p">):</span>
+    <span class="c1"># phase name</span>
+    <span class="n">row_name</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    
+    <span class="c1"># width of each segment (smaller rectangles) will be calculated</span>
+    <span class="c1"># according to their contribution in the total users of phase</span>
+    <span class="n">seg_unit_width</span> <span class="o">=</span> <span class="n">phase_w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">total</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">seg_w</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">df_rows</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">seg_unit_width</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_seg</span><span class="p">)]</span>
+    
+    <span class="c1"># starting point of segment (the rectangle shape) on the X-axis</span>
+    <span class="n">xl</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="n">phase_w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># iteration over all the segments</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_seg</span><span class="p">):</span>
+        <span class="c1"># name of the segment</span>
+        <span class="n">seg_name</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        
+        <span class="c1"># corner points of a segment used in the SVG path</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">xl</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">xl</span> <span class="o">+</span> <span class="n">seg_w</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">height</span><span class="p">,</span> <span class="n">xl</span> <span class="o">+</span> <span class="n">seg_w</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">height</span> <span class="o">-</span> <span class="n">section_h</span><span class="p">,</span> <span class="n">xl</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">section_h</span><span class="p">]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;M </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1"> L </span><span class="si">{2}</span><span class="s1"> </span><span class="si">{3}</span><span class="s1"> L </span><span class="si">{4}</span><span class="s1"> </span><span class="si">{5}</span><span class="s1"> L </span><span class="si">{6}</span><span class="s1"> </span><span class="si">{7}</span><span class="s1"> Z&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">points</span><span class="p">)</span>
+        
+        <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
+                <span class="s1">&#39;fillcolor&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                <span class="s1">&#39;line&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        
+        <span class="c1"># to support hover on shapes</span>
+        <span class="n">hover_trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">xl</span> <span class="o">+</span> <span class="p">(</span><span class="n">seg_w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">height</span> <span class="o">-</span> <span class="p">(</span><span class="n">section_h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)],</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                <span class="n">size</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">seg_w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">section_h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)),</span>
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;rgba(255,255,255,1)&#39;</span>
+            <span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Segment : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">seg_name</span><span class="p">),</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Value : </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dfunnel</span><span class="p">[</span><span class="n">seg_name</span><span class="p">][</span><span class="n">row_name</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hover_trace</span><span class="p">)</span>
+        
+        <span class="n">xl</span> <span class="o">=</span> <span class="n">xl</span> <span class="o">+</span> <span class="n">seg_w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+    <span class="n">label_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">height</span> <span class="o">-</span> <span class="p">(</span><span class="n">section_h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">height</span> <span class="o">=</span> <span class="n">height</span> <span class="o">-</span> <span class="p">(</span><span class="n">section_h</span> <span class="o">+</span> <span class="n">section_d</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[690]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># For phase names</span>
+<span class="n">label_trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">350</span><span class="p">]</span><span class="o">*</span><span class="n">n_phase</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">label_y</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="n">dfunnel</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+    <span class="n">textfont</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;rgb(200,200,200)&#39;</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">11</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_trace</span><span class="p">)</span>
+ 
+<span class="c1"># For phase values (total)</span>
+<span class="n">value_trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">350</span><span class="p">]</span><span class="o">*</span><span class="n">n_phase</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">label_y</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="n">total</span><span class="p">,</span>
+    <span class="n">textfont</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;rgb(200,200,200)&#39;</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">11</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[691]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;Funnel (log) [Ad:Azul | Orgánico:Marrón]&lt;/b&gt;&quot;</span><span class="p">,</span>
+    <span class="n">titlefont</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;rgb(230,230,230)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
+    <span class="n">shapes</span><span class="o">=</span><span class="n">shapes</span><span class="p">,</span>
+    <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;rgba(44,58,71,1)&#39;</span><span class="p">,</span>
+    <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;rgba(44,58,71,1)&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">showticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">zeroline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">showticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">zeroline</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[691]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~datatouille/62.embed" height="525px" width="100%"></iframe>
+</div>
+
+</div>
+
 </div>
 </div>
 
