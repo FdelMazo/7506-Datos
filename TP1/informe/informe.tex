@@ -518,7 +518,21 @@ Se busca analizar en esta sección desde qué tipo de dispositivos suelen accede
 
 Se puede observar en la figura \ref{fig:dispositivos} que casi todos los eventos se registran desde un smartphone o una computadora. La cantidad de eventos registrada desde la tablet es significativamente menor. Por lo tanto, se considera que podría dedicarse una mayor cantidad de recursos a desarrollar la aplicación para smartphones y computadoras y no dedicar mucho tiempo y desarrolladores a las aplicaciones para tablets, o bien optar por el camino contrario e intentar hacer más atractiva la manera de ingresar desde la tablet con el fin de atraer nuevos usuarios de ese target en particular, aunque esto implique un mucho mayor costo (se asume que es más dificil y costoso desarrollar algo no exitoso desde el suelo que mantener y mejorar algo con una cantidad constante de visitas).
 
-\section{Publicidad}
+Lo siguiente a analizar es la fidelidad de los usuarios a sus dispositivos actuales y respectivas marcas y su adversidad al cambio. Implicitamente, lo que también se analiza acá es la efectividad del \textit{branding} de las marcas, ya que mantener consumidores es uno de sus principales objetivos como empresa y se logra con buenas campañas de marketing.
+
+Para poner un ejemplo de fidelidad, un usuario fiel sería quien entra desde una computadora \textbf{Mac} y solo busca para comprarse el \textbf{iPhone} vigente, mientras que un usuario que entra desde \textbf{Android} y decide comprar un \textbf{iPhone} es uno que no es fiel a su marca/sistema operativo actual.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/151-os_brands-sankey.png}
+	\caption{Diagrama de flujo de fidelidad de usuarios}
+	\label{fig:sankey}
+\end{figure}
+
+Notamos en el gráfico \ref{fig:sankey} varias cosas. Por empezar, dada la naturaleza de \textit{branding} y marketing de la empresa, los usuarios de \textbf{Apple} no son muy propensos al cambio y se mantienen en su mayoría sobre su mismo sistema. Por otro lado, los usuarios de \textbf{Android} están uniformemente divididos y no se puede concluir que no sean fieles ni fieles. 
+
+Luego, el caso de \textbf{Windows} sería trivial de analizar, siendo este un sistema operativo de computadoras sin ninguna asociación en particular a marcas de celulares (ignorando el cuasi extinto \textbf{Windows Phone}, que aparecería como la marca \textbf{Nokia} o \textbf{Microsoft}). Y como último es interesante ver los usuarios de \textbf{Linux}, que por la esencia abierta del sistema operativo y su comunidad, es peculiar ver la distribución uniforme (si bien sobre pocos datos) tanto hacia celulares \textbf{Android} como \textbf{Apple}, aún más teniendo en cuenta la fuerte tendencia a ser un sistema más cerrado de este último.
+
+\section{Análisis de Publicidad}
 
 La primera pregunta que fue planteada fue la de investigar si \textbf{Trocafone} aumentó el presupuesto en publicidad en algún período de tiempo. Para ello se procede a analizar en qué meses aumentó la cantidad de visitas originadas de una campaña de marketing, información proveída por la columna \texttt{campaign source}.
 
