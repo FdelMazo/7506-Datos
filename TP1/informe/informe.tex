@@ -322,7 +322,7 @@ Se procede a analizar qué ciudades y regiones de Brasil son las que registran m
 
 Lo que presentan las figuras \ref{fig:regionsbrasil} y \ref{fig:citybrasil} tiene sentido, considerando que sobre el mayor blanco del gráfico es donde esta la selva brasileña.
 
-\section{Análisis de búsquedas}
+\section{Análisis de búsquedas} \label{busq}
 
 La idea de este apartado radica en analizar los términos que buscan los usuarios en la plataforma y así identificar ciertos patrones de búsqueda como por ejemplo cuál es el modelo de celular más buscado. Este análisis se dividirá en dos:
 
@@ -372,7 +372,7 @@ En esta sección se busca obtener los productos más buscados. Esta búsqueda es
 
 Se concluye con el gráfico \ref{fig:searchedproduct} en esta sección que si bien \texttt{iPhone} y \texttt{Motorola} eran los términos más buscados en la plataforma, no sucede lo mismo con los productos buscados ya que todos corresponden a la marca \texttt{Samsung}. Esto puede deberse a un tema de la calidad que ofrece dicha marca o su precio, probablemente más conveniente. Los iPhone se caracterizan por tener un precio difícil de acceder por lo que es probable que sea buscado como término para ver las diferentes opciones globalmente pero que no muchas veces se busque un producto determinado de dicha marca.
 
-\section{Análisis de modelos}
+\section{Análisis de modelos} \label{modelo}
 
 Pasadas las exploraciones enfocadas sobre el sitio web en sí, como sus busquedas o las nacionalidades de sus usuarios, ahora se pone el foco sobre el contenido del sitio, las compras de celulares, específicamente sobre que modelos son los más vistos, comprados y en general con más tráfico.
 
@@ -486,12 +486,42 @@ Se realiza el recorte necesario para obtener una visualización que refleje fiab
 Se observa en la figura \ref{fig:newvsreturning} que la tasa de personas que entra una sola vez es mayor a la de las que regresan. Esta información desfavorece a Trocafone ya que implica que pierde una gran cantidad de clientes\footnote{Nuevamente se recuerda que estamos hablando del subconjunto de usuarios que realiza al menos un \texttt{checkout}, un subconjunto que se asume mucho menor que el global de los usuarios del sitio.}. Para aumentar la tasa de personas que regresan a ĺa página se puede proponer aumentar el presupuesto en publicidad y mejorar la experiencia de usuario de la home para que provea al usuario una experiencia más amena. También podrían ampliarse los métodos de pago o mejorar la página de \texttt{Customer Service} para que el cliente se sienta más contenido y pueda resolver todos los conflictos existentes ante una compra.
 
 \section{Análisis de marcas}
-\section{Análisis de nuevos usuarios vs usuarios que regresan al sitio}
 
+Se busca determinar qué marcas son las que reúnen la mayor cantidad de eventos. Esto puede ser ya sea porque son las marcas más compradas, más buscadas o más vistas, entre otros eventos. Este análisis es más bien global ya que no es específico a un evento determinado.
 
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/141-eventos_marca-barplot.png}}
+	\caption{Cantidad de eventos según marca}
+	\label{fig:freqbrands}
+\end{figure}
+
+Se conserva el comportamiento presentado en la sección \ref{busq} con respecto a los términos más buscados. Las marcas que registran mayor cantidad de eventos son iPhone, Motorola y Samsung.
+
+Ahora se busca analizar cuáles marcas son las que realizan una cantidad pareja de checkouts y conversiones. Siguiendo la linea de razonamiento en la sección \ref{modelo} se predice que las marcas que venden celulares a precios elevados como \textbf{Apple} van a mostrar una cantidad mayor de checkouts que conversiones. Así mismo, las marcas que mantienen un precio más accesible van a tener ambas cantidades más parejas. 
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/142-conversiones_checkouts_marca-barplot.png}
+	\caption{Checkouts vs conversiones según marca en éscala logarítmica}
+	\label{fig:brands}
+\end{figure}
+
+Se observa en la figura \ref{fig:brands} que la relación checkout-conversions para las marcas representadas es relativamente constante para todas las marcas, con algunas excepciones marcadas donde la cantidad de conversiones es muy chica, como \textbf{Asus}, \textbf{iPad} (técnicamente \textbf{Apple}) o \textbf{Quantum}. Igualmente podría afirmarse que la predicción es cierta porque esta relación es mayor en la marca \textbf{Samsung} que en la marca \textbf{Apple} (\textbf{iPhone}).
+
+\section{Análisis de tipos de dispositivos}
+
+Se busca analizar en esta sección desde qué tipo de dispositivos suelen acceder los clientes a la página de Trocafone.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/15-eventos_tipo-barplot.png}
+	\caption{Cantidad de eventos de acuerdo al dispositivo utilizado}
+	\label{fig:dispositivos}
+\end{figure}
+
+Se puede observar en la figura \ref{fig:dispositivos} que casi todos los eventos se registran desde un smartphone o una computadora. La cantidad de eventos registrada desde la tablet es significativamente menor. Por lo tanto, se considera que podría dedicarse una mayor cantidad de recursos a desarrollar la aplicación para smartphones y computadoras y no dedicar mucho tiempo y desarrolladores a las aplicaciones para tablets, o bien optar por el camino contrario e intentar hacer más atractiva la manera de ingresar desde la tablet con el fin de atraer nuevos usuarios de ese target en particular, aunque esto implique un mucho mayor costo (se asume que es más dificil y costoso desarrollar algo no exitoso desde el suelo que mantener y mejorar algo con una cantidad constante de visitas).
 
 \newpage
 \appendix
+
 
 \section{Ejecución}
 
