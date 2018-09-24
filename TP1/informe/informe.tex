@@ -400,7 +400,7 @@ La primera pregunta a hacerse acerca de los celulares es si hay alguna relación
 	\end{center}
 \end{table}
 
-Entonces, se comienza decidiendo un subconjunto de modelos a analizar, para tener una muestra del sitio. Este set, presentado en la tabla \ref{table:modelos_prominentes}, esta generado teniendo en cuenta y uniendo los celulares más vistos (\texttt{viewed product}) con los más "llevados al carrito" (\texttt{checkout}) con los más comprados (\texttt{conversion}). Esto es porque de analizar los eventos y los modelos se ve que los eventos (relevantes \footnote{se descarta del análisis el evento \texttt{lead} por no ser relevante al caso}) que tienen un modeo asociado son esos tres, y así se piensa la cronología ordenada ideal de eventos desde el punto de vista de un modelo:
+Entonces, se comienza decidiendo un subconjunto de modelos a analizar, para tener una muestra del sitio. Este set, presentado en la tabla \ref{table:modelos_prominentes}, esta generado teniendo en cuenta y uniendo los celulares más vistos (\texttt{viewed product}) con los más "llevados al carrito" (\texttt{checkout}) con los más comprados (\texttt{conversion}). Esto es porque de analizar los eventos y los modelos se ve que los eventos (relevantes \footnote{se descarta del análisis el evento \texttt{lead} por no ser relevante al caso}) que tienen un modelo asociado son esos tres, y así se piensa la cronología ordenada ideal de eventos desde el punto de vista de un modelo:
 
 \begin{enumerate}
 \item \textbf{\texttt{viewed product}: Visitar un producto.}
@@ -408,14 +408,13 @@ Entonces, se comienza decidiendo un subconjunto de modelos a analizar, para tene
 \item \textbf{\texttt{conversion}: Efectivamente comprarlo.}
 \end{enumerate}
 
-
 \begin{figure}[h!]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/090-modelos_eventos-stackedbarplot.png}}
 	\caption{Cronología de eventos de una muestra de modelos analizados}
 	\label{fig:prominentes}
 \end{figure}
 
-Primero, en \ref{fig:prominentes}, se analiza como varían los tres eventos según cada celular. Lo que más se puede notar es que los celulares \textbf{Samsung Galaxy S7 Edge} y \textbf{iPhone 7}, los celulares de mayor gama del sitio son mucho más visto que el resto, y que verlos es su propio evento predominante por amplia diferencia. Esto se deduce que sucede por el precio y calidad de estos teléfonos; son celulares muy codiciados pero a su vez muy caros, por ende su precio suele ahuyentar compras, pero su calidad atraer visitas.
+Primero, en la figura \ref{fig:prominentes} se analiza como varían los tres eventos según cada celular. Lo que más se puede notar es que los celulares \textbf{Samsung Galaxy S7 Edge} y \textbf{iPhone 7}, los celulares de mayor gama del sitio son mucho más visto que el resto, y que verlos es su propio evento predominante por amplia diferencia. Esto se deduce que sucede por el precio y calidad de estos teléfonos; son celulares muy codiciados pero a su vez muy caros, por ende su precio suele ahuyentar compras, pero su calidad atraer visitas.
 
 Lo que no se noto en la primer figura fue alguna relación directa entre las marcas de los celulares analizados, en particular si hay algun patrón de \textbf{Apple} vs \textbf{Samsung}.
 
@@ -519,9 +518,42 @@ Se busca analizar en esta sección desde qué tipo de dispositivos suelen accede
 
 Se puede observar en la figura \ref{fig:dispositivos} que casi todos los eventos se registran desde un smartphone o una computadora. La cantidad de eventos registrada desde la tablet es significativamente menor. Por lo tanto, se considera que podría dedicarse una mayor cantidad de recursos a desarrollar la aplicación para smartphones y computadoras y no dedicar mucho tiempo y desarrolladores a las aplicaciones para tablets, o bien optar por el camino contrario e intentar hacer más atractiva la manera de ingresar desde la tablet con el fin de atraer nuevos usuarios de ese target en particular, aunque esto implique un mucho mayor costo (se asume que es más dificil y costoso desarrollar algo no exitoso desde el suelo que mantener y mejorar algo con una cantidad constante de visitas).
 
+\section{Publicidad}
+
+La primera pregunta que fue planteada fue la de investigar si \textbf{Trocafone} aumentó el presupuesto en publicidad en algún período de tiempo. Para ello se procede a analizar en qué meses aumentó la cantidad de visitas originadas de una campaña de marketing, información proveída por la columna \texttt{campaign source}.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/16-presupuesto-barplot.png}
+	\caption{Cantidad de visitas provenientes de una campaña de publicidad de acuerdo al mes}
+	\label{fig:publicidad}
+\end{figure}
+
+La observación de la figura \ref{fig:publicidad} no permite extraer ninguna conclusión válida. Esto se debe a que el mes en el que se registra mayor cantidad de visitas provenientes de una campaña de publicidad (Mayo) es el mes en el que se detectó mayor cantidad de eventos. Por lo tanto es lógico que si aumentan las visitas en una página, aumente en consecuencia el número de visitas que proviene de publicidad.
+
+Se procede a analizar cuáles son los metodos de publicidad más usados. Se puede predecir que será \textbf{Google} debido a su importancia mundial como motor de búsqueda.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/170-publicidad_clickeada-barplot.png}
+	\caption{Métodos de publicidad que generan visitas en Trocafone}
+	\label{fig:metodopublicidad}
+\end{figure}
+
+La predicción realizada fue correcta y es tan amplia la diferencia que se elimina a \textbf{Google} del gráfico para observar los otros métodos de publicidad contratados por \textbf{Trocafone}.
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/171-publicidad_sin_google-barplot.png}
+	\caption{Cantidad de eventos de acuerdo al dispositivo utilizado}
+	\label{fig:metodopublicidadsingoogle}
+\end{figure}
+
+Se concluye de estos gráficos \ref{fig:metodopublicidad} y \ref{fig:metodopublicidadsingoogle} que el método de publicidad más eficiente es \textbf{Google}. Por lo tanto, es conveniente que \textbf{Trocafone} mantenga su contrato con el mismo para aumentar las visitas a su página. Los otros métodos de publicidad son efectivamente mucho menores y parecen no tener mucha relevancia para el tráfico del sitio. Es por esto que quizás sería necesario que \textbf{Trocafone} haga un balance entre los gastos consumidos y la ganancia obtenida con el uso de esos métodos publicitarios.
+
+
+
+
+
 \newpage
 \appendix
-
 
 \section{Ejecución}
 
@@ -529,7 +561,6 @@ El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Par
 
 \begin{itemize}
 	\item{Squarify \footnote{\url{https://github.com/laserson/squarify}}: Para los treemaps.}
-	\item{pySankey \footnote{\url{https://github.com/anazalea/pySankey/}}: Para los Sankey diagrams (diagramas de flujo)}
 	\item{Geopandas \footnote{\url{http://geopandas.org/}}: Para poder graficar sobre mapas geográficos.}
 	\item{Wordcloud \footnote{\url{https://github.com/amueller/word_cloud/}}: Para poder visualizar los términos más buscados.}
 \end{itemize}
@@ -537,12 +568,9 @@ El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Par
 Estos pueden ser instalados con los siguientes comandos: 
 \begin{lstlisting}[language=sh]
 pip install squarify
-pip install pySankey
 conda install -c conda-forge geopandas
 conda install -c conda-forge wordcloud
 \end{lstlisting}
-
-Alternativamente, se puede optar por reproducir el kernel en la plataforma Kaggle y evitar conflictos de entorno.
 
 \section{Datasets adicionales incoporados para el análisis}
 
