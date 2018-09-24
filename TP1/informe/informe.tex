@@ -95,7 +95,7 @@ El objetivo principal de este informe es poder realizar un análisis exploratori
 	 \item Descubrir features jerarquizando alguno de los campos disponibles
 \end{itemize}
 
-Finalmente, entre lo descubierto en el análisis exploratorio y los ites marcados, se busca obtener un listado de \textit{insights} aprendidos sobre los mismos y con ellos realizar un aporte a la empresa Trocafone con datos que sirvan para mejorar sus servicios. 
+Finalmente, entre lo descubierto en el análisis exploratorio y los items marcados, se busca obtener un listado de \textit{insights} aprendidos sobre los mismos y con ellos realizar un aporte a la empresa Trocafone con datos que sirvan para mejorar sus servicios. 
 
 \section{Información general sobre los datos}
 
@@ -103,7 +103,6 @@ Lo primero y básico a analizar es la estructura general de los datos proporcion
 
 \begin{itemize}
 \item Estos datos corresponden al período de tiempo comprendido entre el 1 de enero del 2018 al 16 de junio del 2018.
-\item Son 1011288 registros con 23 atributos, no siempre todos completos.
 \item Son 1011288 registros con 23 atributos, no siempre todos completos.
 \end{itemize}
 
@@ -141,7 +140,7 @@ Es en este momento del análisis donde se tienen que hacer las configuraciones n
 \item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (que atributo es numérico, que atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener específicamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo `timestamp` como una variable del tipo `datetime`.
 \item \textbf{Lidiar con los nulos}: No todos los registros tienen todos los atributos completos, por motivos obvios (por ejemplo, un evento de compra de producto no tiene asociado una búsqueda de palabras). En la transformación de tipos hay que lidiar con estos, y se tomaron decisiones como que el SKU de un producto `Not a Number` es el SKU `0.0`, así permitiendo que el atributo SKU sea numérico.
 \item \textbf{Data Mining}: Se generan nuevos sets de datos y se extraen atributos importantes de los proporcionados. Por ejemplo, dividir el atributo de tiempo en atributos de mes, día y hora.
-\item \textbf{Limpieza de datos}: Una decisión importante es la de cuando un dato es invalido de entrada. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados.
+\item \textbf{Limpieza de datos}: Cuando un dato es inválido de entrada es necesario tomar una decisión al respecto. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados.
 \end{itemize}
 
 \subsection{Hipótesis sobre el truncamiento de los datos}
@@ -283,6 +282,24 @@ En un intento de encontrar un patrón por parte de los clientes se grafica la ca
 \end{figure}
 
 Se observa que en ambos gráficos confluyen en su máximo a las 19 hs. Esto puede significar que la mayoría de los usuarios cuando vuelven del trabajo o están finalizando su día deciden realizar conversiones o checkouts. La diferencia entre ambos gráficos es que la cantidad de checkouts realizados se mantiene relativamente constante en las segundas 12 hs del día mientras que las conversiones son mucho menores y presentan picos más marcados en los horarios de la tarde-noche. 
+
+\subsection{Distribución de la cantidad de eventos producidos por usuario}
+
+Se propone analizar la cantidad de eventos producidos por usuario. Se confecciona un gráfico tomando algunas salvedades que son necesarias para obtener una buena visualización:
+
+\begin{itemize}
+	\item Se trunca el eje y a un valor determinado para una mejor observación de los \textit{box}
+	\item En los eventos donde no se registran datos para usuarios se coloca el valor promedio.
+\end{itemize}
+
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/191-usuarios_eventos_truncado-boxplot.png}}
+	\caption{Distribución de los eventos agrupados por usuario}
+	\label{fig:boxplot}
+\end{figure}
+
+Se puede observar en la figura \ref{fig:boxplot} que los usuarios suelen generalmente ver los productos antes que comprarlos, algo que podía predecirse anteriormente. Lo que puede resultar llamativo es que la cantidad de usuarios que ven productos es mayor a los que los buscan, pero esto se puede explicar por el hecho de que en una búsqueda pueden verse varios productos a la vez y eso cuenta como un solo evento. En cambio, ante el evento \texttt{viewed products} al ver un producto se contabiliza como un solo evento.
 
 \section{Análisis geográfico}
 
@@ -547,10 +564,6 @@ La predicción realizada fue correcta y es tan amplia la diferencia que se elimi
 \end{figure}
 
 Se concluye de estos gráficos \ref{fig:metodopublicidad} y \ref{fig:metodopublicidadsingoogle} que el método de publicidad más eficiente es \textbf{Google}. Por lo tanto, es conveniente que \textbf{Trocafone} mantenga su contrato con el mismo para aumentar las visitas a su página. Los otros métodos de publicidad son efectivamente mucho menores y parecen no tener mucha relevancia para el tráfico del sitio. Es por esto que quizás sería necesario que \textbf{Trocafone} haga un balance entre los gastos consumidos y la ganancia obtenida con el uso de esos métodos publicitarios.
-
-
-
-
 
 \newpage
 \appendix
