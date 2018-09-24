@@ -134,13 +134,23 @@ Los atributos son:
 	\item \textbf{browser\_version}: Versión del browser utilizado en el evento.
 \end{itemize}
 
+\subsection{Manipulación de los datos}
+
 Es en este momento del análisis donde se tienen que hacer las configuraciones necesarias sobre el set de datos para poder trabajar mejor más tarde. Las operaciones realizadas incluyen:
 
 \begin{itemize}
 \item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (qué atributo es numérico, qué atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener específicamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo `timestamp` como una variable del tipo `\texttt{`}.       \item \textbf{Lidiar con los nulos}: NPor motivos obvios, no todos los registros tienen todos los atributos completos, por motivos obvios (por ejemplo, un evento de compra de producto no tiene asociado una búsqueda de palabras). En la transformación de tipos hay que lidiar con estos, y se tomaron decisiones comode truncamiento o transformación. Una decisión tomada fue que el SKU de un producto `\texttt{Not a Number`} es el SKU `\texttt{0.0`}, así permitiendo que el atributo SKU sea numérico.
 \item \textbf{Data Mining}: Se generan nuevos sets de datos y se extraen atributos importantes de los proporcionados. Por ejemplo, dividir el atributo de tiempo en atributos de mes, día y hora.
-\item \textbf{Limpieza de datos}: Cuando un dato es inválido de entrada es necesario tomar una decisión al respecto. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados.
+\item \textbf{Limpieza de datos}: Cuando un dato es inválido de entrada es necesario tomar una decisión al respecto. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados. También fueron eliminados los registros cuya sesión (explicado a continuación) sólo contenía de un evento de conversión, ya que no tiene sentido que esto ocurra sin pasar previamente por Checkout.
 \end{itemize}
+
+\subsection{Sesiones}
+
+Se agregó el concepto de sesión. Que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de inactividad entre el actual y el anterior.
+
+Esto se realizó para poder entender los pasos que lleva a un usuario a comprar un producto, y poder ver de dónde proviene ĺa mayoría del tráfico del sitio.
+
+También como se aclaró antes, sirve para poder encontrar anomalías en los datos y removerlas.
 
 \subsection{Hipótesis sobre el truncamiento de los datos}
 
@@ -178,7 +188,10 @@ La tasa de conversión es el porcentaje de visitantes que completan un objetivo 
 
 Tomando todos los datos del dataset dicha tasa de conversión es de \texttt{0,096}. 
 	
-Se busca analizar la evolución de la \textit{conversion rate} a lo largo del tiempo. Para ello se realiza un gráfico de la conversion rate a lo largo de las semanas del año en el gráficol\ref{fig:conversionrate}.
+Se busca analizar la evolución de la \textit{conversion rate} a lo largo del tiempo. Para ello se realiza un gráfico de la conversion rate a lo largo de las semanas del año en el gráfico \ref{fig:conversionrate}.
+
+\newpage
+\vfill
 
 \begin{figure}[h!]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/010-conversion_rate_semana-lineplot.png}}
@@ -196,6 +209,9 @@ Las mayores tasas de conversiones se registran en las semanas 1,4 y 11, es decir
 
 Se refuerza la teoría de que enero y marzo fueron los meses de mayor tasa de conversión. Así mismo, dicha tasa se mantiene estable por 4 meses para luego tener una baja en los meses de mayo y junio. Más adelante se analizarán estos dos meses en profundidad.
 
+\newpage
+\vfill
+
 \subsection{Frecuencia de eventos}
 
 Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se grafica la cantidad registrada de eventos en función de los distintos tipos de eventos.
@@ -207,6 +223,9 @@ Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se 
 \end{figure}
 
 Se observa en el gráfico \ref{fig:freqeventos} que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos constituye su principal función como sitio.
+
+\vfill
+\clearpage
 
 \subsection{Evolución de los eventos a través del tiempo}
 
@@ -224,6 +243,9 @@ Para realizar este gráfico los datos fueron normalizados para evitar llegar a l
 
 Se desprende del gráfico \ref{fig:mesdiasnormalizado} que la cantidad de eventos registrada no presenta ningún comportamiento específico. Se observa que dicha cantidad aumenta en la segunda quincena de cada mes pero se considera que la diferencia con el resto de los días no tiene la magnitud suficiente como para extraer alguna conclusión fundada. 
 
+\newpage
+\vfill
+
 \subsubsection{Tráfico del sitio de acuerdo al mes y al día de la semana}
 
 Sin haber encontrado nada acerca del número de día, se buscar ahora analizar si algún día de la semana se registra una mayor cantidad de eventos. 
@@ -237,6 +259,9 @@ Se realiza el gráfico \ref{fig:messemanasnormalizado} del mismo estilo que el a
 \end{figure}
 
 Es notable que durante los días hábiles de la semana el tráfico es mucho mayor que al fin de semana. Esto puede deberse a que los fines de semana suelen ser días de descanso, donde la gente puede no estar pensando en realizar una compra, además de no poder retirarla. En la semana aumenta el tráfico debido a que el envío o el retiro del celular puede realizarse en el momento.
+
+\newpage
+\vfill
 
 \subsubsection{Tráfico del sitio según mes}
 
@@ -318,6 +343,9 @@ En este apartado se busca analizar las ciudades, países y regiones de dónde pr
 \end{figure}
 
 Se corrobora en el gráfico \ref{fig:brazilrules} la teoría inicial de que Brasil sería el país con más visitas, por lo que se procedió a eliminarlo del gráfico, generando el gráfico \ref{fig:brazilsucks}, para poder observar qué otros países intervienen en la página de Trocafone y en qué diferencia de magnitud y orden lo hacen. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser esta una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es factible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
+
+\clearpage
+
 
 \subsection{Regiones y ciudades de Brasil que registran mayor cantidad de eventos}
 
@@ -416,6 +444,8 @@ La primera pregunta a hacerse acerca de los celulares es si hay alguna relación
 \end{table}
 
 Entonces, se comienza decidiendo un subconjunto de modelos a analizar, para tener una muestra del sitio. Este set, presentado en la tabla \ref{table:modelos_prominentes}, está generado teniendo en cuenta y uniendo los celulares más vistos (\texttt{viewed product}) con los más "llevados al carrito" (\texttt{checkout}) con los más comprados (\texttt{conversion}). Esto es porque de analizar los eventos y los modelos se ve que los eventos (más relevantes\footnote{se descarta del análisis el evento \texttt{lead} por no ser relevante al caso}) que tienen un modelo asociado son esos tres, y es así como se modela la cronología ordenada ideal de eventos desde el punto de vista de un dispositivo:
+
+\clearpage
 
 \begin{enumerate}
 \item \textbf{\texttt{viewed product}: Visitar un producto.}
@@ -557,9 +587,14 @@ La primera pregunta que fue planteada fue la de investigar si \textbf{Trocafone}
 	\label{fig:publicidad}
 \end{figure}
 
+\newpage
+
 La observación del gráfico \ref{fig:publicidad} no permite extraer ninguna conclusión válida. Esto se debe a que el mes en el que se registra mayor cantidad de visitas provenientes de una campaña de publicidad (mayo) es el mes en el que se detectó mayor cantidad de eventos. Sería pensamiento circular decir que hay más visitas este mes porque aumento el presupuesto publicitario si nuestro único fundamento sobre esto esta basado en las visitas del mes. Es lógico que si aumentan las visitas en una página, aumente en consecuencia el número de visitas que proviene de publicidad.
 
 Se procede a analizar cuáles son los metodos de publicidad más usados. Se puede predecir que será \textbf{Google} debido a su importancia mundial como motor de búsqueda. Una vez verificado esto, se elimina del gráfico para observar los otros métodos de publicidad contratados.
+
+\newpage
+\clearpage
 
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{figures/170-publicidad_clickeada-barplot.png}
@@ -567,13 +602,28 @@ Se procede a analizar cuáles son los metodos de publicidad más usados. Se pued
 	\label{fig:metodopublicidad}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\includegraphics[width=\linewidth]{figures/171-publicidad_sin_google-barplot.png}
 	\caption{Cantidad de eventos de acuerdo al dispositivo utilizado}
 	\label{fig:metodopublicidadsingoogle}
 \end{figure}
 
 Se concluye de estos gráficos \ref{fig:metodopublicidad} y \ref{fig:metodopublicidadsingoogle} que el método de publicidad más eficiente es \textbf{Google}. Por lo tanto, es conveniente que \textbf{Trocafone} mantenga su contrato con el mismo para aumentar las visitas a su página. Los otros métodos de publicidad son efectivamente mucho menores y parecen no tener mucha relevancia para el tráfico del sitio. Es por esto que quizás sería necesario que \textbf{Trocafone} haga un balance entre los gastos consumidos y la ganancia obtenida con el uso de esos métodos publicitarios.
+
+\vfill
+\clearpage
+
+\subsection{Funnel por publicidad}
+
+Habiendo obtenido las sesiones por usuario, se puede observar de donde como se inicia cada una. Para esto se generó un \textit{Funnel} que no solo indica la cantidad de tráfico por cada paso (en escala logarítmica), sino que también muestra la proporción del mismo que proviene de una campaña publicitaria.
+
+\begin{figure}[!h]
+	\includegraphics[width=\linewidth]{figures/200-advertisement-funnel.png}
+	\caption{Funnel según provengan de campaña publicitaria}
+	\label{fig:funnel}
+\end{figure}
+
+El gráfico \ref{fig:funnel} muestra que si bien casi la mitad del tráfico proviene de \textit{advertising} tanto para \textit{viewed product} como para \textit{checkout}, el ratio cae mucho en la etapa de \textit{conversion}, donde menos de el 15\% del tráfico de esta fuente termina en una compra.
 
 \section{Análisis de canales de tráfico}
 
@@ -600,6 +650,8 @@ Los canales de tráfico presentes en el dataset son:
 Lo que observamos en el gráfico \ref{fig:traffic} es que si bien el canal pago es el que más usuarios atrae, tiene una ganancia bastante razonable para la magnitud de usuarios que atrae. Por lo tanto seguir invirtiendo en él probablemente lleve a un retorno con incremento constante y no tan significante\footnote{Como ejemplo de la ley de los rendimientos decrecientes}.
 
 Por otro lado son otros canales los que verdaderamente sorprenden por su porcentaje de retornos. Hay un gran retorno de parte de la presencia de las redes sociales, que puede no atraer tantos usuarios pero a los que atrae lo hace de manera muy efectiva, y lo mismo aplica para la presencia onlina organica de Trocafone, donde se ve que si se invirtiese en procesos de SEO esto podría llevar tanto a más usuarios como más compras.
+
+
 
 \section{Insights y conclusiones}
 
