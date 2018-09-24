@@ -11773,7 +11773,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[314]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -11798,7 +11798,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">checked</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;iphone&#39;</span><span class="p">,</span> <span class="s1">&#39;samsung&#39;</span><span class="p">,</span> <span class="s1">&#39;motorola&#39;</span><span class="p">,</span> <span class="s1">&#39;lenovo&#39;</span><span class="p">,</span> <span class="s1">&#39;sony&#39;</span><span class="p">,</span> <span class="s1">&#39;lg&#39;</span><span class="p">,</span> <span class="s1">&#39;ipad&#39;</span><span class="p">,</span> <span class="s1">&#39;asus&#39;</span><span class="p">,</span> <span class="s1">&#39;quantum&#39;</span><span class="p">,</span> <span class="s1">&#39;blackberry&#39;</span><span class="p">]</span>
@@ -11823,7 +11823,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;brand&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/brands.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -11844,7 +11844,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -11854,10 +11854,63 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([nan, &#39;Android 6&#39;, &#39;Android 5.1.1&#39;, &#39;Windows 10 &#39;, &#39;Windows 7 &#39;,
+       &#39;Windows 8.1 &#39;, &#39;Android 7.1.1&#39;, &#39;Android 7&#39;, &#39;iOS 10.2.1&#39;,
+       &#39;Android 5.0.2&#39;, &#39;Android 4.2.2&#39;, &#39;Android 4.1.2&#39;, &#39;Android 4.4.4&#39;,
+       &#39;Android 6.0.1&#39;, &#39;Linux &#39;, &#39;Android 5.1&#39;, &#39;Mac OS X 10.13.5&#39;,
+       &#39;iOS 11.3&#39;, &#39;Android 7.1.2&#39;, &#39;Windows XP &#39;, &#39;Android 8&#39;,
+       &#39;Android 4.3&#39;, &#39;iOS 11.2.2&#39;, &#39;iOS 11.2.5&#39;, &#39;iOS 10.3.3&#39;,
+       &#39;Android 4.4.2&#39;, &#39;Windows 8 &#39;, &#39;Android 5&#39;, &#39;iOS 9.3.5&#39;,
+       &#39;iOS 7.1.2&#39;, &#39;Android 5.0.1&#39;, &#39;iOS 11.4&#39;, &#39;Windows Phone 8.1&#39;,
+       &#39;Ubuntu &#39;, &#39;Android 8.1&#39;, &#39;Windows Vista &#39;, &#39;Mac OS X 10.10.2&#39;,
+       &#39;iOS 11.2.6&#39;, &#39;Other &#39;, &#39;Android 4.0.4&#39;, &#39;Android 4.4.3&#39;,
+       &#39;iOS 11.1.2&#39;, &#39;Chrome OS 10032.86&#39;, &#39;Windows Phone 10&#39;,
+       &#39;Windows RT &#39;, &#39;iOS 10.3.2&#39;, &#39;Windows Phone 8&#39;, &#39;iOS 11.2.1&#39;,
+       &#39;Mac OS X 10.11.6&#39;, &#39;iOS 10.2&#39;, &#39;Mac OS X 10.13.3&#39;,
+       &#39;Mac OS X 10.6.4&#39;, &#39;Android &#39;, &#39;iOS 10.0.2&#39;, &#39;Mac OS X 10.13.4&#39;,
+       &#39;Android 6.1&#39;, &#39;iOS 3.2&#39;, &#39;Mac OS X 10.12.3&#39;, &#39;iOS 11.1&#39;,
+       &#39;iOS 11.0.1&#39;, &#39;Tizen 3&#39;, &#39;iOS 9.2.1&#39;, &#39;Windows Phone 7.5&#39;,
+       &#39;Mac OS X 10.12.6&#39;, &#39;Chrome OS 10452.96&#39;, &#39;Ubuntu 10.4&#39;,
+       &#39;Mac OS X 10.10.5&#39;, &#39;iOS 4&#39;, &#39;iOS 7.1.1&#39;, &#39;iOS 11.2&#39;,
+       &#39;Mac OS X 10.9.5&#39;, &#39;Mac OS X 10.6.8&#39;, &#39;iOS 10.3.1&#39;,
+       &#39;Mac OS X 10.10&#39;, &#39;iOS 11.0.3&#39;, &#39;iOS 11.0.2&#39;, &#39;Mac OS X 10.12.5&#39;,
+       &#39;Mac OS X 10.10.1&#39;, &#39;Mac OS X 10.13.2&#39;, &#39;Android 4.1.1&#39;,
+       &#39;Chrome OS 10452.99&#39;, &#39;Mac OS X 10.13.1&#39;, &#39;iOS 9.3.4&#39;,
+       &#39;Mac OS X 10.11.3&#39;, &#39;iOS 8.1&#39;, &#39;iOS 11.1.1&#39;, &#39;iOS 5.0.1&#39;, &#39;iOS 12&#39;,
+       &#39;Mac OS X 10.11.1&#39;, &#39;iOS 10.1.1&#39;, &#39;iOS 8.1.3&#39;,
+       &#39;Chrome OS 10032.75&#39;, &#39;Chrome OS 10452.85&#39;, &#39;Tizen 2.4&#39;,
+       &#39;Android 2.3.6&#39;, &#39;iOS 8.3&#39;, &#39;iOS 8.4&#39;, &#39;iOS 8.1.1&#39;,
+       &#39;Mac OS X 10.7.5&#39;, &#39;Chrome OS 10176.66&#39;, &#39;Android 3.2&#39;,
+       &#39;iOS 9.3.2&#39;, &#39;Chrome OS 10323.67&#39;, &#39;Android 6.3&#39;, &#39;iOS 11&#39;,
+       &#39;Chrome OS 10176.76&#39;, &#39;Chrome OS 10323.62&#39;, &#39;Mac OS X 10.11.4&#39;,
+       &#39;Android 4.4.1&#39;, &#39;iOS 11.4.1&#39;, &#39;Android 4.0.3&#39;, &#39;iOS 9.1&#39;,
+       &#39;Android 4.4&#39;, &#39;iOS 10.0.1&#39;, &#39;iOS 6.1.6&#39;, &#39;Android 3.1&#39;,
+       &#39;Chrome OS 10452.74&#39;, &#39;Mac OS X 10.13&#39;, &#39;Mac OS X 10.10.4&#39;,
+       &#39;Chrome OS 10575.54&#39;, &#39;Mac OS X 10.10.3&#39;, &#39;Mac OS X 10.6&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">checked</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;windows&#39;</span><span class="p">,</span> <span class="s1">&#39;android&#39;</span><span class="p">,</span> <span class="s1">&#39;linux&#39;</span><span class="p">,</span> <span class="s1">&#39;mac&#39;</span><span class="p">,</span> <span class="s1">&#39;ios&#39;</span><span class="p">,</span> <span class="s1">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s1">&#39;chrome os&#39;</span><span class="p">,</span> <span class="s1">&#39;tizen&#39;</span><span class="p">,</span> <span class="s1">&#39;other&#39;</span><span class="p">]</span>
@@ -11881,7 +11934,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_system&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -11892,10 +11945,54 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>operating_system_version</th>
+      <th>operating_system</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -11905,10 +12002,39 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>windows      41495
+android      41410
+ios           3539
+mac            406
+linux          293
+ubuntu          97
+chrome os       83
+other           48
+tizen            7
+Name: operating_system, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_system&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/os.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -11921,13 +12047,107 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">,</span> <span class="s1">&#39;operating_system&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>operating_system_version</th>
+      <th>operating_system</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Android 6</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Android 5.1.1</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Windows 10</td>
+      <td>windows</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -11942,7 +12162,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">checked</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mobile safari&#39;</span><span class="p">,</span> <span class="s1">&#39;chrome mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;ie mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;firefox mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;edge mobile&#39;</span><span class="p">,</span> <span class="s1">&#39;opera mobile&#39;</span><span class="p">,</span>
@@ -11969,7 +12189,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;browser&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;mobile&#39;</span><span class="p">)][[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span>
@@ -11979,10 +12199,54 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>browser_version</th>
+      <th>browser</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -11994,10 +12258,89 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>chrome            38081
+chrome mobile     37056
+mobile safari      3239
+firefox            2567
+samsung            1699
+facebook           1415
+edge                893
+opera               648
+ie                  398
+android             347
+edge mobile         252
+ie mobile           245
+safari              163
+uc                  136
+firefox mobile       49
+opera mobile         41
+chromium             40
+vivaldi              38
+other                35
+maxthon              16
+puffin               10
+yandex               10
+Name: browser, dtype: int64</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>browser_version</th>
+      <th>browser</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/browsers.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -12010,13 +12353,157 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;browser_version&#39;</span><span class="p">,</span> <span class="s1">&#39;browser&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>browser_version</th>
+      <th>browser</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Chrome Mobile 39</td>
+      <td>chrome mobile</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Android 5.1</td>
+      <td>android</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Chrome 65.0</td>
+      <td>chrome</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Chrome 66.0</td>
+      <td>chrome</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12040,7 +12527,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[694]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
@@ -12053,7 +12540,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[695]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;person&#39;</span><span class="p">)[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
@@ -12068,7 +12555,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[696]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># minutes</span>
@@ -12085,7 +12572,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[697]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gb</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">])</span>
@@ -12103,7 +12590,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[698]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;time_diff_min&#39;</span><span class="p">,</span> \
@@ -12122,7 +12609,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[698]:</div>
+<div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -12903,7 +13390,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[699]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;is_conversion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;conversion&#39;</span>
@@ -12919,7 +13406,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[700]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel2</span><span class="p">[</span><span class="n">funnel2</span><span class="p">[</span><span class="s1">&#39;session_conversion&#39;</span><span class="p">]][</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -12935,166 +13422,18 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[700]:</div>
+<div class="prompt"></div>
 
 
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-21-d0042798e112&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>funnel2<span class="ansi-blue-fg">[</span>funnel2<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;session_conversion&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">[</span>cols<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>head<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span>
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>person</th>
-      <th>timestamp</th>
-      <th>time_diff_min</th>
-      <th>session_id</th>
-      <th>event</th>
-      <th>session_total_events</th>
-      <th>session_cumno</th>
-      <th>session_first</th>
-      <th>session_last</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>220</th>
-      <td>00204059</td>
-      <td>2018-03-20 17:46:12</td>
-      <td>47118.483333</td>
-      <td>11</td>
-      <td>conversion</td>
-      <td>1</td>
-      <td>0</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2265</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:09:53</td>
-      <td>104.866667</td>
-      <td>2</td>
-      <td>generic listing</td>
-      <td>19</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2266</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:09:53</td>
-      <td>0.000000</td>
-      <td>2</td>
-      <td>visited site</td>
-      <td>19</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2267</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:11:46</td>
-      <td>1.883333</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>19</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2268</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:11:48</td>
-      <td>0.033333</td>
-      <td>2</td>
-      <td>generic listing</td>
-      <td>19</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2269</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:13:06</td>
-      <td>1.300000</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>19</td>
-      <td>4</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2270</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:13:37</td>
-      <td>0.516667</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>19</td>
-      <td>5</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2271</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:15:27</td>
-      <td>1.833333</td>
-      <td>2</td>
-      <td>checkout</td>
-      <td>19</td>
-      <td>6</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2272</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:16:51</td>
-      <td>1.400000</td>
-      <td>2</td>
-      <td>checkout</td>
-      <td>19</td>
-      <td>7</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2273</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:18:46</td>
-      <td>1.916667</td>
-      <td>2</td>
-      <td>search engine hit</td>
-      <td>19</td>
-      <td>8</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
+<span class="ansi-red-fg">NameError</span>: name &#39;funnel2&#39; is not defined</pre>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -13103,7 +13442,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[701]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;is_checkout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;checkout&#39;</span>
@@ -13119,7 +13458,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[702]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel2</span><span class="p">[</span><span class="n">funnel2</span><span class="p">[</span><span class="s1">&#39;session_checkout&#39;</span><span class="p">]][</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -13129,181 +13468,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[702]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>person</th>
-      <th>timestamp</th>
-      <th>time_diff_min</th>
-      <th>session_id</th>
-      <th>event</th>
-      <th>session_total_events</th>
-      <th>session_cumno</th>
-      <th>session_first</th>
-      <th>session_last</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0004b0a2</td>
-      <td>2018-05-31 23:38:05</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>ad campaign hit</td>
-      <td>4</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0004b0a2</td>
-      <td>2018-05-31 23:38:05</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>visited site</td>
-      <td>4</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0004b0a2</td>
-      <td>2018-05-31 23:38:09</td>
-      <td>0.066667</td>
-      <td>0</td>
-      <td>viewed product</td>
-      <td>4</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0004b0a2</td>
-      <td>2018-05-31 23:38:40</td>
-      <td>0.516667</td>
-      <td>0</td>
-      <td>checkout</td>
-      <td>4</td>
-      <td>3</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0006a21a</td>
-      <td>2018-05-29 13:29:25</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>viewed product</td>
-      <td>4</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0006a21a</td>
-      <td>2018-05-29 13:29:26</td>
-      <td>0.016667</td>
-      <td>0</td>
-      <td>visited site</td>
-      <td>4</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0006a21a</td>
-      <td>2018-05-29 13:29:27</td>
-      <td>0.016667</td>
-      <td>0</td>
-      <td>ad campaign hit</td>
-      <td>4</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0006a21a</td>
-      <td>2018-05-29 13:29:35</td>
-      <td>0.133333</td>
-      <td>0</td>
-      <td>checkout</td>
-      <td>4</td>
-      <td>3</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:21:07</td>
-      <td>64267.783333</td>
-      <td>1</td>
-      <td>ad campaign hit</td>
-      <td>30</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:21:07</td>
-      <td>0.000000</td>
-      <td>1</td>
-      <td>visited site</td>
-      <td>30</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[703]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;ad_origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ad campaign hit&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_first&#39;</span><span class="p">]</span>
@@ -13319,7 +13487,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[708]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
@@ -13329,856 +13497,10 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[708]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>person</th>
-      <th>timestamp</th>
-      <th>time_diff_min</th>
-      <th>session_id</th>
-      <th>event</th>
-      <th>session_total_events</th>
-      <th>session_cumno</th>
-      <th>session_first</th>
-      <th>session_last</th>
-      <th>session_ad</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0004b0a2</td>
-      <td>2018-05-31 23:38:05</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>ad campaign hit</td>
-      <td>4</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0004b0a2</td>
-      <td>2018-05-31 23:38:05</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>visited site</td>
-      <td>4</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0004b0a2</td>
-      <td>2018-05-31 23:38:09</td>
-      <td>0.066667</td>
-      <td>0</td>
-      <td>viewed product</td>
-      <td>4</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0004b0a2</td>
-      <td>2018-05-31 23:38:40</td>
-      <td>0.516667</td>
-      <td>0</td>
-      <td>checkout</td>
-      <td>4</td>
-      <td>3</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0006a21a</td>
-      <td>2018-05-29 13:29:25</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>viewed product</td>
-      <td>4</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0006a21a</td>
-      <td>2018-05-29 13:29:26</td>
-      <td>0.016667</td>
-      <td>0</td>
-      <td>visited site</td>
-      <td>4</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0006a21a</td>
-      <td>2018-05-29 13:29:27</td>
-      <td>0.016667</td>
-      <td>0</td>
-      <td>ad campaign hit</td>
-      <td>4</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0006a21a</td>
-      <td>2018-05-29 13:29:35</td>
-      <td>0.133333</td>
-      <td>0</td>
-      <td>checkout</td>
-      <td>4</td>
-      <td>3</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>000a54b2</td>
-      <td>2018-04-09 20:12:31</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>generic listing</td>
-      <td>7</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>000a54b2</td>
-      <td>2018-04-09 20:12:31</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>visited site</td>
-      <td>7</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>000a54b2</td>
-      <td>2018-04-09 20:12:31</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>search engine hit</td>
-      <td>7</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>000a54b2</td>
-      <td>2018-04-09 20:12:31</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>ad campaign hit</td>
-      <td>7</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>000a54b2</td>
-      <td>2018-04-09 20:12:53</td>
-      <td>0.366667</td>
-      <td>0</td>
-      <td>brand listing</td>
-      <td>7</td>
-      <td>4</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>000a54b2</td>
-      <td>2018-04-09 20:13:14</td>
-      <td>0.350000</td>
-      <td>0</td>
-      <td>viewed product</td>
-      <td>7</td>
-      <td>5</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>000a54b2</td>
-      <td>2018-04-09 20:13:20</td>
-      <td>0.100000</td>
-      <td>0</td>
-      <td>brand listing</td>
-      <td>7</td>
-      <td>6</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:21:07</td>
-      <td>64267.783333</td>
-      <td>1</td>
-      <td>ad campaign hit</td>
-      <td>30</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:21:07</td>
-      <td>0.000000</td>
-      <td>1</td>
-      <td>visited site</td>
-      <td>30</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:21:07</td>
-      <td>0.000000</td>
-      <td>1</td>
-      <td>search engine hit</td>
-      <td>30</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:21:08</td>
-      <td>0.016667</td>
-      <td>1</td>
-      <td>generic listing</td>
-      <td>30</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:26:34</td>
-      <td>5.433333</td>
-      <td>1</td>
-      <td>generic listing</td>
-      <td>30</td>
-      <td>4</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:26:53</td>
-      <td>0.316667</td>
-      <td>1</td>
-      <td>brand listing</td>
-      <td>30</td>
-      <td>5</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:26:56</td>
-      <td>0.050000</td>
-      <td>1</td>
-      <td>generic listing</td>
-      <td>30</td>
-      <td>6</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:27:47</td>
-      <td>0.850000</td>
-      <td>1</td>
-      <td>viewed product</td>
-      <td>30</td>
-      <td>7</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:27:50</td>
-      <td>0.050000</td>
-      <td>1</td>
-      <td>generic listing</td>
-      <td>30</td>
-      <td>8</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:28:10</td>
-      <td>0.333333</td>
-      <td>1</td>
-      <td>brand listing</td>
-      <td>30</td>
-      <td>9</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:28:36</td>
-      <td>0.433333</td>
-      <td>1</td>
-      <td>brand listing</td>
-      <td>30</td>
-      <td>10</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:28:59</td>
-      <td>0.383333</td>
-      <td>1</td>
-      <td>viewed product</td>
-      <td>30</td>
-      <td>11</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:29:06</td>
-      <td>0.116667</td>
-      <td>1</td>
-      <td>viewed product</td>
-      <td>30</td>
-      <td>12</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:29:14</td>
-      <td>0.133333</td>
-      <td>1</td>
-      <td>viewed product</td>
-      <td>30</td>
-      <td>13</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>000a54b2</td>
-      <td>2018-05-24 11:29:16</td>
-      <td>0.033333</td>
-      <td>1</td>
-      <td>viewed product</td>
-      <td>30</td>
-      <td>14</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1011258</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 13:40:05</td>
-      <td>0.000000</td>
-      <td>1</td>
-      <td>visited site</td>
-      <td>7</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1011259</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 13:40:05</td>
-      <td>0.000000</td>
-      <td>1</td>
-      <td>search engine hit</td>
-      <td>7</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1011260</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 13:40:05</td>
-      <td>0.000000</td>
-      <td>1</td>
-      <td>generic listing</td>
-      <td>7</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1011261</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 13:42:05</td>
-      <td>2.000000</td>
-      <td>1</td>
-      <td>searched products</td>
-      <td>7</td>
-      <td>4</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1011262</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 13:43:43</td>
-      <td>1.633333</td>
-      <td>1</td>
-      <td>viewed product</td>
-      <td>7</td>
-      <td>5</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1011263</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 13:43:52</td>
-      <td>0.150000</td>
-      <td>1</td>
-      <td>viewed product</td>
-      <td>7</td>
-      <td>6</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1011264</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:33:23</td>
-      <td>109.516667</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011265</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:33:30</td>
-      <td>0.116667</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011266</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:34:46</td>
-      <td>1.266667</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011267</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:35:00</td>
-      <td>0.233333</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011268</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:35:11</td>
-      <td>0.183333</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>4</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011269</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:35:13</td>
-      <td>0.033333</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>5</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011270</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:35:18</td>
-      <td>0.083333</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>6</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011271</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:39:05</td>
-      <td>3.783333</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>7</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011272</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:39:07</td>
-      <td>0.033333</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>8</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011273</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:39:56</td>
-      <td>0.816667</td>
-      <td>2</td>
-      <td>visited site</td>
-      <td>12</td>
-      <td>9</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011274</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:41:29</td>
-      <td>1.550000</td>
-      <td>2</td>
-      <td>generic listing</td>
-      <td>12</td>
-      <td>10</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011275</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-09 15:43:29</td>
-      <td>2.000000</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>12</td>
-      <td>11</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011276</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-11 12:25:40</td>
-      <td>2682.183333</td>
-      <td>3</td>
-      <td>search engine hit</td>
-      <td>8</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011277</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-11 12:25:40</td>
-      <td>0.000000</td>
-      <td>3</td>
-      <td>visited site</td>
-      <td>8</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011278</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-11 12:25:40</td>
-      <td>0.000000</td>
-      <td>3</td>
-      <td>ad campaign hit</td>
-      <td>8</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011279</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-11 12:25:41</td>
-      <td>0.016667</td>
-      <td>3</td>
-      <td>generic listing</td>
-      <td>8</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011280</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-11 12:28:47</td>
-      <td>3.100000</td>
-      <td>3</td>
-      <td>searched products</td>
-      <td>8</td>
-      <td>4</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011281</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-11 12:29:11</td>
-      <td>0.400000</td>
-      <td>3</td>
-      <td>viewed product</td>
-      <td>8</td>
-      <td>5</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011282</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-11 12:29:14</td>
-      <td>0.050000</td>
-      <td>3</td>
-      <td>viewed product</td>
-      <td>8</td>
-      <td>6</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011283</th>
-      <td>ffffa8d1</td>
-      <td>2018-06-11 12:31:49</td>
-      <td>2.583333</td>
-      <td>3</td>
-      <td>checkout</td>
-      <td>8</td>
-      <td>7</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011284</th>
-      <td>ffffac8a</td>
-      <td>2018-06-04 23:18:03</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>visited site</td>
-      <td>4</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011285</th>
-      <td>ffffac8a</td>
-      <td>2018-06-04 23:18:03</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>ad campaign hit</td>
-      <td>4</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011286</th>
-      <td>ffffac8a</td>
-      <td>2018-06-04 23:18:03</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>viewed product</td>
-      <td>4</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1011287</th>
-      <td>ffffac8a</td>
-      <td>2018-06-04 23:18:10</td>
-      <td>0.116667</td>
-      <td>0</td>
-      <td>checkout</td>
-      <td>4</td>
-      <td>3</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-<p>1011288 rows × 10 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[710]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_csv</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time_diff_min&#39;</span><span class="p">,</span> \
