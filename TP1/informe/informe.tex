@@ -139,7 +139,7 @@ Los atributos son:
 Es en este momento del análisis donde se tienen que hacer las configuraciones necesarias sobre el set de datos para poder trabajar mejor más tarde. Las operaciones realizadas incluyen:
 
 \begin{itemize}
-\item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (que atributo es numérico, que atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener especificamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo `timestamp` como una variable del tipo `datetime`.
+\item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (que atributo es numérico, que atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener específicamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo `timestamp` como una variable del tipo `datetime`.
 \item \textbf{Lidiar con los nulos}: No todos los registros tienen todos los atributos completos, por motivos obvios (por ejemplo, un evento de compra de producto no tiene asociado una búsqueda de palabras). En la transformación de tipos hay que lidiar con estos, y se tomaron decisiones como que el SKU de un producto `Not a Number` es el SKU `0.0`, así permitiendo que el atributo SKU sea numérico.
 \item \textbf{Data Mining}: Se generan nuevos sets de datos y se extraen atributos importantes de los proporcionados. Por ejemplo, dividir el atributo de tiempo en atributos de mes, día y hora.
 \item \textbf{Limpieza de datos}: Una decisión importante es la de cuando un dato es invalido de entrada. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados.
@@ -339,10 +339,10 @@ Se realiza un gráfico para visualizar a grandes rasgos los términos más busca
 \begin{figure}[h!]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/07-search_terms-wordcloud.png}}
 	\caption{Términos más buscados por los usuarios de Trocafone}
-	\label{searchedterm}
+	\label{fig:searchedterm}
 \end{figure}
 
-Los términos más buscados son iPhone, Motorola y Samsung. Esto era completamente esperable debido a que son las marcas que dominan el sector tecnológico.
+Los términos más buscados (vistos en la figura \ref{fig:searchedterm}) son \textbf{iPhone}, \textbf{Motorola} y \textbf{Samsung}. Esto era completamente esperable debido a que son las marcas que dominan el sector tecnológico.
 
 \subsection{Productos buscados en la plataforma}
 
@@ -372,6 +372,85 @@ En esta sección se busca obtener los productos más buscados. Esta búsqueda es
 \end{figure}
 
 Se concluye con el gráfico \ref{fig:searchedproduct} en esta sección que si bien \texttt{iPhone} y \texttt{Motorola} eran los términos más buscados en la plataforma, no sucede lo mismo con los productos buscados ya que todos corresponden a la marca \texttt{Samsung}. Esto puede deberse a un tema de la calidad que ofrece dicha marca o su precio, probablemente más conveniente. Los iPhone se caracterizan por tener un precio difícil de acceder por lo que es probable que sea buscado como término para ver las diferentes opciones globalmente pero que no muchas veces se busque un producto determinado de dicha marca.
+
+\section{Análisis de modelos}
+
+Pasadas las exploraciones enfocadas sobre el sitio web en sí, como sus busquedas o las nacionalidades de sus usuarios, ahora se pone el foco sobre el contenido del sitio, las compras de celulares, específicamente sobre que modelos son los más vistos, comprados y en general con más tráfico.
+
+\subsection{Relación entre ver, llevar al carrito y comprar un celular}
+
+La primera pregunta a hacerse acerca de los celulares es si hay alguna relación directa entre ver un modelo, decidir comprarlo y efectivamente comprar ese mismo modelo.  La pregunta surge de la inquietud de si hay efectividad una vez visto el celular. Por ejemplo, puede darse que alguien vea un celular, lo compare y termine comprando otro, o puede darse que uno entre a visitar la página dedicada a un modelo, vea el precio o la condición y decida mejor optar por otra alternativa.
+
+\begin{table}[h!]
+	\begin{center}
+		\begin{tabular}{|l|}
+			\hline
+			modelo \\
+			\hline \hline
+			Samsung Galaxy J5 \\
+			Samsung Galaxy S6 Flat \\
+			Samsung Galaxy S7 \\
+			Samsung Galaxy S7 Edge \\
+			iPhone 5s \\
+			iPhone 6 \\
+			iPhone 6S \\
+			iPhone 7
+		\end{tabular}
+		\caption{Subconjunto de modelos prominentes}
+		\label{table:modelos_prominentes}
+	\end{center}
+\end{table}
+
+Entonces, se comienza decidiendo un subconjunto de modelos a analizar, para tener una muestra del sitio. Este set, presentado en la tabla \ref{table:modelos_prominentes}, esta generado teniendo en cuenta y uniendo los celulares más vistos (\texttt{viewed product}) con los más "llevados al carrito" (\texttt{checkout}) con los más comprados (\texttt{conversion}). Esto es porque de analizar los eventos y los modelos se ve que los eventos (relevantes \footnote{se descarta del análisis el evento \texttt{lead} por no ser relevante al caso}) que tienen un modeo asociado son esos tres, y así se piensa la cronología ordenada ideal de eventos desde el punto de vista de un modelo:
+
+\begin{enumerate}
+\item \textbf{\texttt{viewed product}: Visitar un producto.}
+\item \textbf{\texttt{checkout}: Decidir comprarlo.}
+\item \textbf{\texttt{conversion}: Efectivamente comprarlo.}
+\end{enumerate}
+
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/090-modelos_eventos-stackedbarplot.png}}
+	\caption{Cronología de eventos de una muestra de modelos analizados}
+	\label{fig:prominentes}
+\end{figure}
+
+Primero, en \ref{fig:prominentes}, se analiza como varían los tres eventos según cada celular. Lo que más se puede notar es que los celulares \textbf{Samsung Galaxy S7 Edge} y \textbf{iPhone 7}, los celulares de mayor gama del sitio son mucho más visto que el resto, y que verlos es su propio evento predominante por amplia diferencia. Esto se deduce que sucede por el precio y calidad de estos teléfonos; son celulares muy codiciados pero a su vez muy caros, por ende su precio suele ahuyentar compras, pero su calidad atraer visitas.
+
+Lo que no se noto en la primer figura fue alguna relación directa entre las marcas de los celulares analizados, en particular si hay algun patrón de \textbf{Apple} vs \textbf{Samsung}.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/091-rankings_celulares-rank.png}}
+	\caption{Ranking de modelos prominentes según evento}
+	\label{fig:prominentesrank}
+\end{figure}
+
+En la figura \ref{fig:prominentesrank} se puede ver el ranking de cada celular dependiendo de su evento. Mientras más alto el celular, más eventos tiene. Si bien este gráfico esquiva los números exactos, sirve para ver la posición de cada celular respecto de los otros. Lo que se nota acá es similar a lo dicho anteriormente, a mayor calidad de celular, más visitas, pero esto conlleva mayor precio y por ende menos compras. Algunos casos en particular a ver son como el \textbf{Samsung Galaxy J5} y el \textbf{Samsung Galaxy S6 Flat} son de los celulares menos buscados pero a su vez de los mas comprados, y como caso inverso presentado, se ve que el \textbf{iPhone 6} y \textbf{iPhone 7} cumplen el rol opuesto, siendo de los celulares más vistos pero menos comprados.
+
+También, hay una pequeña relación a destacar de las marcas de celulares, donde de los 8 modelos analizados, los 4 celulares más buscados son los de marca \textbf{Apple} y los 4 menos son los de su rival, mientras que en la compra pasa (casi) exactamente lo inverso. Se podría presentar un caso de que el análisis de a mayor calidad y precio hay más vistas y menos compras no solo aplica para modelos si no que también para marcas en general, pero esto excede al trabajo presentado.
+
+\subsection{Relación entre celulares y sus condiciones}
+
+Habiendo encontrado un tan rico análisis entre eventos y celulares, se busca con el mismo objetivo una relación entre la condición de uso del celular y su tráfico. Trocafone clasifica los celulares reacondicionados en \textbf{Bueno}, \textbf{Muy Bueno} y \textbf{Excelente}. Queremos encontrar un patrón de compra y visita de los modelos analizados previamente, pero esta vez según condición.
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/10-condicion-stackedbarplot.png}}
+	\caption{Eventos en modelos según condición}
+	\label{fig:prominentescondicion}
+\end{figure}
+
+Lo que vemos nuevamente, esta vez en la figura \ref{fig:prominentescondicion} es que hay una diferencia substancial entre celulares marca \textbf{Apple} y celulares marca \textbf{Samsung}. Para la marca \textbf{Samsung} se ve como hay mayor tráfico en los modelos de menor condición, sugiriendo el estar dispuesto a comprar celulares no en perfecto estado, mientras que para los \textbf{Apple} aparenta haber una demanda por celulares en muy buena condición, insinuando que se quiere excelencia tanto en calidad de software (responsabilidad de \textbf{Apple}) como en calidad de hardware (responsabilidad de \textbf{Trocafone}).
+
+\subsection{Colores de dispositivos}
+
+\begin{figure}[h!]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/11-colores-bubbleplot.png}}
+	\caption{Colores con más tráfico}
+	\label{fig:colores}
+\end{figure}
+
+Para concluir la sección se muestran en la figura \ref{fig:colores} los colores de los celulares analizados previamente, solo a modo ilustrativo ya que poco se puede extraer y co-relacionar de algo tan arbitrario y subjetivo como la elección de un celular a comprar (aunque si se nota un parcial desbalanceo (\textit{skewness}) hacia los celulares con tintes grises y/o plateados).
 
 \section{Análisis de páginas estáticas}
 
