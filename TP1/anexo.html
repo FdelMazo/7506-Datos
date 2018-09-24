@@ -12064,7 +12064,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[315]:</div>
+<div class="prompt input_prompt">In&nbsp;[694]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
@@ -12077,7 +12077,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[317]:</div>
+<div class="prompt input_prompt">In&nbsp;[695]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;time_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;person&#39;</span><span class="p">)[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
@@ -12092,7 +12092,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[318]:</div>
+<div class="prompt input_prompt">In&nbsp;[696]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># minutes</span>
@@ -12109,7 +12109,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[319]:</div>
+<div class="prompt input_prompt">In&nbsp;[697]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gb</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">])</span>
@@ -12127,7 +12127,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[320]:</div>
+<div class="prompt input_prompt">In&nbsp;[698]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;time_diff_min&#39;</span><span class="p">,</span> \
@@ -12146,7 +12146,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[320]:</div>
+<div class="prompt output_prompt">Out[698]:</div>
 
 
 
@@ -12927,7 +12927,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[340]:</div>
+<div class="prompt input_prompt">In&nbsp;[699]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;is_conversion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;conversion&#39;</span>
@@ -12943,7 +12943,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[700]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel2</span><span class="p">[</span><span class="n">funnel2</span><span class="p">[</span><span class="s1">&#39;session_conversion&#39;</span><span class="p">]][</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -12953,10 +12953,181 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[700]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>person</th>
+      <th>timestamp</th>
+      <th>time_diff_min</th>
+      <th>session_id</th>
+      <th>event</th>
+      <th>session_total_events</th>
+      <th>session_cumno</th>
+      <th>session_first</th>
+      <th>session_last</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>220</th>
+      <td>00204059</td>
+      <td>2018-03-20 17:46:12</td>
+      <td>47118.483333</td>
+      <td>11</td>
+      <td>conversion</td>
+      <td>1</td>
+      <td>0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2265</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:09:53</td>
+      <td>104.866667</td>
+      <td>2</td>
+      <td>generic listing</td>
+      <td>19</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2266</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:09:53</td>
+      <td>0.000000</td>
+      <td>2</td>
+      <td>visited site</td>
+      <td>19</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2267</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:11:46</td>
+      <td>1.883333</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>19</td>
+      <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2268</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:11:48</td>
+      <td>0.033333</td>
+      <td>2</td>
+      <td>generic listing</td>
+      <td>19</td>
+      <td>3</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2269</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:13:06</td>
+      <td>1.300000</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>19</td>
+      <td>4</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2270</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:13:37</td>
+      <td>0.516667</td>
+      <td>2</td>
+      <td>viewed product</td>
+      <td>19</td>
+      <td>5</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2271</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:15:27</td>
+      <td>1.833333</td>
+      <td>2</td>
+      <td>checkout</td>
+      <td>19</td>
+      <td>6</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2272</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:16:51</td>
+      <td>1.400000</td>
+      <td>2</td>
+      <td>checkout</td>
+      <td>19</td>
+      <td>7</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2273</th>
+      <td>00c13dee</td>
+      <td>2018-04-26 22:18:46</td>
+      <td>1.916667</td>
+      <td>2</td>
+      <td>search engine hit</td>
+      <td>19</td>
+      <td>8</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[352]:</div>
+<div class="prompt input_prompt">In&nbsp;[701]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;is_checkout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;checkout&#39;</span>
@@ -12972,7 +13143,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[343]:</div>
+<div class="prompt input_prompt">In&nbsp;[702]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel2</span><span class="p">[</span><span class="n">funnel2</span><span class="p">[</span><span class="s1">&#39;session_checkout&#39;</span><span class="p">]][</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -12988,7 +13159,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[343]:</div>
+<div class="prompt output_prompt">Out[702]:</div>
 
 
 
@@ -13020,139 +13191,128 @@ div#notebook {
       <th>session_cumno</th>
       <th>session_first</th>
       <th>session_last</th>
-      <th>session_conversion</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>220</th>
-      <td>00204059</td>
-      <td>2018-03-20 17:46:12</td>
-      <td>47118.483333</td>
-      <td>11</td>
-      <td>conversion</td>
-      <td>1</td>
-      <td>0</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2265</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:09:53</td>
-      <td>104.866667</td>
-      <td>2</td>
-      <td>generic listing</td>
-      <td>19</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2266</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:09:53</td>
+      <th>0</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:05</td>
       <td>0.000000</td>
-      <td>2</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>4</td>
+      <td>0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:05</td>
+      <td>0.000000</td>
+      <td>0</td>
       <td>visited site</td>
-      <td>19</td>
+      <td>4</td>
       <td>1</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
-      <th>2267</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:11:46</td>
-      <td>1.883333</td>
-      <td>2</td>
+      <th>2</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:09</td>
+      <td>0.066667</td>
+      <td>0</td>
       <td>viewed product</td>
-      <td>19</td>
+      <td>4</td>
       <td>2</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
-      <th>2268</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:11:48</td>
-      <td>0.033333</td>
-      <td>2</td>
-      <td>generic listing</td>
-      <td>19</td>
+      <th>3</th>
+      <td>0004b0a2</td>
+      <td>2018-05-31 23:38:40</td>
+      <td>0.516667</td>
+      <td>0</td>
+      <td>checkout</td>
+      <td>4</td>
       <td>3</td>
       <td>False</td>
-      <td>False</td>
       <td>True</td>
     </tr>
     <tr>
-      <th>2269</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:13:06</td>
-      <td>1.300000</td>
-      <td>2</td>
+      <th>4</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:25</td>
+      <td>0.000000</td>
+      <td>0</td>
       <td>viewed product</td>
-      <td>19</td>
       <td>4</td>
-      <td>False</td>
-      <td>False</td>
+      <td>0</td>
       <td>True</td>
+      <td>False</td>
     </tr>
     <tr>
-      <th>2270</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:13:37</td>
-      <td>0.516667</td>
-      <td>2</td>
-      <td>viewed product</td>
-      <td>19</td>
-      <td>5</td>
+      <th>5</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:26</td>
+      <td>0.016667</td>
+      <td>0</td>
+      <td>visited site</td>
+      <td>4</td>
+      <td>1</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
-      <th>2271</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:15:27</td>
-      <td>1.833333</td>
+      <th>6</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:27</td>
+      <td>0.016667</td>
+      <td>0</td>
+      <td>ad campaign hit</td>
+      <td>4</td>
       <td>2</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0006a21a</td>
+      <td>2018-05-29 13:29:35</td>
+      <td>0.133333</td>
+      <td>0</td>
       <td>checkout</td>
-      <td>19</td>
-      <td>6</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2272</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:16:51</td>
-      <td>1.400000</td>
-      <td>2</td>
-      <td>checkout</td>
-      <td>19</td>
-      <td>7</td>
-      <td>False</td>
+      <td>4</td>
+      <td>3</td>
       <td>False</td>
       <td>True</td>
     </tr>
     <tr>
-      <th>2273</th>
-      <td>00c13dee</td>
-      <td>2018-04-26 22:18:46</td>
-      <td>1.916667</td>
-      <td>2</td>
-      <td>search engine hit</td>
-      <td>19</td>
-      <td>8</td>
-      <td>False</td>
-      <td>False</td>
+      <th>15</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:07</td>
+      <td>64267.783333</td>
+      <td>1</td>
+      <td>ad campaign hit</td>
+      <td>30</td>
+      <td>0</td>
       <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>000a54b2</td>
+      <td>2018-05-24 11:21:07</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>visited site</td>
+      <td>30</td>
+      <td>1</td>
+      <td>False</td>
+      <td>False</td>
     </tr>
   </tbody>
 </table>
@@ -13167,13 +13327,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[348]:</div>
+<div class="prompt input_prompt">In&nbsp;[703]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;ad_origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ad campaign hit&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_first&#39;</span><span class="p">]</span>
 <span class="n">gb</span> <span class="o">=</span> <span class="n">funnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;session_id&#39;</span><span class="p">])</span>
-<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_organic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gb</span><span class="p">[</span><span class="s1">&#39;add_origin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_organic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_organic&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_ad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gb</span><span class="p">[</span><span class="s1">&#39;add_origin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_ad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">funnel</span><span class="p">[</span><span class="s1">&#39;session_ad&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </pre></div>
 
 </div>
@@ -13183,7 +13343,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[351]:</div>
+<div class="prompt input_prompt">In&nbsp;[708]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">funnel</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
@@ -13199,7 +13359,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[351]:</div>
+<div class="prompt output_prompt">Out[708]:</div>
 
 
 
@@ -13231,8 +13391,7 @@ div#notebook {
       <th>session_cumno</th>
       <th>session_first</th>
       <th>session_last</th>
-      <th>session_conversion</th>
-      <th>session_organic</th>
+      <th>session_ad</th>
     </tr>
   </thead>
   <tbody>
@@ -13247,8 +13406,7 @@ div#notebook {
       <td>0</td>
       <td>True</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>1</th>
@@ -13261,8 +13419,7 @@ div#notebook {
       <td>1</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>2</th>
@@ -13275,8 +13432,7 @@ div#notebook {
       <td>2</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>3</th>
@@ -13289,8 +13445,7 @@ div#notebook {
       <td>3</td>
       <td>False</td>
       <td>True</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>4</th>
@@ -13304,7 +13459,6 @@ div#notebook {
       <td>True</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>5</th>
@@ -13318,7 +13472,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>6</th>
@@ -13332,7 +13485,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>7</th>
@@ -13346,7 +13498,6 @@ div#notebook {
       <td>False</td>
       <td>True</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>8</th>
@@ -13360,7 +13511,6 @@ div#notebook {
       <td>True</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>9</th>
@@ -13374,7 +13524,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>10</th>
@@ -13388,7 +13537,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>11</th>
@@ -13402,7 +13550,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>12</th>
@@ -13416,7 +13563,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>13</th>
@@ -13430,7 +13576,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>14</th>
@@ -13444,7 +13589,6 @@ div#notebook {
       <td>False</td>
       <td>True</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>15</th>
@@ -13457,8 +13601,7 @@ div#notebook {
       <td>0</td>
       <td>True</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>16</th>
@@ -13471,8 +13614,7 @@ div#notebook {
       <td>1</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>17</th>
@@ -13485,8 +13627,7 @@ div#notebook {
       <td>2</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>18</th>
@@ -13499,8 +13640,7 @@ div#notebook {
       <td>3</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>19</th>
@@ -13513,8 +13653,7 @@ div#notebook {
       <td>4</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>20</th>
@@ -13527,8 +13666,7 @@ div#notebook {
       <td>5</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>21</th>
@@ -13541,8 +13679,7 @@ div#notebook {
       <td>6</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>22</th>
@@ -13555,8 +13692,7 @@ div#notebook {
       <td>7</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>23</th>
@@ -13569,8 +13705,7 @@ div#notebook {
       <td>8</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>24</th>
@@ -13583,8 +13718,7 @@ div#notebook {
       <td>9</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>25</th>
@@ -13597,8 +13731,7 @@ div#notebook {
       <td>10</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>26</th>
@@ -13611,8 +13744,7 @@ div#notebook {
       <td>11</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>27</th>
@@ -13625,8 +13757,7 @@ div#notebook {
       <td>12</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>28</th>
@@ -13639,8 +13770,7 @@ div#notebook {
       <td>13</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>29</th>
@@ -13653,12 +13783,10 @@ div#notebook {
       <td>14</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -13681,8 +13809,7 @@ div#notebook {
       <td>1</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>1011259</th>
@@ -13695,8 +13822,7 @@ div#notebook {
       <td>2</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>1011260</th>
@@ -13709,8 +13835,7 @@ div#notebook {
       <td>3</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>1011261</th>
@@ -13723,8 +13848,7 @@ div#notebook {
       <td>4</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>1011262</th>
@@ -13737,8 +13861,7 @@ div#notebook {
       <td>5</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>1011263</th>
@@ -13751,8 +13874,7 @@ div#notebook {
       <td>6</td>
       <td>False</td>
       <td>True</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>1011264</th>
@@ -13766,7 +13888,6 @@ div#notebook {
       <td>True</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011265</th>
@@ -13780,7 +13901,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011266</th>
@@ -13794,7 +13914,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011267</th>
@@ -13808,7 +13927,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011268</th>
@@ -13822,7 +13940,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011269</th>
@@ -13836,7 +13953,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011270</th>
@@ -13850,7 +13966,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011271</th>
@@ -13864,7 +13979,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011272</th>
@@ -13878,7 +13992,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011273</th>
@@ -13892,7 +14005,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011274</th>
@@ -13906,7 +14018,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011275</th>
@@ -13920,7 +14031,6 @@ div#notebook {
       <td>False</td>
       <td>True</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011276</th>
@@ -13934,7 +14044,6 @@ div#notebook {
       <td>True</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011277</th>
@@ -13948,7 +14057,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011278</th>
@@ -13962,7 +14070,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011279</th>
@@ -13976,7 +14083,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011280</th>
@@ -13990,7 +14096,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011281</th>
@@ -14004,7 +14109,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011282</th>
@@ -14018,7 +14122,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011283</th>
@@ -14032,7 +14135,6 @@ div#notebook {
       <td>False</td>
       <td>True</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011284</th>
@@ -14046,7 +14148,6 @@ div#notebook {
       <td>True</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011285</th>
@@ -14060,7 +14161,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011286</th>
@@ -14074,7 +14174,6 @@ div#notebook {
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>True</td>
     </tr>
     <tr>
       <th>1011287</th>
@@ -14088,11 +14187,10 @@ div#notebook {
       <td>False</td>
       <td>True</td>
       <td>False</td>
-      <td>True</td>
     </tr>
   </tbody>
 </table>
-<p>1011288 rows × 11 columns</p>
+<p>1011288 rows × 10 columns</p>
 </div>
 </div>
 
@@ -14104,13 +14202,13 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[353]:</div>
+<div class="prompt input_prompt">In&nbsp;[710]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cols_csv</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time_diff_min&#39;</span><span class="p">,</span> \
         <span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;session_total_events&#39;</span><span class="p">,</span> \
         <span class="s1">&#39;session_cumno&#39;</span><span class="p">,</span> <span class="s1">&#39;session_first&#39;</span><span class="p">,</span> <span class="s1">&#39;session_last&#39;</span><span class="p">,</span> \
-        <span class="s1">&#39;session_conversion&#39;</span><span class="p">,</span> <span class="s1">&#39;session_checkout&#39;</span><span class="p">,</span> <span class="s1">&#39;session_organic&#39;</span><span class="p">]</span>
+        <span class="s1">&#39;session_conversion&#39;</span><span class="p">,</span> <span class="s1">&#39;session_checkout&#39;</span><span class="p">,</span> <span class="s1">&#39;session_ad&#39;</span><span class="p">]</span>
 
 <span class="n">funnel</span><span class="p">[</span><span class="n">cols_csv</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/sessions.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
@@ -14143,7 +14241,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[674]:</div>
+<div class="prompt input_prompt">In&nbsp;[705]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">plotly</span>
@@ -14162,7 +14260,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[675]:</div>
+<div class="prompt input_prompt">In&nbsp;[706]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfunnel</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>\
@@ -14222,10 +14320,10 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[677]:</div>
+<div class="prompt input_prompt">In&nbsp;[711]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfunnel</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="s1">&#39;session_organic&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;session_organic&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfunnel</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="s1">&#39;session_ad&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;session_ad&#39;</span><span class="p">)</span>
 <span class="n">dfunnel</span>
 </pre></div>
 
@@ -14239,7 +14337,7 @@ Name: event, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[677]:</div>
+<div class="prompt output_prompt">Out[711]:</div>
 
 
 
@@ -14261,7 +14359,7 @@ Name: event, dtype: int64</pre>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>session_organic</th>
+      <th>session_ad</th>
       <th>False</th>
       <th>True</th>
     </tr>
@@ -14274,33 +14372,33 @@ Name: event, dtype: int64</pre>
   <tbody>
     <tr>
       <th>brand listing</th>
-      <td>14015</td>
       <td>84620</td>
+      <td>14015</td>
     </tr>
     <tr>
       <th>checkout</th>
-      <td>6457</td>
       <td>27278</td>
+      <td>6457</td>
     </tr>
     <tr>
       <th>conversion</th>
-      <td>116</td>
       <td>1056</td>
+      <td>116</td>
     </tr>
     <tr>
       <th>generic listing</th>
-      <td>8807</td>
       <td>58727</td>
+      <td>8807</td>
     </tr>
     <tr>
       <th>searched products</th>
-      <td>8013</td>
       <td>48060</td>
+      <td>8013</td>
     </tr>
     <tr>
       <th>viewed product</th>
-      <td>82432</td>
       <td>446499</td>
+      <td>82432</td>
     </tr>
   </tbody>
 </table>
@@ -14315,7 +14413,7 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[678]:</div>
+<div class="prompt input_prompt">In&nbsp;[712]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">group_lists</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
@@ -14323,7 +14421,7 @@ Name: event, dtype: int64</pre>
         <span class="k">return</span> <span class="s1">&#39;listed&#39;</span>
     <span class="k">return</span> <span class="n">event</span>
 
-<span class="n">dfunnel</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ad&#39;</span><span class="p">,</span> <span class="s1">&#39;Organic&#39;</span><span class="p">]</span>
+<span class="n">dfunnel</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Other&#39;</span><span class="p">,</span> <span class="s1">&#39;Ad&#39;</span><span class="p">]</span>
 <span class="n">dfunnel</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">dfunnel</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">group_lists</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">dfunnel</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">&#39;listed&#39;</span><span class="p">,</span> \
                  <span class="s1">&#39;viewed product&#39;</span><span class="p">,</span> <span class="s1">&#39;checkout&#39;</span><span class="p">,</span> <span class="s1">&#39;conversion&#39;</span><span class="p">])</span>
@@ -14337,7 +14435,7 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[679]:</div>
+<div class="prompt input_prompt">In&nbsp;[713]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfunnel</span>
@@ -14353,7 +14451,7 @@ Name: event, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[679]:</div>
+<div class="prompt output_prompt">Out[713]:</div>
 
 
 
@@ -14376,8 +14474,8 @@ Name: event, dtype: int64</pre>
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Other</th>
       <th>Ad</th>
-      <th>Organic</th>
     </tr>
     <tr>
       <th>event</th>
@@ -14388,23 +14486,23 @@ Name: event, dtype: int64</pre>
   <tbody>
     <tr>
       <th>listed</th>
-      <td>10.336406</td>
       <td>12.162157</td>
+      <td>10.336406</td>
     </tr>
     <tr>
       <th>viewed product</th>
-      <td>11.319729</td>
       <td>13.009192</td>
+      <td>11.319729</td>
     </tr>
     <tr>
       <th>checkout</th>
-      <td>8.772920</td>
       <td>10.213836</td>
+      <td>8.772920</td>
     </tr>
     <tr>
       <th>conversion</th>
-      <td>4.753590</td>
       <td>6.962243</td>
+      <td>4.753590</td>
     </tr>
   </tbody>
 </table>
@@ -14419,7 +14517,7 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[686]:</div>
+<div class="prompt input_prompt">In&nbsp;[714]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
@@ -14432,7 +14530,7 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[687]:</div>
+<div class="prompt input_prompt">In&nbsp;[715]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_phase</span><span class="p">,</span> <span class="n">n_seg</span> <span class="o">=</span> <span class="n">dfunnel</span><span class="o">.</span><span class="n">shape</span>
@@ -14445,7 +14543,7 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[688]:</div>
+<div class="prompt input_prompt">In&nbsp;[716]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_width</span> <span class="o">=</span> <span class="mi">500</span>
@@ -14474,7 +14572,7 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[689]:</div>
+<div class="prompt input_prompt">In&nbsp;[717]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">height</span> <span class="o">=</span> <span class="n">section_h</span> <span class="o">*</span> <span class="n">n_phase</span> <span class="o">+</span> <span class="n">section_d</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_phase</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -14543,7 +14641,7 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[690]:</div>
+<div class="prompt input_prompt">In&nbsp;[718]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># For phase names</span>
@@ -14580,11 +14678,11 @@ Name: event, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[691]:</div>
+<div class="prompt input_prompt">In&nbsp;[719]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;Funnel (log) [Ad:Azul | Orgánico:Marrón]&lt;/b&gt;&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&lt;b&gt;Funnel (log) [Otro:Azul | Ad:Marrón]&lt;/b&gt;&quot;</span><span class="p">,</span>
     <span class="n">titlefont</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
         <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;rgb(230,230,230)&#39;</span>
@@ -14618,12 +14716,12 @@ Name: event, dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[691]:</div>
+<div class="prompt output_prompt">Out[719]:</div>
 
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
-<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~datatouille/62.embed" height="525px" width="100%"></iframe>
+<iframe id="igraph" scrolling="no" style="border:none;" seamless="seamless" src="https://plot.ly/~datatouille/64.embed" height="525px" width="100%"></iframe>
 </div>
 
 </div>
