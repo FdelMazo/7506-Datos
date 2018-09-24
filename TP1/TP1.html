@@ -15651,7 +15651,7 @@ Para aumentar la tasa de personas que regresan a ĺa página proponemos aumentar
 <span class="n">returners_count</span> <span class="o">=</span> <span class="n">gb</span><span class="p">[</span><span class="s1">&#39;Returning&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 <span class="n">only_once_count</span> <span class="o">=</span> <span class="n">gb</span><span class="p">[</span><span class="s1">&#39;New&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="n">returners_count</span>
 
-<span class="n">objects</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Regresan&#39;</span><span class="p">,</span> <span class="s1">&#39;Sólo una vez&#39;</span><span class="p">)</span>
+<span class="n">objects</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Regresan&#39;</span><span class="p">,</span> <span class="s1">&#39;Ingresan sólo una vez&#39;</span><span class="p">)</span>
 <span class="n">y_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">objects</span><span class="p">))</span>
 <span class="n">type_users_count</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">returners_count</span><span class="p">,</span> <span class="n">only_once_count</span><span class="p">])</span>
  

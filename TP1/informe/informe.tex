@@ -545,7 +545,7 @@ Para poner un ejemplo de fidelidad, un usuario fiel sería quien entra desde una
 
 Notamos en el gráfico \ref{fig:sankey} varias cosas. Por empezar, dada la naturaleza de \textit{branding} y marketing de la empresa, los usuarios de \textbf{Apple} no son muy propensos al cambio y se mantienen en su mayoría sobre su mismo sistema. Por otro lado, los usuarios de \textbf{Android} están uniformemente divididos y no se puede concluir que no sean fieles ni infieles. 
 
-Luego, el caso de \textbf{Windows} sería trivial de analizar, siendo este un sistema operativo de computadoras sin ninguna asociación en particular a marcas de celulares (ignorando el cuasi extinto \textbf{Windows Phone}, que aparecería como la marca \textbf{Nokia} o \textbf{Microsoft}). Y como último es interesante ver los usuarios de \textbf{Linux}, que por la esencia abierta del sistema operativo y su comunidad, es peculiar ver la distribución uniforme (si bien sobre pocos datos) tanto hacia celulares \textbf{Android} como \textbf{Apple}, aún más teniendo en cuenta la fuerte tendencia a ser un sistema más cerrado de este último.
+Luego, el caso de \textbf{Windows} sería trivial de analizar, siendo este un sistema operativo de computadoras sin ninguna asociación en particular a marcas de celulares (ignorando el cuasi extinto \textbf{Windows Phone}, que aparecería como la marca \textbf{Nokia} o \textbf{Microsoft}). Y como último es interesante ver los usuarios de \textbf{Linux}, que por la esencia abierta del sistema operativo y su comunidad, es peculiar ver la distribución uniforme (si bien sobre pocos datos) tanto hacia celulares \textbf{Android} como \textbf{Apple}, aún más teniendo en cuenta la fuerte tendencia de este último a ser un sistema más cerrado.
 
 \section{Análisis de publicidad}
 
@@ -557,17 +557,15 @@ La primera pregunta que fue planteada fue la de investigar si \textbf{Trocafone}
 	\label{fig:publicidad}
 \end{figure}
 
-La observación del gráfico \ref{fig:publicidad} no permite extraer ninguna conclusión válida. Esto se debe a que el mes en el que se registra mayor cantidad de visitas provenientes de una campaña de publicidad (Mayo) es el mes en el que se detectó mayor cantidad de eventos. Por lo tanto es lógico que si aumentan las visitas en una página, aumente en consecuencia el número de visitas que proviene de publicidad.
+La observación del gráfico \ref{fig:publicidad} no permite extraer ninguna conclusión válida. Esto se debe a que el mes en el que se registra mayor cantidad de visitas provenientes de una campaña de publicidad (mayo) es el mes en el que se detectó mayor cantidad de eventos. Sería pensamiento circular decir que hay más visitas este mes porque aumento el presupuesto publicitario si nuestro único fundamento sobre esto esta basado en las visitas del mes. Es lógico que si aumentan las visitas en una página, aumente en consecuencia el número de visitas que proviene de publicidad.
 
-Se procede a analizar cuáles son los metodos de publicidad más usados. Se puede predecir que será \textbf{Google} debido a su importancia mundial como motor de búsqueda.
+Se procede a analizar cuáles son los metodos de publicidad más usados. Se puede predecir que será \textbf{Google} debido a su importancia mundial como motor de búsqueda. Una vez verificado esto, se elimina del gráfico para observar los otros métodos de publicidad contratados.
 
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{figures/170-publicidad_clickeada-barplot.png}
 	\caption{Métodos de publicidad que generan visitas en Trocafone}
 	\label{fig:metodopublicidad}
 \end{figure}
-
-La predicción realizada fue correcta y es tan amplia la diferencia que se elimina a \textbf{Google} del gráfico para observar los otros métodos de publicidad contratados por \textbf{Trocafone}.
 
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{figures/171-publicidad_sin_google-barplot.png}
@@ -581,7 +579,7 @@ Se concluye de estos gráficos \ref{fig:metodopublicidad} y \ref{fig:metodopubli
 
 Sabiendo que un usuario puede llegar desde diversos lugares, ver de dónde viene es algo muy importante para saber en que lugar debe la empresa invertir. ¿Debe tener mayor presencia en las redes sociales? ¿Debe invertir en su visibilidad online mediante procesos de SEO\footnote{Search engine optimization}? 
 
-Lo que en particular nos interesa es la métrica llamada \textbf{Revenue by traffic source}, la cual se refiere no a los usuarios que vienen, si no los usuarios que vienen y hacen una conversion (compra), como una manera de representar los métodos realmente efectivos (después de todo, la efectividad de la empresa radica en que un usuario haga una conversión, no meramente en que entre al sitio).
+Lo que en particular nos interesa es la métrica llamada \textbf{revenue by traffic source}, la cual se refiere no a los usuarios que vienen, si no los usuarios que vienen y hacen una conversion (compra), como una manera de representar los métodos realmente efectivos (después de todo, la efectividad de la empresa radica en que un usuario haga una conversión, no meramente en que entre al sitio).
 
 Los canales de tráfico presentes en el dataset son:
 \begin{itemize}
@@ -599,25 +597,27 @@ Los canales de tráfico presentes en el dataset son:
 	\label{fig:traffic}
 \end{figure}
 
-Lo que observamos en el gráfico \ref{fig:traffic} es que si el canal pago es el que más usuarios atrae, tiene una ganancia bastante razonable para la magnitud de usuarios que atrae. Por lo tanto seguir invirtiendo en él probablemente lleve a un retorno constante y no tan significante (segun la ley de los rendimientos decrecientes). 
+Lo que observamos en el gráfico \ref{fig:traffic} es que si bien el canal pago es el que más usuarios atrae, tiene una ganancia bastante razonable para la magnitud de usuarios que atrae. Por lo tanto seguir invirtiendo en él probablemente lleve a un retorno con incremento constante y no tan significante\footnote{Como ejemplo de la ley de los rendimientos decrecientes}.
 
-Por otro lado son otros canales los que verdaderamente sorprenden por su porcentaje de retornos. Hay un gran retorno de parte de la presencia de las redes sociales, que puede no atraer tanto usuarios pero a los que sí atrae lo hace de manera muy efectiva, y lo mismo aplica para la presencia onlina organica de Trocafone, donde se ve que si se invirtiese en procesos de SEO esto podría llevar tanto a más usuarios como más compras.
+Por otro lado son otros canales los que verdaderamente sorprenden por su porcentaje de retornos. Hay un gran retorno de parte de la presencia de las redes sociales, que puede no atraer tantos usuarios pero a los que atrae lo hace de manera muy efectiva, y lo mismo aplica para la presencia onlina organica de Trocafone, donde se ve que si se invirtiese en procesos de SEO esto podría llevar tanto a más usuarios como más compras.
 
 \section{Insights y conclusiones}
 
-Antes de presentar las conclusiones obtenidas a partir del análisis del dataset presentado es necesario volver a remarcar que los datos no representan el total de datos de la empresa \textbf{Trocafone}. Se descubrió que los únicos datos presentados eran de clientes que habían realizado al menos un \texttt{checkout}, por lo que mínimamente se detecta un truncamiento allí. Cabe la posibilidad de que se haya truncado con algún otro criterio que no se haya detectado con el análisis presentado. Además, se conoce que los datos corresponden a la página web de Trocafone, por lo que no constituye el total de datos de ventas de la empresa, que también se encargan de vender a otros proveedores.
+Antes de presentar las conclusiones obtenidas a partir del análisis del dataset presentado es necesario volver a remarcar que los datos no representan el total de datos de la empresa \textbf{Trocafone}. Se descubrió que los únicos datos presentados eran de clientes que habían realizado al menos un \texttt{checkout}, por lo que mínimamente se detecta un truncamiento allí. Cabe la posibilidad de que se haya truncado con algún otro criterio que no se haya detectado con el análisis presentado. Además, los datos corresponden a la página web de Trocafone, por lo que no constituye el total de datos de ventas de la empresa, que también se encargan de vender a otros proveedores.
 
 Este recordatorio tan reiterado no deja de ser sumamente importante, de tener más datos (como por ejemplo un semestre en su totalidad, sin truncamientos) se podría hacer un análisis más a pleno, ni hablar de si se tuviesen más atributos, ya que una de las dificultades encontradas en el trabajo fue la falta de atributos numéricos, dependiendo solamente de contar valores (por ejemplo, un dato sumamente rico en información es el precio de venta, o poder decir más del usuario como su edad y/o sexo).
 
-Ahora sí, en primer lugar se considera que de la cantidad de conversiones detectada a lo largo de los 5 meses y medio de datos no puede extraerse alguna conclusión fundada por falta de conocimiento sobre el dominio (plataformas de e-commerce). Se ha podido analizar en su lugar la comparación \textit{checkout vs conversiones vs viewed products} a lo largo de diferentes parámetros como marcas de celulares o períodos de tiempo.
+Ahora sí, en primer lugar se considera que de la cantidad de conversiones detectada en el set de datos no puede extraerse alguna conclusión en cuanto a cuan bien o mal le fue a la empresa en el semestre, por falta de conocimiento y manejo del dominio (plataformas de e-commerce en el rubro de celulares). En cambio, si se ha podido analizar en su lugar la comparación \textit{checkout vs conversiones vs viewed products} a lo largo de diferentes parámetros como marcas de celulares o períodos de tiempo, mostrando como el sitio web cumple o no su objetivo de mantener a los usuarios y hacerlos comprar por allí.
 
 Otro lugar donde se ve la falta de dominio es en el no poder explicar la cantidad de registros de mayo (considerablemente mayor al resto de los meses). De tenér mayor conocimiento del estado de Brasil (puede ser producto de política), de la industría de la tecnólogia celular (constantemente hay nuevos lanzamientos de celulares que incentivan vender el previamente usado, leyes que influyen tanto para bien como para mal la compra/venta y demás) o de \textbf{Trocafone} en sí (por ejemplo, un lanzamiento de descuentos o promociones) se tendrían más recursos para poder explicar lo que a simple vista parece una anomalía.
 
-Del análisis de la cantidad de eventos mencionados previamente en función de las marcas de celulares se concluye que las marcas que tienen un precio más accesible como lo puede ser \textbf{Samsung} eran de las menos vistas pero de las más compradas. Asímismo, las marcas con un precio más elevado como \textbf{Apple} eran de las más vistas pero de las menos compradas. Esta era una situación prevista de antemano debido a que la calidad del producto de mayor precio atrae visitas pero su precio aleja las compras. Asímismo, un celular de menor precio y calidad es más probable que si es visto sea comprado por el mismo usuario debido a que la calidad del producto no suele atraer visitas que no sean potenciales compradoras en un futuro. Un análisis similar puede realizarse en cuanto al sistema operativo del cual proviene el que genera una compra y el sistema operativo del dispositivo comprado. Los usuarios que provienen de \textbf{Apple} suelen desear comprar un dispositivo del mismo sistema operativo debido a su calidad y al atractivo que suelen manejar los productos de \textbf{Apple} en la sociedad. De otra manera, los usuarios que provienen de \textbf{Android} divergen sus visitas en cuanto al sistema operativo ya que no se detecta un comportamiento específico para este tipo de usuarios.
+Del análisis de la cantidad de eventos mencionados previamente en función de las marcas de celulares se concluye que las marcas que tienen una selección de celulares más amplia, en particular yendo desde más accesibles a celulares de alta gama como lo puede ser \textbf{Samsung} son de las menos vistas pero de las más compradas. Asímismo, las marcas con un precio más elevado como \textbf{Apple} son de las más vistas pero de las menos compradas. Esta era una situación prevista de antemano debido a que la calidad del producto de mayor precio atrae visitas pero su precio aleja las compras. Asímismo, un celular de menor precio y calidad es más probable que si es visto sea comprado por el mismo usuario debido a que la calidad del producto no suele atraer visitas que no sean potenciales compradoras en un futuro. Un análisis similar puede realizarse en cuanto al sistema operativo del cual proviene el que genera una compra y el sistema operativo del dispositivo comprado. Los usuarios que provienen de \textbf{Apple} suelen desear comprar un dispositivo del mismo sistema operativo debido a su calidad y al atractivo que suelen manejar los productos de \textbf{Apple} en la sociedad. De otra manera, los usuarios que provienen de \textbf{Android} divergen sus visitas en cuanto al sistema operativo ya que no se detecta un comportamiento específico para este tipo de usuarios.
 
-En lo que respecta a páginas estáticas, se llegó a la conclusión de que una buena inversión de parte de la empresa sería sobre optimizar el sitio de preguntas frecuentes pero más importante el flujo de usuarios hacía ella (ya que no se habla de la satisfacción del sitio en si, si no de cuantos usuarios la visitan), con el objetivo final de lograr que se gaste menos personal en responder en atencion al cliente y que los usuarios obtengan más rápidamente respuestas a sus preguntas específicas.
+En lo que respecta a páginas estáticas, se llegó a la conclusión de que una buena inversión de parte de la empresa sería optimizar el sitio de preguntas frecuentes. Se habla específicamente del flujo de usuarios hacía ella (ya que no se habla de la satisfacción del sitio en si, si no de cuantos usuarios la visitan), con el objetivo final de lograr que se gaste menos personal en responder en atencion al cliente y que los usuarios encuentren rápidamente respuestas a sus preguntas específicas.
 
 Otra idea surgida del análisis de páginas estáticas es que se debe intentar lograr que los usuarios regresen al sitio, ya que la taza de usuarios que ingresa solo una vez es mucho mayor que la de usuarios que regresan. Si bien este es un problema con el que todo sitio se encuentra, una forma de disminuir lo más posible la diferencia puede ser mejorar la experiencia del usuario en el sitio de entrada.
+
+Una sugerencia en cuanto a inversión en presencia online esta tanto en los motores de busqueda como en las redes sociales. Ambos canales de tráfico tienen un potencial muy grande en cuanto a atraer usuarios que efectuan conversiones, e invertir en ellos lograría mantener el porcentaje de efectividad mientras se incrementa el número total de usuarios atraídos.
 
 \newpage
 \appendix
@@ -628,6 +628,7 @@ El trabajo fue realizado en Anaconda\footnote{\url{https://anaconda.org/}}. Para
 
 \begin{itemize}
 	\item{Squarify\footnote{\url{https://github.com/laserson/squarify}}: Para los treemaps.}
+	\item{pySankey\footnote{\url{https://github.com/anazalea/pySankey/}}: Para los diagramas de Sankey (diagramas de flujo).}
 	\item{Geopandas\footnote{\url{http://geopandas.org/}}: Para poder graficar sobre mapas geográficos.}
 	\item{Wordcloud\footnote{\url{https://github.com/amueller/word_cloud/}}: Para poder visualizar los términos más buscados.}
 \end{itemize}
@@ -635,9 +636,12 @@ El trabajo fue realizado en Anaconda\footnote{\url{https://anaconda.org/}}. Para
 Estos pueden ser instalados con los siguientes comandos: 
 \begin{lstlisting}[language=sh]
 pip install squarify
+pip install pySaneky
 conda install -c conda-forge geopandas
 conda install -c conda-forge wordcloud
 \end{lstlisting}
+
+Alternativamente, se puede optar por correr el código sobre el kernel publicado en la plataforma Kaggle.
 
 \section{Datasets adicionales incoporados para el análisis}
 
