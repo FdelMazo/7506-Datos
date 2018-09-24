@@ -85,14 +85,14 @@
 
 Se propone analizar en el presente informe los datos obtenidos de usuarios que visitaron \url{www.trocafone.com}, un sitio de e-commerce de compra y venta de celulares reacondicionados, con operaciones principalmente en Brasil. Para ello, la empresa Trocafone nos proporcionó acceso a los datos a través del archivo \texttt{events.csv}. 
 
-El objetivo principal de este informe es poder realizar un análisis exploratorio abarcativo donde a medida que se exploren los datos se vayan encontrando tanto las preguntas como las respuestas a hacerse. Se propone específicamente:
+El objetivo principal de este informe es poder realizar un análisis exploratorio abarcativo donde a medida que se exploren los datos se vayan encontrando tanto las preguntas a hacerse como las respuestas que las contestan. Además de lo que vaya surgiendo en el transcurso del trabajo, se propone específicamente:
  
  \begin{itemize}
-	 \item Descubrir features en el campo \texttt{model}
-	 \item Identificar patrones de usuarios que realizan checkouts y conversiones
+	 \item Descubrir features de los modelos vendidos
+	 \item Identificar patrones de usuarios que hacen compras
 	 \item Analizar las búsquedas que realizan los usuarios y las \textit{keywords} utilizadas
 	 \item Analizar los distintos lugares de dónde se originan las visitas a Trocafone
-	 \item Descubrir features jerarquizando alguno de los campos disponibles
+	 \item Explorar features jerarquizando los campos disponibles
 \end{itemize}
 
 Finalmente, entre lo descubierto en el análisis exploratorio y los items marcados, se busca obtener un listado de \textit{insights} aprendidos sobre los mismos y con ellos realizar un aporte a la empresa Trocafone con datos que sirvan para mejorar sus servicios. 
@@ -137,9 +137,9 @@ Los atributos son:
 Es en este momento del análisis donde se tienen que hacer las configuraciones necesarias sobre el set de datos para poder trabajar mejor más tarde. Las operaciones realizadas incluyen:
 
 \begin{itemize}
-\item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (que atributo es numérico, que atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener específicamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo `timestamp` como una variable del tipo `datetime`.
-\item \textbf{Lidiar con los nulos}: No todos los registros tienen todos los atributos completos, por motivos obvios (por ejemplo, un evento de compra de producto no tiene asociado una búsqueda de palabras). En la transformación de tipos hay que lidiar con estos, y se tomaron decisiones como que el SKU de un producto `Not a Number` es el SKU `0.0`, así permitiendo que el atributo SKU sea numérico.
-\item \textbf{Data Mining}: Se generan nuevos sets de datos y se extraen atributos importantes de los proporcionados. Por ejemplo, dividir el atributo de tiempo en atributos de mes, día y hora.
+\item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (qué atributo es numérico, qué atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener específicamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo \texttt{timestamp} como una variable del tipo \texttt{datetime}.
+\item \textbf{Lidiar con los nulos}: Por motivos obvios, no todos los registros tienen todos los atributos completos (por ejemplo, un evento de compra de producto no tiene asociado una búsqueda de palabras). En la transformación de tipos hay que lidiar con estos, y tomar decisiones de truncamiento o transformación. Una decisión tomada fue que el SKU de un producto \texttt{Not a Number} es el SKU \texttt{0.0}, así permitiendo que el atributo SKU sea numérico.
+\item \textbf{Data Mining}: Se generan nuevos sets de datos y se extraen atributos importantes de los proporcionados. Por ejemplo, dividir el atributo de tiempo en atributos de mes, día y hora, o extraer la marca de los modelos de celulares.
 \item \textbf{Limpieza de datos}: Cuando un dato es inválido de entrada es necesario tomar una decisión al respecto. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados.
 \end{itemize}
 
@@ -150,7 +150,7 @@ Se sabe que el dataset proporcionado no representa el conjunto total de datos de
 
 A esta información se le adiciona que los datos de entrada son solamente el tráfico del \textit{sitio web} de Trocafone, y no de la empresa entera, que tiene más actividad que la del sitio. Por ejemplo, venderle a sitios terceros \footnote{\url{https://medium.com/trocafone/el-maravilloso-mundo-de-trocafone-5bdc5761856b}}.
 
-Con estos dos datos en mente, es importante remarcar que las conclusiones a las que se llegará en el desarrollo del Trabajo se basan en un sector segmentado de los datos, y que estos datos son un sector segmentado de la empresa, por lo que en ciertos aspectos del análisis no se podrá arribar a conclusiones fundadas sobre la totalidad de los servicios de Trocafone, y que si por momentos la información parece poca para el tamaño de la empresa, esta solo representa el sitio web.
+Con estos dos datos en mente, es importante remarcar que las conclusiones a las que se llegará en el desarrollo del trabajo se basan en un sector segmentado de los datos, y que estos datos son un sector segmentado de la empresa, por lo que en ciertos aspectos del análisis no se podrá arribar a conclusiones fundadas sobre la totalidad de los servicios de Trocafone, y que si por momentos la información parece poca para el tamaño de la empresa, siempre hay que recordar que esta solo representa el sitio web.
 
 \section{Análisis de eventos}
 
@@ -178,9 +178,9 @@ En primer lugar se analiza la métrica llamada \textit{conversion rate} o tasa d
 
 La tasa de conversión es el porcentaje de visitantes que completan un objetivo deseado (en este caso realizar una compra de celular) sobre el total de visitantes. En otras palabras es la razón entre las conversiones y el total de eventos.
 
-Tomando todos los datos del dataset dicha tasa de conversión es de \texttt{0,096}. 
-	
-Se busca analizar la evolución de la \textit{conversion rate} a lo largo del tiempo. Para ello se realiza un gráfico de la conversion rate a lo largo de las semanas del año en la figura \ref{fig:conversionrate}.
+Tomando todos los datos del dataset dicha tasa de conversión es de \texttt{0,096\%}. Si bien este número es muy bajo para la percepcion que se tiene de Trocafone, es importante recordar que estamos hablando de un subconjunto chico de la totalidad de los servicios que presta. De todas formas, este dato suelto y su magnitud no tienen mucha relevancia por si solos. La relevancia se gana cuando se compara a través del tiempo, para saber si esta aumentando o disminuyendo.
+
+Se busca analizar la evolución del \texttt{conversion rate} a lo largo del tiempo. Para ello se realiza un gráfico a lo largo de las semanas del año en la figura \ref{fig:conversionrate}.
 
 \begin{figure}[h!]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/010-conversion_rate_semana-lineplot.png}}
@@ -188,7 +188,7 @@ Se busca analizar la evolución de la \textit{conversion rate} a lo largo del ti
 	\label{fig:conversionrate}
 \end{figure}
 
-Las mayores tasas de conversiones se registran en las semanas 1,4 y 11, es decir, enero y marzo. Para observar mejor este fenómeno se realiza otro gráfico (figura \ref{fig:conversionratemonthly})que muestre la evolución de la tasa de conversión a lo largo de los meses. 
+Las mayores tasas de conversiones se registran en las semanas 1,4 y 11, es decir, enero y marzo. Para observar mejor este fenómeno se realiza otro gráfico (figura \ref{fig:conversionratemonthly}) que muestre la evolución de la tasa de conversión a lo largo de los meses. 
 
 \begin{figure}[h!]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/011-conversion_rate_mes-barplot.png}}
@@ -222,11 +222,9 @@ Otro aspecto a analizar es la cantidad de eventos producidos en cada día de la 
 	\label{fig:mesdiasnormalizado}
 \end{figure}
 
-Para realizar este gráfico los datos fueron normalizados para evitar llegar a la conclusión que el mes con una mayor cantidad de eventos es el mes con más eventos por día \footnote{Lo cual sería un error muy grave en el análisis, famosamente conocido gracias a la ecuación de de Moivre}. 
+Para realizar este gráfico los datos fueron normalizados para evitar llegar a la conclusión que los días con mayor cantidad de eventos son del mes con más eventos en total \footnote{Lo cual sería un error muy grave en el análisis}. 
 
-Se desprende del gráfico \ref{mesdiasnormalizado} que la cantidad de eventos registrada no presenta ningún comportamiento específico. Se observa que dicha cantidad aumenta en la segunda quincena de cada mes pero se considera que la diferencia con el resto de los días no tiene la magnitud suficiente como para extraer alguna conclusión fundada. 
-
-\subsubsection{Tráfico del sitio de acuerdo al mes y al día de la semana}
+Se desprende del gráfico \ref{fig:mesdiasnormalizado} que la cantidad de eventos registrada no presenta ningún comportamiento específico. Se observa que dicha cantidad aumenta en la segunda quincena de cada mes pero se considera que la diferencia con el resto de los días no tiene la magnitud suficiente como para extraer alguna conclusión fundada. 
 
 Sin haber encontrado nada acerca del número de día, se buscar ahora analizar si algún día de la semana se registra una mayor cantidad de eventos. 
 
@@ -604,6 +602,10 @@ Los canales de tráfico presentes en el dataset son:
 Lo que observamos en la figura \ref{fig:traffic} es que si el canal pago es el que más usuarios atrae, tiene una ganancia bastante razonable para la magnitud de usuarios que atrae y seguir invirtiendo en el probablemente lleve a un retorno constante y no tan significante (segun la ley de los rendimientos decrecientes). 
 
 Por otro lado son otros canales los que verdaderamente sorprenden por su porcentaje de retornos. Hay un gran retorno de parte de la presencia de las redes sociales, que puede no atraer tanto usuarios pero a los que si atrae lo hace de manera muy efectiva, y lo mismo aplica para la presencia onlina organica de Trocafone, donde se ve que si se invirtiese en procesos de SEO esto podría llevar tanto a más usuarios como más compras.
+
+\section{Conclusiones, insights y aportes a Trocafone}
+
+
 
 \newpage
 \appendix
