@@ -549,7 +549,7 @@ Notamos en el gráfico \ref{fig:sankey} varias cosas. Por empezar, dada la natur
 
 Luego, el caso de \textbf{Windows} sería trivial de analizar, siendo este un sistema operativo de computadoras sin ninguna asociación en particular a marcas de celulares (ignorando el cuasi extinto \textbf{Windows Phone}, que aparecería como la marca \textbf{Nokia} o \textbf{Microsoft}). Y como último es interesante ver los usuarios de \textbf{Linux}, que por la esencia abierta del sistema operativo y su comunidad, es peculiar ver la distribución uniforme (si bien sobre pocos datos) tanto hacia celulares \textbf{Android} como \textbf{Apple}, aún más teniendo en cuenta la fuerte tendencia a ser un sistema más cerrado de este último.
 
-\section{Análisis de Publicidad}
+\section{Análisis de publicidad}
 
 La primera pregunta que fue planteada fue la de investigar si \textbf{Trocafone} aumentó el presupuesto en publicidad en algún período de tiempo. Para ello se procede a analizar en qué meses aumentó la cantidad de visitas originadas de una campaña de marketing, información proveída por la columna \texttt{campaign source}.
 
@@ -578,6 +578,32 @@ La predicción realizada fue correcta y es tan amplia la diferencia que se elimi
 \end{figure}
 
 Se concluye de estos gráficos \ref{fig:metodopublicidad} y \ref{fig:metodopublicidadsingoogle} que el método de publicidad más eficiente es \textbf{Google}. Por lo tanto, es conveniente que \textbf{Trocafone} mantenga su contrato con el mismo para aumentar las visitas a su página. Los otros métodos de publicidad son efectivamente mucho menores y parecen no tener mucha relevancia para el tráfico del sitio. Es por esto que quizás sería necesario que \textbf{Trocafone} haga un balance entre los gastos consumidos y la ganancia obtenida con el uso de esos métodos publicitarios.
+
+\section{Análisis de canales de tráfico}
+
+Sabiendo que un usuario puede llegar desde diversos lugares, ver de donde viene es algo muy importante para saber en que lugar debe la empresa invertir. ¿Debe tener mayor presencia en las redes sociales? ¿Debe invertir en su visibilidad online mediante procesos de SEO\footnote{Search engine optimization}? 
+
+Lo que en particular nos interesa es la métricda llamada \textbf{Revenue by traffic source}, la cual se refiere no a los usuarios que vienen, si no los usuarios que vienen y hacen una conversion (compra), como una manera de representar los metodos realmente efectivos (después de todo, la efectividad de la empresa radica en que un usuario haga una conversión, no meramente entre al sitio).
+
+Los canales de tráfico presentes en el dataset son:
+\begin{itemize}
+\item \textbf{Paid: } Usuarios que llegan mediante una campaña de marketing.
+\item \textbf{Direct: } Usuarios que llegan directamente al sitio, sin ayuda externa (por ejemplo, escribiendo directamente la url en el explorador web, un marcador, un link de un documento sin tracking)
+\item \textbf{Email: } Usuarios que llegan desde un link en un email.
+\item \textbf{Organic: } Usuarios que llegan desde motores de búsqueda.
+\item \textbf{Referral: } Usuarios que llegan al sitio desde otro sitio web.
+\item \textbf{Social: } Usuarios que llegan desde redes sociales.
+\end{itemize}
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{figures/180-revenue_traffic-boxplot.png}
+	\caption{Canales de tráfico y sus ganancias}
+	\label{fig:traffic}
+\end{figure}
+
+Lo que observamos en la figura \ref{fig:traffic} es que si el canal pago es el que más usuarios atrae, tiene una ganancia bastante razonable para la magnitud de usuarios que atrae y seguir invirtiendo en el probablemente lleve a un retorno constante y no tan significante (segun la ley de los rendimientos decrecientes). 
+
+Por otro lado son otros canales los que verdaderamente sorprenden por su porcentaje de retornos. Hay un gran retorno de parte de la presencia de las redes sociales, que puede no atraer tanto usuarios pero a los que si atrae lo hace de manera muy efectiva, y lo mismo aplica para la presencia onlina organica de Trocafone, donde se ve que si se invirtiese en procesos de SEO esto podría llevar tanto a más usuarios como más compras.
 
 \newpage
 \appendix
