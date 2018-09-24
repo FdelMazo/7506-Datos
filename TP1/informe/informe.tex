@@ -251,15 +251,15 @@ El gráfico \ref{fig:mes} muestra que en los meses de mayo y junio se registró 
 
 \subsubsection{¿Por qué mayo y junio registran una mayor cantidad de eventos?}
 
-Para tratar de encontrar una respuesta a esta pregunta se centra el análisis en estos meses y se estudian los tres eventos principales del dataset: \texttt{conversion}, \texttt{checkout} y \texttt{viewed products}. Es pertinente recordar que no se dispone de todos los datos del mes de junio, sino solo los primeros 16 días.
+Para tratar de encontrar una respuesta a esta pregunta se centra el análisis en estos meses y se estudian los tres eventos principales del dataset: \texttt{conversion}, \texttt{checkout} y \texttt{viewed products}. Es pertinente recordar que no se dispone de todos los datos del mes de junio, sino solo de los primeros 16 días.
 
 \begin{figure}[h!]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/033-eventos_mayo_junio_lineplot.png}}
 	\caption{Conversiones, checkouts y viewed products a lo largo de los días del mes de mayo y junio en éscala logarítmica}
-	\label{mayojunio}
+	\label{fig:mayojunio}
 \end{figure}
 
-Los tres eventos presentan su máximo alrededor de los días 14 a 16. Como Trocafone es del país de Brasil y el mayor tráfico proviene de allí, lo cual será verificado posteriormente, se infiere que puede deberse a alguna promoción lanzada en la plataforma o en el mismo país. Esto no puede concluirse con certeza debido a la falta de información en internet y en la plataforma de promociones pasadas.
+Como se ve en la figura \ref{fig:mayojunio}, los tres eventos presentan su máximo alrededor de los días 14 a 16. Como Trocafone es del país de Brasil y el mayor tráfico proviene de allí (lo cual será verificado posteriormente) se infiere que puede deberse a alguna promoción lanzada en la plataforma o en el mismo país. Esto no puede concluirse con certeza debido a la falta de información en internet y en la plataforma de promociones pasadas.
 
 \subsubsection{Hora de mayor cantidad de conversiones y checkouts}
 
@@ -268,12 +268,12 @@ En un intento de encontrar un patrón por parte de los clientes se grafica la ca
 \begin{figure}[h!]
 	\centering
 	\begin{minipage}[b]{0.4\textwidth}
-		\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/040-hours-conversion-radarchart.png}
+		\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/041-hours-checkout-radarchart.png}
 		\caption{Conversiones a lo largo de las horas del día}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{0.4\textwidth}
-		\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/041-hours-checkout-radarchart.png}
+		\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/040-hours-conversion-radarchart.png}
 		\caption{Conversiones a lo largo de las horas del día}
 	\end{minipage}
 \end{figure}
@@ -316,7 +316,7 @@ En este apartado se busca analizar las ciudades, países y regiones de dónde pr
 	\label{fig:brazilsucks}
 \end{figure}
 
-Se corrobora en el gráfico \ref{fig:brazilrules} la teoría inicial por lo que se procedió a eliminar a Brasil del gráfico, generando el gráfico \ref{fig:brazilsucks}, para poder observar qué otros países intervienen en la página de Trocafone y en qué diferencia de magnitud y orden lo hacen. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es factible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
+Se corrobora en el gráfico \ref{fig:brazilrules} la teoría inicial de que Brasil sería el país con más visitas, por lo que se procedió a eliminarlo del gráfico, generando el gráfico \ref{fig:brazilsucks}, para poder observar qué otros países intervienen en la página de Trocafone y en qué diferencia de magnitud y orden lo hacen. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser esta una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es factible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
 
 \subsection{Regiones y ciudades de Brasil que registran mayor cantidad de eventos}
 
@@ -384,7 +384,7 @@ En esta sección se busca obtener los productos más buscados. Esta búsqueda es
 	\label{fig:searchedproduct}
 \end{figure}
 
-Se concluye con el gráfico \ref{fig:searchedproduct} que si bien \textbf{iPhone} y \textbf{Motorola} eran los términos más buscados en la plataforma, no sucede lo mismo con los productos buscados ya que todos corresponden a la marca \textbf{Samsung}. Esto puede deberse a un tema de la calidad que ofrece dicha marca o su precio, probablemente más conveniente. Los iPhone se caracterizan por tener un precio difícil de acceder por lo que es probable que sea buscado como término para ver las diferentes opciones globalmente pero que no muchas veces se busque un producto determinado de dicha marca.
+Se concluye con el gráfico \ref{fig:searchedproduct} que si bien \textbf{iPhone} y \textbf{Motorola} eran los \textit{términos} más buscados en la plataforma, no sucede lo mismo con los \textit{productos} buscados ya que todos corresponden a la marca \textbf{Samsung}. Esto puede deberse a un tema de la calidad que ofrece dicha marca o su precio, probablemente más conveniente. Los iPhone se caracterizan por tener un precio difícil de acceder por lo que es probable que sea buscado como término para ver las diferentes opciones globalmente pero que no muchas veces se busque un producto determinado de dicha marca.
 
 \section{Análisis de modelos} \label{modelo}
 
@@ -398,23 +398,23 @@ La primera pregunta a hacerse acerca de los celulares es si hay alguna relación
 	\begin{center}
 		\begin{tabular}{|l|}
 			\hline
-			modelo \\
+			modelos prominentes a analizar \\
 			\hline \hline
-			Samsung Galaxy J5 \\
-			Samsung Galaxy S6 Flat \\
-			Samsung Galaxy S7 \\
-			Samsung Galaxy S7 Edge \\
-			iPhone 5s \\
-			iPhone 6 \\
-			iPhone 6S \\
-			iPhone 7
+			Samsung Galaxy J5 \\ \hline
+			Samsung Galaxy S6 Flat \\ \hline
+			Samsung Galaxy S7 \\ \hline
+			Samsung Galaxy S7 Edge \\ \hline
+			iPhone 5s \\ \hline
+			iPhone 6 \\ \hline
+			iPhone 6S \\ \hline
+			iPhone 7 \\ \hline
 		\end{tabular}
 		\caption{Subconjunto de modelos prominentes}
 		\label{table:modelos_prominentes}
 	\end{center}
 \end{table}
 
-Entonces, se comienza decidiendo un subconjunto de modelos a analizar, para tener una muestra del sitio. Este set, presentado en la tabla \ref{table:modelos_prominentes}, está generado teniendo en cuenta y uniendo los celulares más vistos (\texttt{viewed product}) con los más "llevados al carrito" (\texttt{checkout}) con los más comprados (\texttt{conversion}). Esto es porque de analizar los eventos y los modelos se ve que los eventos (relevantes \footnote{se descarta del análisis el evento \texttt{lead} por no ser relevante al caso}) que tienen un modelo asociado son esos tres, y así se piensa la cronología ordenada ideal de eventos desde el punto de vista de un modelo:
+Entonces, se comienza decidiendo un subconjunto de modelos a analizar, para tener una muestra del sitio. Este set, presentado en la tabla \ref{table:modelos_prominentes}, está generado teniendo en cuenta y uniendo los celulares más vistos (\texttt{viewed product}) con los más "llevados al carrito" (\texttt{checkout}) con los más comprados (\texttt{conversion}). Esto es porque de analizar los eventos y los modelos se ve que los eventos (más relevantes\footnote{se descarta del análisis el evento \texttt{lead} por no ser relevante al caso}) que tienen un modelo asociado son esos tres, y es así como se modela la cronología ordenada ideal de eventos desde el punto de vista de un dispositivo:
 
 \begin{enumerate}
 \item \textbf{\texttt{viewed product}: Visitar un producto.}
@@ -440,11 +440,11 @@ Lo que no se notó en el primer gráfico fue alguna relación directa entre las 
 
 En el gráfico \ref{fig:prominentesrank} se puede ver el ranking de cada celular dependiendo de su evento. Mientras más alto el celular, más eventos tiene. Si bien este gráfico esquiva los números exactos, sirve para ver la posición de cada celular respecto de los otros. Lo que se nota acá es similar a lo dicho anteriormente, a mayor calidad de celular, más visitas, pero esto conlleva mayor precio y por ende menos compras. Algunos casos en particular a ver son el \textbf{Samsung Galaxy J5} y el \textbf{Samsung Galaxy S6 Flat} que son de los celulares menos buscados pero a su vez de los más comprados, y como caso inverso presentado, se ve que el \textbf{iPhone 6} y \textbf{iPhone 7} cumplen el rol opuesto, siendo de los celulares más vistos pero menos comprados.
 
-También, hay una pequeña relación a destacar de las marcas de celulares, donde de los 8 modelos analizados, los 4 celulares más buscados son los de marca \textbf{Apple} y los 4 menos son los de su rival, mientras que en la compra pasa (casi) exactamente lo inverso. Se podría presentar un caso de que el análisis de a mayor calidad y precio hay más vistas y menos compras no solo aplica para modelos si no que también para marcas en general, pero esto excede al trabajo presentado.
+También, hay una pequeña relación a destacar de las marcas de celulares, donde de los 8 modelos analizados, los 4 celulares más buscados son los de marca \textbf{Apple} y los 4 menos buscados son los de su rival, mientras que en la compra pasa (casi) exactamente lo inverso. Se podría presentar un caso de que el análisis de a mayor calidad y precio hay más vistas y menos compras no solo aplica para modelos si no que también para marcas en general, pero esto excede al trabajo presentado.
 
 \subsection{Relación entre celulares y sus condiciones}
 
-Habiendo encontrado un tan rico análisis entre eventos y celulares, se busca con el mismo objetivo una relación entre la condición de uso del celular y su tráfico. Trocafone clasifica los celulares reacondicionados en \textbf{Bueno}, \textbf{Muy Bueno} y \textbf{Excelente}. Queremos encontrar un patrón de compra y visita de los modelos analizados previamente, pero esta vez según condición.
+Habiendo encontrado un tan rico análisis entre eventos y celulares, se busca con el mismo objetivo una relación entre la condición de uso del celular y su tráfico. Trocafone clasifica los celulares reacondicionados en \textbf{Bueno}, \textbf{Muy Bueno} y \textbf{Excelente} (no se tienen en cuenta los celulares de conidición \textbf{Nuevo} en el presente análisis). Queremos encontrar un patrón de compra y visita de los modelos analizados previamente, pero esta vez según condición.
 
 \begin{figure}[h!]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/10-condicion-stackedbarplot.png}}
@@ -466,7 +466,7 @@ Para concluir la sección se muestran en el gráfico \ref{fig:colores} los color
 
 \section{Análisis de páginas estáticas}
 
-Se propone comparar la cantidad de visitas al \texttt{FAQ} \footnote{Frequently Asked Questions: lista de preguntas y respuestas que surgen comúnmente en un contexto determinado.} con las de \texttt{Customer Service}.
+Se propone comparar la cantidad de visitas al \texttt{FAQ}\footnote{Frequently Asked Questions: lista de preguntas y respuestas que surgen comúnmente en un contexto determinado.} con las de \texttt{Customer Service}.
 
 \begin{figure}[h!]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/12-static_pages-barplot.png}}
@@ -525,7 +525,7 @@ Se observa en el gráfico \ref{fig:brands} que la relación checkout-conversions
 Se busca analizar en esta sección desde qué tipo de dispositivos suelen acceder los clientes a la página de Trocafone.
 
 \begin{figure}[h!]
-	\includegraphics[width=\linewidth]{figures/15-eventos_tipo-barplot.png}
+	\includegraphics[width=\linewidth]{figures/150-eventos_tipo-barplot.png}
 	\caption{Cantidad de eventos de acuerdo al dispositivo utilizado}
 	\label{fig:dispositivos}
 \end{figure}
@@ -611,12 +611,12 @@ Washu washu.
 
 \section{Ejecución}
 
-El trabajo fue realizado en Anaconda \footnote{\url{https://anaconda.org/}}. Para poder replicar el trabajo, hay que también instalar las siguientes librerías adicionales:
+El trabajo fue realizado en Anaconda\footnote{\url{https://anaconda.org/}}. Para poder replicar el trabajo, hay que también instalar las siguientes librerías adicionales:
 
 \begin{itemize}
-	\item{Squarify \footnote{\url{https://github.com/laserson/squarify}}: Para los treemaps.}
-	\item{Geopandas \footnote{\url{http://geopandas.org/}}: Para poder graficar sobre mapas geográficos.}
-	\item{Wordcloud \footnote{\url{https://github.com/amueller/word_cloud/}}: Para poder visualizar los términos más buscados.}
+	\item{Squarify\footnote{\url{https://github.com/laserson/squarify}}: Para los treemaps.}
+	\item{Geopandas\footnote{\url{http://geopandas.org/}}: Para poder graficar sobre mapas geográficos.}
+	\item{Wordcloud\footnote{\url{https://github.com/amueller/word_cloud/}}: Para poder visualizar los términos más buscados.}
 \end{itemize}
 
 Estos pueden ser instalados con los siguientes comandos: 
@@ -628,6 +628,6 @@ conda install -c conda-forge wordcloud
 
 \section{Datasets adicionales incoporados para el análisis}
 
-Se utiliza adicionalmente un dataset del mapa de Brasil y sus ciudades, para el análisis geográfico. Este fue sacado de  Geonames \footnote{\url{http://www.geonames.org/}}, una base de datos publica de paises y regiones del mundo.
+Se utiliza adicionalmente un dataset del mapa de Brasil y sus ciudades, para el análisis geográfico. Este fue sacado de  Geonames\footnote{\url{http://www.geonames.org/}}, una base de datos publica de paises y regiones del mundo.
 
 \end{document}
