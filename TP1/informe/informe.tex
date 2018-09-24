@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{float}
-\usepackage{fancyhdr,graphicx,listings,amsmath}
+\usepackage{fancyhdr,graphicx,listings,amsmath,tocloft}
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref}
 
 \newcommand{\materia}{[75.06 / 95.58] Organización de Datos}
@@ -14,6 +14,7 @@
 \newcommand{\grupo}{Grupo Datatouille}
 \newcommand{\repo}{https://github.com/FdelMazo/7506-Datos/}
 \newcommand{\kernel}{https://kaggle.com/datatouille2018/7506-TP1/}
+\newcommand{\kernanexo}{https://kaggle.com/datatouille2018/7506-TP1-anexo/}
 \newcommand{\alumnos}{
     Bojman, Camila & 101055 &  camiboj@gmail.com\\
     del Mazo, Federico & 100029 & delmazofederico@gmail.com\\
@@ -33,6 +34,8 @@
 	pdfsubject={\materia},
 	pdfauthor={\grupo},
 }
+
+\setlength{\cftbeforesecskip}{6pt}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -65,8 +68,9 @@
 	\hline
 	\end{tabular}
     \begin{flushleft} 
-    \url{\repo} \\
-    \url{\kernel}
+    \large{\url{\repo}} \\
+    \large{\url{\kernel}} \\
+	\large{\url{\kernanexo}}
     \end{flushleft}
     \vskip1cm
     \end{center}
@@ -139,14 +143,15 @@ Los atributos son:
 Es en este momento del análisis donde se tienen que hacer las configuraciones necesarias sobre el set de datos para poder trabajar mejor más tarde. Las operaciones realizadas incluyen:
 
 \begin{itemize}
-\item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (qué atributo es numérico, qué atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener específicamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo `timestamp` como una variable del tipo `\texttt{`}.       \item \textbf{Lidiar con los nulos}: NPor motivos obvios, no todos los registros tienen todos los atributos completos, por motivos obvios (por ejemplo, un evento de compra de producto no tiene asociado una búsqueda de palabras). En la transformación de tipos hay que lidiar con estos, y se tomaron decisiones comode truncamiento o transformación. Una decisión tomada fue que el SKU de un producto `\texttt{Not a Number`} es el SKU `\texttt{0.0`}, así permitiendo que el atributo SKU sea numérico.
+\item \textbf{Conversión de tipo de datos}: Teniendo en cuenta que al cargar el set original no se infiere el tipo de cada dato (qué atributo es numérico, qué atributo es categórico, etc), se convierten los datos para tratarlos por su tipo original. Esto tiene como ventaja principal el ahorrar memoria, ya que en vez de tener variables que almacenan objetos genéricos (y ocupan un bloque genérico de memoria) ahora se pueden tener específicamente categorías, números, valores booleanos y más. Un particular caso que es de gran ayuda es el de tratar el atributo \texttt{timestamp} como una variable del tipo \texttt{datetime}. 
+\item \textbf{Lidiar con los nulos}: Por motivos obvios, no todos los registros tienen todos los atributos completos, por motivos obvios (por ejemplo, un evento de compra de producto no tiene asociado una búsqueda de palabras). En la transformación de tipos hay que lidiar con estos, y se tomaron decisiones comode truncamiento o transformación. Una decisión tomada fue que el SKU de un producto \texttt{Not a Number} es el SKU \texttt{0.0}, así permitiendo que el atributo SKU sea numérico.
 \item \textbf{Data Mining}: Se generan nuevos sets de datos y se extraen atributos importantes de los proporcionados. Por ejemplo, dividir el atributo de tiempo en atributos de mes, día y hora.
-\item \textbf{Limpieza de datos}: Cuando un dato es inválido de entrada es necesario tomar una decisión al respecto. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados. También fueron eliminados los registros cuya sesión (explicado a continuación) sólo contenía de un evento de conversión, ya que no tiene sentido que esto ocurra sin pasar previamente por Checkout.
+\item \textbf{Limpieza de datos}: Cuando un dato es inválido de entrada es necesario tomar una decisión al respecto. En este caso tomamos como un error de tracking cuando la misma venta es registrada dos veces por el mismo usuario en un corto plazo de tiempo, ya que se toma como algo muy improbable. Estos registros son eliminados. También fueron eliminados los registros cuya sesión (explicado a continuación) sólo contenía un evento de \texttt{conversión}, ya que no tiene sentido que esto ocurra sin pasar previamente por \texttt{checkout}.
 \end{itemize}
 
 \subsection{Sesiones}
 
-Se agregó el concepto de sesión. Que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de inactividad entre el actual y el anterior.
+Se agregó el concepto de sesión, que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de inactividad entre el actual y el anterior.
 
 Esto se realizó para poder entender los pasos que lleva a un usuario a comprar un producto, y poder ver de dónde proviene ĺa mayoría del tráfico del sitio.
 
@@ -190,10 +195,7 @@ Tomando todos los datos del dataset dicha tasa de conversión es de \texttt{0,09
 	
 Se busca analizar la evolución de la \textit{conversion rate} a lo largo del tiempo. Para ello se realiza un gráfico de la conversion rate a lo largo de las semanas del año en el gráfico \ref{fig:conversionrate}.
 
-\newpage
-\vfill
-
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/010-conversion_rate_semana-lineplot.png}}
 	\caption{Tasa de conversión a lo largo de las semanas del año}
 	\label{fig:conversionrate}
@@ -201,7 +203,7 @@ Se busca analizar la evolución de la \textit{conversion rate} a lo largo del ti
 
 Las mayores tasas de conversiones se registran en las semanas 1,4 y 11, es decir, enero y marzo. Para observar mejor este fenómeno se realiza otro gráfico (\ref{fig:conversionratemonthly}) que muestre la evolución de la tasa de conversión a lo largo de los meses. 
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/011-conversion_rate_mes-barplot.png}}
 	\caption{Tasa de conversión a lo largo de los meses del año}
 	\label{fig:conversionratemonthly}
@@ -209,14 +211,11 @@ Las mayores tasas de conversiones se registran en las semanas 1,4 y 11, es decir
 
 Se refuerza la teoría de que enero y marzo fueron los meses de mayor tasa de conversión. Así mismo, dicha tasa se mantiene estable por 4 meses para luego tener una baja en los meses de mayo y junio. Más adelante se analizarán estos dos meses en profundidad.
 
-\newpage
-\vfill
-
 \subsection{Frecuencia de eventos}
 
 Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se grafica la cantidad registrada de eventos en función de los distintos tipos de eventos.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/02-eventos-barplot.png}}
 	\caption{Frecuencia de eventos}
 	\label{fig:freqeventos}
@@ -224,16 +223,13 @@ Se analiza qué tipo de evento es el más frecuente en el dataset. Para ello se 
 
 Se observa en el gráfico \ref{fig:freqeventos} que la mayor cantidad de eventos se relacionan a la vista de un producto, lo cual era previsible ya que Trocafone es una plataforma de e-commerce y ver productos constituye su principal función como sitio.
 
-\vfill
-\clearpage
-
 \subsection{Evolución de los eventos a través del tiempo}
 
 \subsubsection{Tráfico del sitio de acuerdo al mes y al día}
 
 Otro aspecto a analizar es la cantidad de eventos producidos en cada día de la semana y del mes. Se busca detectar si se mantiene algún comportamiento específico a lo largo de los meses o si la cantidad de eventos registrada depende de algún factor temporal. Un patron esperado a encontrar es el de si hay más visitas o compras de celular en las primeras semanas del mes, lo cual coincidiría con el pago de sueldos mensuales.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/030-eventos_segun_mes-heatmap.png}}
 	\caption{Eventos segun mes y día}
 	\label{fig:mesdiasnormalizado}
@@ -243,16 +239,13 @@ Para realizar este gráfico los datos fueron normalizados para evitar llegar a l
 
 Se desprende del gráfico \ref{fig:mesdiasnormalizado} que la cantidad de eventos registrada no presenta ningún comportamiento específico. Se observa que dicha cantidad aumenta en la segunda quincena de cada mes pero se considera que la diferencia con el resto de los días no tiene la magnitud suficiente como para extraer alguna conclusión fundada. 
 
-\newpage
-\vfill
-
 \subsubsection{Tráfico del sitio de acuerdo al mes y al día de la semana}
 
 Sin haber encontrado nada acerca del número de día, se buscar ahora analizar si algún día de la semana se registra una mayor cantidad de eventos. 
 
 Se realiza el gráfico \ref{fig:messemanasnormalizado} del mismo estilo que el anterior y se normaliza por las mismas razones.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/031-eventos_segun_dow-heatmap.png}}
 	\caption{Eventos segun mes y día}
 	\label{fig:messemanasnormalizado}
@@ -260,14 +253,11 @@ Se realiza el gráfico \ref{fig:messemanasnormalizado} del mismo estilo que el a
 
 Es notable que durante los días hábiles de la semana el tráfico es mucho mayor que al fin de semana. Esto puede deberse a que los fines de semana suelen ser días de descanso, donde la gente puede no estar pensando en realizar una compra, además de no poder retirarla. En la semana aumenta el tráfico debido a que el envío o el retiro del celular puede realizarse en el momento.
 
-\newpage
-\vfill
-
 \subsubsection{Tráfico del sitio según mes}
 
 Habiendo analizado las semanas, ahora se hace un enfoque más global, buscando patrones de tráfico según el mes. En este apartado se busca analizar si en algún mes se registró una mayor cantidad de eventos o si la distribución de las visitas fue uniforme a lo largo del tiempo.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/032-eventos_segun_mes-barplot.png}}
 	\caption{Eventos segun mes}
 	\label{fig:mes}
@@ -279,7 +269,7 @@ El gráfico \ref{fig:mes} muestra que en los meses de mayo y junio se registró 
 
 Para tratar de encontrar una respuesta a esta pregunta se centra el análisis en estos meses y se estudian los tres eventos principales del dataset: \texttt{conversion}, \texttt{checkout} y \texttt{viewed products}. Es pertinente recordar que no se dispone de todos los datos del mes de junio, sino solo de los primeros 16 días.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/033-eventos_mayo_junio_lineplot.png}}
 	\caption{Conversiones, checkouts y viewed products a lo largo de los días del mes de mayo y junio en éscala logarítmica}
 	\label{fig:mayojunio}
@@ -291,7 +281,7 @@ Como se ve en la figura \ref{fig:mayojunio}, los tres eventos presentan su máxi
 
 En un intento de encontrar un patrón por parte de los clientes se grafica la cantidad de conversiones y de checkouts en función de las horas del día. Se busca determinar la hora en la que ambas confluyan en su máximo para analizar el motivo por el que dicha hora registra mayor tráfico.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\centering
 	\begin{minipage}[b]{0.4\textwidth}
 		\includegraphics[width=6cm,height=6cm,keepaspectratio]{figures/041-hours-checkout-radarchart.png}
@@ -316,7 +306,7 @@ Se propone analizar la cantidad de eventos producidos por usuario. Se confeccion
 \end{itemize}
 
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/191-usuarios_eventos_truncado-boxplot.png}}
 	\caption{Distribución de los eventos agrupados por usuario}
 	\label{fig:boxplot}
@@ -330,13 +320,13 @@ En este apartado se busca analizar las ciudades, países y regiones de dónde pr
 
 \subsection{Países que registran mayor cantidad de eventos} 
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/050-paises_visitas-treemap.png}}
 	\caption{Países de mayor tráfico de la página}
 	\label{fig:brazilrules}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/051-paises_visitas_sin_brazil-treemap.png}}
 	\caption{Países de mayor tráfico de la página sin contar a Brasil}
 	\label{fig:brazilsucks}
@@ -344,20 +334,17 @@ En este apartado se busca analizar las ciudades, países y regiones de dónde pr
 
 Se corrobora en el gráfico \ref{fig:brazilrules} la teoría inicial de que Brasil sería el país con más visitas, por lo que se procedió a eliminarlo del gráfico, generando el gráfico \ref{fig:brazilsucks}, para poder observar qué otros países intervienen en la página de Trocafone y en qué diferencia de magnitud y orden lo hacen. Estados Unidos supera en una amplia cantidad la influencia en la página a Argentina, a pesar de ser esta una de las sedes de la empresa. Esto puede explicarse debido a que la gran mayoría de los eventos no son conversiones, por lo tanto es factible que cualquier persona de los Estados Unidos busque celulares en la plataforma, sin llegar a registrar un evento de tipo \texttt{checkout} o \texttt{conversión}.
 
-\clearpage
-
-
 \subsection{Regiones y ciudades de Brasil que registran mayor cantidad de eventos}
 
 Se procede a analizar qué ciudades y regiones de Brasil son las que registran mayor cantidad de eventos. Para ello se grafica las regiones con una mayor cantidad de visitas. Se observa que las tres regiones con la mayor cantidad de eventos (San Pablo, Minas Gerais y Rio de Janeiro) están sobre la costa del sudeste. Para visualizar esto de una mejor manera se realiza un gráfico que muestra las ciudades de Brasil más visitadas y se verifica que la mayoría de los eventos se producen sobre la costa sudeste.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/060-regiones_brazil-barplot.png}}
 	\caption{Regiones de Brasil con mayor cantidad de eventos}
 	\label{fig:regionsbrasil}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/061-ciudades_brazil-choropleth.png}}
 	\caption{Ciudades de Brasil con mayor cantidad de eventos}
 	\label{fig:citybrasil}
@@ -378,7 +365,7 @@ La idea de este apartado radica en analizar los términos que buscan los usuario
 
 Se realiza un gráfico para visualizar a grandes rasgos los términos más buscados por los usuarios. Se busca tener una idea aproximada de los modelos de celular más requeridos o deseados por los usuarios. Figuran en el gráfico los términos que fueron buscados como mínimo 300 veces, un número impuesto para fijar un límite mínimo de búsquedas para que un término sea considerado de los más buscados. De no fijar este límite el gráfico estaría sobrecargado y sería difícil de interpretar.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/07-search_terms-wordcloud.png}}
 	\caption{Términos más buscados por los usuarios de Trocafone}
 	\label{fig:searchedterm}
@@ -390,7 +377,7 @@ Los términos más buscados (vistos en el gráfico \ref{fig:searchedterm}) son \
 
 En esta sección se busca obtener los productos más buscados. Esta búsqueda es más específica que la anteriormente mencionada debido a que corresponde a un producto puntual, no el nombre de su marca, buscado por la interfaz del sitio. De esta manera los productos más buscados son los que se detallan en la tabla \ref{table:sencilla} y se representan en el gráfico que le sigue.
 
-\begin{table}[h!]
+\begin{table}[!h]
 	\begin{center}
 		\begin{tabular}{|l|l|}
 			\hline
@@ -407,7 +394,7 @@ En esta sección se busca obtener los productos más buscados. Esta búsqueda es
 	\end{center}
 \end{table}
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/08-skus_buscados-barplot.png}}
 	\caption{Productos más buscados por los usuarios de Trocafone}
 	\label{fig:searchedproduct}
@@ -423,7 +410,7 @@ Pasadas las exploraciones enfocadas sobre el sitio web en sí, como sus busqueda
 
 La primera pregunta a hacerse acerca de los celulares es si hay alguna relación directa entre ver un modelo, decidir comprarlo y efectivamente comprar ese mismo modelo. La pregunta surge de la inquietud de si hay efectividad una vez visto el celular. Por ejemplo, puede darse que alguien vea un celular, lo compare y termine comprando otro, o puede darse que uno entre a visitar la página dedicada a un modelo, vea el precio o la condición y decida mejor optar por otra alternativa.
 
-\begin{table}[h!]
+\begin{table}[!h]
 	\begin{center}
 		\begin{tabular}{|l|}
 			\hline
@@ -445,15 +432,13 @@ La primera pregunta a hacerse acerca de los celulares es si hay alguna relación
 
 Entonces, se comienza decidiendo un subconjunto de modelos a analizar, para tener una muestra del sitio. Este set, presentado en la tabla \ref{table:modelos_prominentes}, está generado teniendo en cuenta y uniendo los celulares más vistos (\texttt{viewed product}) con los más "llevados al carrito" (\texttt{checkout}) con los más comprados (\texttt{conversion}). Esto es porque de analizar los eventos y los modelos se ve que los eventos (más relevantes\footnote{se descarta del análisis el evento \texttt{lead} por no ser relevante al caso}) que tienen un modelo asociado son esos tres, y es así como se modela la cronología ordenada ideal de eventos desde el punto de vista de un dispositivo:
 
-\clearpage
-
 \begin{enumerate}
 \item \textbf{\texttt{viewed product}: Visitar un producto.}
 \item \textbf{\texttt{checkout}: Decidir comprarlo.}
 \item \textbf{\texttt{conversion}: Efectivamente comprarlo.}
 \end{enumerate}
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/090-modelos_eventos-stackedbarplot.png}}
 	\caption{Cronología de eventos de una muestra de modelos analizados}
 	\label{fig:prominentes}
@@ -463,7 +448,7 @@ Primero, en el gráfico \ref{fig:prominentes} se analiza como varían los tres e
 
 Lo que no se notó en el primer gráfico fue alguna relación directa entre las marcas de los celulares analizados, en particular si hay algun patrón de \textbf{Apple} vs \textbf{Samsung}.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/091-rankings_celulares-rank.png}}
 	\caption{Ranking de modelos prominentes según evento}
 	\label{fig:prominentesrank}
@@ -477,7 +462,7 @@ También, hay una pequeña relación a destacar de las marcas de celulares, dond
 
 Habiendo encontrado un tan rico análisis entre eventos y celulares, se busca con el mismo objetivo una relación entre la condición de uso del celular y su tráfico. Trocafone clasifica los celulares reacondicionados en \textbf{Bueno}, \textbf{Muy Bueno} y \textbf{Excelente} (no se tienen en cuenta los celulares de conidición \textbf{Nuevo} en el presente análisis). Queremos encontrar un patrón de compra y visita de los modelos analizados previamente, pero esta vez según condición.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/10-condicion-stackedbarplot.png}}
 	\caption{Eventos en modelos según condición}
 	\label{fig:prominentescondicion}
@@ -487,7 +472,7 @@ Lo que vemos nuevamente, esta vez en el gráfico \ref{fig:prominentescondicion} 
 
 \subsection{Colores de dispositivos}
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/11-colores-bubbleplot.png}}
 	\caption{Colores con más tráfico}
 	\label{fig:colores}
@@ -499,7 +484,7 @@ Para concluir la sección se muestran en el gráfico \ref{fig:colores} los color
 
 Se propone comparar la cantidad de visitas al \texttt{FAQ}\footnote{Frequently Asked Questions: lista de preguntas y respuestas que surgen comúnmente en un contexto determinado.} con las de \texttt{Customer Service}, para poder analizar la forma que tiene \textbf{Trocafone} de brindar soporte a sus usuarios.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/12-static_pages-barplot.png}}
 	\caption{Comparación entre cantidad de visitas al FAQ y a Customer Service}
 	\label{fig:staticpage}
@@ -511,7 +496,7 @@ Del gráfico \ref{fig:staticpage} se ve que la cantidad de visitas a \texttt{Cus
 
 En esta sección se busca determinar la proporción de usuarios del sitio que entraron una sola vez a la página y no volvieron a hacerlo. Para ello se grafica en un primer lugar la cantidad de usuarios calificados como \texttt{New} contra los que son calificados como \texttt{Returning}.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/130-eventos_new_returning-barplot.png}}
 	\caption{Comparación entre cantidad de usuarios que entran por primera vez al sitio contra los que volvieron}
 	\label{fig:newvsreturningfalse}
@@ -521,7 +506,7 @@ Es necesario remarcar que el gráfico \ref{fig:newvsreturningfalse} no es repres
 
 Se realiza el recorte necesario para obtener una visualización que refleje fiablemente la cantidad de visitantes que entra al sitio una sola vez contra los que vuelven otras veces. 
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/131-tipos_usuarios-barplot.png}}
 	\caption{Comparación entre cantidad de usuarios que entran por primera vez al sitio contra los que volvieron}
 	\label{fig:newvsreturning}
@@ -533,7 +518,7 @@ Se observa en el gráfico \ref{fig:newvsreturning} que la tasa de personas que e
 
 Se busca determinar qué marcas son las que reúnen la mayor cantidad de eventos. Esto puede ser ya sea porque son las marcas más compradas, más buscadas o más vistas, entre otros eventos. Este análisis es más bien global ya que no es específico a un evento determinado.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/141-eventos_marca-barplot.png}}
 	\caption{Cantidad de eventos según marca}
 	\label{fig:freqbrands}
@@ -543,7 +528,7 @@ Se conserva el comportamiento presentado en la sección \ref{busq} con respecto 
 
 Ahora se busca analizar cuáles marcas son las que realizan una cantidad pareja de checkouts y conversiones. Siguiendo la linea de razonamiento en la sección \ref{modelo} se predice que las marcas que venden celulares a precios elevados como \textbf{Apple} van a mostrar una cantidad mayor de checkouts que conversiones. Así mismo, las marcas que mantienen un precio más accesible van a tener ambas cantidades más parejas. 
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\includegraphics[width=\linewidth]{figures/142-conversiones_checkouts_marca-barplot.png}
 	\caption{Checkouts vs conversiones según marca en éscala logarítmica}
 	\label{fig:brands}
@@ -555,7 +540,7 @@ Se observa en el gráfico \ref{fig:brands} que la relación checkout-conversions
 
 Se busca analizar en esta sección desde qué tipo de dispositivos suelen acceder los clientes a la página de Trocafone.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\includegraphics[width=\linewidth]{figures/150-eventos_tipo-barplot.png}
 	\caption{Cantidad de eventos de acuerdo al dispositivo utilizado}
 	\label{fig:dispositivos}
@@ -567,7 +552,7 @@ Lo siguiente a analizar es la fidelidad de los usuarios a sus dispositivos actua
 
 Para poner un ejemplo de fidelidad, un usuario fiel sería quien entra desde una computadora \textbf{Mac} y solo busca para comprarse el \textbf{iPhone} vigente, mientras que un usuario que entra desde \textbf{Android} y decide comprar un \textbf{iPhone} es uno que no es fiel a su marca/sistema operativo actual.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\includegraphics[width=\linewidth]{figures/151-os_brands-sankey.png}
 	\caption{Diagrama de flujo de fidelidad de usuarios}
 	\label{fig:sankey}
@@ -581,7 +566,7 @@ Luego, el caso de \textbf{Windows} sería trivial de analizar, siendo este un si
 
 La primera pregunta que fue planteada fue la de investigar si \textbf{Trocafone} aumentó el presupuesto en publicidad en algún período de tiempo. Para ello se procede a analizar en qué meses aumentó la cantidad de visitas originadas de una campaña de marketing, información proveída por la columna \texttt{campaign source}.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\includegraphics[width=\linewidth]{figures/16-presupuesto-barplot.png}
 	\caption{Cantidad de visitas provenientes de una campaña de publicidad de acuerdo al mes}
 	\label{fig:publicidad}
@@ -593,10 +578,7 @@ La observación del gráfico \ref{fig:publicidad} no permite extraer ninguna con
 
 Se procede a analizar cuáles son los metodos de publicidad más usados. Se puede predecir que será \textbf{Google} debido a su importancia mundial como motor de búsqueda. Una vez verificado esto, se elimina del gráfico para observar los otros métodos de publicidad contratados.
 
-\newpage
-\clearpage
-
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\includegraphics[width=\linewidth]{figures/170-publicidad_clickeada-barplot.png}
 	\caption{Métodos de publicidad que generan visitas en Trocafone}
 	\label{fig:metodopublicidad}
@@ -610,12 +592,9 @@ Se procede a analizar cuáles son los metodos de publicidad más usados. Se pued
 
 Se concluye de estos gráficos \ref{fig:metodopublicidad} y \ref{fig:metodopublicidadsingoogle} que el método de publicidad más eficiente es \textbf{Google}. Por lo tanto, es conveniente que \textbf{Trocafone} mantenga su contrato con el mismo para aumentar las visitas a su página. Los otros métodos de publicidad son efectivamente mucho menores y parecen no tener mucha relevancia para el tráfico del sitio. Es por esto que quizás sería necesario que \textbf{Trocafone} haga un balance entre los gastos consumidos y la ganancia obtenida con el uso de esos métodos publicitarios.
 
-\vfill
-\clearpage
-
 \subsection{Funnel por publicidad}
 
-Habiendo obtenido las sesiones por usuario, se puede observar de donde como se inicia cada una. Para esto se generó un \textit{Funnel} que no solo indica la cantidad de tráfico por cada paso (en escala logarítmica), sino que también muestra la proporción del mismo que proviene de una campaña publicitaria.
+Habiendo obtenido las sesiones por usuario, se puede observar como se inicia cada una. Para esto se generó un \textit{funnel} que no solo indica la cantidad de tráfico por cada paso, sino que también muestra la proporción del mismo que proviene de una campaña publicitaria.
 
 \begin{figure}[!h]
 	\includegraphics[width=\linewidth]{figures/200-advertisement-funnel.png}
@@ -623,7 +602,7 @@ Habiendo obtenido las sesiones por usuario, se puede observar de donde como se i
 	\label{fig:funnel}
 \end{figure}
 
-El gráfico \ref{fig:funnel} muestra que si bien casi la mitad del tráfico proviene de \textit{advertising} tanto para \textit{viewed product} como para \textit{checkout}, el ratio cae mucho en la etapa de \textit{conversion}, donde menos de el 15\% del tráfico de esta fuente termina en una compra.
+El gráfico \ref{fig:funnel} muestra que si bien casi la mitad del tráfico proviene de \textit{advertising} tanto para \textit{viewed product} como para \textit{checkout}, la razon cae mucho en la etapa de \textit{conversion}, donde menos de el 15\% del tráfico de esta fuente termina en una compra.
 
 \section{Análisis de canales de tráfico}
 
@@ -641,7 +620,7 @@ Los canales de tráfico presentes en el dataset son:
 \item \textbf{Social: } Usuarios que llegan desde redes sociales.
 \end{itemize}
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\includegraphics[width=\linewidth]{figures/180-revenue_traffic-boxplot.png}
 	\caption{Canales de tráfico y sus ganancias}
 	\label{fig:traffic}
@@ -653,34 +632,42 @@ Por otro lado son otros canales los que verdaderamente sorprenden por su porcent
 
 
 
-\section{Insights y conclusiones}
+\section{Conclusiones}
 
 Antes de presentar las conclusiones obtenidas a partir del análisis del dataset presentado es necesario volver a remarcar que los datos no representan el total de datos de la empresa \textbf{Trocafone}. Se descubrió que los únicos datos presentados eran de clientes que habían realizado al menos un \texttt{checkout}, por lo que mínimamente se detecta un truncamiento allí. Cabe la posibilidad de que se haya truncado con algún otro criterio que no se haya detectado con el análisis presentado. Además, los datos corresponden a la página web de Trocafone, por lo que no constituye el total de datos de ventas de la empresa, que también se encargan de vender a otros proveedores.
 
 Este recordatorio tan reiterado no deja de ser sumamente importante, de tener más datos (como por ejemplo un semestre en su totalidad, sin truncamientos) se podría hacer un análisis más a pleno, ni hablar de si se tuviesen más atributos, ya que una de las dificultades encontradas en el trabajo fue la falta de atributos numéricos, dependiendo solamente de contar valores (por ejemplo, un dato sumamente rico en información es el precio de venta, o poder decir más del usuario como su edad y/o sexo).
 
-Ahora sí, en primer lugar se considera que de la cantidad de conversiones detectada en el set de datos no puede extraerse alguna conclusión en cuanto a cuan bien o mal le fue a la empresa en el semestre, por falta de conocimiento y manejo del dominio (plataformas de e-commerce en el rubro de celulares). Otro lugar donde se ve la falta de dominio es en el no poder explicar la cantidad de registros de mayo (considerablemente mayor al resto de los meses). De tener mayor conocimiento del estado de Brasil (puede ser producto de política), de la industría de la tecnólogia celular (constantemente hay nuevos lanzamientos de celulares que incentivan vender el previamente usado, leyes que influyen tanto para bien como para mal la compra/venta y demás) o de \textbf{Trocafone} en sí (por ejemplo, un lanzamiento de descuentos o promociones) se tendrían más recursos para poder explicar lo que a simple vista parece una anomalía. En cambio, si se ha podido analizar en su lugar la comparación \textit{checkout vs conversiones vs viewed products} a lo largo de diferentes parámetros como marcas de celulares o períodos de tiempo, mostrando como el sitio web cumple o no su objetivo de mantener a los usuarios y hacerlos comprar por allí.
+\subsection{Insights}
 
-Se ha podido analizar en su lugar la comparación \textit{checkout vs conversiones vs viewed products} a lo largo de diferentes parámetros como marcas de celulares o períodos de tiempo. Del análisis de la cantidad de eventos mencionados previamente en función de las marcas de celulares se concluye que las marcas que tienen un precio más accesible como lo puede ser \textbf{Samsung} eran de las menos vistas pero de las más compradas. Asímismo, las marcas con un precio más elevado como \textbf{Apple} eran de las más vistas pero de las menos compradas. Esta era una situación prevista de antemano debido a que la calidad del producto de mayor precio atrae visitas pero su precio aleja las compras. Asímismo, un celular de menor precio y calidad es más probable que si es visto sea comprado por el mismo usuario debido a que la calidad del producto no suele atraer visitas que no sean potenciales compradoras en un futuro. 
+En primer lugar se considera que de la cantidad de conversiones detectada en el set de datos no puede extraerse alguna conclusión en cuanto a cuan bien o mal le fue a la empresa en el semestre, por falta de conocimiento y manejo del dominio (plataformas de e-commerce en el rubro de celulares). Otro lugar donde se ve la falta de dominio es en el no poder explicar la cantidad de registros de mayo (considerablemente mayor al resto de los meses). De tener mayor conocimiento del estado de Brasil (puede ser producto de política), de la industría de la tecnólogia celular (constantemente hay nuevos lanzamientos de celulares que incentivan vender el previamente usado, leyes que influyen tanto para bien como para mal la compra/venta y demás) o de \textbf{Trocafone} en sí (por ejemplo, un lanzamiento de descuentos o promociones) se tendrían más recursos para poder explicar lo que a simple vista parece una anomalía. En cambio, si se ha podido analizar en su lugar la comparación \textit{checkout vs conversiones vs viewed products} a lo largo de diferentes parámetros como marcas de celulares o períodos de tiempo, mostrando como el sitio web cumple o no su objetivo de mantener a los usuarios y hacerlos comprar por allí.
 
-También se observa que no tiene sentido seguir comerciando algunos productos, por ejemplo los \textbf{Blackberry}, \textbf{Quantum} y  \textbf{iPad}, ya que se necesita disponer de expertos para repararlos que no son justificados por la cantidad de conversiones que tienen.
+Del análisis de la cantidad de eventos mencionados previamente en función de las marcas de celulares se concluye que las marcas que tienen un precio más accesible como lo puede ser \textbf{Samsung} eran de las menos vistas pero de las más compradas. Asímismo, las marcas con un precio más elevado como \textbf{Apple} eran de las más vistas pero de las menos compradas. Esta era una situación prevista de antemano debido a que la calidad del producto de mayor precio atrae visitas pero su precio aleja las compras. Asímismo, un celular de menor precio y calidad es más probable que si es visto sea comprado por el mismo usuario debido a que la calidad del producto no suele atraer visitas que no sean potenciales compradoras en un futuro. 
+
+También se observa que no tiene sentido seguir comerciando algunos productos, por ejemplo los \textbf{Blackberry}, \textbf{Quantum} y  \textbf{iPad}, ya que se necesita disponer de expertos para repararlos que no son justificados por la cantidad de conversiones que tienen. De todas formas, sacarle la posibilidad de vender y reacondicionar su celular usado a un futuro cliente no sería una buena estrategia de negocio.
 
 Un análisis similar puede realizarse en cuanto al sistema operativo del cual proviene el que genera una compra y el sistema operativo del dispositivo comprado. Los usuarios que provienen de \textbf{Apple} suelen desear comprar un dispositivo del mismo sistema operativo debido a su calidad y al atractivo que suelen manejar los productos de \textbf{Apple} en la sociedad. De otra manera, los usuarios que provienen de \textbf{Android} divergen sus visitas en cuanto al sistema operativo ya que no se detecta un comportamiento específico para este tipo de usuarios.
 
-Del análisis de la cantidad de eventos mencionados previamente en función de las marcas de celulares se concluye que las marcas que tienen una selección de celulares más amplia, en particular yendo desde más accesibles a celulares de alta gama como lo puede ser \textbf{Samsung} son de las menos vistas pero de las más compradas. Asímismo, las marcas con un precio más elevado como \textbf{Apple} son de las más vistas pero de las menos compradas. Esta era una situación prevista de antemano debido a que la calidad del producto de mayor precio atrae visitas pero su precio aleja las compras. Asímismo, un celular de menor precio y calidad es más probable que si es visto sea comprado por el mismo usuario debido a que la calidad del producto no suele atraer visitas que no sean potenciales compradoras en un futuro. 
+\subsection{Aportes a Trocafone}
 
-Otra conclusión que se despliega del análisis de los eventos en función del tiempo radica en detectar los momentos de mayor y menor tráfico. En horarios como las 19 hs, la hora del día que se registran más checkouts y conversiones), se podría agregar publicidad que incentive el aumento de tráfico y promueva la realización de conversiones. Así mismo, los días que se registra menos tráfico como los fines de semana o el horario del mediodía podría agregarse alguna promoción para aumentar la cantidad de eventos en dichos horarios y expandir la franja horaria de tráfico en la página.
+Teniendo en cuenta lo descubierto en el trabajo, se propone:
 
-En lo que respecta a páginas estáticas, se llegó a la conclusión de que una buena inversión de parte de la empresa sería optimizar el sitio de preguntas frecuentes, ya que se notó que hay una gran cantidad de tráfico a \textit{customer service} que podría redirigirse a las \textit{FAQ} para optimizar el uso del personal en responder en atencion al cliente y que los usuarios encuentren rápidamente respuestas a sus preguntas específicas.
+\begin{itemize}
+\item \textbf{Publicidad en horarios pico y promociones en horarios con menor tráfico.} Teniendo en cuenta los horarios de menor y mayor tráfico como las 19hs (la hora del día que se registran más checkouts y conversiones), se podría agregar publicidad que incentive el aumento de tráfico y promueva la realización de conversiones. Así mismo, los días que se registra menos tráfico como los fines de semana o el horario del mediodía podría agregarse alguna promoción para aumentar la cantidad de eventos en dichos horarios y expandir la franja horaria de tráfico en la página.
 
-Se observó que la taza de usuarios que ingresa solo una vez es mucho mayor que la de usuarios que regresan. Si bien este es un problema con el que todo sitio se encuentra, una forma de disminuir lo más posible la diferencia puede ser mejorar la experiencia de usuario en el sitio de entrada.
+\item \textbf{Optimizar las páginas estaticas de soporte.} En lo que respecta a páginas estáticas, se llegó a la conclusión de que una buena inversión de parte de la empresa sería optimizar el sitio de preguntas frecuentes, ya que se notó que hay una gran cantidad de tráfico a \textit{customer service} que podría redirigirse a las \textit{FAQ} para optimizar el uso del personal en responder en atencion al cliente y que los usuarios encuentren rápidamente respuestas a sus preguntas específicas.
 
-Una sugerencia en cuanto a inversión en presencia online esta tanto en los motores de busqueda como en las redes sociales. Ambos canales de tráfico tienen un potencial muy grande en cuanto a atraer usuarios que efectuan conversiones, e invertir en ellos lograría mantener el porcentaje de efectividad mientras se incrementa el número total de usuarios atraídos.
+\item \textbf{Optimizar el sitio de entrada.} Se observó que la tasa de usuarios que ingresa solo una vez es mucho mayor que la de usuarios que regresan. Si bien este es un problema con el que todo sitio se encuentra, una forma de disminuir lo más posible la diferencia puede ser mejorar la experiencia de usuario en el sitio de entrada.
 
-Por otro lado, podría aprovecharse el conocimiento sobre los productos más visitados para encarar con su imagen las publicidades, logrando así nuevas visitas a la página. Con ellas, nuevas posibilidades de ventas. Una vez que el cliente se encuentre dentro de la plataforma virtual se puede utilizar el conocimiento sobre los productos más vendidos y dar fácil acceso a su publicación. Teniendo en cuenta que los termino más buscados son busquedas muy genéricas (marcas) se puede implementar la sugerencia ubicando como primera opción los modelos que más se compran y así mejorar el texto predictivo de la caja de busqueda del sitio web.Por otro lado, podría aprovecharse el conocimiento sobre los productos más visitados para encarar con su imagen las publicidades, logrando así nuevas visitas a la página. Con ellas, nuevas posibilidades de ventas. Una vez que el cliente se encuentre dentro de la plataforma virtual se puede utilizar el conocimiento sobre los productos más vendidos y dar fácil acceso a su publicación. Teniendo en cuenta que los termino más buscados son busquedas muy genéricas (marcas) se puede implementar la sugerencia ubicando como primera opción los modelos que más se compran y así mejorar el texto predictivo de la caja de busqueda del sitio web.
+\item \textbf{Presencia online.} Una sugerencia en cuanto a inversión en presencia online esta tanto en los motores de busqueda como en las redes sociales. Ambos canales de tráfico tienen un potencial muy grande en cuanto a atraer usuarios que efectuan conversiones, e invertir en ellos lograría mantener el porcentaje de efectividad mientras se incrementa el número total de usuarios atraídos.
 
-Teniendo en cuenta que casi la mitad de las sesiones se generan debido a la publicidad, pero que sólo el 12.5\% de las sesiones que terminan en una conversión provienen de esta, se tiene que considerar que debería mejorarse la calidad de la misma, mostrándole al usuario un producto más acorde a su perfil, por ejemplo, a un usuario de iOS se le ofrecería un iPhone como publicidad, mejorando así las chances de conversión.
+\item \textbf{Utilizar los productos más comprados como lideres en la publicidad.}  Podría aprovecharse el conocimiento sobre los productos más visitados para encarar con su imagen las publicidades, logrando así nuevas visitas a la página y con ellas, nuevas posibilidades de ventas. Una vez que el cliente se encuentre dentro de la plataforma virtual se puede utilizar el conocimiento sobre los productos más vendidos y dar fácil acceso a su publicación. La lista presentada en la tabla \ref{table:modelos_prominentes} es representativa tanto de los modelos más codiciados como los modelos más comprados.
 
+\item \textbf{Texto predictivo y autocompletar las busquedas.} Viendo en la figura \ref{fig:searchedterm} los términos más buscados por usuarios en crudo (es decir, sin modificación), se nota que hay varios usuarios que no encuentran de entrada lo que buscan, con varios errores de tipografía y demás. Esto hace que el usuario pase por un sitio intermedio (yendo desde su busqueda, hasta la lista de dispositivos que encuentra, hasta el dispositivio que verdaderamente buscaba). Una forma de solucionar esto sería el autocompletar la busqueda por el usuario, haciendo que si escribe el nombre parcial de un modelo ya se le empiece a mostrar la lista de modelos que contienen ese texto, así salteando el sitio intermedio y yendo directamente de la busqueda a visitar el producto. 
+
+\item \textbf{Calidad de la publicidad.} Teniendo en cuenta que casi la mitad de las sesiones se generan debido a la publicidad, pero que sólo el 12.5\% de las sesiones que terminan en una conversión provienen de esta, se tiene que considerar que debería mejorarse la calidad de la misma, y no tanto la cantidad, mostrándole al usuario un producto más acorde a su perfil, por ejemplo, a un usuario de iOS se le ofrecería un iPhone como publicidad (apoyandonos en el gráfico \ref{fig:sankey} de fidelidad), mejorando así las chances de conversión.
+
+\end{itemize}
 
 \newpage
 \appendix
@@ -692,15 +679,17 @@ El trabajo fue realizado en Anaconda\footnote{\url{https://anaconda.org/}}. Para
 \begin{itemize}
 	\item{Squarify\footnote{\url{https://github.com/laserson/squarify}}: Para los treemaps.}
 	\item{pySankey\footnote{\url{https://github.com/anazalea/pySankey/}}: Para los diagramas de Sankey (diagramas de flujo).}
+	\item{Plotly\footnote{\url{https://plot.ly/}}: Para poder graficar las sesiones de usuario. Su módulo \texttt{Orca} sirve para exportas las imagenes estáticas.}
 	\item{Geopandas\footnote{\url{http://geopandas.org/}}: Para poder graficar sobre mapas geográficos.}
 	\item{Wordcloud\footnote{\url{https://github.com/amueller/word_cloud/}}: Para poder visualizar los términos más buscados.}
 \end{itemize}
 
-Estos pueden ser instalados con los siguientes comandos: 
+Estos pueden ser instalados con los siguientes comandos (se incluyen los comandos de \texttt{conda} cuando sea posible): 
 \begin{lstlisting}[language=sh]
 pip install squarify
-pip install pySaneky
-pip install plotly --upgrade
+pip install pySankey
+conda install -c plotly
+conda install -c plotly plotly-orca
 conda install -c conda-forge geopandas
 conda install -c conda-forge wordcloud
 \end{lstlisting}
