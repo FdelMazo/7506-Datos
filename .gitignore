@@ -6,7 +6,13 @@
 *.toc
 *.png
 *.gz
+
 events.csv
 US.csv
+events_up_to_01062018.csv
+events_mined.csv
+persons.csv
+
+
 .ipynb_checkpoints/
 Anaconda*.sh
