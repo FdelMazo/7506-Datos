@@ -11799,6 +11799,53 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Los atributos con pocos valores posibles se pasan a variables categoricas para ahorrar memoria</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;condition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;condition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;storage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;storage&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;search_engine&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;search_engine&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;device_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;device_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;brand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;brand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;operating_system&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;browser&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;browser&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+
+<span class="c1"># El tiempo es mejor manejarlo como tal</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;month_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;month_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;month_number&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">calendar</span><span class="o">.</span><span class="n">month_abbr</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;week_day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;week_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">week</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;week_day_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday_name</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_dom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_doy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;hour_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
@@ -13329,6 +13376,896 @@ div#notebook {
   </tbody>
 </table>
 <p>2341681 rows × 37 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_conversion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;conversion&#39;</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_checkout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;checkout&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>is_conversion</th>
+      <th>is_checkout</th>
+    </tr>
+    <tr>
+      <th>person</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0008ed71</th>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>00091926</th>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>00091a7a</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>000ba417</th>
+      <td>1.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>000c79fe</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>000e4d9e</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>000e619d</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>001001be</th>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>0010e89a</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0016c4b5</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>001802e4</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>001804a2</th>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>0019e639</th>
+      <td>2.0</td>
+      <td>15.0</td>
+    </tr>
+    <tr>
+      <th>001a2273</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>001b0bf9</th>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>001ca5ee</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>001dfc31</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>001e9aea</th>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>0020152e</th>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>00202cdb</th>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>0022965d</th>
+      <td>0.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>0027574e</th>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>00295d74</th>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>002aea56</th>
+      <td>4.0</td>
+      <td>11.0</td>
+    </tr>
+    <tr>
+      <th>002b0188</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>002e74b2</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>002ed810</th>
+      <td>2.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>002fb981</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>00317e49</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0031c75f</th>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>ffcaae19</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffcaeaae</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ffccd5a1</th>
+      <td>0.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>ffcf952b</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffd41214</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ffd62616</th>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffd9756a</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffda14ca</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffdafc72</th>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>ffddd0ec</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ffde3628</th>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>ffe066cc</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffe53446</th>
+      <td>2.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>ffe7e848</th>
+      <td>0.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>ffeb80c5</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffebdbc9</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffecdf29</th>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>ffecea3d</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ffed0342</th>
+      <td>1.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>ffed3d0e</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ffee0f18</th>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>ffef83e6</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>fff1659c</th>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>fff1b11a</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>fff1caee</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>fff2bdde</th>
+      <td>1.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>fff54d61</th>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>fff72025</th>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>fff78145</th>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>fffd1246</th>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>38829 rows × 2 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Users-DataFrame">Users DataFrame<a class="anchor-link" href="#Users-DataFrame">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">udf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;person&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;is_conversion&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;is_checkout&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">})</span>
+<span class="n">udf</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;total_conversions&#39;</span><span class="p">,</span> <span class="s1">&#39;total_checkouts&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_conversions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">udf</span><span class="p">[</span><span class="s1">&#39;total_conversions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_checkouts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">udf</span><span class="p">[</span><span class="s1">&#39;total_checkouts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+
+<span class="n">udf</span><span class="p">[</span><span class="s1">&#39;has_conversion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">udf</span><span class="p">[</span><span class="s1">&#39;total_conversions&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="n">udf</span><span class="p">[</span><span class="s1">&#39;has_checkout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">udf</span><span class="p">[</span><span class="s1">&#39;total_checkouts&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">udf</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[19]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_conversions</th>
+      <th>total_checkouts</th>
+      <th>has_conversion</th>
+      <th>has_checkout</th>
+    </tr>
+    <tr>
+      <th>person</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0008ed71</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>00091926</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>00091a7a</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>000ba417</th>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>000c79fe</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>000e4d9e</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>000e619d</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>001001be</th>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0010e89a</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0016c4b5</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>001802e4</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>001804a2</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0019e639</th>
+      <td>2.0</td>
+      <td>15.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>001a2273</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>001b0bf9</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>001ca5ee</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>001dfc31</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>001e9aea</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0020152e</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>00202cdb</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0022965d</th>
+      <td>0.0</td>
+      <td>8.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0027574e</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>00295d74</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>002aea56</th>
+      <td>4.0</td>
+      <td>11.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>002b0188</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>002e74b2</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>002ed810</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>002fb981</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>00317e49</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>0031c75f</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>ffcaae19</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffcaeaae</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>ffccd5a1</th>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffcf952b</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffd41214</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>ffd62616</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffd9756a</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffda14ca</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffdafc72</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffddd0ec</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>ffde3628</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffe066cc</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffe53446</th>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffe7e848</th>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffeb80c5</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffebdbc9</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffecdf29</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffecea3d</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>ffed0342</th>
+      <td>1.0</td>
+      <td>7.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffed3d0e</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffee0f18</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>ffef83e6</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>fff1659c</th>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>fff1b11a</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>fff1caee</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>fff2bdde</th>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>fff54d61</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>fff72025</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>fff78145</th>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>fffd1246</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>False</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>38829 rows × 4 columns</p>
 </div>
 </div>
 
