@@ -11773,7 +11773,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -11781,8 +11781,15 @@ div#notebook {
 
 <span class="n">df_events</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/events_up_to_01062018.csv&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">df_sessions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data/sessions.csv&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_brands</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/brands.csv&#39;</span><span class="p">)</span>
+<span class="n">df_os</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/os.csv&#39;</span><span class="p">)</span>
+<span class="n">df_browsers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/browsers.csv&#39;</span><span class="p">)</span>
+
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">df_events</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_sessions</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_browsers</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;browser_version&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_os</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;operating_system_version&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_brands</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11792,7 +11799,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">])</span>
@@ -11808,7 +11815,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[22]:</div>
+<div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -11842,9 +11849,6 @@ div#notebook {
       <th>color</th>
       <th>skus</th>
       <th>...</th>
-      <th>session_id</th>
-      <th>session_total_events</th>
-      <th>session_cumno</th>
       <th>session_first</th>
       <th>session_last</th>
       <th>session_total_conversions</th>
@@ -11852,6 +11856,9 @@ div#notebook {
       <th>session_total_checkouts</th>
       <th>session_has_checkout</th>
       <th>session_ad</th>
+      <th>browser</th>
+      <th>operating_system</th>
+      <th>brand</th>
     </tr>
   </thead>
   <tbody>
@@ -11868,9 +11875,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
       <td>True</td>
       <td>True</td>
       <td>0</td>
@@ -11878,6 +11882,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>samsung</td>
     </tr>
     <tr>
       <th>2336760</th>
@@ -11892,9 +11899,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>1</td>
-      <td>2</td>
-      <td>0</td>
       <td>True</td>
       <td>False</td>
       <td>0</td>
@@ -11902,6 +11906,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>chrome</td>
+      <td>windows</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1507716</th>
@@ -11916,9 +11923,6 @@ div#notebook {
       <td>Cinza espacial</td>
       <td>NaN</td>
       <td>...</td>
-      <td>1</td>
-      <td>2</td>
-      <td>1</td>
       <td>False</td>
       <td>True</td>
       <td>0</td>
@@ -11926,6 +11930,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>2336761</th>
@@ -11940,9 +11947,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>3</td>
-      <td>0</td>
       <td>True</td>
       <td>False</td>
       <td>0</td>
@@ -11950,6 +11954,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>chrome</td>
+      <td>windows</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>2122051</th>
@@ -11964,9 +11971,6 @@ div#notebook {
       <td>NaN</td>
       <td>6594,6651,6664,7253,2820,6706,6721,12606,480,1...</td>
       <td>...</td>
-      <td>2</td>
-      <td>3</td>
-      <td>1</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -11974,6 +11978,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1505383</th>
@@ -11988,9 +11995,6 @@ div#notebook {
       <td>Preto</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>3</td>
-      <td>2</td>
       <td>False</td>
       <td>True</td>
       <td>0</td>
@@ -11998,6 +12002,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>lg</td>
     </tr>
     <tr>
       <th>2146920</th>
@@ -12012,9 +12019,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>7</td>
-      <td>0</td>
       <td>True</td>
       <td>False</td>
       <td>0</td>
@@ -12022,6 +12026,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>chrome</td>
+      <td>windows</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>121981</th>
@@ -12036,9 +12043,6 @@ div#notebook {
       <td>Preto</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>7</td>
-      <td>1</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12046,6 +12050,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>motorola</td>
     </tr>
     <tr>
       <th>120337</th>
@@ -12060,9 +12067,6 @@ div#notebook {
       <td>Preto</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>7</td>
-      <td>2</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12070,6 +12074,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>samsung</td>
     </tr>
     <tr>
       <th>120458</th>
@@ -12084,9 +12091,6 @@ div#notebook {
       <td>Preto</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>7</td>
-      <td>3</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12094,6 +12098,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>motorola</td>
     </tr>
     <tr>
       <th>120417</th>
@@ -12108,9 +12115,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>7</td>
-      <td>4</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12118,6 +12122,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>120338</th>
@@ -12132,9 +12139,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>7</td>
-      <td>5</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12142,6 +12146,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>120418</th>
@@ -12156,9 +12163,6 @@ div#notebook {
       <td>Cinza espacial</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>7</td>
-      <td>6</td>
       <td>False</td>
       <td>True</td>
       <td>0</td>
@@ -12166,6 +12170,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>83382</th>
@@ -12180,9 +12187,6 @@ div#notebook {
       <td>Preto</td>
       <td>NaN</td>
       <td>...</td>
-      <td>1</td>
-      <td>6</td>
-      <td>0</td>
       <td>True</td>
       <td>False</td>
       <td>0</td>
@@ -12190,6 +12194,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>motorola</td>
     </tr>
     <tr>
       <th>2146921</th>
@@ -12204,9 +12211,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>1</td>
-      <td>6</td>
-      <td>1</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12214,6 +12218,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>chrome</td>
+      <td>windows</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>83374</th>
@@ -12228,9 +12235,6 @@ div#notebook {
       <td>Cinza espacial</td>
       <td>NaN</td>
       <td>...</td>
-      <td>1</td>
-      <td>6</td>
-      <td>2</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12238,6 +12242,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>83427</th>
@@ -12252,9 +12259,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>1</td>
-      <td>6</td>
-      <td>3</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12262,6 +12266,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>83416</th>
@@ -12276,9 +12283,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>1</td>
-      <td>6</td>
-      <td>4</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12286,6 +12290,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>83353</th>
@@ -12300,9 +12307,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>1</td>
-      <td>6</td>
-      <td>5</td>
       <td>False</td>
       <td>True</td>
       <td>0</td>
@@ -12310,6 +12314,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>2146922</th>
@@ -12324,9 +12331,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>0</td>
       <td>True</td>
       <td>False</td>
       <td>0</td>
@@ -12334,6 +12338,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>chrome</td>
+      <td>windows</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>82838</th>
@@ -12348,9 +12355,6 @@ div#notebook {
       <td>Preto</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>1</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12358,6 +12362,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>motorola</td>
     </tr>
     <tr>
       <th>82882</th>
@@ -12372,9 +12379,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>2</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12382,6 +12386,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>82883</th>
@@ -12396,9 +12403,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>3</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12406,6 +12410,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>82884</th>
@@ -12420,9 +12427,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>4</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12430,6 +12434,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>82622</th>
@@ -12444,9 +12451,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>5</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12454,6 +12458,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>82834</th>
@@ -12468,9 +12475,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>6</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12478,6 +12482,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>82621</th>
@@ -12492,9 +12499,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>7</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12502,6 +12506,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>82690</th>
@@ -12516,9 +12523,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>8</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12526,6 +12530,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>82620</th>
@@ -12540,9 +12547,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>9</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12550,6 +12554,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>82835</th>
@@ -12564,9 +12571,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>2</td>
-      <td>14</td>
-      <td>10</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12574,6 +12578,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>...</th>
@@ -12612,9 +12619,6 @@ div#notebook {
       <td>Preto Brilhante</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>2</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12622,6 +12626,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>85973</th>
@@ -12636,9 +12643,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>3</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12646,6 +12650,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>86870</th>
@@ -12660,9 +12667,6 @@ div#notebook {
       <td>Ouro Rosa</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>4</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12670,6 +12674,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>96717</th>
@@ -12684,9 +12691,6 @@ div#notebook {
       <td>Preto Brilhante</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>5</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12694,6 +12698,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>96594</th>
@@ -12708,9 +12715,6 @@ div#notebook {
       <td>Vermelho</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>6</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12718,6 +12722,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>96592</th>
@@ -12732,9 +12739,6 @@ div#notebook {
       <td>Prateado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>7</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12742,6 +12746,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>96590</th>
@@ -12756,9 +12763,6 @@ div#notebook {
       <td>Preto Matte</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>8</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12766,6 +12770,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>86772</th>
@@ -12780,9 +12787,6 @@ div#notebook {
       <td>Prateado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>9</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12790,6 +12794,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>96713</th>
@@ -12804,9 +12811,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>10</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12814,6 +12818,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>86248</th>
@@ -12828,9 +12835,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>11</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12838,6 +12842,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>86255</th>
@@ -12852,9 +12859,6 @@ div#notebook {
       <td>Preto Brilhante</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>12</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12862,6 +12866,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>85781</th>
@@ -12876,9 +12883,6 @@ div#notebook {
       <td>NaN</td>
       <td>1382,1390,1374</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>13</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12886,6 +12890,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>86256</th>
@@ -12900,9 +12907,6 @@ div#notebook {
       <td>Prateado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>14</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12910,6 +12914,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>96349</th>
@@ -12924,9 +12931,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>15</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12934,6 +12938,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>1259648</th>
@@ -12948,9 +12955,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>16</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -12958,6 +12962,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>1259780</th>
@@ -12972,9 +12979,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>3</td>
-      <td>18</td>
-      <td>17</td>
       <td>False</td>
       <td>True</td>
       <td>0</td>
@@ -12982,6 +12986,9 @@ div#notebook {
       <td>2</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>1204182</th>
@@ -12996,9 +13003,6 @@ div#notebook {
       <td>Preto Brilhante</td>
       <td>NaN</td>
       <td>...</td>
-      <td>4</td>
-      <td>4</td>
-      <td>0</td>
       <td>True</td>
       <td>False</td>
       <td>0</td>
@@ -13006,6 +13010,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>2263044</th>
@@ -13020,9 +13027,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>4</td>
-      <td>4</td>
-      <td>1</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13030,6 +13034,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>chrome</td>
+      <td>windows</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1204640</th>
@@ -13044,9 +13051,6 @@ div#notebook {
       <td>Preto Brilhante</td>
       <td>NaN</td>
       <td>...</td>
-      <td>4</td>
-      <td>4</td>
-      <td>2</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13054,6 +13058,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>1203980</th>
@@ -13068,9 +13075,6 @@ div#notebook {
       <td>NaN</td>
       <td>13332,6001,6253,2833,2834,6002,1358,2837,2832,...</td>
       <td>...</td>
-      <td>4</td>
-      <td>4</td>
-      <td>3</td>
       <td>False</td>
       <td>True</td>
       <td>0</td>
@@ -13078,6 +13082,9 @@ div#notebook {
       <td>0</td>
       <td>False</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1462729</th>
@@ -13092,9 +13099,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>0</td>
       <td>True</td>
       <td>False</td>
       <td>0</td>
@@ -13102,6 +13106,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1462730</th>
@@ -13116,9 +13123,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>1</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13126,6 +13130,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>2329353</th>
@@ -13140,9 +13147,6 @@ div#notebook {
       <td>NaN</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>2</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13150,6 +13154,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>chrome</td>
+      <td>windows</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1462731</th>
@@ -13164,9 +13171,6 @@ div#notebook {
       <td>Cinza espacial</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>3</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13174,6 +13178,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>2112021</th>
@@ -13188,9 +13195,6 @@ div#notebook {
       <td>NaN</td>
       <td>6001,2694,6023,6253,2711,6011,6929,6243,5904,2...</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>4</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13198,6 +13202,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1516382</th>
@@ -13212,9 +13219,6 @@ div#notebook {
       <td>Cinza espacial</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>5</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13222,6 +13226,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>2112023</th>
@@ -13236,9 +13243,6 @@ div#notebook {
       <td>NaN</td>
       <td>6001,2694,6023,6253,2711,6011,6929,6243,5904,2...</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>6</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13246,6 +13250,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1463227</th>
@@ -13260,9 +13267,6 @@ div#notebook {
       <td>Cinza espacial</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>7</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13270,6 +13274,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>1504501</th>
@@ -13284,9 +13291,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>8</td>
       <td>False</td>
       <td>False</td>
       <td>0</td>
@@ -13294,6 +13298,9 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
     <tr>
       <th>1504503</th>
@@ -13308,9 +13315,6 @@ div#notebook {
       <td>Dourado</td>
       <td>NaN</td>
       <td>...</td>
-      <td>0</td>
-      <td>10</td>
-      <td>9</td>
       <td>False</td>
       <td>True</td>
       <td>0</td>
@@ -13318,936 +13322,13 @@ div#notebook {
       <td>1</td>
       <td>True</td>
       <td>False</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>iphone</td>
     </tr>
   </tbody>
 </table>
-<p>2341681 rows × 34 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">session_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;person&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;time_diff_min&#39;</span><span class="p">,</span> \
-        <span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;session_total_events&#39;</span><span class="p">,</span> \
-        <span class="s1">&#39;session_cumno&#39;</span><span class="p">,</span> <span class="s1">&#39;session_first&#39;</span><span class="p">,</span> <span class="s1">&#39;session_last&#39;</span><span class="p">,</span> \
-        <span class="s1">&#39;session_has_conversion&#39;</span><span class="p">,</span> <span class="s1">&#39;session_has_checkout&#39;</span><span class="p">,</span> <span class="s1">&#39;session_ad&#39;</span><span class="p">]</span>
-
-<span class="nb">sorted</span><span class="p">[</span><span class="n">session_cols</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[7]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>person</th>
-      <th>timestamp</th>
-      <th>time_diff_min</th>
-      <th>session_id</th>
-      <th>session_total_events</th>
-      <th>session_cumno</th>
-      <th>session_first</th>
-      <th>session_last</th>
-      <th>session_has_conversion</th>
-      <th>session_has_checkout</th>
-      <th>session_ad</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1507286</th>
-      <td>0008ed71</td>
-      <td>2018-05-17 12:27:47</td>
-      <td>0.983333</td>
-      <td>2</td>
-      <td>38</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2336760</th>
-      <td>0008ed71</td>
-      <td>2018-05-17 13:44:59</td>
-      <td>0.716667</td>
-      <td>0</td>
-      <td>33</td>
-      <td>15</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1507716</th>
-      <td>0008ed71</td>
-      <td>2018-05-17 13:45:00</td>
-      <td>0.016667</td>
-      <td>0</td>
-      <td>4</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2336761</th>
-      <td>0008ed71</td>
-      <td>2018-05-17 16:21:54</td>
-      <td>0.233333</td>
-      <td>0</td>
-      <td>33</td>
-      <td>16</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2122051</th>
-      <td>0008ed71</td>
-      <td>2018-05-17 16:22:06</td>
-      <td>0.600000</td>
-      <td>1</td>
-      <td>10</td>
-      <td>9</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1505383</th>
-      <td>0008ed71</td>
-      <td>2018-05-17 16:28:37</td>
-      <td>15.183333</td>
-      <td>43</td>
-      <td>16</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2146920</th>
-      <td>00091926</td>
-      <td>2018-05-03 22:08:29</td>
-      <td>0.316667</td>
-      <td>1</td>
-      <td>45</td>
-      <td>21</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>121981</th>
-      <td>00091926</td>
-      <td>2018-05-03 22:08:35</td>
-      <td>5672.400000</td>
-      <td>6</td>
-      <td>19</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>120337</th>
-      <td>00091926</td>
-      <td>2018-05-03 22:08:51</td>
-      <td>0.350000</td>
-      <td>1</td>
-      <td>35</td>
-      <td>5</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>120458</th>
-      <td>00091926</td>
-      <td>2018-05-03 22:09:25</td>
-      <td>0.416667</td>
-      <td>5</td>
-      <td>61</td>
-      <td>41</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>120417</th>
-      <td>00091926</td>
-      <td>2018-05-03 22:09:34</td>
-      <td>1615.400000</td>
-      <td>5</td>
-      <td>61</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>120338</th>
-      <td>00091926</td>
-      <td>2018-05-03 22:09:36</td>
-      <td>0.100000</td>
-      <td>1</td>
-      <td>35</td>
-      <td>6</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>120418</th>
-      <td>00091926</td>
-      <td>2018-05-03 22:09:59</td>
-      <td>0.000000</td>
-      <td>5</td>
-      <td>61</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>83382</th>
-      <td>00091926</td>
-      <td>2018-05-05 03:43:24</td>
-      <td>0.466667</td>
-      <td>13</td>
-      <td>10</td>
-      <td>9</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2146921</th>
-      <td>00091926</td>
-      <td>2018-05-05 03:43:24</td>
-      <td>0.966667</td>
-      <td>1</td>
-      <td>45</td>
-      <td>22</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>83374</th>
-      <td>00091926</td>
-      <td>2018-05-05 03:46:08</td>
-      <td>0.016667</td>
-      <td>13</td>
-      <td>10</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>83427</th>
-      <td>00091926</td>
-      <td>2018-05-05 03:49:34</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>7</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>83416</th>
-      <td>00091926</td>
-      <td>2018-05-05 03:49:37</td>
-      <td>8.000000</td>
-      <td>3</td>
-      <td>12</td>
-      <td>4</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>83353</th>
-      <td>00091926</td>
-      <td>2018-05-05 03:49:44</td>
-      <td>1.983333</td>
-      <td>11</td>
-      <td>24</td>
-      <td>23</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2146922</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:30:31</td>
-      <td>1.266667</td>
-      <td>1</td>
-      <td>45</td>
-      <td>23</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>82838</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:30:32</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>9</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>82882</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:30:37</td>
-      <td>53.000000</td>
-      <td>4</td>
-      <td>7</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>82883</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:30:38</td>
-      <td>0.500000</td>
-      <td>4</td>
-      <td>7</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>82884</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:30:42</td>
-      <td>0.266667</td>
-      <td>4</td>
-      <td>7</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>82622</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:41:06</td>
-      <td>2.783333</td>
-      <td>9</td>
-      <td>20</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>82834</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:41:06</td>
-      <td>0.000000</td>
-      <td>2</td>
-      <td>5</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>82621</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:41:17</td>
-      <td>0.016667</td>
-      <td>9</td>
-      <td>20</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>82690</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:41:18</td>
-      <td>3.766667</td>
-      <td>13</td>
-      <td>18</td>
-      <td>15</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>82620</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:41:28</td>
-      <td>0.000000</td>
-      <td>9</td>
-      <td>20</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>82835</th>
-      <td>00091926</td>
-      <td>2018-05-05 23:45:00</td>
-      <td>0.016667</td>
-      <td>2</td>
-      <td>5</td>
-      <td>4</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>96595</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:53:42</td>
-      <td>0.883333</td>
-      <td>0</td>
-      <td>9</td>
-      <td>7</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>85973</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:53:48</td>
-      <td>0.150000</td>
-      <td>0</td>
-      <td>45</td>
-      <td>12</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>86870</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:53:52</td>
-      <td>0.516667</td>
-      <td>6</td>
-      <td>21</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>96717</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:53:54</td>
-      <td>1.350000</td>
-      <td>0</td>
-      <td>12</td>
-      <td>10</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>96594</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:53:58</td>
-      <td>0.266667</td>
-      <td>0</td>
-      <td>9</td>
-      <td>6</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>96592</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:54:01</td>
-      <td>0.033333</td>
-      <td>0</td>
-      <td>9</td>
-      <td>4</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>96590</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:54:03</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>9</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>86772</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:54:12</td>
-      <td>0.066667</td>
-      <td>0</td>
-      <td>21</td>
-      <td>8</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>96713</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:54:15</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>12</td>
-      <td>6</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>86248</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:57:49</td>
-      <td>0.000000</td>
-      <td>2</td>
-      <td>120</td>
-      <td>51</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>86255</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:59:23</td>
-      <td>0.383333</td>
-      <td>2</td>
-      <td>120</td>
-      <td>58</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>85781</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:59:30</td>
-      <td>0.250000</td>
-      <td>38</td>
-      <td>21</td>
-      <td>3</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>86256</th>
-      <td>fff78145</td>
-      <td>2018-05-16 20:59:38</td>
-      <td>0.000000</td>
-      <td>2</td>
-      <td>120</td>
-      <td>59</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>96349</th>
-      <td>fff78145</td>
-      <td>2018-05-16 21:00:19</td>
-      <td>1.733333</td>
-      <td>4</td>
-      <td>25</td>
-      <td>5</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1259648</th>
-      <td>fff78145</td>
-      <td>2018-05-16 21:05:15</td>
-      <td>0.000000</td>
-      <td>1</td>
-      <td>17</td>
-      <td>15</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1259780</th>
-      <td>fff78145</td>
-      <td>2018-05-16 21:05:22</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>18</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1204182</th>
-      <td>fff78145</td>
-      <td>2018-05-16 22:16:20</td>
-      <td>0.083333</td>
-      <td>0</td>
-      <td>21</td>
-      <td>8</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2263044</th>
-      <td>fff78145</td>
-      <td>2018-05-16 22:16:20</td>
-      <td>0.000000</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1204640</th>
-      <td>fff78145</td>
-      <td>2018-05-16 22:16:23</td>
-      <td>0.483333</td>
-      <td>2</td>
-      <td>34</td>
-      <td>28</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1203980</th>
-      <td>fff78145</td>
-      <td>2018-05-16 22:16:29</td>
-      <td>0.050000</td>
-      <td>1</td>
-      <td>18</td>
-      <td>7</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1462729</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:22:06</td>
-      <td>0.183333</td>
-      <td>2</td>
-      <td>26</td>
-      <td>11</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1462730</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:22:06</td>
-      <td>0.783333</td>
-      <td>2</td>
-      <td>26</td>
-      <td>12</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2329353</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:22:06</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>30</td>
-      <td>14</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1462731</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:22:16</td>
-      <td>0.350000</td>
-      <td>2</td>
-      <td>26</td>
-      <td>13</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2112021</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:22:21</td>
-      <td>0.650000</td>
-      <td>7</td>
-      <td>38</td>
-      <td>31</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1516382</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:22:39</td>
-      <td>0.000000</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2112023</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:23:03</td>
-      <td>0.100000</td>
-      <td>7</td>
-      <td>38</td>
-      <td>33</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1463227</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:23:45</td>
-      <td>0.233333</td>
-      <td>0</td>
-      <td>79</td>
-      <td>35</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>1504501</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:23:56</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>8</td>
-      <td>0</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>1504503</th>
-      <td>fffd1246</td>
-      <td>2018-05-17 22:24:29</td>
-      <td>0.000000</td>
-      <td>0</td>
-      <td>8</td>
-      <td>2</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-<p>2341681 rows × 11 columns</p>
+<p>2341681 rows × 37 columns</p>
 </div>
 </div>
 
