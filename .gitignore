@@ -15,5 +15,7 @@ persons.csv
 labels_training_set.csv
 subm*
 
+*.html
+
 .ipynb_checkpoints/
 Anaconda*.sh
