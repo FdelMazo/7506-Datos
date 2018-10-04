@@ -6,6 +6,9 @@
 *.toc
 *.png
 *.gz
+*.fls
+*.fdb_latexmk
+
 
 events.csv
 US.csv
