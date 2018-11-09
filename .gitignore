@@ -20,3 +20,5 @@ labels_training_set.csv
 .ipynb_checkpoints/
 Anaconda*.sh
 Guias/
+
+submission-*
