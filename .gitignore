@@ -19,6 +19,8 @@ persons.csv
 trocafone.zip
 trocafone-publicleaderboard.csv
 
+catboost_info/
+
 .ipynb_checkpoints/
 Anaconda*.sh
 Guias/
