@@ -93,10 +93,30 @@ Por otro lado se crearon distintos csv a fin de poder desarrollar de mejor maner
 
 \section{Investigación}
 
+Como se mencionó en la \textit{Introducción}, se realizó un proceso de exploración de los datos para crear nuevos atributos y extraer nuevos features. De esta manera se crearon distintos csv con información extraída tanto de internet como de los propios datos para luego concatenar al set de datos final. Se procede a dar una breve explicación de la funcionalidad de cada uno de ellos. Muchos de ellos se encuentran detallados en el 'Notebook Anexo' del TP1\footnote{https://fdelmazo.github.io/7506-Datos/TP1/TP1.html}.
 
+\begin{itemize}
+	\item brands.csv
 
+Se agregó una columna al dataframe que detalla qué marca está involucarada en el evento del usuario.
 
+	\item {os.csv}
+	
+Se agregó una columna al dataframe que detalla qué sistema operativo está involucarada en el evento del usuario.
 
+	\item{browsers.csv}
+
+Se agregó una columna al dataframe que detalla qué explorador de internet se accede al sitio.	
+
+	\item{sessions.csv}
+
+Se agregó el concepto de sesión, que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de
+inactividad entre el actual y el anterior. Esto fue fijado con un criterio arbitrario a fin de poder discretizar el tiempo y definir este concepto.
+
+	\item{prices.csv}
+
+Se agregó una columna al dataframe que indica el precio del producto involucrado en el evento del usuario. Para ello se extrajeron los precios de la página de Trocafone\footnote{https://www.trocafone.com/} considerando el sku, el modelo, el color, la capacidad de almacenamiento y la condición.
+\end{itemize}
 
 \section{Features buscadas}
 
