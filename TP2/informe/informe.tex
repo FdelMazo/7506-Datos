@@ -132,16 +132,55 @@ Se detallan los features generales considerados como pertinentes al modelo.
 	\item session\_checkout\_first: el usuario en su primera sesión realizó un checkout
 	\item session\_conversion\_first: el usuario en su primera sesión realizó una conversión
 	\item session\_ad\_first: el usuario en su primera sesión llegó con una campaña publicitaria
-	\item session\_ad\_checkout\_event: el usuario en su primera sesión llegó con una campaña publicitaria
+	\item session\_ad\_checkout\_event: el usuario en su primera sesión llegó con una campaña publicitaria e hizo checkout
+	\item session\_ad\_conversion\_event: el usuario en su primera sesión llegó con una campaña publicitaria y compró el producto	
+\end{itemize}	
+	
+\subsection{Suma total de eventos}
+
+A los features agregados como \textit{features básicos} se le calcula el total por usuario y se obtienen el siguiente listado de features:
+\begin{itemize}
+	\item total\_viewed\_products: cantidad de productos que vio el usuario en el período de tiempo determinado.
+	\item total\_checkouts: cantidad de veces que el usuario hizo checkout en el período de tiempo determinado.
+	\item total\_conversions: cantidad de compras que realizó el usuario en el período de tiempo determinado.
+	\item total\_events: cantidad de eventos totales que el usuario hizo en el período de tiempo determinado.
+	\item total\_sessions: cantidad total de sesiones del usuario
+	\item total\_session\_checkout: cantidad total de sesiones donde el usuario hizo checkout
+	\item total\_session\_conversion: cantidad total de sesiones donde el usuario convirtió.
+	\item total\_events\_ad\_session: cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria.
+	\item total\_ad\_sessions: cantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria.
+\end{itemize}
+	
+A partir de estos features se deducen los siguientes:
+
+\begin{itemize}
+	\item avg\_events\_per\_session: porcentaje de cantidad total de eventos sobre cantidad de sesiones
+	\item avg\_events\_per\_ad\_session: porcentaje de cantidad total de eventos donde el usuario ingresó por una campaña publicitaria sobre cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria
+	\item percentage\_session\_ad: porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria sobre el total de sesiones
+	\item percentage\_session\_conversion: porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez y compró sobre la cantidad total de sesiones
 	
 \end{itemize}
 
+\subsection{Cantidad de eventos por mes}
 
+Se agregan una serie de features relacionados a la cantidad de eventos y sesiones por mes que se consideraron pertinentes al modelo.
 
+\begin{itemize}
+	\item total\_viewed\_products\_month: cantidad de productos vistos por mes por usuario
+	\item total\_checkouts\_month: cantidad de productos que llegaron a checkout por mes por usuario
+	\item total\_conversions\_month: cantidad de productos que llegaron a ser comprados por mes por usuario
+	\item total\_events\_month: cantidad de eventos por mes por usuario
+	\item total\_sessions\_month\_: cantidad total de sesiones por mes
+	\item total\_session\_checkouts\_month\_: cantidad total de sesiones donde el usuario hace checkout por mes
+	\item total\_session\_conversions\_month\_: cantidad total de sesiones donde el usuario compra un producto por mes
+	\item total\_events\_ad\_session\_month\_: cantidad total de sesiones donde el usuario ingresa a la página por una campaña publicitaria por mes
+	\item total\_ad\_sessions\_month\_: cantidad total de sesiones donde el usuario ingresa a la página por primera vez por una campaña publicitaria por mes
+	 
+\end{itemize}
 
+\subsection{Eventos sin contar mayo}
 
-
-
+\subsection{Eventos en última semana}
 
 \section{Algoritmos utilizados}
 
