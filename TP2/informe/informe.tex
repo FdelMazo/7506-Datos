@@ -221,8 +221,6 @@ Una lógica análoga a la sección anterior se sigue en esta parte.
 
 \subsection{Días entre el último checkout y última actividad}
 
-
-
 \subsection{Estados de celulares}
 
 \subsection{Varianza logarítmica de productos vistos}
@@ -238,6 +236,24 @@ Una lógica análoga a la sección anterior se sigue en esta parte.
 \section{Algoritmos utilizados}
 
 \section{Desarrollo}
+Para el desarrollo del Trabajo se utilizaron una serie de notebooks que buscaron organizar de la manera más clara posible los distintos pasos a realizar para desarrollar un submit. Se describen los distintos notebooks que fueron utilizados:
+\begin{enumerate} 
+\item new\_dataframes 	
+
+En este notebook se crearon los distintos csv que fueron realizados para la extracción de features, como fue mencionado anteriormente. 
+
+\item feature\_engineering
+
+En este notebook se agregan todos los features que se consideran que pueden ser pertinentes para el modelo. Para esto mismo se pensó agregar todos los features que se consideren que pueden ser útiles pero sabiendo que luego se somete a un proceso de selección. 
+
+\item feature\_selection
+
+En este notebook se utilizan distintas formas de seleccionar los features de manera de hallar la combinación que arroje un resultado con mejor AUC. El AUC es la métrica utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. Las distintas formas utilizadas se describen como sigue:
+ 
+
+\end{enumerate}
+
+ 
 
 \section{Resultados obtenidos}
 
