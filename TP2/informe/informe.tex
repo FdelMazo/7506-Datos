@@ -216,15 +216,26 @@ Por lo tanto se pensaron los siguientes features:
 	\item percentage\_last\_week\_viewed\_products: porcentaje de la cantidad de productos vistos de esa semana sobre el total de eventos
 \end{itemize}
 
+
 \subsection{Porcentaje de la actividad del ultimo mes}
-Una lógica análoga a la sección anterior se sigue en esta parte.
+Una lógica análoga a la sección pecedente se sigue en esta parte. Los motivos de este feature son simplemente una apliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
+
+De más está decir que se pensaron los siguientes features:
+\begin{itemize}
+	\item percentage\_last\_month\_activity: porcentaje de la cantidad de eventos de ese mes sobre el total de eventos
+	\item percentage\_last\_month\_conversions:  porcentaje de la cantidad de compras de ese mes sobre el total de eventos
+	\item percentage\_last\_month\_checkouts: porcentaje de la cantidad de checkouts de ese mes sobre el total de eventos
+	\item percentage\_last\_month\_viewed\_products: porcentaje de la cantidad de productos vistos de ese mes sobre el total de eventos
+\end{itemize}
 
 \subsection{Días entre el último checkout y última actividad}
+La intención de este feature es medir la diferencia de días que tiene cada usuario entre la compra de un celular y la ultima vez que visualizo el producto comprado. De esta forma poder predecir en base a los productos vistos si es posbile que se haga una compra.
 
 \subsection{Estados de celulares}
+Utilizando la lógica de que hay empresas que compran celulares en mal estado con el único fin de usar sus partes como respuestos se plantea agregar una columna que indique porcentaje de celulares en estado Bom - Sem Touch ID vs Bom sobre todos los celulares vistos.
 
 \subsection{Varianza logarítmica de productos vistos}
-
+Lo que se plantea es analizar la varianza en los precios de los productos visitados. Es decir, si los usuarios ven telefonos de un rango pequeño de precio o, por el contrario, articulos de precios muy variados. Se utilizó una escala logarítmica para seguir manteniendo las proporciones sin tener una gran diferencia entre la varianza de un usuario y la de otro.
 \subsection{¿El usuario compró más de la media?}
 
 \subsection{¿Cuántas veces vio el último modelo que compró?}
