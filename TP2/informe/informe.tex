@@ -118,7 +118,30 @@ inactividad entre el actual y el anterior. Esto fue fijado con un criterio arbit
 Se agregó una columna al dataframe que indica el precio del producto involucrado en el evento del usuario. Para ello se extrajeron los precios de la página de Trocafone\footnote{https://www.trocafone.com/} considerando el sku, el modelo, el color, la capacidad de almacenamiento y la condición.
 \end{itemize}
 
-\section{Features buscadas}
+\section{Feature engineering}
+
+A partir del nuevo dataframe obtenido con la unión de todos los csv descritos en el inciso anterior se procedió a la búsqueda de features. En esta étapa del desarrollo del Trabajo Práctico se buscó explotar las distintas ideas y después con un proceso de selección que será explicado maś adelante elegir los features pertinentes y más útiles al modelo. 
+
+\subsection{Features básicos}
+Se detallan los features generales considerados como pertinentes al modelo.
+
+\begin{itemize}
+	\item is\_viewed\_product: el usuario vió un producto
+	\item is\_checkout: el usuario llegó a checkout con un producto
+	\item is\_conversion: el usuario compró un producto
+	\item session\_checkout\_first: el usuario en su primera sesión realizó un checkout
+	\item session\_conversion\_first: el usuario en su primera sesión realizó una conversión
+	\item session\_ad\_first: el usuario en su primera sesión llegó con una campaña publicitaria
+	\item session\_ad\_checkout\_event: el usuario en su primera sesión llegó con una campaña publicitaria
+	
+\end{itemize}
+
+
+
+
+
+
+
 
 \section{Algoritmos utilizados}
 
