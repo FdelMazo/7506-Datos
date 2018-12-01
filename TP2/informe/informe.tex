@@ -195,6 +195,7 @@ Se busca extraer información de los días que transcurrieron hasta el último e
 	\item days\_to\_last\_checkout: cantidad de días hasta el último checkout. Si el usuario no hizo checkout se considera un número mayor a la cantidad de días del período de tiempo comprendido.
 	\item days\_to\_last\_conversion: cantidad de días hasta la última compra del usuario. Si el usuario nunca compró se considera un número mayor a la cantidad de días del período de tiempo comprendido.
 	\item days\_to\_last\_viewed\_product: cantidad de días hasta el último día que el usuario vio un producto. Si el usuario nunca vio un producto se considera un número mayor a la cantidad de días del período de tiempo comprendido.
+\end{itemize}
 	
 En paralelo con estos features se consideran los días de la semana, del mes, del año y la semana del año donde ocurren estos últimos eventos.	
 	
@@ -207,18 +208,20 @@ Se consideró que podría considerarse el precio de la última conversión del u
 Aquí la idea pensada era reflejar la cantidad de eventos del usuario de la última semana sobre el total. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
 
 Por lo tanto se pensaron los siguientes features:
+
 \begin{itemize}
 	\item percentage\_last\_week\_activity: porcentaje de la cantidad de eventos de esa semana sobre el total de eventos
 	\item percentage\_last\_week\_conversions:  porcentaje de la cantidad de compras de esa semana sobre el total de eventos
 	\item percentage\_last\_week\_checkouts: porcentaje de la cantidad de checkouts de esa semana sobre el total de eventos
 	\item percentage\_last\_week\_viewed\_products: porcentaje de la cantidad de productos vistos de esa semana sobre el total de eventos
-	
 \end{itemize}
 
 \subsection{Porcentaje de la actividad del ultimo mes}
 Una lógica análoga a la sección anterior se sigue en esta parte.
 
 \subsection{Días entre el último checkout y última actividad}
+
+
 
 \subsection{Estados de celulares}
 
@@ -231,8 +234,6 @@ Una lógica análoga a la sección anterior se sigue en esta parte.
 \subsection{¿Cuantas veces vio la última marca que compró?}
 
 \subsection{Comportamiento en sesiones de las últimas semanas}
-
-
 
 \section{Algoritmos utilizados}
 
