@@ -10,7 +10,7 @@ Es muy importante configurar el pre-commit hook del repo para que cada vez que s
 
 ```shell
 // Desde el root del repo
-conda install -c conda-forge nbstripout
+pip install nbstripout
 nbstripout --install
 ```
 
