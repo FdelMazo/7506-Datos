@@ -259,8 +259,31 @@ En este notebook se agregan todos los features que se consideran que pueden ser 
 
 \item feature\_selection
 
-En este notebook se utilizan distintas formas de seleccionar los features de manera de hallar la combinación que arroje un resultado con mejor AUC. El AUC es la métrica utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. Las distintas formas utilizadas se describen como sigue:
- 
+En este notebook se utilizan distintas formas de seleccionar los features de manera de eliminar aquellos atributos que resulten ruidosos con el modelo de \texttt{Random Forest}. Se eligió dicho modelo por su popularidad para la selección de features ya que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
+
+Se utiliza como métrica el AUC debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
+
+Las distintas formas de selección utilizadas se describen como sigue:
+
+\begin {itemize}
+\item \textbf{Cumulative importance}
+
+El nombre del método fue inventado por el grupo de Trabajo y denota el método más intuitivo para la selección de features. Con el uso del algoritmo de \texttt{Random Forest} se parte de una lista de todos los features ordenados según importancia y se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo a,b,c features se parte de una lista como [a,b,c] y luego se obtiene  [ [a], [a,b], [a,b,c] ]. El objetivo de este método es encontrar el 
+\textit{codo}, es decir, los features que incrementan el AUC local.
+
+\item \textbf{Forward Selection}
+
+Con este método se comienza con ningún atributo y en cada paso se agrega el atributo que genere mejor resultado. Se agregan atributos siempre y cuando los resultados mejoren. El algoritmo termina cuando el resultado no se puede mejorar o cuando ya se han agregado todos los atributos.
+
+\item \textbf{Backward Selection}
+
+Este método funciona a la inversa de \texttt{Forward Selection}. Se comienza con todos los atributos y se quita en cada iteración el atributo que aumente el resultado de la métrica. De esta manera el algoritmo termina cuando al quitar un atributo el resultado empeora o cuando ya no hay más atributos por quitar.
+
+\item \textbf{Stepwise Selection}
+
+Este método es una variante que combina los dos métodos anteriores. En cada paso se considera agregar o quitar una variable de manera de aumentar el AUC local.	
+
+\end {itemize}
 
 \end{enumerate}
 
