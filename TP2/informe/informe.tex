@@ -91,29 +91,29 @@ Se propone como objetivo desarrollar una métrica a fin de evaluar los distintos
 
 Por otro lado se crearon distintos csv a fin de poder desarrollar de mejor manera el proceso de feature engineering y obtener un pre-procesamiento de los datos que permita encontrar los resultados más altos. 
 
-\section{Investigación}
+\section{Creación de dataframes}
 
 Como se mencionó en la \textit{Introducción}, se realizó un proceso de exploración de los datos para crear nuevos atributos y extraer nuevos features. De esta manera se crearon distintos csv con información extraída tanto de internet como de los propios datos para luego concatenar al set de datos final. Se procede a dar una breve explicación de la funcionalidad de cada uno de ellos. Muchos de ellos se encuentran detallados en el 'Notebook Anexo' del TP1\footnote{https://fdelmazo.github.io/7506-Datos/TP1/TP1.html}.
 
 \begin{itemize}
-	\item brands.csv
+	\item \texttt{brands.csv}
 
 Se agregó una columna al dataframe que detalla qué marca está involucarada en el evento del usuario.
 
-	\item {os.csv}
+	\item \texttt{os.csv}
 	
 Se agregó una columna al dataframe que detalla qué sistema operativo está involucarada en el evento del usuario.
 
-	\item{browsers.csv}
+	\item \texttt{browsers.csv}
 
 Se agregó una columna al dataframe que detalla qué explorador de internet se accede al sitio.	
 
-	\item{sessions.csv}
+	\item \texttt{sessions.csv}
 
 Se agregó el concepto de sesión, que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de
 inactividad entre el actual y el anterior. Esto fue fijado con un criterio arbitrario a fin de poder discretizar el tiempo y definir este concepto.
 
-	\item{prices.csv}
+	\item \texttt{prices.csv}
 
 Se agregó una columna al dataframe que indica el precio del producto involucrado en el evento del usuario. Para ello se extrajeron los precios de la página de Trocafone\footnote{https://www.trocafone.com/} considerando el sku, el modelo, el color, la capacidad de almacenamiento y la condición.
 \end{itemize}
@@ -218,7 +218,7 @@ Por lo tanto se pensaron los siguientes features:
 
 
 \subsection{Porcentaje de la actividad del ultimo mes}
-Una lógica análoga a la sección pecedente se sigue en esta parte. Los motivos de este feature son simplemente una apliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
+Una lógica análoga a la sección precedente se sigue en esta parte. Los motivos de este feature son simplemente una ampliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
 
 De más está decir que se pensaron los siguientes features:
 \begin{itemize}
@@ -235,16 +235,32 @@ La intención de este feature es medir la diferencia de días que tiene cada usu
 Utilizando la lógica de que hay empresas que compran celulares en mal estado con el único fin de usar sus partes como respuestos se plantea agregar una columna que indique porcentaje de celulares en estado Bom - Sem Touch ID vs Bom sobre todos los celulares vistos.
 
 \subsection{Varianza logarítmica de productos vistos}
-Lo que se plantea es analizar la varianza en los precios de los productos visitados. Es decir, si los usuarios ven telefonos de un rango pequeño de precio o, por el contrario, articulos de precios muy variados. Se utilizó una escala logarítmica para seguir manteniendo las proporciones sin tener una gran diferencia entre la varianza de un usuario y la de otro.
+Se propone analizar la varianza en los precios de los productos visitados. Es decir, si los usuarios ven telefonos de un rango pequeño de precio o, por el contrario, articulos de precios muy variados. Se utilizó una escala logarítmica para seguir manteniendo las proporciones sin tener una gran diferencia entre la varianza de un usuario y la de otro.
+
 \subsection{¿El usuario compró más de la media?}
+Se propone como feature evaluar si el usuario compró un celular por encima de la media de precios. 
 
 \subsection{¿Cuántas veces vio el último modelo que compró?}
+La idea de este atributo es evaluar una cierta correlación entre los usuarios de la cantidad de veces que se ve un modelo antes de comprarlo. Si un usuario ve una cantidad significativamente grande de veces un modelo es muy probable que lo compre. Esto no quiere decir que sea imposible que un usuario pueda ver una vez un modelo y no comprarlo o verlo muchas veces y no comprarlo pero se busca analizar el caso más general.
 
 \subsection{¿Cuantas veces vio la última marca que compró?}
+Una lógica similar a la sección precedente es la que se sigue con este feature. La idea sería también analizar si un usuario se restringe a un modelo en particular o si puede ver distintos celulares de la misma marca y elegir uno de ellos.
 
 \subsection{Comportamiento en sesiones de las últimas semanas}
 
+Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
+
+\begin{itemize}
+	\item ratio\_sessions\_last\_week\_over\_total
+	\item Completar
+\end{itemize}
+
+\subsection{title}
+
+\subsection{title}
+
 \section{Algoritmos utilizados}
+Completar
 
 \section{Organización del Trabajo}
 Para el desarrollo del Trabajo se utilizaron una serie de notebooks que buscaron organizar de la manera más clara posible los distintos pasos a realizar para desarrollar un submit. Se describen los distintos notebooks que fueron utilizados:
