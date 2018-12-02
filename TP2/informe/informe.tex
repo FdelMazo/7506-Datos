@@ -184,43 +184,14 @@ Como parte del feature engineering, se crean dataframes nuevos con información 
 
 Con lo investigado del previo trabajo y todos los dataframes generados, se busca todo tipo de atributos de los usuarios, para que luego puedan ser seleccionados y aprovechados por los algoritmos a aplicar.
 
-\subsubsection{Features básicos}
-Se detallan los features generales considerados como pertinentes al modelo.
-
-\begin{itemize}
-	\item \textbf{\texttt{is\_viewed\_product}}: El usuario vió un producto.
-	\item \textbf{\texttt{is\_checkout}}: El usuario llegó a checkout con un producto.
-	\item \textbf{\texttt{is\_conversion}}: El usuario compró un producto.
-	\item \textbf{\texttt{session\_checkout\_first}}: El usuario en su primera sesión realizó un checkout.
-	\item \textbf{\texttt{session\_conversion\_first}}: El usuario en su primera sesión realizó una conversión.
-	\item \textbf{\texttt{session\_ad\_first}}: El usuario en su primera sesión llegó con una campaña publicitaria.
-	\item \textbf{\texttt{session\_ad\_checkout\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria e hizo checkout.
-	\item \textbf{\texttt{session\_ad\_conversion\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria y compró el producto.
-\end{itemize}	
-	
 \subsubsection{Suma total de eventos}
 
-A los features agregados como \textit{features básicos} se le calcula el total por usuario y se obtienen el siguiente listado de features:
-\begin{itemize}
-	\item \textbf{\texttt{total\_viewed\_products}}: Cantidad de productos que vio el usuario en el período de tiempo determinado.
-	\item \textbf{\texttt{total\_checkouts}}: Cantidad de veces que el usuario hizo checkout en el período de tiempo determinado.
-	\item \textbf{\texttt{total\_conversions}}: Cantidad de compras que realizó el usuario en el período de tiempo determinado.
-	\item \textbf{\texttt{total\_events}}: Cantidad de eventos totales que el usuario hizo en el período de tiempo determinado.
-	\item \textbf{\texttt{total\_sessions}}: Cantidad total de sesiones del usuario.
-	\item \textbf{\texttt{total\_session\_checkout}}: Cantidad total de sesiones donde el usuario hizo checkout.
-	\item \textbf{\texttt{total\_session\_conversion}}: Cantidad total de sesiones donde el usuario convirtió.
-	\item \textbf{\texttt{total\_events\_ad\_session}}: Cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria.
-	\item \textbf{\texttt{total\_ad\_sessions}}: cCantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria.
-\end{itemize}
-	
-A partir de estos features se deducen los siguientes:
+\begin{sloppypar}
+\texttt{\detokenize{['total_viewed_products', 'total_checkouts', 'total_conversions', 'total_events', 'total_sessions', 'total_session_checkout', 'total_session_conversion', 'total_events_ad_session', 'total_ad_sessions', 'avg_events_per_session', 'avg_events_per_ad_session', 'percentage_session_ad', 'percentage_session_conversion', 'has_checkout', 'has_conversion']
+}}
+\end{sloppypar}
 
-\begin{itemize}
-	\item \textbf{\texttt{avg\_events\_per\_session}}: Promedio de cantidad total de eventos sobre cantidad de sesiones.
-	\item \textbf{\texttt{avg\_events\_per\_ad\_session}}: Promedio de cantidad total de eventos donde el usuario ingresó por una campaña publicitaria sobre cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria.
-	\item \textbf{\texttt{percentage\_session\_ad}}: Porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria sobre el total de sesiones.
-	\item \textbf{\texttt{percentage\_session\_conversion}}: Porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez y compró sobre la cantidad total de sesiones.
-\end{itemize}
+Los atributos refieren a la sumatoria de cantidad de productos vistos, en checkout y en coversiones, más la totalidad de los eventos de cada usuario. Lo mismo para las sesiones de cada usuario y sus subtotales. También se agregan promedios de eventos por sesión y porcentajes de los accesos de las sesiones del usuario.
 
 \subsubsection{Cantidad de eventos por mes}
 
