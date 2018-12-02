@@ -3,8 +3,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{float}
-\usepackage{fancyhdr,graphicx,listings,amsmath,tocloft}
+\usepackage{fancyhdr,graphicx,listings,amsmath,tocloft,color,soul}
 \usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref}
+
+\sethlcolor{red}
 
 \newcommand{\materia}{[75.06 / 95.58] Organización de Datos}
 \newcommand{\trabajo}{Trabajo Práctico 2: Machine Learning}
@@ -85,22 +87,73 @@
 
 \section{Introducción}
 
-El objetivo principal del trabajo es el de predecir la probabilidad de que un usuario de la empresa Trocafone realice una compra de un dispositivo celular (conversión). 
+El objetivo principal del trabajo es predecir la probabilidad de que un usuario de la empresa Trocafone realice una compra de un dispositivo celular (conversión). 
 
 La realización del trabajo se hace con algoritmos de Machine Learning, una disciplina que busca poder generar clasificaciones en base a un entrenamiento sobre información pasada, seguida de una validación de las predicciones generadas. En el trabajo se prueban distintos algoritmos, los cuales todos en distinta manera hacen uso de los datos (en particular, de sus atributos). Es por esto que es muy importante saber que datos usar, y buscar como codificarlos de tal forma que mejor se aprovechen.
 
-Con dicho propósito se utilizan como base dos sets de datos brindados por la empresa. En un primer lugar el archivo \texttt{events\_up\_to\_01062018.csv} que contiene la información de los eventos realizados por un conjunto de usuarios desde el 1ro de enero hasta el 31 de mayo de 2018 y servirá como entrenamiento de los algoritmos, y en un segundo lugar el archivo \texttt{labels\_training\_set.csv} que determina si el usuario realizó o no una conversión desde el primero hasta el quince de junio el cual servirá de validación. 
+Con dicho propósito se utilizan como base dos sets de datos brindados por la empresa. En un primer lugar el archivo \texttt{events\_up\_to\_01062018.csv} que contiene la información de los eventos realizados por un conjunto de usuarios desde el 1ro de enero hasta el 31 de mayo de 2018 y servirá como entrenamiento de los algoritmos, y en un segundo lugar el archivo \texttt{labels\_training\_set.csv} que determina si el usuario realizó o no una conversión desde el 1ro hasta el 15 de junio es este período es del cual se quieren predecir las conversiones). Siendo este segundo archivo un subconjunto del anterior, este servirá de validación de las predicciones
 
 \section{Organización del Trabajo}
 
-Para el desarrollo del Trabajo se utilizaron una serie de notebooks que buscaron organizar de la manera más clara posible los distintos pasos a realizar para desarrollar un submit. Los notebooks, en orden de lectura y corrida son:
+Para un desarrollo más cómodo, se modularizó el trabajo en distintos notebooks de Jupyter, intentando emular la programación estructurada, y luego se importan entre si \footnote{Haciendo uso del magnífico \href{https://github.com/grst/nbimporter}{nbimporter}}. Si bien esta forma de trabajar sirve bastante para no estar repitiendo código, el dividir en distintos notebooks que dependan unos de otros sube el acoplamiento del proyecto en su totalidad.
+
+Los notebooks, en orden de lectura y corrida son:
+
 \begin{enumerate} 
-\item \textbf{Investigación}
+	\item \textbf{Investigación Previa}
 
-En un primer lugar se quiso investigar si existió alguna relación relevante en el dataset brindado en el Trabajo Práctico 1 con los datos que se utilizarán en este. 
+	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/investigacion.html}}
 
-Se recopiló la siguiente información:
+	En este notebook se presentan las distintas exploraciones que se hicieron sobre el dataset del trabajo práctico anterior (TP1), en busqueda de ideas útiles para el desarrollo del actual.
 
+	\item \textbf{Creación de dataframes}
+
+	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/new_dataframes.html}}
+
+	En este notebook se crean los distintos dataframes necesarios para poder extraer atributos de los usuarios.
+
+	\item \textbf{Feature engineering}
+
+	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/feature_engineering.html}}
+
+	En este notebook se agregan todos los features que se consideran que pueden ser pertinentes para el modelo. Este notebook es el que genera el \texttt{user-features.csv} del cual entrenan los modelos.
+
+	\item \textbf{Feature selection}
+
+	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/feature_selection.html}}
+
+	En este notebook se utilizan distintas formas de seleccionar los features con el objetivo de eliminar ruido y encontrar la mejor combinación de atributos a usar a la hora de entrenar modelos.
+
+	\item \textbf{Parameter tuning}
+
+	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/parameter_tuning.html}}
+
+	En este notebook se hacen diversas pruebas sobre cada algoritmo hasta encontrar los hiper parametros óptimos de cada uno.
+
+	\item \textbf{Submission framework}
+
+	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/submission_framework.html}}
+
+	La principal idea de este notebook es definir una serie de pasos para armar las postulaciones de predicciones del trabajo práctico.
+
+	\item \textbf{Notebook principal}
+
+	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/TP2.html}}
+
+	Finalmente, haciendo uso del framework previamente definido, se encuentra la combinación óptima de atributos y algoritmos para hacer una postulación de predicciones.
+
+\end{enumerate}
+
+\section{Features}
+\subsection{Investigación previa}
+
+El primer paso del trabajo consistió en realizar una investigación sobre lo ya hecho en el trabajo anterior. El TP1 \footnote{\url{{https://fdelmazo.github.io/7506-Datos/TP1/TP1.html}}} es un análisis exploratorio de datos de la empresa. Si bien no son exactamente los mismos datos que los trabajados acá, son de la misma índole, y la exploración de ellos dan a luz a patrones en los usuarios del sitio.
+
+Esta investigación se compone de dos partes, una técnica y otra teórica.
+
+Por el lado técnico, viendo que se uso otro set de datos para el TP1, se buscó alguna forma de integrar los datos anteriores con los nuevos (por ejemplo, buscar si hay usuarios compartidos entre los dos sets, o si hay compras para registrar), para poder usar una base de datos más grande tanto para el entrenamiento como la validación de las predicciones. 
+
+Luego de una serie de pasos, busquedas y validaciones, se recopiló la siguiente información:
 \begin{enumerate}
 \item No se repiten usuarios en los datasets.
 \item En el primer dataset (TP1) hay 27624 usuarios de los cuales 13967 tuvieron actividad en junio. Entre el 1 y el 15 (inclusive) de junio 82 usuarios compraron productos.
@@ -108,16 +161,158 @@ Se recopiló la siguiente información:
 \end{enumerate}
 
 Por lo tanto se concluyó que hacer un merge de los datos del TP1 con los del TP2 presentaría un \textit{skewness} en el set de datos, por la despreciabilidad de estos.
+
+Por otro lado, en un marco teórico, se vió el análisis hecho en busqueda de que patrones, ideas y conceptos pueden ser aplicados en este trabajo. En particular, se buscan atributos escondidos en el set original que puedan ser codificados de tal forma que luego los algoritmos de Machine Learning puedan utilizar a su favor. Los atributos encontrados son especificados en la sección de Feature Engineering.
+
+\hl{[TO-DO TSNE de Souto aca]}
+
+\subsection{Creación de dataframes}
+
+Este es mayoritariamente un re-trabajo sobre lo hecho para el TP1, en el Notebook Anexo\footnote{https://fdelmazo.github.io/7506-Datos/TP1/anexo.html}.
+
+Como parte del feature engineering, se crean dataframes nuevos con información de los productos del sitio y de como se accede a este. Los dataframes generados son:
+
+\begin{itemize}
+	\item \textbf{\texttt{brands.csv}}: Lista las marcas de los dispotivos de cada evento.
+	\item \textbf{\texttt{os.csv}}: Lista los sistemas operativos desde los cuales se accedió al sitio.
+	\item \textbf{\texttt{browsers.csv}}: Lista los exploradores desde los cuales se accedió al sitio.
+	\item \textbf{\texttt{sessions.csv}}:  Se agregó el concepto de sesión, que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de inactividad entre el actual y el anterior. 
+	\item \textbf{\texttt{prices.csv}}: Lista los precios de los dispositivos de cada evento. Para lograr esto se hizo un \textit{web-scraping} de la página de Trocafone de la cual se extrajo para cada conjunto de modelo, capacidad, color y condición el precio del dispositivo.
+\end{itemize}
+
+\subsection{Feature engineering}
+
+Con lo investigado del previo trabajo y todos los dataframes generados, se busca todo tipo de atributos de los usuarios, para que luego puedan ser seleccionados y aprovechados por los algoritmos a aplicar.
+
+\subsubsection{Features básicos}
+Se detallan los features generales considerados como pertinentes al modelo.
+
+\begin{itemize}
+	\item \textbf{\texttt{is\_viewed\_product}}: El usuario vió un producto.
+	\item \textbf{\texttt{is\_checkout}}: El usuario llegó a checkout con un producto.
+	\item \textbf{\texttt{is\_conversion}}: El usuario compró un producto.
+	\item \textbf{\texttt{session\_checkout\_first}}: El usuario en su primera sesión realizó un checkout.
+	\item \textbf{\texttt{session\_conversion\_first}}: El usuario en su primera sesión realizó una conversión.
+	\item \textbf{\texttt{session\_ad\_first}}: El usuario en su primera sesión llegó con una campaña publicitaria.
+	\item \textbf{\texttt{session\_ad\_checkout\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria e hizo checkout.
+	\item \textbf{\texttt{session\_ad\_conversion\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria y compró el producto.
+\end{itemize}	
 	
-\item \textbf{New dataframes}	
+\subsubsection{Suma total de eventos}
 
-En este notebook se crearon los distintos csv que fueron realizados para la extracción de features, como fue mencionado anteriormente. 
+A los features agregados como \textit{features básicos} se le calcula el total por usuario y se obtienen el siguiente listado de features:
+\begin{itemize}
+	\item \textbf{\texttt{total\_viewed\_products}}: Cantidad de productos que vio el usuario en el período de tiempo determinado.
+	\item \textbf{\texttt{total\_checkouts}}: Cantidad de veces que el usuario hizo checkout en el período de tiempo determinado.
+	\item \textbf{\texttt{total\_conversions}}: Cantidad de compras que realizó el usuario en el período de tiempo determinado.
+	\item \textbf{\texttt{total\_events}}: Cantidad de eventos totales que el usuario hizo en el período de tiempo determinado.
+	\item \textbf{\texttt{total\_sessions}}: Cantidad total de sesiones del usuario.
+	\item \textbf{\texttt{total\_session\_checkout}}: Cantidad total de sesiones donde el usuario hizo checkout.
+	\item \textbf{\texttt{total\_session\_conversion}}: Cantidad total de sesiones donde el usuario convirtió.
+	\item \textbf{\texttt{total\_events\_ad\_session}}: Cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria.
+	\item \textbf{\texttt{total\_ad\_sessions}}: cCantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria.
+\end{itemize}
+	
+A partir de estos features se deducen los siguientes:
 
-\item \textbf{Feature engineering}
+\begin{itemize}
+	\item \textbf{\texttt{avg\_events\_per\_session}}: Promedio de cantidad total de eventos sobre cantidad de sesiones.
+	\item \textbf{\texttt{avg\_events\_per\_ad\_session}}: Promedio de cantidad total de eventos donde el usuario ingresó por una campaña publicitaria sobre cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria.
+	\item \textbf{\texttt{percentage\_session\_ad}}: Porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria sobre el total de sesiones.
+	\item \textbf{\texttt{percentage\_session\_conversion}}: Porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez y compró sobre la cantidad total de sesiones.
+\end{itemize}
 
-En este notebook se agregan todos los features que se consideran que pueden ser pertinentes para el modelo. Para esto mismo se pensó agregar todos los features que se consideren que pueden ser útiles pero sabiendo que luego se somete a un proceso de selección. 
+\subsubsection{Cantidad de eventos por mes}
 
-\item \textbf{Feature selection}
+Se agregan una serie de features relacionados a la cantidad de eventos y sesiones por mes que se consideraron pertinentes al modelo.
+
+\begin{itemize}
+	\item \textbf{\texttt{total\_viewed\_products\_month}}: cantidad de productos vistos por mes por usuario
+	\item \textbf{\texttt{total\_checkouts\_month}}: cantidad de productos que llegaron a checkout por mes por usuario
+	\item \textbf{\texttt{total\_conversions\_month}}: cantidad de productos que llegaron a ser comprados por mes por usuario
+	\item \textbf{\texttt{total\_events\_month}}: cantidad de eventos por mes por usuario
+	\item \textbf{\texttt{total\_sessions\_month\_}}: cantidad total de sesiones por mes
+	\item \textbf{\texttt{total\_session\_checkouts\_month\_}}: cantidad total de sesiones donde el usuario hace checkout por mes
+	\item \textbf{\texttt{total\_session\_conversions\_month\_}}: cantidad total de sesiones donde el usuario compra un producto por mes
+	\item \textbf{\texttt{total\_events\_ad\_session\_month\_}}: cantidad total de sesiones donde el usuario ingresa a la página por una campaña publicitaria por mes
+	\item \textbf{\texttt{total\_ad\_sessions\_month\_}}: cantidad total de sesiones donde el usuario ingresa a la página por primera vez por una campaña publicitaria por mes
+	 
+\end{itemize}
+
+\subsubsection{Eventos sin contar mayo}
+
+\subsubsection{Eventos en última semana}
+
+\subsubsection{Distribución mensual de las conversiones}
+
+Se agrega en cuántos meses el usuario compró suponiendo que dicha distribución denota si el usuario es un comprador habitual o sólo compró alguna vez aisladamente. El feature se llama "amount\_of\_months\_that\_have\_bought".
+
+\subsubsection{Informacion de los últimos eventos registrados por usuario}
+
+Se busca extraer información de los días que transcurrieron hasta el último evento de un usuario. De esta manera se espera que el modelo aprenda un factor importante para la predicción. Por ejemplo, si un usuario vio un producto hace muchos días es muy probable que no lo compre pero si hizo checkout hace 1 dia es probable que en un futuro cercano compre.
+
+\begin{itemize}
+	\item \textbf{\texttt{days\_to\_last\_event}}: cantidad de días hasta el último evento
+	\item \textbf{\texttt{days\_to\_last\_checkout}}: cantidad de días hasta el último checkout. Si el usuario no hizo checkout se considera un número mayor a la cantidad de días del período de tiempo comprendido.
+	\item \textbf{\texttt{days\_to\_last\_conversion}}: cantidad de días hasta la última compra del usuario. Si el usuario nunca compró se considera un número mayor a la cantidad de días del período de tiempo comprendido.
+	\item \textbf{\texttt{days\_to\_last\_viewed\_product}}: cantidad de días hasta el último día que el usuario vio un producto. Si el usuario nunca vio un producto se considera un número mayor a la cantidad de días del período de tiempo comprendido.
+\end{itemize}
+	
+En paralelo con estos features se consideran los días de la semana, del mes, del año y la semana del año donde ocurren estos últimos eventos.	
+	
+\subsubsection{Precios de la ultima conversion realizada por el usuario}
+
+Se consideró que podría considerarse el precio de la última conversión del usuario como un feature pero a la hora de la selección reflejó una importancia muy baja. Por lo tanto consideramos impertinente la descripción de la idea que habíamos pensado desarrollar.
+
+\subsubsection{Porcentaje de la actividad de la ultima semana}
+
+Aquí la idea pensada era reflejar la cantidad de eventos del usuario de la última semana sobre el total. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
+
+Por lo tanto se pensaron los siguientes features:
+
+\begin{itemize}
+	\item \textbf{\texttt{percentage\_last\_week\_activity}}: porcentaje de la cantidad de eventos de esa semana sobre el total de eventos
+	\item \textbf{\texttt{percentage\_last\_week\_conversions}}:  porcentaje de la cantidad de compras de esa semana sobre el total de eventos
+	\item \textbf{\texttt{percentage\_last\_week\_checkouts}}: porcentaje de la cantidad de checkouts de esa semana sobre el total de eventos
+	\item \textbf{\texttt{percentage\_last\_week\_viewed\_products}}: porcentaje de la cantidad de productos vistos de esa semana sobre el total de eventos
+\end{itemize}
+
+
+\subsubsection{Porcentaje de la actividad del ultimo mes}
+Una lógica análoga a la sección precedente se sigue en esta parte. Los motivos de este feature son simplemente una ampliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
+
+De más está decir que se pensaron los siguientes features:
+\begin{itemize}
+	\item \textbf{\texttt{percentage\_last\_month\_activity}}: porcentaje de la cantidad de eventos de ese mes sobre el total de eventos
+	\item \textbf{\texttt{percentage\_last\_month\_conversions}}:  porcentaje de la cantidad de compras de ese mes sobre el total de eventos
+	\item \textbf{\texttt{percentage\_last\_month\_checkouts}}: porcentaje de la cantidad de checkouts de ese mes sobre el total de eventos
+	\item \textbf{\texttt{percentage\_last\_month\_viewed\_products}}: porcentaje de la cantidad de productos vistos de ese mes sobre el total de eventos
+\end{itemize}
+
+\subsubsection{Días entre el último checkout y última actividad}
+La intención de este feature es medir la diferencia de días que tiene cada usuario entre la compra de un celular y la ultima vez que visualizo el producto comprado. De esta forma poder predecir en base a los productos vistos si es posbile que se haga una compra.
+
+\subsubsection{Estados de celulares}
+Utilizando la lógica de que hay empresas que compran celulares en mal estado con el único fin de usar sus partes como respuestos se plantea agregar una columna que indique porcentaje de celulares en estado Bom - Sem Touch ID vs Bom sobre todos los celulares vistos.
+
+\subsubsection{Varianza logarítmica de productos vistos}
+Se propone analizar la varianza en los precios de los productos visitados. Es decir, si los usuarios ven telefonos de un rango pequeño de precio o, por el contrario, articulos de precios muy variados. Se utilizó una escala logarítmica para seguir manteniendo las proporciones sin tener una gran diferencia entre la varianza de un usuario y la de otro.
+
+\subsubsection{¿El usuario compró más de la media?}
+Se propone como feature evaluar si el usuario compró un celular por encima de la media de precios. 
+
+\subsubsection{¿Cuántas veces vio el último modelo que compró?}
+La idea de este atributo es evaluar una cierta correlación entre los usuarios de la cantidad de veces que se ve un modelo antes de comprarlo. Si un usuario ve una cantidad significativamente grande de veces un modelo es muy probable que lo compre. Esto no quiere decir que sea imposible que un usuario pueda ver una vez un modelo y no comprarlo o verlo muchas veces y no comprarlo pero se busca analizar el caso más general.
+
+\subsubsection{¿Cuantas veces vio la última marca que compró?}
+Una lógica similar a la sección precedente es la que se sigue con este feature. La idea sería también analizar si un usuario se restringe a un modelo en particular o si puede ver distintos celulares de la misma marca y elegir uno de ellos.
+
+\subsubsection{Comportamiento en sesiones de las últimas semanas}
+
+Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
+
+
+\subsection{Feature selection}
 
 En este notebook se utilizan distintas formas de seleccionar los features de manera de eliminar aquellos atributos que resulten ruidosos con el modelo de \texttt{Random Forest}. Se eligió dicho modelo por su popularidad para la selección de features ya que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
 
@@ -145,199 +340,19 @@ Este método es una variante que combina los dos métodos anteriores. En cada pa
 
 \end {itemize}
 
-\item \textbf{Submission framework}
-
-La principal idea de este notebook es definir una serie de funciones para armar las postulaciones de predicciones del trabajo práctico. Las mismas siguen los siguientes pasos:
-
-\begin{enumerate}
-	\item Creación de la matriz \texttt{X} y el vector \texttt{y} para entrenar
-	\item Generación del split para obtener los sets de entrenamiento y de prueba
-	\item Ejecución del algoritmo de Machine Learning que devuelve un dataframe con person como índice y los \textit{labels} como única columna.
-	\item Se obtienen las 3 medidas utilizadas como métrica para evaluar el rendimiento del algoritmo: precisión, auc y aucpr.
-	\item Se predicen las probabilidades 
-	\item Se observa información relevante de la ejecución como la importancia de los features elegidos
-	\item Se guardan los resultados como csv para ser submiteados
-	
-\end{enumerate}
-
-\item \textbf{Parameter tuning}
-
-\end{enumerate}
-
-\section{Investigación previa}
-
-\url{https://fdelmazo.github.io/7506-Datos/TP2/investigacion.html} \\
-
-El primer paso del trabajo consistió en realizar una investigación sobre lo ya hecho en el trabajo anterior. El TP1 \footnote{\url{{https://fdelmazo.github.io/7506-Datos/TP1/TP1.html}}} es un análisis exploratorio de datos de la empresa. Si bien no son exactamente los mismos datos que los trabajados acá, son de la misma índole, y la exploración de ellos dan a luz a patrones en los usuarios del sitio.
-
-Esta investigación se compone de dos partes, una técnica y otra teórica.
-
-Por el lado técnico, viendo que se uso otro set de datos para el TP1, se buscó alguna forma de integrar los datos anteriores con los nuevos (por ejemplo, buscar si hay usuarios compartidos entre los dos sets, o si hay compras para registrar), para poder usar una base de datos más grande tanto para el entrenamiento como la validación de las predicciones. 
-
-Luego de una serie de pasos, busquedas y validaciones, se llegó a la conclusión de que hacer un merge de los datos del TP1 con los del TP2 presentaría un skewness en el set de datos, por la despreciabilidad de los datos del TP1, por lo tanto es mejor no hacerlo.
-
-Por otro lado, en un marco teórico, se vió el análisis hecho en busqueda de que patrones, ideas y conceptos pueden ser aplicados en este trabajo. En particular, se buscan atributos (\textit{features}) escondidos en el set original que puedan ser codificados de tal forma que luego los algoritmos de Machine Learning puedan utilizar a su favor. Los atributos encontrados son especificados en la sección de Feature Engineering.
-
-\section{Creación de dataframes}
-
-\url{https://fdelmazo.github.io/7506-Datos/TP2/new_dataframes.html} \footnote{Este es mayoritariamente un re-trabajo sobre lo hecho para el TP1, en el Notebook Anexo (\url{https://fdelmazo.github.io/7506-Datos/TP1/anexo.html}})\\
-
-Como parte del feature engineering, se crean dataframes nuevos con información de los productos del sitio y de como se accede a este. Los dataframes generados son:
-
-\begin{itemize}
-	\item \textbf\textit{{brands.csv}}: Lista las marcas de los dispotivos de cada evento.
-	\item \textbf\textit{{os.csv}}: Lista los sistemas operativos desde los cuales se accedió al sitio.
-	\item \textbf\textit{{browsers.csv}}: Lista los exploradores desde los cuales se accedió al sitio.
-	\item \textbf\textit{{sessions.csv}}:  Se agregó el concepto de sesión, que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de inactividad entre el actual y el anterior. 
-	\item \textbf\textit{{prices.csv}}: Lista los precios de los dispositivos de cada evento. Para lograr esto se hizo un \textit{web-scraping} de la página de Trocafone de la cual se extrajo para cada conjunto de modelo, capacidad, color y condición el precio del dispositivo.
-\end{itemize}
-
-\section{Feature engineering}
-
-\url{https://fdelmazo.github.io/7506-Datos/TP2/feature_engineering.html} \\
-
-Con todos los dataframes generados previamente y lo investigado del previo trabajo, se busca todo tipo de atributos de los usuarios, para que luego puedan ser seleccionados y aprovechados por los algoritmos a aplicar.
-
-\subsection{Features básicos}
-Se detallan los features generales considerados como pertinentes al modelo.
-
-\begin{itemize}
-	\item \textbf{\textit{is\_viewed\_product}}: El usuario vió un producto
-	\item \textbf{\textit{is\_checkout}}: El usuario llegó a checkout con un producto
-	\item \textbf{\textit{is\_conversion}}: El usuario compró un producto
-	\item \textbf{\textit{session\_checkout\_first}}: El usuario en su primera sesión realizó un checkout
-	\item \textbf{\textit{session\_conversion\_first}}: El usuario en su primera sesión realizó una conversión
-	\item \textbf{\textit{session\_ad\_first}}: El usuario en su primera sesión llegó con una campaña publicitaria
-	\item \textbf{\textit{session\_ad\_checkout\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria e hizo checkout
-	\item \textbf{\textit{session\_ad\_conversion\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria y compró el producto	
-\end{itemize}	
-	
-\subsection{Suma total de eventos}
-
-A los features agregados como \textit{features básicos} se le calcula el total por usuario y se obtienen el siguiente listado de features:
-\begin{itemize}
-	\item total\_viewed\_products: cantidad de productos que vio el usuario en el período de tiempo determinado.
-	\item total\_checkouts: cantidad de veces que el usuario hizo checkout en el período de tiempo determinado.
-	\item total\_conversions: cantidad de compras que realizó el usuario en el período de tiempo determinado.
-	\item total\_events: cantidad de eventos totales que el usuario hizo en el período de tiempo determinado.
-	\item total\_sessions: cantidad total de sesiones del usuario
-	\item total\_session\_checkout: cantidad total de sesiones donde el usuario hizo checkout
-	\item total\_session\_conversion: cantidad total de sesiones donde el usuario convirtió.
-	\item total\_events\_ad\_session: cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria.
-	\item total\_ad\_sessions: cantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria.
-\end{itemize}
-	
-A partir de estos features se deducen los siguientes:
-
-\begin{itemize}
-	\item avg\_events\_per\_session: porcentaje de cantidad total de eventos sobre cantidad de sesiones
-	\item avg\_events\_per\_ad\_session: porcentaje de cantidad total de eventos donde el usuario ingresó por una campaña publicitaria sobre cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria
-	\item percentage\_session\_ad: porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria sobre el total de sesiones
-	\item percentage\_session\_conversion: porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez y compró sobre la cantidad total de sesiones
-\end{itemize}
-
-\subsection{Cantidad de eventos por mes}
-
-Se agregan una serie de features relacionados a la cantidad de eventos y sesiones por mes que se consideraron pertinentes al modelo.
-
-\begin{itemize}
-	\item total\_viewed\_products\_month: cantidad de productos vistos por mes por usuario
-	\item total\_checkouts\_month: cantidad de productos que llegaron a checkout por mes por usuario
-	\item total\_conversions\_month: cantidad de productos que llegaron a ser comprados por mes por usuario
-	\item total\_events\_month: cantidad de eventos por mes por usuario
-	\item total\_sessions\_month\_: cantidad total de sesiones por mes
-	\item total\_session\_checkouts\_month\_: cantidad total de sesiones donde el usuario hace checkout por mes
-	\item total\_session\_conversions\_month\_: cantidad total de sesiones donde el usuario compra un producto por mes
-	\item total\_events\_ad\_session\_month\_: cantidad total de sesiones donde el usuario ingresa a la página por una campaña publicitaria por mes
-	\item total\_ad\_sessions\_month\_: cantidad total de sesiones donde el usuario ingresa a la página por primera vez por una campaña publicitaria por mes
-	 
-\end{itemize}
-
-\subsection{Eventos sin contar mayo}
-
-\subsection{Eventos en última semana}
-
-\subsection{Distribución mensual de las conversiones}
-
-Se agrega en cuántos meses el usuario compró suponiendo que dicha distribución denota si el usuario es un comprador habitual o sólo compró alguna vez aisladamente. El feature se llama "amount\_of\_months\_that\_have\_bought".
-
-\subsection{Informacion de los últimos eventos registrados por usuario}
-
-Se busca extraer información de los días que transcurrieron hasta el último evento de un usuario. De esta manera se espera que el modelo aprenda un factor importante para la predicción. Por ejemplo, si un usuario vio un producto hace muchos días es muy probable que no lo compre pero si hizo checkout hace 1 dia es probable que en un futuro cercano compre.
-
-\begin{itemize}
-	\item days\_to\_last\_event: cantidad de días hasta el último evento
-	\item days\_to\_last\_checkout: cantidad de días hasta el último checkout. Si el usuario no hizo checkout se considera un número mayor a la cantidad de días del período de tiempo comprendido.
-	\item days\_to\_last\_conversion: cantidad de días hasta la última compra del usuario. Si el usuario nunca compró se considera un número mayor a la cantidad de días del período de tiempo comprendido.
-	\item days\_to\_last\_viewed\_product: cantidad de días hasta el último día que el usuario vio un producto. Si el usuario nunca vio un producto se considera un número mayor a la cantidad de días del período de tiempo comprendido.
-\end{itemize}
-	
-En paralelo con estos features se consideran los días de la semana, del mes, del año y la semana del año donde ocurren estos últimos eventos.	
-	
-\subsection{Precios de la ultima conversion realizada por el usuario}
-
-Se consideró que podría considerarse el precio de la última conversión del usuario como un feature pero a la hora de la selección reflejó una importancia muy baja. Por lo tanto consideramos impertinente la descripción de la idea que habíamos pensado desarrollar.
-
-\subsection{Porcentaje de la actividad de la ultima semana}
-
-Aquí la idea pensada era reflejar la cantidad de eventos del usuario de la última semana sobre el total. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
-
-Por lo tanto se pensaron los siguientes features:
-
-\begin{itemize}
-	\item percentage\_last\_week\_activity: porcentaje de la cantidad de eventos de esa semana sobre el total de eventos
-	\item percentage\_last\_week\_conversions:  porcentaje de la cantidad de compras de esa semana sobre el total de eventos
-	\item percentage\_last\_week\_checkouts: porcentaje de la cantidad de checkouts de esa semana sobre el total de eventos
-	\item percentage\_last\_week\_viewed\_products: porcentaje de la cantidad de productos vistos de esa semana sobre el total de eventos
-\end{itemize}
-
-
-\subsection{Porcentaje de la actividad del ultimo mes}
-Una lógica análoga a la sección precedente se sigue en esta parte. Los motivos de este feature son simplemente una ampliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
-
-De más está decir que se pensaron los siguientes features:
-\begin{itemize}
-	\item percentage\_last\_month\_activity: porcentaje de la cantidad de eventos de ese mes sobre el total de eventos
-	\item percentage\_last\_month\_conversions:  porcentaje de la cantidad de compras de ese mes sobre el total de eventos
-	\item percentage\_last\_month\_checkouts: porcentaje de la cantidad de checkouts de ese mes sobre el total de eventos
-	\item percentage\_last\_month\_viewed\_products: porcentaje de la cantidad de productos vistos de ese mes sobre el total de eventos
-\end{itemize}
-
-\subsection{Días entre el último checkout y última actividad}
-La intención de este feature es medir la diferencia de días que tiene cada usuario entre la compra de un celular y la ultima vez que visualizo el producto comprado. De esta forma poder predecir en base a los productos vistos si es posbile que se haga una compra.
-
-\subsection{Estados de celulares}
-Utilizando la lógica de que hay empresas que compran celulares en mal estado con el único fin de usar sus partes como respuestos se plantea agregar una columna que indique porcentaje de celulares en estado Bom - Sem Touch ID vs Bom sobre todos los celulares vistos.
-
-\subsection{Varianza logarítmica de productos vistos}
-Se propone analizar la varianza en los precios de los productos visitados. Es decir, si los usuarios ven telefonos de un rango pequeño de precio o, por el contrario, articulos de precios muy variados. Se utilizó una escala logarítmica para seguir manteniendo las proporciones sin tener una gran diferencia entre la varianza de un usuario y la de otro.
-
-\subsection{¿El usuario compró más de la media?}
-Se propone como feature evaluar si el usuario compró un celular por encima de la media de precios. 
-
-\subsection{¿Cuántas veces vio el último modelo que compró?}
-La idea de este atributo es evaluar una cierta correlación entre los usuarios de la cantidad de veces que se ve un modelo antes de comprarlo. Si un usuario ve una cantidad significativamente grande de veces un modelo es muy probable que lo compre. Esto no quiere decir que sea imposible que un usuario pueda ver una vez un modelo y no comprarlo o verlo muchas veces y no comprarlo pero se busca analizar el caso más general.
-
-\subsection{¿Cuantas veces vio la última marca que compró?}
-Una lógica similar a la sección precedente es la que se sigue con este feature. La idea sería también analizar si un usuario se restringe a un modelo en particular o si puede ver distintos celulares de la misma marca y elegir uno de ellos.
-
-\subsection{Comportamiento en sesiones de las últimas semanas}
-
-Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
-
-\begin{itemize}
-	\item ratio\_sessions\_last\_week\_over\_total
-	\item Completar
-\end{itemize}
-
-\subsection{title}
-
-\subsection{title}
 
 \section{Algoritmos utilizados}
-Completar
+
+\subsection{Parameter tuning}
 
 \section{Desarrollo}
+
+\subsection{Submission framework}
+
+
+\subsection{Encontrando el mejor submit}
+
+\hl{[TO-DO metricassss]}
 
 En el notebook principal llamado \texttt{TP2} se realiza el desarrollo principal del Trabajo Práctico. A grandes rasgos en un primer lugar se utilizan los dataframes con todos los atributos seleccionados. Luego se definen y aplican los algoritmos de clasificación para realizar los entrenamientos y posteriores predicciones de conversiones. Finalmente se arman las postulaciones de labels.
 
@@ -345,42 +360,11 @@ La elección del algoritmo para realizar el \textit{submit} se hace en base a to
 
 Finalmente, una vez elegido el algoritmo o el ensamble de algoritmos predilecto se entrenó con todo el dataframe (o mejor dicho \texttt{X train}) para enviar el submit.
 
+\hl{[TO-DO plotsssss]}
+
 \section{Resultados obtenidos}
-Podríamos plotear kaggle? Tipo nuestro AUC local vs los distintos submits?
 
 \section{Conclusiones}
-
-\section{Fuentes}
-\begin{itemize}
-	\item 
-Parameter tuning para árboles de decisión:
-
-\url{https://medium.com/@mohtedibf/indepth-parameter-tuning-for-decision-tree-6753118a03c3}
-	\item 
-Parameter tuning para random forest:
-
-\url{https://medium.com/all-things-ai/in-depth-parameter-tuning-for-random-forest-d67bb7e920d}
-	\item 
-Parameter tuning para xgboost:
-
-\url{https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/}
-	\item
-Parameter tuning para lightgbm:
-
-\url{https://www.kaggle.com/sz8416/simple-bayesian-optimization-for-lightgbm}
-\url{https://medium.com/@pushkarmandot/https-medium-com-pushkarmandot-what-is-lightgbm-how-to-implement-it-h
-ow-to-fine-tune-the-parameters-60347819b7fc}
-
-	\item 
-Parameter tuning para catboost:
-
-\url{https://tech.yandex.com/catboost/doc/dg/concepts/parameter-tuning-docpage/}
-
-	\item 
-Parameter tuning para gradient boosting:
-
-\url{https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/}
-\url{https://medium.com/all-things-ai/in-depth-parameter-tuning-for-gradient-boosting-3363992e9bae}
-\end{itemize}
+its a kind of magic
 
 \end{document}
