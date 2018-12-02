@@ -293,7 +293,7 @@ Por lo tanto se pensaron los siguientes features:
 
 
 \subsection{Porcentaje de la actividad del ultimo mes}
-Una lógica análoga a la sección pecedente se sigue en esta parte. Los motivos de este feature son simplemente una apliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
+Una lógica análoga a la sección precedente se sigue en esta parte. Los motivos de este feature son simplemente una ampliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
 
 De más está decir que se pensaron los siguientes features:
 \begin{itemize}
@@ -310,22 +310,77 @@ La intención de este feature es medir la diferencia de días que tiene cada usu
 Utilizando la lógica de que hay empresas que compran celulares en mal estado con el único fin de usar sus partes como respuestos se plantea agregar una columna que indique porcentaje de celulares en estado Bom - Sem Touch ID vs Bom sobre todos los celulares vistos.
 
 \subsection{Varianza logarítmica de productos vistos}
-Lo que se plantea es analizar la varianza en los precios de los productos visitados. Es decir, si los usuarios ven telefonos de un rango pequeño de precio o, por el contrario, articulos de precios muy variados. Se utilizó una escala logarítmica para seguir manteniendo las proporciones sin tener una gran diferencia entre la varianza de un usuario y la de otro.
+Se propone analizar la varianza en los precios de los productos visitados. Es decir, si los usuarios ven telefonos de un rango pequeño de precio o, por el contrario, articulos de precios muy variados. Se utilizó una escala logarítmica para seguir manteniendo las proporciones sin tener una gran diferencia entre la varianza de un usuario y la de otro.
+
 \subsection{¿El usuario compró más de la media?}
+Se propone como feature evaluar si el usuario compró un celular por encima de la media de precios. 
 
 \subsection{¿Cuántas veces vio el último modelo que compró?}
+La idea de este atributo es evaluar una cierta correlación entre los usuarios de la cantidad de veces que se ve un modelo antes de comprarlo. Si un usuario ve una cantidad significativamente grande de veces un modelo es muy probable que lo compre. Esto no quiere decir que sea imposible que un usuario pueda ver una vez un modelo y no comprarlo o verlo muchas veces y no comprarlo pero se busca analizar el caso más general.
 
 \subsection{¿Cuantas veces vio la última marca que compró?}
+Una lógica similar a la sección precedente es la que se sigue con este feature. La idea sería también analizar si un usuario se restringe a un modelo en particular o si puede ver distintos celulares de la misma marca y elegir uno de ellos.
 
 \subsection{Comportamiento en sesiones de las últimas semanas}
 
+Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
+
+\begin{itemize}
+	\item ratio\_sessions\_last\_week\_over\_total
+	\item Completar
+\end{itemize}
+
+\subsection{title}
+
+\subsection{title}
+
 \section{Algoritmos utilizados}
+Completar
 
 \section{Desarrollo}
-Acá pretendo hablar del notebook TP2
+
+En el notebook principal llamado \texttt{TP2} se realiza el desarrollo principal del Trabajo Práctico. A grandes rasgos en un primer lugar se utilizan los dataframes con todos los atributos seleccionados. Luego se definen y aplican los algoritmos de clasificación para realizar los entrenamientos y posteriores predicciones de conversiones. Finalmente se arman las postulaciones de labels.
+
+La elección del algoritmo para realizar el \textit{submit} se hace en base a todos los algoritmos y a combinaciones duales de ellos. Las combinaciones se realizan con el algoritmo \texttt{Voting Classifier} que es de la librería de \texttt{sklearn}. Para cada una de estas combinaciones se utiliza un set de features diferente a fin de elegir el que arroje mejor resultado. Dichos set de features se obtienen a partir de la selección que fue detallada previamente.
+
+Finalmente, una vez elegido el algoritmo o el ensamble de algoritmos predilecto se entrenó con todo el dataframe (o mejor dicho \texttt{X train}) para enviar el submit.
 
 \section{Resultados obtenidos}
+Podríamos plotear kaggle? Tipo nuestro AUC local vs los distintos submits?
 
 \section{Conclusiones}
+
+\section{Fuentes}
+\begin{itemize}
+	\item 
+Parameter tuning para árboles de decisión:
+
+\url{https://medium.com/@mohtedibf/indepth-parameter-tuning-for-decision-tree-6753118a03c3}
+	\item 
+Parameter tuning para random forest:
+
+\url{https://medium.com/all-things-ai/in-depth-parameter-tuning-for-random-forest-d67bb7e920d}
+	\item 
+Parameter tuning para xgboost:
+
+\url{https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/}
+	\item
+Parameter tuning para lightgbm:
+
+\url{https://www.kaggle.com/sz8416/simple-bayesian-optimization-for-lightgbm}
+\url{https://medium.com/@pushkarmandot/https-medium-com-pushkarmandot-what-is-lightgbm-how-to-implement-it-h
+ow-to-fine-tune-the-parameters-60347819b7fc}
+
+	\item 
+Parameter tuning para catboost:
+
+\url{https://tech.yandex.com/catboost/doc/dg/concepts/parameter-tuning-docpage/}
+
+	\item 
+Parameter tuning para gradient boosting:
+
+\url{https://www.analyticsvidhya.com/blog/2016/02/complete-guide-parameter-tuning-gradient-boosting-gbm-python/}
+\url{https://medium.com/all-things-ai/in-depth-parameter-tuning-for-gradient-boosting-3363992e9bae}
+\end{itemize}
 
 \end{document}
