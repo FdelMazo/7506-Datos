@@ -85,55 +85,131 @@
 
 \section{Introducción}
 
-Se propone exponer en el siguiente informe el desarrollo del Trabajo Práctico para predecir la probabilidad de que un usuario de Trocafone realice una conversión en un período determinado de tiempo. Con dicho propósito se utilizan como base dos archivos csv brindados por la empresa. En un primer lugar el archivo \texttt{events\_up\_to\_01062018.csv} que contiene la información de los eventos realizados por un conjunto de usuarios hasta el 31 de mayo de 2018. En un segundo lugar el archivo \texttt{labels\_training\_set.csv} que determina si un conjunto de usuarios realizó o no una conversión desde el 01/06/2018 hasta el 15/06/2018. 
+El objetivo principal del trabajo es el de predecir la probabilidad de que un usuario de la empresa Trocafone realice una compra de un dispositivo celular (conversión). 
 
-Se propone como objetivo desarrollar una métrica a fin de evaluar los distintos resultados obtenidos. Se presentan en el informe las distintas decisiones adoptadas para elegir un resultado por sobre otro. Así mismo, se propuso utilizar distintos algoritmos de la librería sklearn para elegir el que modelice mejor. 
+La realización del trabajo se hace con algoritmos de Machine Learning, una disciplina que busca poder generar clasificaciones en base a un entrenamiento sobre información pasada, seguida de una validación de las predicciones generadas. En el trabajo se prueban distintos algoritmos, los cuales todos en distinta manera hacen uso de los datos (en particular, de sus atributos). Es por esto que es muy importante saber que datos usar, y buscar como codificarlos de tal forma que mejor se aprovechen.
 
-Por otro lado se crearon distintos csv a fin de poder desarrollar de mejor manera el proceso de feature engineering y obtener un pre-procesamiento de los datos que permita encontrar los resultados más altos. 
+Con dicho propósito se utilizan como base dos sets de datos brindados por la empresa. En un primer lugar el archivo \texttt{events\_up\_to\_01062018.csv} que contiene la información de los eventos realizados por un conjunto de usuarios desde el 1ro de enero hasta el 31 de mayo de 2018 y servirá como entrenamiento de los algoritmos, y en un segundo lugar el archivo \texttt{labels\_training\_set.csv} que determina si el usuario realizó o no una conversión desde el primero hasta el quince de junio el cual servirá de validación. 
 
-\section{Investigación}
+\section{Organización del Trabajo}
 
-Como se mencionó en la \textit{Introducción}, se realizó un proceso de exploración de los datos para crear nuevos atributos y extraer nuevos features. De esta manera se crearon distintos csv con información extraída tanto de internet como de los propios datos para luego concatenar al set de datos final. Se procede a dar una breve explicación de la funcionalidad de cada uno de ellos. Muchos de ellos se encuentran detallados en el 'Notebook Anexo' del TP1\footnote{https://fdelmazo.github.io/7506-Datos/TP1/TP1.html}.
+Para el desarrollo del Trabajo se utilizaron una serie de notebooks que buscaron organizar de la manera más clara posible los distintos pasos a realizar para desarrollar un submit. Los notebooks, en orden de lectura y corrida son:
+\begin{enumerate} 
+\item \textbf{Investigación}
+
+En un primer lugar se quiso investigar si existió alguna relación relevante en el dataset brindado en el Trabajo Práctico 1 con los datos que se utilizarán en este. 
+
+Se recopiló la siguiente información:
+
+\begin{enumerate}
+\item No se repiten usuarios en los datasets.
+\item En el primer dataset (TP1) hay 27624 usuarios de los cuales 13967 tuvieron actividad en junio. Entre el 1 y el 15 (inclusive) de junio 82 usuarios compraron productos.
+\item En el segundo dataset hay 19414 usuarios de los cuales 980 compraron en Junio.
+\end{enumerate}
+
+Por lo tanto se concluyó que hacer un merge de los datos del TP1 con los del TP2 presentaría un \textit{skewness} en el set de datos, por la despreciabilidad de estos.
+	
+\item \textbf{New dataframes}	
+
+En este notebook se crearon los distintos csv que fueron realizados para la extracción de features, como fue mencionado anteriormente. 
+
+\item \textbf{Feature engineering}
+
+En este notebook se agregan todos los features que se consideran que pueden ser pertinentes para el modelo. Para esto mismo se pensó agregar todos los features que se consideren que pueden ser útiles pero sabiendo que luego se somete a un proceso de selección. 
+
+\item \textbf{Feature selection}
+
+En este notebook se utilizan distintas formas de seleccionar los features de manera de eliminar aquellos atributos que resulten ruidosos con el modelo de \texttt{Random Forest}. Se eligió dicho modelo por su popularidad para la selección de features ya que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
+
+Se utiliza como métrica el AUC debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
+
+Las distintas formas de selección utilizadas se describen como sigue:
+
+\begin {itemize}
+\item \texttt{Cumulative importance}
+
+El nombre del método fue inventado por el grupo de Trabajo y denota el método más intuitivo para la selección de features. Con el uso del algoritmo de \texttt{Random Forest} se parte de una lista de todos los features ordenados según importancia y se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo a,b,c features se parte de una lista como [a,b,c] y luego se obtiene  [ [a], [a,b], [a,b,c] ]. El objetivo de este método es encontrar el 
+\textit{codo}, es decir, los features que incrementan el AUC local.
+
+\item \texttt{Forward Selection}
+
+Con este método se comienza con ningún atributo y en cada paso se agrega el atributo que genere mejor resultado. Se agregan atributos siempre y cuando los resultados mejoren. El algoritmo termina cuando el resultado no se puede mejorar o cuando ya se han agregado todos los atributos.
+
+\item \texttt{Backward Selection}
+
+Este método funciona a la inversa de \texttt{Forward Selection}. Se comienza con todos los atributos y se quita en cada iteración el atributo que aumente el resultado de la métrica. De esta manera el algoritmo termina cuando al quitar un atributo el resultado empeora o cuando ya no hay más atributos por quitar.
+
+\item \texttt{Stepwise Selection}
+
+Este método es una variante que combina los dos métodos anteriores. En cada paso se considera agregar o quitar una variable de manera de aumentar el AUC local.	
+
+\end {itemize}
+
+\item \textbf{Submission framework}
+
+La principal idea de este notebook es definir una serie de funciones para armar las postulaciones de predicciones del trabajo práctico. Las mismas siguen los siguientes pasos:
+
+\begin{enumerate}
+	\item Creación de la matriz \texttt{X} y el vector \texttt{y} para entrenar
+	\item Generación del split para obtener los sets de entrenamiento y de prueba
+	\item Ejecución del algoritmo de Machine Learning que devuelve un dataframe con person como índice y los \textit{labels} como única columna.
+	\item Se obtienen las 3 medidas utilizadas como métrica para evaluar el rendimiento del algoritmo: precisión, auc y aucpr.
+	\item Se predicen las probabilidades 
+	\item Se observa información relevante de la ejecución como la importancia de los features elegidos
+	\item Se guardan los resultados como csv para ser submiteados
+	
+\end{enumerate}
+
+\item \textbf{Parameter tuning}
+
+\end{enumerate}
+
+\section{Investigación previa}
+
+\url{https://fdelmazo.github.io/7506-Datos/TP2/investigacion.html} \\
+
+El primer paso del trabajo consistió en realizar una investigación sobre lo ya hecho en el trabajo anterior. El TP1 \footnote{\url{{https://fdelmazo.github.io/7506-Datos/TP1/TP1.html}}} es un análisis exploratorio de datos de la empresa. Si bien no son exactamente los mismos datos que los trabajados acá, son de la misma índole, y la exploración de ellos dan a luz a patrones en los usuarios del sitio.
+
+Esta investigación se compone de dos partes, una técnica y otra teórica.
+
+Por el lado técnico, viendo que se uso otro set de datos para el TP1, se buscó alguna forma de integrar los datos anteriores con los nuevos (por ejemplo, buscar si hay usuarios compartidos entre los dos sets, o si hay compras para registrar), para poder usar una base de datos más grande tanto para el entrenamiento como la validación de las predicciones. 
+
+Luego de una serie de pasos, busquedas y validaciones, se llegó a la conclusión de que hacer un merge de los datos del TP1 con los del TP2 presentaría un skewness en el set de datos, por la despreciabilidad de los datos del TP1, por lo tanto es mejor no hacerlo.
+
+Por otro lado, en un marco teórico, se vió el análisis hecho en busqueda de que patrones, ideas y conceptos pueden ser aplicados en este trabajo. En particular, se buscan atributos (\textit{features}) escondidos en el set original que puedan ser codificados de tal forma que luego los algoritmos de Machine Learning puedan utilizar a su favor. Los atributos encontrados son especificados en la sección de Feature Engineering.
+
+\section{Creación de dataframes}
+
+\url{https://fdelmazo.github.io/7506-Datos/TP2/new_dataframes.html} \footnote{Este es mayoritariamente un re-trabajo sobre lo hecho para el TP1, en el Notebook Anexo (\url{https://fdelmazo.github.io/7506-Datos/TP1/anexo.html}})\\
+
+Como parte del feature engineering, se crean dataframes nuevos con información de los productos del sitio y de como se accede a este. Los dataframes generados son:
 
 \begin{itemize}
-	\item brands.csv
-
-Se agregó una columna al dataframe que detalla qué marca está involucarada en el evento del usuario.
-
-	\item {os.csv}
-	
-Se agregó una columna al dataframe que detalla qué sistema operativo está involucarada en el evento del usuario.
-
-	\item{browsers.csv}
-
-Se agregó una columna al dataframe que detalla qué explorador de internet se accede al sitio.	
-
-	\item{sessions.csv}
-
-Se agregó el concepto de sesión, que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de
-inactividad entre el actual y el anterior. Esto fue fijado con un criterio arbitrario a fin de poder discretizar el tiempo y definir este concepto.
-
-	\item{prices.csv}
-
-Se agregó una columna al dataframe que indica el precio del producto involucrado en el evento del usuario. Para ello se extrajeron los precios de la página de Trocafone\footnote{https://www.trocafone.com/} considerando el sku, el modelo, el color, la capacidad de almacenamiento y la condición.
+	\item \textbf\textit{{brands.csv}}: Lista las marcas de los dispotivos de cada evento.
+	\item \textbf\textit{{os.csv}}: Lista los sistemas operativos desde los cuales se accedió al sitio.
+	\item \textbf\textit{{browsers.csv}}: Lista los exploradores desde los cuales se accedió al sitio.
+	\item \textbf\textit{{sessions.csv}}:  Se agregó el concepto de sesión, que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de inactividad entre el actual y el anterior. 
+	\item \textbf\textit{{prices.csv}}: Lista los precios de los dispositivos de cada evento. Para lograr esto se hizo un \textit{web-scraping} de la página de Trocafone de la cual se extrajo para cada conjunto de modelo, capacidad, color y condición el precio del dispositivo.
 \end{itemize}
 
 \section{Feature engineering}
 
-A partir del nuevo dataframe obtenido con la unión de todos los csv descritos en el inciso anterior se procedió a la búsqueda de features. En esta étapa del desarrollo del Trabajo Práctico se buscó explotar las distintas ideas y después con un proceso de selección que será explicado maś adelante elegir los features pertinentes y más útiles al modelo. 
+\url{https://fdelmazo.github.io/7506-Datos/TP2/feature_engineering.html} \\
+
+Con todos los dataframes generados previamente y lo investigado del previo trabajo, se busca todo tipo de atributos de los usuarios, para que luego puedan ser seleccionados y aprovechados por los algoritmos a aplicar.
 
 \subsection{Features básicos}
 Se detallan los features generales considerados como pertinentes al modelo.
 
 \begin{itemize}
-	\item is\_viewed\_product: el usuario vió un producto
-	\item is\_checkout: el usuario llegó a checkout con un producto
-	\item is\_conversion: el usuario compró un producto
-	\item session\_checkout\_first: el usuario en su primera sesión realizó un checkout
-	\item session\_conversion\_first: el usuario en su primera sesión realizó una conversión
-	\item session\_ad\_first: el usuario en su primera sesión llegó con una campaña publicitaria
-	\item session\_ad\_checkout\_event: el usuario en su primera sesión llegó con una campaña publicitaria e hizo checkout
-	\item session\_ad\_conversion\_event: el usuario en su primera sesión llegó con una campaña publicitaria y compró el producto	
+	\item \textbf{\textit{is\_viewed\_product}}: El usuario vió un producto
+	\item \textbf{\textit{is\_checkout}}: El usuario llegó a checkout con un producto
+	\item \textbf{\textit{is\_conversion}}: El usuario compró un producto
+	\item \textbf{\textit{session\_checkout\_first}}: El usuario en su primera sesión realizó un checkout
+	\item \textbf{\textit{session\_conversion\_first}}: El usuario en su primera sesión realizó una conversión
+	\item \textbf{\textit{session\_ad\_first}}: El usuario en su primera sesión llegó con una campaña publicitaria
+	\item \textbf{\textit{session\_ad\_checkout\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria e hizo checkout
+	\item \textbf{\textit{session\_ad\_conversion\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria y compró el producto	
 \end{itemize}	
 	
 \subsection{Suma total de eventos}
@@ -158,7 +234,6 @@ A partir de estos features se deducen los siguientes:
 	\item avg\_events\_per\_ad\_session: porcentaje de cantidad total de eventos donde el usuario ingresó por una campaña publicitaria sobre cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria
 	\item percentage\_session\_ad: porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria sobre el total de sesiones
 	\item percentage\_session\_conversion: porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez y compró sobre la cantidad total de sesiones
-	
 \end{itemize}
 
 \subsection{Cantidad de eventos por mes}
@@ -245,82 +320,6 @@ Lo que se plantea es analizar la varianza en los precios de los productos visita
 \subsection{Comportamiento en sesiones de las últimas semanas}
 
 \section{Algoritmos utilizados}
-
-\section{Organización del Trabajo}
-Para el desarrollo del Trabajo se utilizaron una serie de notebooks que buscaron organizar de la manera más clara posible los distintos pasos a realizar para desarrollar un submit. Se describen los distintos notebooks que fueron utilizados:
-
-\begin{enumerate} 
-	
-\item \textbf{Investigación}
-
-En un primer lugar se quiso investigar si existió alguna relación relevante en el dataset brindado en el Trabajo Práctico 1 con los datos que se utilizarán en este. 
-
-Se recopiló la siguiente información:
-
-\begin{enumerate}
-
-\item No se repiten usuarios en los datasets.
-\item En el primer dataset (TP1) hay 27624 usuarios de los cuales 13967 tuvieron actividad en junio. Entre el 1 y el 15 (inclusive) de junio 82 usuarios compraron productos.
-\item En el segundo dataset hay 19414 usuarios de los cuales 980 compraron en Junio.
-
-\end{enumerate}
-
-Por lo tanto se concluyó que hacer un merge de los datos del TP1 con los del TP2 presentaría un \textit{skewness} en el set de datos, por la despreciabilidad de estos.
-	
-\item \textbf{New dataframes}	
-
-En este notebook se crearon los distintos csv que fueron realizados para la extracción de features, como fue mencionado anteriormente. 
-
-\item \textbf{Feature engineering}
-
-En este notebook se agregan todos los features que se consideran que pueden ser pertinentes para el modelo. Para esto mismo se pensó agregar todos los features que se consideren que pueden ser útiles pero sabiendo que luego se somete a un proceso de selección. 
-
-\item \textbf{Feature selection}
-
-En este notebook se utilizan distintas formas de seleccionar los features de manera de eliminar aquellos atributos que resulten ruidosos con el modelo de \texttt{Random Forest}. Se eligió dicho modelo por su popularidad para la selección de features ya que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
-
-Se utiliza como métrica el AUC debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
-
-Las distintas formas de selección utilizadas se describen como sigue:
-
-\begin {itemize}
-\item \texttt{Cumulative importance}
-
-El nombre del método fue inventado por el grupo de Trabajo y denota el método más intuitivo para la selección de features. Con el uso del algoritmo de \texttt{Random Forest} se parte de una lista de todos los features ordenados según importancia y se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo a,b,c features se parte de una lista como [a,b,c] y luego se obtiene  [ [a], [a,b], [a,b,c] ]. El objetivo de este método es encontrar el 
-\textit{codo}, es decir, los features que incrementan el AUC local.
-
-\item \texttt{Forward Selection}
-
-Con este método se comienza con ningún atributo y en cada paso se agrega el atributo que genere mejor resultado. Se agregan atributos siempre y cuando los resultados mejoren. El algoritmo termina cuando el resultado no se puede mejorar o cuando ya se han agregado todos los atributos.
-
-\item \texttt{Backward Selection}
-
-Este método funciona a la inversa de \texttt{Forward Selection}. Se comienza con todos los atributos y se quita en cada iteración el atributo que aumente el resultado de la métrica. De esta manera el algoritmo termina cuando al quitar un atributo el resultado empeora o cuando ya no hay más atributos por quitar.
-
-\item \texttt{Stepwise Selection}
-
-Este método es una variante que combina los dos métodos anteriores. En cada paso se considera agregar o quitar una variable de manera de aumentar el AUC local.	
-
-\end {itemize}
-
-\item \textbf{Submission framework}
-
-La principal idea de este notebook es definir una serie de funciones para armar las postulaciones de predicciones del trabajo práctico. Las mismas siguen los siguientes pasos:
-
-\begin{enumerate}
-	\item Creación de la matriz \texttt{X} y el vector \texttt{y} para entrenar
-	\item Generación del split para obtener los sets de entrenamiento y de prueba
-	\item Ejecución del algoritmo de Machine Learning que devuelve un dataframe con person como índice y los \textit{labels} como única columna.
-	\item Se obtienen las 3 medidas utilizadas como métrica para evaluar el rendimiento del algoritmo: precisión, auc y aucpr.
-	\item Se predicen las probabilidades 
-	\item Se observa información relevante de la ejecución como la importancia de los features elegidos
-	\item Se guardan los resultados como csv para ser submiteados
-	
-\end{enumerate}
-
-\item \textbf{Parameter tuning}
-
-\end{enumerate}
 
 \section{Desarrollo}
 Acá pretendo hablar del notebook TP2
