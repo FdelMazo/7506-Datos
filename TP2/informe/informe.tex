@@ -212,7 +212,12 @@ Se agregan una serie de features relacionados a la cantidad de eventos y sesione
 
 \subsubsection{Eventos sin contar mayo}
 
+La idea de esta funcionalidad es contar la cantidad de checkouts y conversiones por usuario excluyendo a mayo. Luego de hacer este feature notamos una mejora en el rendimiento de las predicciones por lo cual se lo mantuvo.
+
+
 \subsubsection{Eventos en última semana}
+
+Aquí la idea pensada es reflejar la cantidad de eventos del usuario de la última semana. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
 
 \subsubsection{Distribución mensual de las conversiones}
 
@@ -233,11 +238,13 @@ En paralelo con estos features se consideran los días de la semana, del mes, de
 	
 \subsubsection{Precios de la ultima conversion realizada por el usuario}
 
-Se consideró que podría considerarse el precio de la última conversión del usuario como un feature pero a la hora de la selección reflejó una importancia muy baja. Por lo tanto consideramos impertinente la descripción de la idea que habíamos pensado desarrollar.
+Se especuló que podría considerarse el precio de la última conversión del usuario como un feature pero a la hora de la selección reflejó una importancia muy baja. Por lo tanto consideramos impertinente la descripción de la idea que habíamos pensado desarrollar.
 
 \subsubsection{Porcentaje de la actividad de la ultima semana}
 
-Aquí la idea pensada era reflejar la cantidad de eventos del usuario de la última semana sobre el total. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
+La intención en este feature es terminar de cerrar un tema que queda inconcluso en el feature 'Eventos en última semana'. Es verdad que un usuario que en el último tiempo viene visitando mucho la página, sin comprar, es más probable que compre que otro que no. Por otro lado, existen usuarios que previo a comprar hacen pocas visitas y no se los estaría teniendo en cuenta. 
+
+En conclusión, con el porcentaje se busca analizar si el usuario comenzó a generar más eventos de lo regular . Es decir, si el cliente modificó su conducta habitual. Y para ello se cacula la cantidad de eventos del usuario de la última semana sobre el total.
 
 Por lo tanto se pensaron los siguientes features:
 
@@ -281,6 +288,16 @@ Una lógica similar a la sección precedente es la que se sigue con este feature
 \subsubsection{Comportamiento en sesiones de las últimas semanas}
 
 Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
+
+\subsubsection{¿Cuántas veces entró cada usuario a las static pages?}
+
+Considerando la poca fama de las secciones de "preguntas frecuentes" y similares se pensó que podía exixtir una relación directa entre el compromiso del cliente con la compra/estudio de mercado y la visita a las mismas. Dado que la cantidad de eventos para la mayoría de las static pages son despreciables se tomaron las dos más frecuentes 'FaqEcommerce' y 'CustomerService'.
+
+\subsubsection{¿Cuántas veces vio el modelo que más vio la última semana?}
+
+Nos parece evidente que existe una correlación entre ver mucho un articulo o modelo y el deseo de comprarlo. Por lo tanto en esta funcionalidad propone analizar cuántas veces el usuario vio alguna publicación del modelo con mayor probabilidad de compra (el que más visitó) indiferentemente de cuál sea este modelo. 
+
+Se propone también analizar esta información para un rango de tiempo no muy extenso y cercano (en función a la fecha) a los labels que se quieren predecir. 
 
 
 \subsection{Feature selection}
