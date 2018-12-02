@@ -195,6 +195,13 @@ Los atributos refieren a la sumatoria de cantidad de productos vistos, en checko
 
 \subsubsection{Cantidad de eventos por mes}
 
+\begin{sloppypar}
+\texttt{\detokenize{['total_viewed_products_month_1', 'total_checkouts_month_1', 'total_conversions_month_1', 'total_events_month_1', 'total_sessions_month_1', 'total_session_checkouts_month_1', 'total_session_conversions_month_1', 'total_events_ad_session_month_1', 'total_ad_sessions_month_1', 'has_checkout_month_1', 'has_conversion_month_1', 'total_viewed_products_month_2', 'total_checkouts_month_2', 'total_conversions_month_2', 'total_events_month_2', 'total_sessions_month_2', 'total_session_checkouts_month_2', 'total_session_conversions_month_2', 'total_events_ad_session_month_2', 'total_ad_sessions_month_2', 'has_checkout_month_2', 'has_conversion_month_2', 'total_viewed_products_month_3', 'total_checkouts_month_3', 'total_conversions_month_3', 'total_events_month_3', 'total_sessions_month_3', 'total_session_checkouts_month_3', 'total_session_conversions_month_3', 'total_events_ad_session_month_3', 'total_ad_sessions_month_3', 'has_checkout_month_3', 'has_conversion_month_3', 'total_viewed_products_month_4', 'total_checkouts_month_4', 'total_conversions_month_4', 'total_events_month_4', 'total_sessions_month_4', 'total_session_checkouts_month_4', 'total_session_conversions_month_4', 'total_events_ad_session_month_4', 'total_ad_sessions_month_4', 'has_checkout_month_4', 'has_conversion_month_4', 'total_viewed_products_month_5', 'total_checkouts_month_5', 'total_conversions_month_5', 'total_events_month_5', 'total_sessions_month_5', 'total_session_checkouts_month_5', 'total_session_conversions_month_5', 'total_events_ad_session_month_5', 'total_ad_sessions_month_5', 'has_checkout_month_5', 'has_conversion_month_5']
+}}
+\end{sloppypar}
+
+\hl{[TO-DO: Reemplazar texto de abajo por algo mas generico]}
+
 Se agregan una serie de features relacionados a la cantidad de eventos y sesiones por mes que se consideraron pertinentes al modelo.
 
 \begin{itemize}
@@ -275,13 +282,16 @@ Se propone como feature evaluar si el usuario compró un celular por encima de l
 \subsubsection{¿Cuántas veces vio el último modelo que compró?}
 La idea de este atributo es evaluar una cierta correlación entre los usuarios de la cantidad de veces que se ve un modelo antes de comprarlo. Si un usuario ve una cantidad significativamente grande de veces un modelo es muy probable que lo compre. Esto no quiere decir que sea imposible que un usuario pueda ver una vez un modelo y no comprarlo o verlo muchas veces y no comprarlo pero se busca analizar el caso más general.
 
-\subsubsection{¿Cuantas veces vio la última marca que compró?}
+\subsubsection{¿Cuántas veces vio la última marca que compró?}
 Una lógica similar a la sección precedente es la que se sigue con este feature. La idea sería también analizar si un usuario se restringe a un modelo en particular o si puede ver distintos celulares de la misma marca y elegir uno de ellos.
 
 \subsubsection{Comportamiento en sesiones de las últimas semanas}
 
 Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
 
+\subsubsection{¿Cuántas veces entró cada usuario a las static pages?}
+
+\subsubsection{¿Cuántas veces vio el modelo que más vio la última semana?}
 
 \subsection{Feature selection}
 
