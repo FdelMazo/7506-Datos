@@ -219,13 +219,39 @@ Se agregan una serie de features relacionados a la cantidad de eventos y sesione
 
 \subsubsection{Eventos sin contar mayo}
 
+\begin{sloppypar}
+	\texttt{\detokenize{['total_viewed_products_months_1_to_4', 'total_checkouts_months_1_to_4', 'total_conversions_months_1_to_4', 'total_events_months_1_to_4', 'total_sessions_months_1_to_4', 'total_session_checkouts_months_1_to_4', 'total_session_conversions_months_1_to_4', 'total_events_ad_session_months_1_to_4', 'total_ad_sessions_months_1_to_4', 'has_checkout_months_1_to_4', 'has_conversion_months_1_to_4']
+	}}
+\end{sloppypar}
+
 \subsubsection{Eventos en última semana}
 
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 \subsubsection{Distribución mensual de las conversiones}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
 
 Se agrega en cuántos meses el usuario compró suponiendo que dicha distribución denota si el usuario es un comprador habitual o sólo compró alguna vez aisladamente. El feature se llama "amount\_of\_months\_that\_have\_bought".
 
 \subsubsection{Informacion de los últimos eventos registrados por usuario}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
 
 Se busca extraer información de los días que transcurrieron hasta el último evento de un usuario. De esta manera se espera que el modelo aprenda un factor importante para la predicción. Por ejemplo, si un usuario vio un producto hace muchos días es muy probable que no lo compre pero si hizo checkout hace 1 dia es probable que en un futuro cercano compre.
 
@@ -240,9 +266,23 @@ En paralelo con estos features se consideran los días de la semana, del mes, de
 	
 \subsubsection{Precios de la ultima conversion realizada por el usuario}
 
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 Se consideró que podría considerarse el precio de la última conversión del usuario como un feature pero a la hora de la selección reflejó una importancia muy baja. Por lo tanto consideramos impertinente la descripción de la idea que habíamos pensado desarrollar.
 
 \subsubsection{Porcentaje de la actividad de la ultima semana}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
 
 Aquí la idea pensada era reflejar la cantidad de eventos del usuario de la última semana sobre el total. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
 
@@ -257,6 +297,14 @@ Por lo tanto se pensaron los siguientes features:
 
 
 \subsubsection{Porcentaje de la actividad del ultimo mes}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 Una lógica análoga a la sección precedente se sigue en esta parte. Los motivos de este feature son simplemente una ampliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
 
 De más está decir que se pensaron los siguientes features:
@@ -268,30 +316,99 @@ De más está decir que se pensaron los siguientes features:
 \end{itemize}
 
 \subsubsection{Días entre el último checkout y última actividad}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 La intención de este feature es medir la diferencia de días que tiene cada usuario entre la compra de un celular y la ultima vez que visualizo el producto comprado. De esta forma poder predecir en base a los productos vistos si es posbile que se haga una compra.
 
 \subsubsection{Estados de celulares}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 Utilizando la lógica de que hay empresas que compran celulares en mal estado con el único fin de usar sus partes como respuestos se plantea agregar una columna que indique porcentaje de celulares en estado Bom - Sem Touch ID vs Bom sobre todos los celulares vistos.
 
 \subsubsection{Varianza logarítmica de productos vistos}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 Se propone analizar la varianza en los precios de los productos visitados. Es decir, si los usuarios ven telefonos de un rango pequeño de precio o, por el contrario, articulos de precios muy variados. Se utilizó una escala logarítmica para seguir manteniendo las proporciones sin tener una gran diferencia entre la varianza de un usuario y la de otro.
 
 \subsubsection{¿El usuario compró más de la media?}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 Se propone como feature evaluar si el usuario compró un celular por encima de la media de precios. 
 
 \subsubsection{¿Cuántas veces vio el último modelo que compró?}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 La idea de este atributo es evaluar una cierta correlación entre los usuarios de la cantidad de veces que se ve un modelo antes de comprarlo. Si un usuario ve una cantidad significativamente grande de veces un modelo es muy probable que lo compre. Esto no quiere decir que sea imposible que un usuario pueda ver una vez un modelo y no comprarlo o verlo muchas veces y no comprarlo pero se busca analizar el caso más general.
 
 \subsubsection{¿Cuántas veces vio la última marca que compró?}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 Una lógica similar a la sección precedente es la que se sigue con este feature. La idea sería también analizar si un usuario se restringe a un modelo en particular o si puede ver distintos celulares de la misma marca y elegir uno de ellos.
 
 \subsubsection{Comportamiento en sesiones de las últimas semanas}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
 
 Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
 
 \subsubsection{¿Cuántas veces entró cada usuario a las static pages?}
 
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
+
 \subsubsection{¿Cuántas veces vio el modelo que más vio la última semana?}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+
+
+	}}
+\end{sloppypar}
 
 \subsection{Feature selection}
 
@@ -389,7 +506,6 @@ Si bien se encontraron resultados decentes para este modelo, se decidió no util
 Griiiiidseaaaaarch
 
 \subsection{Ensambles}
-
 
 \section{Desarrollo}
 
