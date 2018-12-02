@@ -322,13 +322,18 @@ La principal idea de este notebook es definir una serie de funciones para armar 
 
 El objetivo de este notebook es encontrar los hiperparámetros y los parámetros óptimos para cada algoritmo implementado. Para ello se utiliza el algoritmo de \texttt{Grid Search} que se encarga de probar todas las combinaciones de una lista de valores posibles para cada parámetro. Estos valores fueron investigados de diversas fuentes que serán mencionadas en la bibliorafía debido a que es difícil fijar una frontera de valores sin una guía del área. Combinando las fuentes y el conocimiento de la funcionalidad de cada parámetro se llegó a los valores que se podrían considerar óptimos de los parámetros de los algoritmos. 
 
-
 \end{enumerate}
 
 \section{Desarrollo}
-Acá pretendo hablar del notebook TP2
+
+En el notebook principal llamado \texttt{TP2} se realiza el desarrollo principal del Trabajo Práctico. A grandes rasgos en un primer lugar se utilizan los dataframes con todos los atributos seleccionados. Luego se definen y aplican los algoritmos de clasificación para realizar los entrenamientos y posteriores predicciones de conversiones. Finalmente se arman las postulaciones de labels.
+
+La elección del algoritmo para realizar el \textit{submit} se hace en base a todos los algoritmos y a combinaciones duales de ellos. Las combinaciones se realizan con el algoritmo \texttt{Voting Classifier} que es de la librería de \texttt{sklearn}. Para cada una de estas combinaciones se utiliza un set de features diferente a fin de elegir el que arroje mejor resultado. Dichos set de features se obtienen a partir de la selección que fue detallada previamente.
+
+Finalmente, una vez elegido el algoritmo o el ensamble de algoritmos predilecto se entrenó con todo el dataframe (o mejor dicho \texttt{X train}) para enviar el submit.
 
 \section{Resultados obtenidos}
+Podríamos plotear kaggle? Tipo nuestro AUC local vs los distintos submits?
 
 \section{Conclusiones}
 
