@@ -184,45 +184,23 @@ Como parte del feature engineering, se crean dataframes nuevos con información 
 
 Con lo investigado del previo trabajo y todos los dataframes generados, se busca todo tipo de atributos de los usuarios, para que luego puedan ser seleccionados y aprovechados por los algoritmos a aplicar.
 
-\subsubsection{Features básicos}
-Se detallan los features generales considerados como pertinentes al modelo.
-
-\begin{itemize}
-	\item \textbf{\texttt{is\_viewed\_product}}: El usuario vió un producto.
-	\item \textbf{\texttt{is\_checkout}}: El usuario llegó a checkout con un producto.
-	\item \textbf{\texttt{is\_conversion}}: El usuario compró un producto.
-	\item \textbf{\texttt{session\_checkout\_first}}: El usuario en su primera sesión realizó un checkout.
-	\item \textbf{\texttt{session\_conversion\_first}}: El usuario en su primera sesión realizó una conversión.
-	\item \textbf{\texttt{session\_ad\_first}}: El usuario en su primera sesión llegó con una campaña publicitaria.
-	\item \textbf{\texttt{session\_ad\_checkout\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria e hizo checkout.
-	\item \textbf{\texttt{session\_ad\_conversion\_event}}: El usuario en su primera sesión llegó con una campaña publicitaria y compró el producto.
-\end{itemize}	
-	
 \subsubsection{Suma total de eventos}
 
-A los features agregados como \textit{features básicos} se le calcula el total por usuario y se obtienen el siguiente listado de features:
-\begin{itemize}
-	\item \textbf{\texttt{total\_viewed\_products}}: Cantidad de productos que vio el usuario en el período de tiempo determinado.
-	\item \textbf{\texttt{total\_checkouts}}: Cantidad de veces que el usuario hizo checkout en el período de tiempo determinado.
-	\item \textbf{\texttt{total\_conversions}}: Cantidad de compras que realizó el usuario en el período de tiempo determinado.
-	\item \textbf{\texttt{total\_events}}: Cantidad de eventos totales que el usuario hizo en el período de tiempo determinado.
-	\item \textbf{\texttt{total\_sessions}}: Cantidad total de sesiones del usuario.
-	\item \textbf{\texttt{total\_session\_checkout}}: Cantidad total de sesiones donde el usuario hizo checkout.
-	\item \textbf{\texttt{total\_session\_conversion}}: Cantidad total de sesiones donde el usuario convirtió.
-	\item \textbf{\texttt{total\_events\_ad\_session}}: Cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria.
-	\item \textbf{\texttt{total\_ad\_sessions}}: cCantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria.
-\end{itemize}
-	
-A partir de estos features se deducen los siguientes:
+\begin{sloppypar}
+\texttt{\detokenize{['total_viewed_products', 'total_checkouts', 'total_conversions', 'total_events', 'total_sessions', 'total_session_checkout', 'total_session_conversion', 'total_events_ad_session', 'total_ad_sessions', 'avg_events_per_session', 'avg_events_per_ad_session', 'percentage_session_ad', 'percentage_session_conversion', 'has_checkout', 'has_conversion']
+}}
+\end{sloppypar}
 
-\begin{itemize}
-	\item \textbf{\texttt{avg\_events\_per\_session}}: Promedio de cantidad total de eventos sobre cantidad de sesiones.
-	\item \textbf{\texttt{avg\_events\_per\_ad\_session}}: Promedio de cantidad total de eventos donde el usuario ingresó por una campaña publicitaria sobre cantidad total de sesiones donde el usuario ingresó por una campaña publicitaria.
-	\item \textbf{\texttt{percentage\_session\_ad}}: Porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez por una campaña publicitaria sobre el total de sesiones.
-	\item \textbf{\texttt{percentage\_session\_conversion}}: Porcentaje de cantidad total de sesiones donde el usuario ingresó por primera vez y compró sobre la cantidad total de sesiones.
-\end{itemize}
+Los atributos refieren a la sumatoria de cantidad de productos vistos, en checkout y en coversiones, más la totalidad de los eventos de cada usuario. Lo mismo para las sesiones de cada usuario y sus subtotales. También se agregan promedios de eventos por sesión y porcentajes de los accesos de las sesiones del usuario.
 
 \subsubsection{Cantidad de eventos por mes}
+
+\begin{sloppypar}
+\texttt{\detokenize{['total_viewed_products_month_1', 'total_checkouts_month_1', 'total_conversions_month_1', 'total_events_month_1', 'total_sessions_month_1', 'total_session_checkouts_month_1', 'total_session_conversions_month_1', 'total_events_ad_session_month_1', 'total_ad_sessions_month_1', 'has_checkout_month_1', 'has_conversion_month_1', 'total_viewed_products_month_2', 'total_checkouts_month_2', 'total_conversions_month_2', 'total_events_month_2', 'total_sessions_month_2', 'total_session_checkouts_month_2', 'total_session_conversions_month_2', 'total_events_ad_session_month_2', 'total_ad_sessions_month_2', 'has_checkout_month_2', 'has_conversion_month_2', 'total_viewed_products_month_3', 'total_checkouts_month_3', 'total_conversions_month_3', 'total_events_month_3', 'total_sessions_month_3', 'total_session_checkouts_month_3', 'total_session_conversions_month_3', 'total_events_ad_session_month_3', 'total_ad_sessions_month_3', 'has_checkout_month_3', 'has_conversion_month_3', 'total_viewed_products_month_4', 'total_checkouts_month_4', 'total_conversions_month_4', 'total_events_month_4', 'total_sessions_month_4', 'total_session_checkouts_month_4', 'total_session_conversions_month_4', 'total_events_ad_session_month_4', 'total_ad_sessions_month_4', 'has_checkout_month_4', 'has_conversion_month_4', 'total_viewed_products_month_5', 'total_checkouts_month_5', 'total_conversions_month_5', 'total_events_month_5', 'total_sessions_month_5', 'total_session_checkouts_month_5', 'total_session_conversions_month_5', 'total_events_ad_session_month_5', 'total_ad_sessions_month_5', 'has_checkout_month_5', 'has_conversion_month_5']
+}}
+\end{sloppypar}
+
+\hl{[TO-DO: Reemplazar texto de abajo por algo mas generico]}
 
 Se agregan una serie de features relacionados a la cantidad de eventos y sesiones por mes que se consideraron pertinentes al modelo.
 
@@ -304,61 +282,146 @@ Se propone como feature evaluar si el usuario compró un celular por encima de l
 \subsubsection{¿Cuántas veces vio el último modelo que compró?}
 La idea de este atributo es evaluar una cierta correlación entre los usuarios de la cantidad de veces que se ve un modelo antes de comprarlo. Si un usuario ve una cantidad significativamente grande de veces un modelo es muy probable que lo compre. Esto no quiere decir que sea imposible que un usuario pueda ver una vez un modelo y no comprarlo o verlo muchas veces y no comprarlo pero se busca analizar el caso más general.
 
-\subsubsection{¿Cuantas veces vio la última marca que compró?}
+\subsubsection{¿Cuántas veces vio la última marca que compró?}
 Una lógica similar a la sección precedente es la que se sigue con este feature. La idea sería también analizar si un usuario se restringe a un modelo en particular o si puede ver distintos celulares de la misma marca y elegir uno de ellos.
 
 \subsubsection{Comportamiento en sesiones de las últimas semanas}
 
 Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
 
+\subsubsection{¿Cuántas veces entró cada usuario a las static pages?}
+
+\subsubsection{¿Cuántas veces vio el modelo que más vio la última semana?}
 
 \subsection{Feature selection}
 
-En este notebook se utilizan distintas formas de seleccionar los features de manera de eliminar aquellos atributos que resulten ruidosos con el modelo de \texttt{Random Forest}. Se eligió dicho modelo por su popularidad para la selección de features ya que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
+Una vez que se tienen todos los atributos en un mismo dataframe y luego de un par de pruebas se ve que no siempre hay que entrenar los modelso con la totalidad del dataframe. Viendo que para algunos algoritmos el orden y la selección de los features logrababa distintos resultados, se busca la forma de encontrar la combinación óptima de features y eliminar todo el ruido posible.
 
-Se utiliza como métrica el AUC debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
+El modelo usado de referencia para esta sección es la del Random Forest, debido a la estabilidad de este para mostrar la importancia de cada feature, ya que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
 
-Las distintas formas de selección utilizadas se describen como sigue:
+Se utiliza como métrica el area bajo la curva debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
+
+Las distintas formas de selección utilizadas son:
 
 \begin {itemize}
-\item \texttt{Cumulative importance}
 
-El nombre del método fue inventado por el grupo de Trabajo y denota el método más intuitivo para la selección de features. Con el uso del algoritmo de \texttt{Random Forest} se parte de una lista de todos los features ordenados según importancia y se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo a,b,c features se parte de una lista como [a,b,c] y luego se obtiene  [ [a], [a,b], [a,b,c] ]. El objetivo de este método es encontrar el 
-\textit{codo}, es decir, los features que incrementan el AUC local.
+\item \textbf{Métodos greedy}
 
-\item \texttt{Forward Selection}
+\begin {itemize}
 
-Con este método se comienza con ningún atributo y en cada paso se agrega el atributo que genere mejor resultado. Se agregan atributos siempre y cuando los resultados mejoren. El algoritmo termina cuando el resultado no se puede mejorar o cuando ya se han agregado todos los atributos.
+	\item \textbf{Cumulative Importance}
 
-\item \texttt{Backward Selection}
+	El método es el más intuitivo para la selección de features debido a su naturaleza \textit{greedy}. La idea es primero correr el Random Forest sobre todo el dataframe, y sobre este resultado obtener la importancia de cada feature. Ahora, con los features ordenados según importancia se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo \texttt{a,b,c} los features ordenados, se obtienen las listas \texttt{a}, \texttt{a,b} y  \texttt{abc}.
 
-Este método funciona a la inversa de \texttt{Forward Selection}. Se comienza con todos los atributos y se quita en cada iteración el atributo que aumente el resultado de la métrica. De esta manera el algoritmo termina cuando al quitar un atributo el resultado empeora o cuando ya no hay más atributos por quitar.
+	Ahora, con la lista de listas de features segun importancia, se corre un Random Forest para cada subconjunto, en busqueda del \textit{codo}, es decir, el subconjunto que mayor AUC tenga antes de decaer a los features ruidosos.
 
-\item \texttt{Stepwise Selection}
+	La desventaja que presenta este método es que parte del supuesto de que la importancia de cada feature es la misma para la corrida del dataframe entero que para subconjuntos de esto, lo cual no es cierto. De todas formas, es uno de los métodos que mejores resultados dió.
 
-Este método es una variante que combina los dos métodos anteriores. En cada paso se considera agregar o quitar una variable de manera de aumentar el AUC local.	
+\end{itemize}
+
+\item \textbf{Métodos de fuerza bruta}
+
+\begin{itemize}
+
+	\item \textbf{Forward Selection}
+
+	Con este método se comienza con ningún atributo y en cada paso se agrega el atributo que genere mejor resultado. Se agregan atributos siempre y cuando los resultados mejoren. El algoritmo termina cuando el resultado no se puede mejorar o cuando ya se han agregado todos los atributos.
+
+	\item \textbf{Backward Elimination}
+
+	Este método funciona a la inversa de Forward Selection. Se comienza con todos los atributos y se quita en cada iteración el atributo que menos aportaba. De esta manera el algoritmo termina cuando al quitar un atributo el resultado empeora o cuando ya no hay más atributos por quitar.
+
+	\item \textbf{Stepwise Selection}
+
+	Este método es una combinación de ambos métodos descritos anteriormente. La idea es partir de una lista vacía como en Forward Selection, y agregar siempre el mejor atributo posible (como Forward Selection). Luego, una vez que se tiene el mejor atributo, se busca recursivamente con Backward Elimination si algun atributo sobra. Es una forma sabia de moverse a traves de los atributos; en cada paso se agrega el mejor posible y saca todos los que empeoraban esa nueva combinación.
+
+\end{itemize}
+
+El mayor problema de estos tres métodos es que, si bien son efectivos en los subconjuntos encontrados, son muy costosos en tiempo (como todo algoritmo de fuerza bruta). Pensar que se hacen n iteraciones (siendo n la cantidad de features) y para cada una de esas iteraciones se hacen n más (y ni pensar en Stepwise Selection, que hace aun n más). Pasados los 100 features ya esto pasa a ser increiblemente costoso. Es por esto que se le agrega una condición de corte, donde si para las x iteraciones no se encuentra una mejora simplemente se corte el proceso. Si bien esto plantea la posibilidad de caer en un máximo local, en tiempo termina siendo rendidor.
+
+\item \textbf{Métodos de otras heurísticas}
+
+Se agregan algunos criterios más, para aumentar los subconjuntos a utilizar.
+
+\begin{itemize}
+
+	\item \textbf{Full Dataframe} Como su nombre lo dice, simplemente probar el modelo sobre el dataframe entero.
+
+	\item \textbf{Selección a Mano} Para no confiar solamente en los métodos algorítmicos, se hacen selecciones de los features manualmente.
+
+	\item \textbf{Random Selection} También se hacen selecciones azarosas de n atributos, para así en cada corrida ver si se encuentra alguna buena combinación que sirva para la selección manual o de una idea de que atributos ayudan o no.
+
+	\item \textbf{Feature Intersection} Aprovechando que se tienen muchas formas distintas de seleccionar subconjuntos, también se utiliza como método el intersectar todas estas combinaciones, con la idea de que si un feature aparece en varios de los subconjuntos anteriores, pues ciertamente será bueno por si mismo.
+
+\end{itemize}														
 
 \end {itemize}
 
 
-\section{Algoritmos utilizados}
+\section{Modelos}
+
+\subsection{Algoritmos de clasificación utilizados}
+
+\subsubsection{Árboles de decisión}
+
+\subsubsection{Random forests}
+
+\subsubsection{XGBoost}
+
+\subsubsection{Logistic regression}
+
+\subsubsection{KNN}
+
+\subsubsection{Naïve-Bayes}
+
+\subsubsection{LightGBM}
+
+\subsubsection{Redes neuronales}
+
+\subsubsection{Catboost}
+
+Si bien se encontraron resultados decentes para este modelo, se decidió no utilizarlo en las últimas corridas por lo mucho que tardaba cada ejecución.
+
+\subsubsection{Gradient boosting}
 
 \subsection{Parameter tuning}
+
+Griiiiidseaaaaarch
+
+\subsection{Ensambles}
+
 
 \section{Desarrollo}
 
 \subsection{Submission framework}
 
+Se define un framework y una serie de funciones para armar las postulaciones de predicciones del trabajo práctico. Las mismas siguen los siguientes pasos:
+
+\begin{enumerate}
+	\item Creación de la matriz \texttt{X} y el vector \texttt{y} para entrenar
+	\item Generación del split para obtener los sets de entrenamiento y de prueba
+	\item Ejecución del algoritmo de Machine Learning que devuelve un dataframe con person como índice y los \textit{labels} como única columna.
+	\item Se obtienen las 3 medidas utilizadas como métrica para evaluar el rendimiento del algoritmo: precisión, auc y aucpr.
+	\item Se predicen las probabilidades 
+	\item Se observa información relevante de la ejecución como la importancia de los features elegidos
+	\item Se guardan los resultados como csv para ser submiteados
+\end{enumerate}
 
 \subsection{Encontrando el mejor submit}
 
-\hl{[TO-DO metricassss]}
+Una vez corridos todos los notebooks y creados todos los dataframes necesarios, finalmente se busca el mejor submit. Esta postulación esta compuesta por los dos componentes que se buscaron todo el trabajo: el subconjunto de \textbf{features} y el \textbf{modelo} a utlizar. El procedimiento para encontrarlo fue uno sencillo por fuerza bruta; utilizando todo lo generado en el trabajo simplemente hay que quedarse con lo que mejor puntaje tenga. La elección del algoritmo para realizar el \textit{submit} se hace en base a todos los algoritmos y a combinaciones duales de ellos.
 
-En el notebook principal llamado \texttt{TP2} se realiza el desarrollo principal del Trabajo Práctico. A grandes rasgos en un primer lugar se utilizan los dataframes con todos los atributos seleccionados. Luego se definen y aplican los algoritmos de clasificación para realizar los entrenamientos y posteriores predicciones de conversiones. Finalmente se arman las postulaciones de labels.
+Simplemente se definen dos listas que luego se cruzaran en busqueda de la mejor combinación de ellas. Por un lado, \texttt{posibilidades\_algoritmos\_y\_ensambles} y por el otro \texttt{posibilidades\_features}.
 
-La elección del algoritmo para realizar el \textit{submit} se hace en base a todos los algoritmos y a combinaciones duales de ellos. Las combinaciones se realizan con el algoritmo \texttt{Voting Classifier} que es de la librería de \texttt{sklearn}. Para cada una de estas combinaciones se utiliza un set de features diferente a fin de elegir el que arroje mejor resultado. Dichos set de features se obtienen a partir de la selección que fue detallada previamente.
+Como referencia de puntaje se decidió utilizar la métrica de Area Under Curve (AUC), ya que luego de distintas pruebas (\texttt{precision\_recall}, \texttt{accuracy\_score}, \texttt{f1\_score}) se vió que esta es la más fiel a lo buscado.
 
-Finalmente, una vez elegido el algoritmo o el ensamble de algoritmos predilecto se entrenó con todo el dataframe (o mejor dicho \texttt{X train}) para enviar el submit.
+Por un lado, se definen todos los algoritmos con sus mejores hiper-parametros seleccionados. Luego, se hace tanto el bagging sobre ellos como el ensamble por mayoría de votos sobre combinaciones de a pares de ellos. También, se hacen algunas combinaciones de tres algoritmos por mayoría de votos.
+
+Por el otro lado, se definen todos los subconjuntos de features seleccionados por los diversos métodos.
+
+Finalmente, se corren todas las combinaciones de estas dos listas, un proceso sumamente lento y costoso tanto en tiempo como memoria, pero eventualmente este proceso devolverá una lista ordenada según AUC de las combinaciones. De estas, se deciden las que se van a postular y se opta por entrenarlas con todo el dataframe, en vez de con un set de entrenamiento, ya que si bien para el trabajo localmente el entrenamiento es un subconjunto del dataframe, para fines de la predicción se puede tomar a todo el dataframe como el entrenamiento.
+
+Es importante notar que no siempre hay que postular el primer resultado, si no que hay que analizar cuales fueron estos resultados y por que, para evitar ser víctimas del overfitting. 
 
 \hl{[TO-DO plotsssss]}
 
