@@ -411,9 +411,9 @@ Se define un framework y una serie de funciones para armar las postulaciones de 
 
 Una vez corridos todos los notebooks y creados todos los dataframes necesarios, finalmente se busca el mejor submit. Esta postulación esta compuesta por los dos componentes que se buscaron todo el trabajo: el subconjunto de \textbf{features} y el \textbf{modelo} a utlizar. El procedimiento para encontrarlo fue uno sencillo por fuerza bruta; utilizando todo lo generado en el trabajo simplemente hay que quedarse con lo que mejor puntaje tenga. La elección del algoritmo para realizar el \textit{submit} se hace en base a todos los algoritmos y a combinaciones duales de ellos.
 
-Simplemente se definen dos listas que luego se cruzaran en busqueda de la mejor combinación de ellas. Por un lado, \texttt{posibilidades_algoritmos_y_ensambles} y por el otro \texttt{posibilidades_features}.
+Simplemente se definen dos listas que luego se cruzaran en busqueda de la mejor combinación de ellas. Por un lado, \texttt{posibilidades\_algoritmos\_y\_ensambles} y por el otro \texttt{posibilidades\_features}.
 
-Como referencia de puntaje se decidió utilizar la métrica de Area Under Curve (AUC), ya que luego de distintas pruebas (\texttt{precision-recall}, \texttt{accuracy-score), \texttt{f1-score}) se vió que esta es la más fiel a lo buscado.
+Como referencia de puntaje se decidió utilizar la métrica de Area Under Curve (AUC), ya que luego de distintas pruebas (\texttt{precision\_recall}, \texttt{accuracy\_score}, \texttt{f1\_score}) se vió que esta es la más fiel a lo buscado.
 
 Por un lado, se definen todos los algoritmos con sus mejores hiper-parametros seleccionados. Luego, se hace tanto el bagging sobre ellos como el ensamble por mayoría de votos sobre combinaciones de a pares de ellos. También, se hacen algunas combinaciones de tres algoritmos por mayoría de votos.
 
