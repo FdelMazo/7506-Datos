@@ -248,7 +248,25 @@ Lo que se plantea es analizar la varianza en los precios de los productos visita
 
 \section{Desarrollo}
 Para el desarrollo del Trabajo se utilizaron una serie de notebooks que buscaron organizar de la manera más clara posible los distintos pasos a realizar para desarrollar un submit. Se describen los distintos notebooks que fueron utilizados:
+
 \begin{enumerate} 
+	
+\item investigación
+
+En un primer lugar se quiso investigar si existió alguna relación relevante en el dataset brindado en el Trabajo Práctico 1 con los datos que se utilizarán en este. 
+
+Se recopiló la siguiente información:
+
+\begin{enumerate}
+
+\item No se repiten usuarios en los datasets.
+\item En el primer dataset (TP1) hay 27624 usuarios de los cuales 13967 tuvieron actividad en junio. Entre el 1 y el 15 (inclusive) de junio 82 usuarios compraron productos.
+\item En el segundo dataset hay 19414 usuarios de los cuales 980 compraron en Junio.
+
+\end{enumerate}
+
+Por lo tanto se concluyó que hacer un merge de los datos del TP1 con los del TP2 presentaría un \textit{skewness} en el set de datos, por la despreciabilidad de estos.
+	
 \item new\_dataframes 	
 
 En este notebook se crearon los distintos csv que fueron realizados para la extracción de features, como fue mencionado anteriormente. 
@@ -284,6 +302,10 @@ Este método funciona a la inversa de \texttt{Forward Selection}. Se comienza co
 Este método es una variante que combina los dos métodos anteriores. En cada paso se considera agregar o quitar una variable de manera de aumentar el AUC local.	
 
 \end {itemize}
+
+
+\item 
+
 
 \end{enumerate}
 
