@@ -517,39 +517,25 @@ Para esto se hizo un pequeño framework donde se van probando distintos hiper-pa
 
 El bagging consiste en aplicar un clasificador n veces y luego promediar el resultado final. Es importante que cada una de las corridas del clasificador sea con datos reemplazados en el set de entrenamiento.
 
-Esta técnica es, por ejemplo, utilizada
+La principal ventaja generada es evitar el overfitting, ya que ningún clasificador conoce el set de entrenameiento completo y por tanto no se puede sobreajustar al set de datos.
 
-Bagging en general implica aplicar el mismo clasificador n veces y luego prome-
-diar sus resultados para el obtener el resultado final. El problema es que aplicar
-el mismo clasificador n veces al mismo set de datos nos darı́a n veces el mismo
-resultado. Es por esto que bagging siempre se usa en conjunto con bootstrapping.
-Bootstrapping consiste en tomar una muestra del set de entrenamiento del
-mismo tamaño del set de entrenamiento pero con reemplazo. Es decir que
-un dato puede estar varias veces en la muestra. Por ejemplo, si tenemos los
-datos: Train = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 y tomamos muestras con reemplazo de
-tamaño 10, algunas muestras posibles son: B1 = 4, 7, 2, 3, 4, 2, 7, 8, 7, 9 o B2 =
-2, 6, 5, 5, 4, 9, 9, 7, 2, 6. Podemos entonces entrenar nuestro clasificador con los
-bootstraps y obtener n clasificadores distintos. Luego podemos aplicar estos n
-clasificadores al set de datos original y promediar los resultados para obtener el
-resultado final. Esto sirve tanto en problemas de regresión como de clasificación.
-Como cada clasificador no ve el total de registros del set de entrenamiento
-la técnica de bagging disminuye notablemente las posibilidades de caer en over-
-fitting, ya que ninguno de los n clasificadores individuales puede sobre-ajustar
-al set de entrenamiento completo.
-Para cada clasificador existe un set de registros que queda afuera. Por ejem-
-plo, en B1, los registros 0,1,5 y 6 no forman parte del bootstrap. A estos los
-llamamos registros out of bag (OOB). La precisión de un clasificador que usa
-bagging se puede obtener mediante la clasificación de los registros OOB con el
-clasificador mismo, como si los registros OOB sirvieran como set de validación
-de cada clasificador individual.
-Veamos el siguiente ejemplo: tenemos tres clasificadores y un set de entre-
-namiento de 10 registros para hacer clasificación binaria. Marcamos en negrita
-los datos que forman parte del bootstrap para cada clasificador.
-
-
+En el trabajo, lo que se hace es aplicarle Bagging a todos los algoritmos, tanto para poder ejecutar los modelos normalmente como con bagging. Cabe recalcar que además de este explicito uso de la técnica, también es como funcionan por dentro algoritmos como Random Forest.
 
 \subsubsection{Boosting}
-\subsubsection{Blending}
+
+El método de boosting consiste en, paritendo de algoritmos muy simples, construir un algoritmo muy preciso. Sencillamente, se empieza de un algoritmo simple (como un árbol), se entrena, se analizan sus resultados, y luego se entrena el siguiente algoritmo simple, dandole mayor peso a los que resultados que tuvieron peor perfomance previamente. En el trabajo, este método fue usado en algoritmos como LightGBM, XGBoost, Gradient Boosting Classifier y Catboost.
+
+\subsubsection{Majority Voting}
+
+Ya entrando en los métodos de ensamblar distintos algoritmos, uno de los primero métodos a usar es el de votación por mayoría. La idea es muy sencilla, se utilizan distintos algoritmos para predecir, y el resultado final es la clase que tiene mayoría entre todos los clasificadores.
+
+De todos los algoritmos corridos, se hace majority voting \footnote{Con el clasificador de votos con el parametro 'hard' para la votación} de combinaciones de estos. Este método da mejores predicciones cuando los resultados no tienen correlación entre sí. Es por esto que se agarran los mejores modelos del trabajo, se filtra por los que tengan distinta naturaleza (por ejemplo, no hay sentido en hacer una votación entre modelos de gradient boosting como LightGBM y XGBoost porque ambos tienen la misma idea por detrás) y se hacen majority votings de a pares o incluso tríos de algoritmos.
+
+\subsubsection{Averaging}
+
+Un método muy parecido a la votación por mayoría es el de quedarse con el promedio de las clasificaciones. Este método también es utilizado\footnote{Con el clasificador de votos con el parametro 'soft' para la votación} sobre los algoritmos que mejor resultado dieron y son de distinta naturaleza. 
+
+Este método es también muy util para reducir el overfitting.
 
 \section{Desarrollo}
 
