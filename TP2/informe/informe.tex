@@ -165,6 +165,39 @@ Por lo tanto se concluyó que hacer un merge de los datos del TP1 con los del TP
 Por otro lado, en un marco teórico, se vió el análisis hecho en búsqueda de qué patrones, ideas y conceptos pueden ser aplicados en este trabajo. En particular, se buscan atributos escondidos en el set original que puedan ser codificados de tal forma que luego los algoritmos de Machine Learning puedan utilizar a su favor. Los atributos encontrados son especificados en la sección de Feature Engineering.
 
 \hl{[TO-DO TSNE de Souto aca]}
+\subsection{Clustering}
+
+Con la inteción de ver si se encontraban clusters que agrupen a los usuarios que compraron, se utilizó el algoritmo \texttt{T-SNE}, que es el estado del arte para la representación de datos en dos dimensiones.
+
+\begin{figure}[!h]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/labels-2d.png}}
+	\caption{Distribución usuarios que compraron}
+	\label{fig:mesdiasnormalizado}
+\end{figure}
+
+\subsubsection{K-Means}
+
+Decidimos utilizar este algoritmo debido a su simpleza y a que, según dicen, nunca funciona muy mal y a veces funciona muy bien.
+Los resultados que se observan no son muy prometedores en vista a generar \textit{features}.
+
+\begin{figure}[!h]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/kmeans-4.png}}
+	\caption{Clusters con K-Means. Cuatro clusters.}
+	\label{fig:mesdiasnormalizado}
+\end{figure}
+
+
+\subsubsection{HDBScan}
+
+Este algoritmo nos atrajo por ser el estado del arte en \textit{clustering}, pero a simple vista los resultados no parecen ser fructíferos, ya que genera una gran cantidad de \textit{clusters}, y no podemos aumentar mucho la cantidad mínima e elementos por cluster (híper-parámetro) debido a la naturaleza \textit{skewed} de los datos.
+
+\begin{figure}[!h]
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/hdbscan-36.png}}
+	\caption{Clusters con HDBScan. Min cluster size: 36.}
+	\label{fig:mesdiasnormalizado}
+\end{figure}
+
+
 
 \subsection{Creación de dataframes}
 
@@ -368,7 +401,22 @@ Nos parece evidente que existe una correlación entre ver mucho un articulo o mo
 
 Se propone también analizar esta información para un rango de tiempo no muy extenso y cercano (en función a la fecha) a los labels que se quieren predecir. 
 
-\hl{[TO-DO hablar del clustering de souto]}
+\subsubsection{Valores de clusters}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+	['kmeans_3', 
+	'kmeans_5',
+	'kmeans_6',
+	'kmeans_15',
+	'kmeans_25,
+	'hdbscan_22',
+	]
+	}}
+\end{sloppypar}
+
+A modo de prueba, decidimos crear features que tengan como valor el número de \textit{cluster} que le dio el algoritmo usado.
+
 
 \subsection{Feature selection}
 
