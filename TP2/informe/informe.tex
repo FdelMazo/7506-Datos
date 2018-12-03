@@ -559,6 +559,14 @@ Viendo los resultados que XGBoost y LightGBM daban, se opto por usar el clasific
 
 Despues de probar gradient boosting, optamos por usar más modelos de esa indole. Catboost es el último algoritmo de boosting probado y sus resultados no fueron tan buenos como para justificar el tiempo perdido en cada ejecucion. Es fácilmente el modelo más lento de todo lo corrido.
 
+\subsubsection{Adaboosting}
+
+En este caso seguimos manejando modelos de la familia boosting. 
+
+Adaboosting comienza con un clasificador simple que va siendo modificado dependiendo su nivel de error. En cada iteración se le da peso a la clase que mejor resultado obtuvo. Luego se vuelve a iterar. 
+
+Una vez finalizadas las iteraciones crea un promedio ponderado. Esta combinación lineal de los N clasificadores va a ser su clasificador final.
+
 \subsection{Parameter tuning}
 
 En los primeros modelos corridos fue cuando se empezo a notar lo que ya se sabía: los híper-parametros son sencillamente lo más importante de cada algoritmo, y la diferencia entre un buen modelo y uno promedio.
@@ -631,7 +639,7 @@ Es importante notar que no siempre hay que postular el primer resultado, si no q
 
 \section{Resultados obtenidos}
 
-A partir de los distintos \texttt{submits} realizados se deduce como fue mencionado previamente que LightGBM es el algoritmo que arrojó mejores resultados. Así mismo, el mejor submit se constituyó de un ensamble del mismo con gradient boosting y con neural network. En los primeros submits se observó que los mejores resultados se obtuvieron con el algoritmo de XGBoost pero posterior la implementación de los ensambles los algoritmos por sí solos no obtuvieron mejores resultados. El score aumentó notoriamente con el uso de LightGBM pero a pesar de encontrar y revisar los hiperparámetros sucesivas veces no se pudo mejorar el resultado. Por lo tanto fue necesario para subir el score ensamblar distintos algoritmos.
+A partir de los distintos \textit{submits} realizados se deduce como fue mencionado previamente que LightGBM es el algoritmo que arrojó mejores resultados. Así mismo, el mejor submit se constituyó de un ensamble del mismo con gradient boosting y con neural network. En los primeros submits se observó que los mejores resultados se obtuvieron con el algoritmo de XGBoost pero posterior la implementación de los ensambles los algoritmos por sí solos no obtuvieron mejores resultados. El score aumentó notoriamente con el uso de LightGBM pero a pesar de encontrar y revisar los hiperparámetros sucesivas veces no se pudo mejorar el resultado. Por lo tanto fue necesario para subir el score ensamblar distintos algoritmos.
 
 En un momento del desarrollo en que el score no se pudo mejorar más se procedió al agregado de features y la posterior selección de los mismos. Una vez obtenidos 150 features se llegó a un punto muerto donde se consideró que ya era una cantidad suficiente. Los métodos utilizados para la selección de los mismos arrojaron resultados muy distintos. En general, los mejores resultados se obtuvieron con el método de \texttt{Cumulative Importance} pero resultados muy cercanos se obtuvieron también con el método de \texttt{Forward Selection} y \texttt{Backward Selection}. 
 
