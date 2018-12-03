@@ -540,6 +540,17 @@ Griiiiidseaaaaarch
 
 \subsection{Ensambles}
 
+El algoritmo de ensable seleccionada para el desarrollo de este trabajo práctico fue Bagging. 
+
+Para explicar este algoritmo primero debemos definir el concepto de Bootstrapping. Este último es un método que se basa en seleccionar con reemplazo una muestra del set de entrenamiento de igual tamaño que el mismo. Estas muestras pueden tener datos repetidos y, por tanto, excluir algunos. 
+
+Ahora si, una vez aplicado esta técnica nos sirve para entrenar n veces un mismo clasificador pero con distintos subsets de datos y así obtener el resultado final. Este algoritmo es conocido como Bagging. 
+
+La principal ventaja generada es evitar el overfiting, ya que ningún clasificador conoce el set de entrenameiento completo y por tanto no se puede sobreajustar al set de datos.
+
+Resulta menester remarcar que por momentos es redundante hacer bagging de random forests debido a que random forests ya es bagging.
+
+
 \section{Desarrollo}
 
 \subsection{Submission framework}
