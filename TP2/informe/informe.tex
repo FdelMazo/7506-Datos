@@ -89,13 +89,13 @@
 
 El objetivo principal del trabajo es predecir la probabilidad de que un usuario de la empresa Trocafone realice una compra de un dispositivo celular (conversión). 
 
-La realización del trabajo se hace con algoritmos de Machine Learning, una disciplina que busca poder generar clasificaciones en base a un entrenamiento sobre información pasada, seguida de una validación de las predicciones generadas. En el trabajo se prueban distintos algoritmos, los cuales todos en distinta manera hacen uso de los datos (en particular, de sus atributos). Es por esto que es muy importante saber que datos usar, y buscar como codificarlos de tal forma que mejor se aprovechen.
+La realización del trabajo se hace con algoritmos de Machine Learning, una disciplina que busca poder generar clasificaciones en base a un entrenamiento sobre información pasada, seguida de una validación de las predicciones generadas. En el trabajo se prueban distintos algoritmos, los cuales todos en distinta manera hacen uso de los datos (en particular, de sus atributos). Es por esto que es muy importante saber qué datos usar, y buscar cómo codificarlos de tal forma que mejor se aprovechen.
 
-Con dicho propósito se utilizan como base dos sets de datos brindados por la empresa. En un primer lugar el archivo \texttt{events\_up\_to\_01062018.csv} que contiene la información de los eventos realizados por un conjunto de usuarios desde el 1ro de enero hasta el 31 de mayo de 2018 y servirá como entrenamiento de los algoritmos, y en un segundo lugar el archivo \texttt{labels\_training\_set.csv} que determina si el usuario realizó o no una conversión desde el 1ro hasta el 15 de junio es este período es del cual se quieren predecir las conversiones). Siendo este segundo archivo un subconjunto del anterior, este servirá de validación de las predicciones
+Con dicho propósito se utilizan como base dos sets de datos brindados por la empresa. En un primer lugar el archivo \texttt{events\_up\_to\_01062018.csv} que contiene la información de los eventos realizados por un conjunto de usuarios desde el 1ro de enero hasta el 31 de mayo de 2018 y servirá como entrenamiento de los algoritmos, y en un segundo lugar el archivo \texttt{labels\_training\_set.csv} que determina si el usuario realizó o no una conversión desde el 1ro hasta el 15 de junio es este período es del cual se quieren predecir las conversiones. Siendo este segundo archivo un subconjunto del anterior, este servirá de validación de las predicciones.
 
 \section{Organización del Trabajo}
 
-Para un desarrollo más cómodo, se modularizó el trabajo en distintos notebooks de Jupyter, intentando emular la programación estructurada, y luego se importan entre si \footnote{Haciendo uso del magnífico \href{https://github.com/grst/nbimporter}{nbimporter}}. Si bien esta forma de trabajar sirve bastante para no estar repitiendo código, el dividir en distintos notebooks que dependan unos de otros sube el acoplamiento del proyecto en su totalidad.
+Para un desarrollo más cómodo, se modularizó el trabajo en distintos notebooks de Jupyter, intentando emular la programación estructurada, y luego se importan entre sí \footnote{Haciendo uso del magnífico \href{https://github.com/grst/nbimporter}{nbimporter}}. Si bien esta forma de trabajar sirve bastante para no estar repitiendo código, el dividir en distintos notebooks que dependan unos de otros sube el acoplamiento del proyecto en su totalidad.
 
 Los notebooks, en orden de lectura y corrida son:
 
@@ -151,9 +151,9 @@ El primer paso del trabajo consistió en realizar una investigación sobre lo ya
 
 Esta investigación se compone de dos partes, una técnica y otra teórica.
 
-Por el lado técnico, viendo que se uso otro set de datos para el TP1, se buscó alguna forma de integrar los datos anteriores con los nuevos (por ejemplo, buscar si hay usuarios compartidos entre los dos sets, o si hay compras para registrar), para poder usar una base de datos más grande tanto para el entrenamiento como la validación de las predicciones. 
+Por el lado técnico, viendo que se usó otro set de datos para el TP1, se buscó alguna forma de integrar los datos anteriores con los nuevos (por ejemplo, buscar si hay usuarios compartidos entre los dos sets, o si hay compras para registrar), para poder usar una base de datos más grande tanto para el entrenamiento como la validación de las predicciones. 
 
-Luego de una serie de pasos, busquedas y validaciones, se recopiló la siguiente información:
+Luego de una serie de pasos, búsquedas y validaciones, se recopiló la siguiente información:
 \begin{enumerate}
 \item No se repiten usuarios en los datasets.
 \item En el primer dataset (TP1) hay 27624 usuarios de los cuales 13967 tuvieron actividad en junio. Entre el 1 y el 15 (inclusive) de junio 82 usuarios compraron productos.
@@ -162,7 +162,7 @@ Luego de una serie de pasos, busquedas y validaciones, se recopiló la siguiente
 
 Por lo tanto se concluyó que hacer un merge de los datos del TP1 con los del TP2 presentaría un \textit{skewness} en el set de datos, por la despreciabilidad de estos.
 
-Por otro lado, en un marco teórico, se vió el análisis hecho en busqueda de que patrones, ideas y conceptos pueden ser aplicados en este trabajo. En particular, se buscan atributos escondidos en el set original que puedan ser codificados de tal forma que luego los algoritmos de Machine Learning puedan utilizar a su favor. Los atributos encontrados son especificados en la sección de Feature Engineering.
+Por otro lado, en un marco teórico, se vió el análisis hecho en búsqueda de qué patrones, ideas y conceptos pueden ser aplicados en este trabajo. En particular, se buscan atributos escondidos en el set original que puedan ser codificados de tal forma que luego los algoritmos de Machine Learning puedan utilizar a su favor. Los atributos encontrados son especificados en la sección de Feature Engineering.
 
 \hl{[TO-DO TSNE de Souto aca]}
 
@@ -170,10 +170,10 @@ Por otro lado, en un marco teórico, se vió el análisis hecho en busqueda de q
 
 Este es mayoritariamente un re-trabajo sobre lo hecho para el TP1, en el Notebook Anexo\footnote{https://fdelmazo.github.io/7506-Datos/TP1/anexo.html}.
 
-Como parte del feature engineering, se crean dataframes nuevos con información de los productos del sitio y de como se accede a este. Los dataframes generados son:
+Como parte del feature engineering, se crean dataframes nuevos con información de los productos del sitio y de cómo se accede a este. Los dataframes generados son:
 
 \begin{itemize}
-	\item \textbf{\texttt{brands.csv}}: Lista las marcas de los dispotivos de cada evento.
+	\item \textbf{\texttt{brands.csv}}: Lista las marcas de los dispositivos de cada evento.
 	\item \textbf{\texttt{os.csv}}: Lista los sistemas operativos desde los cuales se accedió al sitio.
 	\item \textbf{\texttt{browsers.csv}}: Lista los exploradores desde los cuales se accedió al sitio.
 	\item \textbf{\texttt{sessions.csv}}:  Se agregó el concepto de sesión, que se define como la agrupación de una serie de eventos por usuario, los cuales están todos con menos de 30 minutos de inactividad entre el actual y el anterior. 
@@ -371,11 +371,11 @@ Se propone también analizar esta información para un rango de tiempo no muy ex
 
 \subsection{Feature selection}
 
-Una vez que se tienen todos los atributos en un mismo dataframe y luego de un par de pruebas se ve que no siempre hay que entrenar los modelso con la totalidad del dataframe. Viendo que para algunos algoritmos el orden y la selección de los features logrababa distintos resultados, se busca la forma de encontrar la combinación óptima de features y eliminar todo el ruido posible.
+Una vez que se tienen todos los atributos en un mismo dataframe y luego de un par de pruebas se ve que no siempre hay que entrenar los modelos con la totalidad del dataframe. Viendo que para algunos algoritmos el orden y la selección de los features logrababa distintos resultados, se busca la forma de encontrar la combinación óptima de features y eliminar todo el ruido posible.
 
-El modelo usado de referencia para esta sección es la del Random Forest, debido a la estabilidad de este para mostrar la importancia de cada feature, ya que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
+El modelo usado de referencia para esta sección es lel de Random Forest debido a su estabilidad para mostrar la importancia de cada feature. Su funcionamiento radica en que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
 
-Es importante notar que a mayor cantidad de árboles en el random forest, más precisa será la importancia del feature, ya que más árboles al azar tendrán los features y mejor se podrá estimar cuanto aportaron en cada árbol. Esto, en cuanto al modelaje para la postulación no es tan importante, ya que eventualmente el retorno de las ganancias será despreciable, pero para lo que es importancia de atributos es muy importante.
+Es importante notar que a mayor cantidad de árboles generados por Random Forest, más precisa será la importancia del feature, ya que más árboles al azar tendrán los features y mejor se podrá estimar cuánto aportaron en cada árbol. Esto, en cuanto al modelaje para la postulación no es tan importante, ya que eventualmente el retorno de las ganancias será despreciable, pero para lo que es importancia de atributos es muy importante.
 
 Se utiliza como métrica el area bajo la curva debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
 
@@ -389,9 +389,9 @@ Las distintas formas de selección utilizadas son:
 
 	\item \textbf{Cumulative Importance}
 
-	El método es el más intuitivo para la selección de features debido a su naturaleza \textit{greedy}. La idea es primero correr el Random Forest sobre todo el dataframe, y sobre este resultado obtener la importancia de cada feature. Ahora, con los features ordenados según importancia se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo \texttt{a,b,c} los features ordenados, se obtienen las listas \texttt{a}, \texttt{a,b} y  \texttt{abc}.
+	Este método es el más intuitivo para la selección de features debido a su naturaleza \textit{greedy}. La idea es primero correr el Random Forest sobre todo el dataframe, y sobre este resultado obtener la importancia de cada feature. Ahora, con los features ordenados según importancia se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo \texttt{a,b,c} los features ordenados, se obtienen las listas \texttt{a}, \texttt{a,b} y  \texttt{abc}.
 
-	Ahora, con la lista de listas de features segun importancia, se corre un Random Forest para cada subconjunto, en busqueda del \textit{codo}, es decir, el subconjunto que mayor AUC tenga antes de decaer a los features ruidosos.
+	Ahora, con la lista de listas de features según importancia, se corre un Random Forest para cada subconjunto, en busqueda del \textit{codo}, es decir, el subconjunto que mayor AUC tenga antes de decaer a los features ruidosos.
 
 	La desventaja que presenta este método es que parte del supuesto de que la importancia de cada feature es la misma para la corrida del dataframe entero que para subconjuntos de esto, lo cual no es cierto. De todas formas, es uno de los métodos que mejores resultados dió.
 
