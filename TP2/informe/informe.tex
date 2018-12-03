@@ -511,6 +511,14 @@ Viendo los resultados que XGBoost y LightGBM daban, se opto por usar el clasific
 
 Despues de probar gradient boosting, optamos por usar más modelos de esa indole. Catboost es el último algoritmo de boosting probado y sus resultados no fueron tan buenos como para justificar el tiempo perdido en cada ejecucion. Es fácilmente el modelo más lento de todo lo corrido.
 
+\subsubsection{Adaboosting}
+
+En este caso seguimos manejando modelos de la familia boosting. 
+
+Adaboosting comienza con un clasificador simple que va siendo modificado dependiendo su nivel de error. En cada iteración se le da peso a la clase que mejor resultado obtuvo. Luego se vuelve a iterar. 
+
+Una vez finalizadas las iteraciones crea un promedio ponderado. Esta combinación lineal de los N clasificadores va a ser su clasificador final.
+
 \subsection{Parameter tuning}
 
 En los primeros modelos corridos fue cuando se empezo a notar lo que ya se sabía: los híper-parametros son sencillamente lo más importante de cada algoritmo, y la diferencia entre un buen modelo y uno promedio.
