@@ -373,11 +373,13 @@ Se propone también analizar esta información para un rango de tiempo no muy ex
 
 Una vez que se tienen todos los atributos en un mismo dataframe y luego de un par de pruebas se ve que no siempre hay que entrenar los modelos con la totalidad del dataframe. Viendo que para algunos algoritmos el orden y la selección de los features logrababa distintos resultados, se busca la forma de encontrar la combinación óptima de features y eliminar todo el ruido posible.
 
-El modelo usado de referencia para esta sección es lel de Random Forest debido a su estabilidad para mostrar la importancia de cada feature. Su funcionamiento radica en que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
+El modelo usado de referencia para esta sección es el de Random Forest debido a su estabilidad para mostrar la importancia de cada feature. Su funcionamiento radica en que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
 
 Es importante notar que a mayor cantidad de árboles generados por Random Forest, más precisa será la importancia del feature, ya que más árboles al azar tendrán los features y mejor se podrá estimar cuánto aportaron en cada árbol. Esto, en cuanto al modelaje para la postulación no es tan importante, ya que eventualmente el retorno de las ganancias será despreciable, pero para lo que es importancia de atributos es muy importante.
 
 Se utiliza como métrica el area bajo la curva debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
+
+Siendo este el proceso más costoso de todo el trabajo, al ver que cada método puede llegar a tener que probar modelos que ya fueron probados previamente, en un intento de \textit{programación dinámica} se van guardando todos los resultados corridos para poder acceder a ellos sin tener que hacer una ejecución que ya fue hecha.
 
 Las distintas formas de selección utilizadas son:
 
