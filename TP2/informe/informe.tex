@@ -128,7 +128,7 @@ Los notebooks, en orden de lectura y corrida son:
 
 	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/parameter_tuning.html}}
 
-	En este notebook se hacen diversas pruebas sobre cada algoritmo hasta encontrar los hiper parametros óptimos de cada uno.
+	En este notebook se hacen diversas pruebas sobre cada algoritmo hasta encontrar los híper-parametros óptimos de cada uno.
 
 	\item \textbf{Submission framework}
 
@@ -457,19 +457,23 @@ Este modelo tan popular trajo buenos resultados, pero bastante a la par con los 
 
 Es esta resistencia al overfitting y que siempre usa subconjuntos en cada árbol lo que lo hacen el algoritmo más estable para ver la importancia de cada atributo, como ya se marcó en la sección de \textbf{Feature Selection}.
 
-Sus dos hiper-parametros son la cantidad de árboles a utilizar y la cantidad de atributos por árbol. Otra característica de este modelo es su invariante frente a la escala de los atributos, es decir, no hay que normalizar los datos.
+Sus dos híper-parametros son la cantidad de árboles a utilizar y la cantidad de atributos por árbol. Otra característica de este modelo es su invariante frente a la escala de los atributos, es decir, no hay que normalizar los datos.
 
 \subsubsection{XGBoost}
 
-XGBoost es un algoritmo muy eficiente de boosting de árboles. Uno de sus hiper-parametros más importantes es la funcion objetivo, de la cual se usa la logística binaria, ya que se tiene un problema de clasificación binaria y no uno de regresión. 
+XGBoost es un algoritmo muy eficiente de gradient boosting en árboles. Uno de sus híper-parametros más importantes es la funcion objetivo, de la cual se usa la logística binaria, ya que se tiene un problema de clasificación binaria y no uno de regresión.
+
+Este algoritmo nos dio los mejores resultados hasta ser reemplazado por lightgbm.
+
+La gran cantidad de híper-parámetros que tiene nos llevó a usar una búsqueda aleatoria de estos con cross validation, usando la herramienta RandomizedSearchCV de sklearn.
 
 \subsubsection{KNN}
 
-Un algoritmo sencillo utilizado es el de los K vecinos más cercanos. Este algoritmo consiste en encontrar los vecinos más cercanos del punto a clasificar, y luego simplemente predecir que el punto en cuestión es de la clase del cual la mayoría de sus vecinos sean parte. Sus hiper-parametros a definir es la cantidad de vecinos a tomar en cuenta y la distancia a utilizar entre ellos. 
+Un algoritmo sencillo utilizado es el de los K vecinos más cercanos. Este algoritmo consiste en encontrar los vecinos más cercanos del punto a clasificar, y luego simplemente predecir que el punto en cuestión es de la clase del cual la mayoría de sus vecinos sean parte. Sus híper-parametros a definir es la cantidad de vecinos a tomar en cuenta y la distancia a utilizar entre ellos. 
 
 Es tal vez en su sencillez que esta una de sus mayores desventajas: es un algoritmo de orden cuadrático, y esto impacta mucho sobre la ejecución de cada modelo que se hace. Otra cosa a remarcar es que los datos deben estár normalizados a la hora de procesarlos.
 
-Si bien es un algoritmo muy sencillo y básico de Machine Learning, también es uno que, con sus hiper-parametros bien configurados, mejores resultados da. 
+Si bien es un algoritmo muy sencillo y básico de Machine Learning, también es uno que, con sus híper-parametros bien configurados, mejores resultados da. 
 
 \subsubsection{Naïve-Bayes}
 
@@ -486,7 +490,7 @@ Si bien no nos dio siempre los mejores resultados, si se noto su rapidez y su fa
 
 \subsubsection{LightGBM}
 
-LightGBM es simplemente el algoritmo que constantemente mejores resultados nos dio. Este algoritmo de gradient boosting sobre arboles se diferencia de XGBoost en que construye los árboles segun las hojas, y no los niveles. Es importante que sus hiper-parametros esten bien configurados (por ejemplo, la profundidad máxima de los árboles), y es aquí donde se noto el mayor incremento en el AUC, un LightGBM con sus hiper-parametros no tan cuidados da resultados tan malos que ni se ocurre usarlo de nuevo, y es recién cuando uno se pone a hilar fino entre los parametros (y sale de los de defecto) que rápidamente se encuentran muy buenos saltos de calidad en el modelo.
+LightGBM es simplemente el algoritmo que constantemente mejores resultados nos dio. Este algoritmo de gradient boosting sobre arboles se diferencia de XGBoost en que construye los árboles segun las hojas, y no los niveles. Es importante que sus híper-parametros esten bien configurados (por ejemplo, la profundidad máxima de los árboles), y es aquí donde se noto el mayor incremento en el AUC, un LightGBM con sus híper-parametros no tan cuidados da resultados tan malos que ni se ocurre usarlo de nuevo, y es recién cuando uno se pone a hilar fino entre los parametros (y sale de los de defecto) que rápidamente se encuentran muy buenos saltos de calidad en el modelo.
 
 Este algoritmo también se destaca por ser tan rápido y consumir poca memoria. También, tiene un gran manejo de la dimensionalidad de los datos, sin cambiar mucho frente a ellos.
 
@@ -506,11 +510,14 @@ Despues de probar gradient boosting, optamos por usar más modelos de esa indole
 
 \subsection{Parameter tuning}
 
-En los primeros modelos corridos fue cuando se empezo a notar lo que ya se sabía: los hiper-parametros son sencillamente lo más importante de cada algoritmo, y la diferencia entre un buen modelo y uno promedio.
+En los primeros modelos corridos fue cuando se empezo a notar lo que ya se sabía: los híper-parametros son sencillamente lo más importante de cada algoritmo, y la diferencia entre un buen modelo y uno promedio.
 
-Lamentablemente, más alla de todas las suposiciones y pruebas que se puedan hacer manualmente, eventualmente hay que aceptar que la forma de encontrar los hiper-parametros óptimos es a travez de Grid Search, un método de fuerza bruta que lo que hace es correr las posibilidades planteadas hasta encontrar la mejor combinación de los hiper-parametros a probar.
+Inicialmente, debido a la gran cantidad de opciones para algunos algoritmos, optamos por un método greedy, que consistía en un pequeño framework donde se van probando distintos híper-parametros con distintos valores progresivamente. Es decir, se parte un grid search grande en varios más pequeños, ya que por la naturaleza del algoritmo este proceso es muy costoso en tiempo. Si bien esto no encuentra la combinación óptima, al menos da resultados bastante favorables y se ahorra mucho tiempo de ejecución.
 
-Para esto se hizo un pequeño framework donde se van probando distintos hiper-parametros con distintos valores progresivamente. Es decir, se parte un grid search grande en varios más pequeños, ya que por la naturaleza del algoritmo este proceso es muy costoso en tiempo. Si bien esto no encuentra la combinación óptima, al menos da resultados bastante favorables y se ahorra mucho tiempo de ejecución.
+Esto dio resultados cuestionables, por lo que implementamos una búsqueda aleatoria de híper-parámetros, y luego, utilizamos grid search (un método de fuerza bruta que lo que hace es correr las posibilidades planteadas hasta encontrar la mejor combinación de los híper-parametros a probar) sobre un rango acotado basado en los resultados anteriores.
+
+Las herramientas que utilizamos para esto nos permitían elegir la métrica a maximizar, y usamos AUC ROC.
+
 
 \subsection{Ensambles}
 
@@ -562,7 +569,7 @@ Simplemente se definen dos listas que luego se cruzaran en busqueda de la mejor 
 
 Como referencia de puntaje se decidió utilizar la métrica de Area Under Curve (AUC), ya que luego de distintas pruebas (\texttt{precision\_recall}, \texttt{accuracy\_score}, \texttt{f1\_score}) se vió que esta es la más fiel a lo buscado.
 
-Por un lado, se definen todos los algoritmos con sus mejores hiper-parametros seleccionados. Luego, se hace tanto el bagging sobre ellos como el ensamble por mayoría de votos sobre combinaciones de a pares de ellos. También, se hacen algunas combinaciones de tres algoritmos por mayoría de votos.
+Por un lado, se definen todos los algoritmos con sus mejores híper-parametros seleccionados. Luego, se hace tanto el bagging sobre ellos como el ensamble por mayoría de votos sobre combinaciones de a pares de ellos. También, se hacen algunas combinaciones de tres algoritmos por mayoría de votos.
 
 Por el otro lado, se definen todos los subconjuntos de features seleccionados por los diversos métodos.
 
