@@ -421,6 +421,16 @@ Se propone también analizar esta información para un rango de tiempo no muy ex
 
 A modo de prueba, decidimos crear features que tengan como valor el número de \textit{cluster} que le dio el algoritmo usado.
 
+\subsubsection{Marca más vista}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+	[
+'most_viewed_brand_is_asus', 	'most_viewed_brand_is_ipad', 	'most_viewed_brand_is_iphone', 	'most_viewed_brand_is_lenovo', 	'most_viewed_brand_is_lg', 	'most_viewed_brand_is_motorola',	'most_viewed_brand_is_quantum', 	'most_viewed_brand_is_samsung', 	'most_viewed_brand_is_sony'	]
+	}}
+\end{sloppypar}
+
+Se realizó \texttt{One Hot Encoding} para obtener cuál fue la marca más vista por el usuario, tanto en el total del período como en la última semana.
 
 \subsection{Feature selection}
 
