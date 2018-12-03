@@ -1,1 +1,1 @@
-../_jupyter_notebook_config.py
+../jupyter_notebook_config.py
