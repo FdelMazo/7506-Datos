@@ -375,6 +375,8 @@ Una vez que se tienen todos los atributos en un mismo dataframe y luego de un pa
 
 El modelo usado de referencia para esta sección es la del Random Forest, debido a la estabilidad de este para mostrar la importancia de cada feature, ya que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
 
+Es importante notar que a mayor cantidad de árboles en el random forest, más precisa será la importancia del feature, ya que más árboles al azar tendrán los features y mejor se podrá estimar cuanto aportaron en cada árbol. Esto, en cuanto al modelaje para la postulación no es tan importante, ya que eventualmente el retorno de las ganancias será despreciable, pero para lo que es importancia de atributos es muy importante.
+
 Se utiliza como métrica el area bajo la curva debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
 
 Las distintas formas de selección utilizadas son:
@@ -440,31 +442,114 @@ Se agregan algunos criterios más, para aumentar los subconjuntos a utilizar.
 
 \subsubsection{Árboles de decisión}
 
+El objetivo de este árbol binario es uno en donde el set de datos se va dividiendo en cada nivel del arbol en dos. Finalmente, es en los nodos hoja donde se clasifican los datos.
+
+Este modelo trajo grandes resultados usado por si solo y es uno de los algoritmos que más fueron postulados.
+
 \subsubsection{Random forests}
 
+El algoritmo de random forests es un ensamble de árboles decisiones con subconjuntos de los atributos a utilizar, y con la técnica de \textit{bagging} se termina agarrando el promedio de los árboles corridos.
+
+Este modelo tan popular trajo buenos resultados, pero bastante a la par con los de árboles de decisiones (se pretendía que sea ampliamente mejor). Una gran ventaja de este modelo es evitar el overfitting, por lo cual es de los modelos más confiables del trabajo. 
+
+Es esta resistencia al overfitting y que siempre usa subconjuntos en cada árbol lo que lo hacen el algoritmo más estable para ver la importancia de cada atributo, como ya se marcó en la sección de \textbf{Feature Selection}.
+
+Sus dos hiper-parametros son la cantidad de árboles a utilizar y la cantidad de atributos por árbol. Otra característica de este modelo es su invariante frente a la escala de los atributos, es decir, no hay que normalizar los datos.
+
 \subsubsection{XGBoost}
+
+XGBoost es un algoritmo muy eficiente de boosting de árboles. Uno de sus hiper-parametros más importantes es la funcion objetivo, de la cual se usa la logística binaria, ya que se tiene un problema de clasificación binaria y no uno de regresión. 
 
 \subsubsection{Logistic regression}
 
 \subsubsection{KNN}
 
+Un algoritmo sencillo utilizado es el de los K vecinos más cercanos. Este algoritmo consiste en encontrar los vecinos más cercanos del punto a clasificar, y luego simplemente predecir que el punto en cuestión es de la clase del cual la mayoría de sus vecinos sean parte. Sus hiper-parametros a definir es la cantidad de vecinos a tomar en cuenta y la distancia a utilizar entre ellos. 
+
+Es tal vez en su sencillez que esta una de sus mayores desventajas: es un algoritmo de orden cuadrático, y esto impacta mucho sobre la ejecución de cada modelo que se hace. Otra cosa a remarcar es que los datos deben estár normalizados a la hora de procesarlos.
+
+Si bien es un algoritmo muy sencillo y básico de Machine Learning, también es uno que, con sus hiper-parametros bien configurados, mejores resultados da. 
+
 \subsubsection{Naïve-Bayes}
+
+Este algoritmo, basado en el teorema de Bayes, es sencillo y bastante rápido. No suele tener los mejores resultados, pero era un algoritmo básico a probar. Su inocencia proviene del iluso supuesto de que las dimensiones son independientes entre sí, pero no por esto deja de ser un buen clasificador.
+
+Si bien no nos dio siempre los mejores resultados, si se noto su rapidez y su facilidad para tratar con la gran dimensión de los datos.
+
+\begin{itemize}
+	\item \textbf{Gausiano}
+	\item \textbf{Bernouilli}
+	\item \textbf{Multinomial}
+ 	\item \textbf{Complemento}
+\end{itemize}
 
 \subsubsection{LightGBM}
 
+LightGBM es simplemente el algoritmo que constantemente mejores resultados nos dio. Este algoritmo de gradient boosting sobre arboles se diferencia de XGBoost en que construye los árboles segun las hojas, y no los niveles. Es importante que sus hiper-parametros esten bien configurados (por ejemplo, la profundidad máxima de los árboles), y es aquí donde se noto el mayor incremento en el AUC, un LightGBM con sus hiper-parametros no tan cuidados da resultados tan malos que ni se ocurre usarlo de nuevo, y es recién cuando uno se pone a hilar fino entre los parametros (y sale de los de defecto) que rápidamente se encuentran muy buenos saltos de calidad en el modelo.
+
+Este algoritmo también se destaca por ser tan rápido y consumir poca memoria. También, tiene un gran manejo de la dimensionalidad de los datos, sin cambiar mucho frente a ellos.
+
 \subsubsection{Redes neuronales}
 
-\subsubsection{Catboost}
+Un algoritmo utilizado para buscar alguna aproximación no lineal fue el de redes neuronales. Y algo que no hay que olvidar es de normalizar los datos (no hacerlo da la sensación de que el algoritmo es mucho peor de lo que verdaderamente es, esto es algo fundamental de las redes). 
 
-Si bien se encontraron resultados decentes para este modelo, se decidió no utilizarlo en las últimas corridas por lo mucho que tardaba cada ejecución.
+Este algoritmo no dio tan buenos resultados para la cantidad de tiempo que consume.
 
 \subsubsection{Gradient boosting}
 
+Viendo los resultados que XGBoost y LightGBM daban, se opto por usar el clasificador base de gradient boosting, que si bien dio resultados favorables, no llega a superar a los modelos previamente utilizados.
+
+\subsubsection{Catboost}
+
+Despues de probar gradient boosting, optamos por usar más modelos de esa indole. Catboost es el último algoritmo de boosting probado y sus resultados no fueron tan buenos como para justificar el tiempo perdido en cada ejecucion. Es fácilmente el modelo más lento de todo lo corrido.
+
 \subsection{Parameter tuning}
 
-Griiiiidseaaaaarch
+En los primeros modelos corridos fue cuando se empezo a notar lo que ya se sabía: los hiper-parametros son sencillamente lo más importante de cada algoritmo, y la diferencia entre un buen modelo y uno promedio.
+
+Lamentablemente, más alla de todas las suposiciones y pruebas que se puedan hacer manualmente, eventualmente hay que aceptar que la forma de encontrar los hiper-parametros óptimos es a travez de Grid Search, un método de fuerza bruta que lo que hace es correr las posibilidades planteadas hasta encontrar la mejor combinación de los hiper-parametros a probar.
+
+Para esto se hizo un pequeño framework donde se van probando distintos hiper-parametros con distintos valores progresivamente. Es decir, se parte un grid search grande en varios más pequeños, ya que por la naturaleza del algoritmo este proceso es muy costoso en tiempo. Si bien esto no encuentra la combinación óptima, al menos da resultados bastante favorables y se ahorra mucho tiempo de ejecución.
 
 \subsection{Ensambles}
+
+\subsubsection{Bagging}
+
+El bagging consiste en aplicar un clasificador n veces y luego promediar el resultado final. Es importante que cada una de las corridas del clasificador sea con datos reemplazados en el set de entrenamiento.
+
+Esta técnica es, por ejemplo, utilizada
+
+Bagging en general implica aplicar el mismo clasificador n veces y luego prome-
+diar sus resultados para el obtener el resultado final. El problema es que aplicar
+el mismo clasificador n veces al mismo set de datos nos darı́a n veces el mismo
+resultado. Es por esto que bagging siempre se usa en conjunto con bootstrapping.
+Bootstrapping consiste en tomar una muestra del set de entrenamiento del
+mismo tamaño del set de entrenamiento pero con reemplazo. Es decir que
+un dato puede estar varias veces en la muestra. Por ejemplo, si tenemos los
+datos: Train = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 y tomamos muestras con reemplazo de
+tamaño 10, algunas muestras posibles son: B1 = 4, 7, 2, 3, 4, 2, 7, 8, 7, 9 o B2 =
+2, 6, 5, 5, 4, 9, 9, 7, 2, 6. Podemos entonces entrenar nuestro clasificador con los
+bootstraps y obtener n clasificadores distintos. Luego podemos aplicar estos n
+clasificadores al set de datos original y promediar los resultados para obtener el
+resultado final. Esto sirve tanto en problemas de regresión como de clasificación.
+Como cada clasificador no ve el total de registros del set de entrenamiento
+la técnica de bagging disminuye notablemente las posibilidades de caer en over-
+fitting, ya que ninguno de los n clasificadores individuales puede sobre-ajustar
+al set de entrenamiento completo.
+Para cada clasificador existe un set de registros que queda afuera. Por ejem-
+plo, en B1, los registros 0,1,5 y 6 no forman parte del bootstrap. A estos los
+llamamos registros out of bag (OOB). La precisión de un clasificador que usa
+bagging se puede obtener mediante la clasificación de los registros OOB con el
+clasificador mismo, como si los registros OOB sirvieran como set de validación
+de cada clasificador individual.
+Veamos el siguiente ejemplo: tenemos tres clasificadores y un set de entre-
+namiento de 10 registros para hacer clasificación binaria. Marcamos en negrita
+los datos que forman parte del bootstrap para cada clasificador.
+
+
+
+\subsubsection{Boosting}
+\subsubsection{Blending}
 
 \section{Desarrollo}
 
