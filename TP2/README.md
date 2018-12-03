@@ -8,9 +8,9 @@ https://fdelmazo.github.io/7506-Datos/
 
 Notebooks en orden de corrida y lectura:
 
-0. [TP1](../TP1/TP1.ipynb) y su [anexo](../TP1/anexo.ipynb)) --> Familiarización con el set de datos y exploración de estos.
+0. [TP1](../TP1/TP1.ipynb) y su [anexo](../TP1/anexo.ipynb) --> Familiarización con el set de datos y exploración de estos.
 
-1. [Investigación Previa](investigacion.ipynb)) --> Con ayuda de lo trabajado en el TP1, se averiguan más cosas de las datos, en busqueda de que poder reutilizar.
+1. [Investigación Previa](investigacion.ipynb) --> Con ayuda de lo trabajado en el TP1, se averiguan más cosas de las datos, en busqueda de que poder reutilizar.
 
 2. [Creación de Dataframes](new_dataframes.ipynb) --> Como parte del feature engineering, se crean dataframes nuevos con información de los productos del sitio y de como se accede a este (marcas, sistemas operativos, etc).
 

@@ -87,15 +87,17 @@
 
 \section{Introducción}
 
-El objetivo principal del trabajo es predecir la probabilidad de que un usuario de la empresa Trocafone realice una compra de un dispositivo celular (conversión). 
+El objetivo principal del trabajo es predecir la probabilidad de que un usuario de la empresa Trocafone realice una compra (conversión) de un dispositivo celular. 
 
 La realización del trabajo se hace con algoritmos de Machine Learning, una disciplina que busca poder generar clasificaciones en base a un entrenamiento sobre información pasada, seguida de una validación de las predicciones generadas. En el trabajo se prueban distintos algoritmos, los cuales todos en distinta manera hacen uso de los datos (en particular, de sus atributos). Es por esto que es muy importante saber qué datos usar, y buscar cómo codificarlos de tal forma que mejor se aprovechen.
 
-Con dicho propósito se utilizan como base dos sets de datos brindados por la empresa. En un primer lugar el archivo \texttt{events\_up\_to\_01062018.csv} que contiene la información de los eventos realizados por un conjunto de usuarios desde el 1ro de enero hasta el 31 de mayo de 2018 y servirá como entrenamiento de los algoritmos, y en un segundo lugar el archivo \texttt{labels\_training\_set.csv} que determina si el usuario realizó o no una conversión desde el 1ro hasta el 15 de junio es este período es del cual se quieren predecir las conversiones. Siendo este segundo archivo un subconjunto del anterior, este servirá de validación de las predicciones.
+Con dicho propósito se utilizan como base dos sets de datos brindados por la empresa. En un primer lugar el archivo \texttt{events\_up\_to\_01062018.csv} que contiene la información de los eventos realizados por un conjunto de usuarios desde el 1ro de enero hasta el 31 de mayo de 2018 y servirá como entrenamiento de los algoritmos, y en un segundo lugar el archivo \texttt{labels\_training\_set.csv} que determina si el usuario realizó o no una conversión desde el 1ro hasta el 15 de junio. Es este período es del cual se quieren predecir las conversiones. Siendo este segundo archivo un subconjunto del anterior, este servirá de validación de las predicciones.
 
 \section{Organización del Trabajo}
 
-Para un desarrollo más cómodo, se modularizó el trabajo en distintos notebooks de Jupyter, intentando emular la programación estructurada, y luego se importan entre sí \footnote{Haciendo uso del magnífico \href{https://github.com/grst/nbimporter}{nbimporter}}. Si bien esta forma de trabajar sirve bastante para no estar repitiendo código, el dividir en distintos notebooks que dependan unos de otros sube el acoplamiento del proyecto en su totalidad.
+Para un desarrollo más cómodo, se modularizó el trabajo en distintos notebooks de Jupyter que luego se importan entre sí\footnote{Haciendo uso del magnífico \href{https://github.com/grst/nbimporter}{nbimporter}}, intentando emular la programación estructurada. Si bien esta forma de trabajar sirve bastante para no estar repitiendo código, el dividir en distintos notebooks que dependan unos de otros sube el acoplamiento del proyecto en su totalidad.
+
+Un pequeño índice del trabajo puede ser visto en \url{https://fdelmazo.github.io/7506-Datos/}.
 
 Los notebooks, en orden de lectura y corrida son:
 
@@ -104,7 +106,7 @@ Los notebooks, en orden de lectura y corrida son:
 
 	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/investigacion.html}}
 
-	En este notebook se presentan las distintas exploraciones que se hicieron sobre el dataset del trabajo práctico anterior (TP1), en busqueda de ideas útiles para el desarrollo del actual.
+	En este notebook se presentan las distintas exploraciones que se hicieron sobre el dataset del trabajo práctico anterior (TP1\footnote{\url{{https://fdelmazo.github.io/7506-Datos/TP1/TP1.html}}})
 
 	\item \textbf{Creación de dataframes}
 
@@ -128,7 +130,7 @@ Los notebooks, en orden de lectura y corrida son:
 
 	\small{\url{https://fdelmazo.github.io/7506-Datos/TP2/parameter_tuning.html}}
 
-	En este notebook se hacen diversas pruebas sobre cada algoritmo hasta encontrar los híper-parametros óptimos de cada uno.
+	En este notebook se hacen diversas pruebas sobre cada algoritmo hasta encontrar los híper-parámetros óptimos de cada uno.
 
 	\item \textbf{Submission framework}
 
@@ -147,7 +149,7 @@ Los notebooks, en orden de lectura y corrida son:
 \section{Features}
 \subsection{Investigación previa}
 
-El primer paso del trabajo consistió en realizar una investigación sobre lo ya hecho en el trabajo anterior. El TP1 \footnote{\url{{https://fdelmazo.github.io/7506-Datos/TP1/TP1.html}}} es un análisis exploratorio de datos de la empresa. Si bien no son exactamente los mismos datos que los trabajados acá, son de la misma índole, y la exploración de ellos dan a luz a patrones en los usuarios del sitio.
+El primer paso del trabajo consistió en realizar una investigación sobre lo ya hecho en el trabajo anterior. El TP1 es un análisis exploratorio de datos de la empresa. Si bien no son exactamente los mismos datos que los trabajados acá, son de la misma índole, y la exploración de ellos dan a luz a patrones en los usuarios del sitio.
 
 Esta investigación se compone de dos partes, una técnica y otra teórica.
 
@@ -160,7 +162,7 @@ Luego de una serie de pasos, búsquedas y validaciones, se recopiló la siguient
 \item En el segundo dataset hay 19414 usuarios de los cuales 980 compraron en Junio.
 \end{enumerate}
 
-Por lo tanto se concluyó que hacer un merge de los datos del TP1 con los del TP2 presentaría un \textit{skewness} en el set de datos, por la despreciabilidad de estos.
+Se concluyó que hacer un merge de los datos del TP1 con los del TP2 presentaría un \textit{skewness} en el set de datos, por la despreciabilidad de estos.
 
 Por otro lado, en un marco teórico, se vió el análisis hecho en búsqueda de qué patrones, ideas y conceptos pueden ser aplicados en este trabajo. En particular, se buscan atributos escondidos en el set original que puedan ser codificados de tal forma que luego los algoritmos de Machine Learning puedan utilizar a su favor. Los atributos encontrados son especificados en la sección de Feature Engineering.
 
@@ -168,10 +170,10 @@ Lo que se observó de analizar muchas muestras de usuarios que compraron, es ya 
 
 \subsection{Clustering}
 
-Con la inteción de ver si se encontraban clusters que agrupen a los usuarios que compraron, se utilizó el algoritmo \texttt{T-SNE}, que es el estado del arte para la representación de datos en dos dimensiones.
+Con la intención de ver si se encontraban clusters que agrupen a los usuarios que compraron, se utilizó el algoritmo \texttt{T-SNE}, que es el estado del arte para la representación de datos en dos dimensiones.
 
 \begin{figure}[!h]
-	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/labels-2d.png}}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{figures/labels-2d.png}}
 	\caption{Distribución usuarios que compraron}
 	\label{fig:mesdiasnormalizado}
 \end{figure}
@@ -182,7 +184,7 @@ Decidimos utilizar este algoritmo debido a su simpleza y a que, según dicen, nu
 Los resultados que se observan no son muy prometedores en vista a generar \textit{features}.
 
 \begin{figure}[!h]
-	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/kmeans-4.png}}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{figures/kmeans-4.png}}
 	\caption{Clusters con K-Means. Cuatro clusters.}
 	\label{fig:mesdiasnormalizado}
 \end{figure}
@@ -190,10 +192,10 @@ Los resultados que se observan no son muy prometedores en vista a generar \texti
 
 \subsubsection{HDBScan}
 
-Este algoritmo nos atrajo por ser el estado del arte en \textit{clustering}, pero a simple vista los resultados no parecen ser fructíferos, ya que genera una gran cantidad de \textit{clusters}, y no podemos aumentar mucho la cantidad mínima e elementos por cluster (híper-parámetro) debido a la naturaleza \textit{skewed} de los datos.
+Este algoritmo nos atrajo por ser el estado del arte en \textit{clustering}, pero a simple vista los resultados no parecen ser fructíferos, ya que genera una gran cantidad de \textit{clusters}, y no podemos aumentar mucho la cantidad mínima de elementos por cluster (híper-parámetro) debido a la naturaleza \textit{skewed} de los datos.
 
 \begin{figure}[!h]
-	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figures/hdbscan-36.png}}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{figures/hdbscan-36.png}}
 	\caption{Clusters con HDBScan. Min cluster size: 36.}
 	\label{fig:mesdiasnormalizado}
 \end{figure}
@@ -202,7 +204,7 @@ Este algoritmo nos atrajo por ser el estado del arte en \textit{clustering}, per
 
 \subsection{Creación de dataframes}
 
-Este es mayoritariamente un re-trabajo sobre lo hecho para el TP1, en el Notebook Anexo\footnote{https://fdelmazo.github.io/7506-Datos/TP1/anexo.html}.
+Este es mayoritariamente un re-trabajo sobre lo hecho para el TP1, en el Notebook Anexo\footnote{\url{https://fdelmazo.github.io/7506-Datos/TP1/anexo.html}}.
 
 Como parte del feature engineering, se crean dataframes nuevos con información de los productos del sitio y de cómo se accede a este. Los dataframes generados son:
 
@@ -225,13 +227,13 @@ Con lo investigado del previo trabajo y todos los dataframes generados, se busca
 }}
 \end{sloppypar}
 
-Los atributos refieren a la sumatoria de cantidad de productos vistos, en checkout y en coversiones, más la totalidad de los eventos de cada usuario. Lo mismo para las sesiones de cada usuario y sus subtotales. También se agregan promedios de eventos por sesión y porcentajes de los accesos de las sesiones del usuario.
+Los atributos refieren a la sumatoria de cantidad de productos vistos, en checkout y en conversiones, más la totalidad de los eventos de cada usuario. Lo mismo para las sesiones de cada usuario y sus subtotales. También se agregan promedios de eventos por sesión y porcentajes de los accesos de las sesiones del usuario.
 
 \subsubsection{Cantidad de eventos por mes}
 
 \begin{sloppypar}
-\texttt{\detokenize{['total_viewed_products_month_1', 'total_checkouts_month_1', 'total_conversions_month_1', 'total_events_month_1', 'total_sessions_month_1', 'total_session_checkouts_month_1', 'total_session_conversions_month_1', 'total_events_ad_session_month_1', 'total_ad_sessions_month_1', 'has_checkout_month_1', 'has_conversion_month_1', 'total_viewed_products_month_2', 'total_checkouts_month_2', 'total_conversions_month_2', 'total_events_month_2', 'total_sessions_month_2', 'total_session_checkouts_month_2', 'total_session_conversions_month_2', 'total_events_ad_session_month_2', 'total_ad_sessions_month_2', 'has_checkout_month_2', 'has_conversion_month_2', 'total_viewed_products_month_3', 'total_checkouts_month_3', 'total_conversions_month_3', 'total_events_month_3', 'total_sessions_month_3', 'total_session_checkouts_month_3', 'total_session_conversions_month_3', 'total_events_ad_session_month_3', 'total_ad_sessions_month_3', 'has_checkout_month_3', 'has_conversion_month_3', 'total_viewed_products_month_4', 'total_checkouts_month_4', 'total_conversions_month_4', 'total_events_month_4', 'total_sessions_month_4', 'total_session_checkouts_month_4', 'total_session_conversions_month_4', 'total_events_ad_session_month_4', 'total_ad_sessions_month_4', 'has_checkout_month_4', 'has_conversion_month_4', 'total_viewed_products_month_5', 'total_checkouts_month_5', 'total_conversions_month_5', 'total_events_month_5', 'total_sessions_month_5', 'total_session_checkouts_month_5', 'total_session_conversions_month_5', 'total_events_ad_session_month_5', 'total_ad_sessions_month_5', 'has_checkout_month_5', 'has_conversion_month_5']
-}}
+\texttt{\small{\detokenize{['total_viewed_products_month_1', 'total_checkouts_month_1', 'total_conversions_month_1', 'total_events_month_1', 'total_sessions_month_1', 'total_session_checkouts_month_1', 'total_session_conversions_month_1', 'total_events_ad_session_month_1', 'total_ad_sessions_month_1', 'has_checkout_month_1', 'has_conversion_month_1', 'total_viewed_products_month_2', 'total_checkouts_month_2', 'total_conversions_month_2', 'total_events_month_2', 'total_sessions_month_2', 'total_session_checkouts_month_2', 'total_session_conversions_month_2', 'total_events_ad_session_month_2', 'total_ad_sessions_month_2', 'has_checkout_month_2', 'has_conversion_month_2', 'total_viewed_products_month_3', 'total_checkouts_month_3', 'total_conversions_month_3', 'total_events_month_3', 'total_sessions_month_3', 'total_session_checkouts_month_3', 'total_session_conversions_month_3', 'total_events_ad_session_month_3', 'total_ad_sessions_month_3', 'has_checkout_month_3', 'has_conversion_month_3', 'total_viewed_products_month_4', 'total_checkouts_month_4', 'total_conversions_month_4', 'total_events_month_4', 'total_sessions_month_4', 'total_session_checkouts_month_4', 'total_session_conversions_month_4', 'total_events_ad_session_month_4', 'total_ad_sessions_month_4', 'has_checkout_month_4', 'has_conversion_month_4', 'total_viewed_products_month_5', 'total_checkouts_month_5', 'total_conversions_month_5', 'total_events_month_5', 'total_sessions_month_5', 'total_session_checkouts_month_5', 'total_session_conversions_month_5', 'total_events_ad_session_month_5', 'total_ad_sessions_month_5', 'has_checkout_month_5', 'has_conversion_month_5']
+}}}
 \end{sloppypar}
 
 Se codifican la cantidad de productos vistos por mes por usuario, los productos en checkout, en conversion, las sesiones, y demás.
@@ -254,7 +256,7 @@ La idea de esta funcionalidad es contar la cantidad de checkouts y conversiones 
 	}}
 \end{sloppypar}
 
-Aquí la idea pensada es reflejar la cantidad de eventos del usuario de la última semana. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
+Aquí la idea pensada es reflejar la cantidad de eventos del usuario de la última semana. La principal idea radica en estimar que si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, también podría considerarse que si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
 
 \subsubsection{Distribución mensual de las conversiones}
 
@@ -264,7 +266,7 @@ Aquí la idea pensada es reflejar la cantidad de eventos del usuario de la últi
 	}}
 \end{sloppypar}
 
-Se agrega en cuántos meses el usuario compró suponiendo que dicha distribución denota si el usuario es un comprador habitual o sólo compró alguna vez aisladamente. El feature se llama "amount\_of\_months\_that\_have\_bought".
+Se agrega en cuántos meses el usuario compró suponiendo que dicha distribución denota si el usuario es un comprador habitual o sólo compró alguna vez aisladamente. 
 
 \subsubsection{Informacion de los últimos eventos registrados por usuario}
 
@@ -296,9 +298,10 @@ Se especuló que podría considerarse el precio de la última conversión del us
 	}}
 \end{sloppypar}
 
-La intención en este feature es terminar de cerrar un tema que queda inconcluso en el feature 'Eventos en última semana'. Es verdad que un usuario que en el último tiempo viene visitando mucho la página, sin comprar, es más probable que compre que otro que no. Por otro lado, existen usuarios que previo a comprar hacen pocas visitas y no se los estaría teniendo en cuenta. 
+La intención en este feature es terminar de cerrar un tema que queda inconcluso en el feature ’Eventos en última semana’. Es verdad que si un usuario e en el último tiempo viene visitando mucho la página, sin comprar, es más probable que compre que otro que no. Por otro lado, existen usuarios que previo
+a comprar hacen pocas visitas y no se los estaría teniendo en cuenta.
 
-En conclusión, con el porcentaje se busca analizar si el usuario comenzó a generar más eventos de lo regular . Es decir, si el cliente modificó su conducta habitual. Y para ello se cacula la cantidad de eventos del usuario de la última semana sobre el total.
+En conclusión, con el porcentaje se busca analizar si el usuario comenzó a generar más eventos de lo regular . Es decir, si el cliente modificó su conducta habitual. Entonces para ello se cacula la cantidad de eventos del usuario de la última semana sobre el total.
 
 \subsubsection{Porcentaje de la actividad del ultimo mes}
 
@@ -318,7 +321,7 @@ Una lógica análoga a la sección precedente se sigue en esta parte. Los motivo
 	}}
 \end{sloppypar}
 
-La intención de este feature es medir la diferencia de días que tiene cada usuario entre la compra de un celular y la ultima vez que visualizo el producto comprado. De esta forma poder predecir en base a los productos vistos si es posbile que se haga una compra.
+La intención de este feature es medir la diferencia de días que tiene cada usuario entre la compra de un celular y la ultima vez que visualizo el producto comprado. De esta forma se espera poder predecir en base a los productos vistos si es posible que el usuario efectúe una compra.
 
 \subsubsection{Estados de celulares}
 
@@ -388,7 +391,7 @@ Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
 	}}
 \end{sloppypar}
 
-Considerando la poca fama de las secciones de "preguntas frecuentes" y similares se pensó que podía exixtir una relación directa entre el compromiso del cliente con la compra/estudio de mercado y la visita a las mismas. Dado que la cantidad de eventos para la mayoría de las static pages son despreciables se tomaron las dos más frecuentes 'FaqEcommerce' y 'CustomerService'.
+Considerando la poca fama de las secciones de ”preguntas frecuentes" se pensó que podía exixtir una relación directa entre el compromiso del cliente con la compra/estudio de mercado y la visita a las mismas. Dado que la cantidad de eventos para la mayoría de las static pages son despreciables se tomaron las dos más frecuentes ’FaqEcommerce’ y ’CustomerService’.
 
 \subsubsection{¿Cuántas veces vio el modelo que más vio la última semana?}
 
@@ -441,7 +444,7 @@ Las distintas formas de selección utilizadas son:
 
 	\item \textbf{Cumulative Importance}
 
-	Este método es el más intuitivo para la selección de features debido a su naturaleza \textit{greedy}. La idea es primero correr el Random Forest sobre todo el dataframe, y sobre este resultado obtener la importancia de cada feature. Ahora, con los features ordenados según importancia se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo \texttt{a,b,c} los features ordenados, se obtienen las listas \texttt{a}, \texttt{a,b} y  \texttt{abc}.
+	Este método es el más intuitivo para la selección de features debido a su naturaleza \textit{greedy}. La idea es primero correr el Random Forest sobre todo el dataframe, y sobre este resultado obtener la importancia de cada feature. Ahora, con los features ordenados según importancia se genera una lista de listas que agrega un feature a la vez. Por ejemplo siendo \texttt{a,b,c} los features ordenados, se obtienen las listas \texttt{a}, \texttt{a,b} y  \texttt{a,b,c}.
 
 	Ahora, con la lista de listas de features según importancia, se corre un Random Forest para cada subconjunto, en busqueda del \textit{codo}, es decir, el subconjunto que mayor AUC tenga antes de decaer a los features ruidosos.
 
@@ -506,29 +509,32 @@ Este modelo tan popular trajo buenos resultados, pero bastante a la par con los 
 
 Es esta resistencia al overfitting y que siempre usa subconjuntos en cada árbol lo que lo hacen el algoritmo más estable para ver la importancia de cada atributo, como ya se marcó en la sección de \textbf{Feature Selection}.
 
-Sus dos híper-parametros son la cantidad de árboles a utilizar y la cantidad de atributos por árbol. Otra característica de este modelo es su invariante frente a la escala de los atributos, es decir, no hay que normalizar los datos.
+Sus dos híper-parámetros son la cantidad de árboles a utilizar y la cantidad de atributos por árbol. Otra característica de este modelo es su invariante frente a la escala de los atributos, es decir, no hay que normalizar los datos.
 
 \subsubsection{XGBoost}
 
-XGBoost es un algoritmo muy eficiente de gradient boosting en árboles. Uno de sus híper-parametros más importantes es la funcion objetivo, de la cual se usa la logística binaria, ya que se tiene un problema de clasificación binaria y no uno de regresión.
+XGBoost es un algoritmo muy eficiente de gradient boosting en árboles. Uno de sus híper-parámetros más importantes es la funcion objetivo, de la cual se usa la logística binaria, ya que se tiene un problema de clasificación binaria y no uno de regresión.
 
-Este algoritmo nos dio los mejores resultados hasta ser reemplazado por lightgbm.
+Este algoritmo nos dio los mejores resultados hasta ser reemplazado por LightGBM.
 
-La gran cantidad de híper-parámetros que tiene nos llevó a usar una búsqueda aleatoria de estos con cross validation, usando la herramienta \texttt{RandomizedSearchCV} de sklearn.
+La gran cantidad de híper-parámetros que tiene nos llevó a usar una búsqueda aleatoria de estos con cross validation, de lo cual se hablará más adelante.
 
 \subsubsection{KNN}
 
-Un algoritmo sencillo utilizado es el de los K vecinos más cercanos. Este algoritmo consiste en encontrar los vecinos más cercanos del punto a clasificar, y luego simplemente predecir que el punto en cuestión es de la clase del cual la mayoría de sus vecinos sean parte. Sus híper-parametros a definir es la cantidad de vecinos a tomar en cuenta y la distancia a utilizar entre ellos. 
+Un algoritmo sencillo utilizado es el de los K vecinos más cercanos. Este algoritmo consiste en encontrar los vecinos más cercanos del punto a clasificar, y luego simplemente predecir que el punto en cuestión es de la clase del cual la mayoría de sus vecinos sean parte. Sus híper-parámetros a definir es la cantidad de vecinos a tomar en cuenta y la distancia a utilizar entre ellos. 
 
-Es tal vez en su sencillez que esta una de sus mayores desventajas: es un algoritmo de orden cuadrático, y esto impacta mucho sobre la ejecución de cada modelo que se hace. Otra cosa a remarcar es que los datos deben estár normalizados a la hora de procesarlos.
+Es tal vez en su sencillez que está una de sus mayores desventajas: es un algoritmo de orden cuadrático, y esto impacta mucho sobre la ejecución de cada modelo que se hace. Otra cosa a remarcar es que los datos deben estár normalizados a la hora de procesarlos.
 
-Si bien es un algoritmo muy sencillo y básico de Machine Learning, también es uno que, con sus híper-parametros bien configurados, mejores resultados da. 
+Si bien es un algoritmo muy sencillo y básico de Machine Learning, también es uno que, con sus híper-parámetros bien configurados, mejores resultados da. 
 
 \subsubsection{Naïve-Bayes}
 
 Este algoritmo, basado en el teorema de Bayes, es sencillo y bastante rápido. No suele tener los mejores resultados, pero era un algoritmo básico a probar. Su inocencia proviene del iluso supuesto de que las dimensiones son independientes entre sí, pero no por esto deja de ser un buen clasificador.
 
-Si bien no nos dio siempre los mejores resultados, si se noto su rapidez y su facilidad para tratar con la gran dimensión de los datos.
+Si bien no dio siempre los mejores resultados, si se notó su rapidez y su facilidad para tratar con la gran dimensión de los datos.
+
+El algoritmo fue utilizado en todas sus variantes (que conocemos):
+
 
 \begin{itemize}
 	\item \textbf{Gausiano}
@@ -540,17 +546,18 @@ Si bien no nos dio siempre los mejores resultados, si se noto su rapidez y su fa
  	\item \textbf{Complemento}
 \end{itemize}
 
-\subsubsection{LightGBM}
-
-LightGBM es simplemente el algoritmo que constantemente mejores resultados nos dio. Este algoritmo de gradient boosting sobre arboles se diferencia de XGBoost en que construye los árboles segun las hojas, y no los niveles. Es importante que sus híper-parametros esten bien configurados (por ejemplo, la profundidad máxima de los árboles), y es aquí donde se noto el mayor incremento en el AUC, un LightGBM con sus híper-parametros no tan cuidados da resultados tan malos que ni se ocurre usarlo de nuevo, y es recién cuando uno se pone a hilar fino entre los parametros (y sale de los de defecto) que rápidamente se encuentran muy buenos saltos de calidad en el modelo.
-
-Este algoritmo también se destaca por ser tan rápido y consumir poca memoria. También, tiene un gran manejo de la dimensionalidad de los datos, sin cambiar mucho frente a ellos.
 
 \subsubsection{Redes neuronales}
 
-Un algoritmo utilizado para buscar alguna aproximación no lineal fue el de redes neuronales. Y algo que no hay que olvidar es de normalizar los datos (no hacerlo da la sensación de que el algoritmo es mucho peor de lo que verdaderamente es, esto es algo fundamental de las redes). 
+Un algoritmo utilizado para buscar alguna aproximación no lineal fue el de redes neuronales. Algo que no hay que olvidar es de normalizar los datos (no hacerlo da la sensación de que el algoritmo es mucho peor de lo que verdaderamente es, ya que esto es algo fundamental de las redes). 
 
 Este algoritmo no dio tan buenos resultados para la cantidad de tiempo que consume.
+
+\subsubsection{LightGBM}
+
+LightGBM es simplemente el algoritmo que constantemente mejores resultados nos dió. Este algoritmo de gradient boosting sobre árboles se diferencia de XGBoost en que construye los árboles según las hojas, y no los niveles. Es importante que sus híper-parámetros estén bien configurados (por ejemplo, la profundidad máxima de los árboles), y es aquí donde se notó el mayor incremento en el AUC, un LightGBM con sus híper-parámetros no tan cuidados da resultados tan malos que ni se ocurre usarlo de nuevo, y es recién cuando uno se pone a hilar fino entre los parámetros (y sale de los de defecto) que rápidamente se encuentran muy buenos saltos de calidad en el modelo.
+
+Este algoritmo también se destaca por ser rápido y consumir poca memoria. También, tiene un gran manejo de la dimensionalidad de los datos, sin cambiar mucho frente a ellos.
 
 \subsubsection{Gradient boosting}
 
@@ -562,19 +569,19 @@ Despues de probar gradient boosting, optamos por usar más modelos de esa indole
 
 \subsubsection{Adaboosting}
 
-En este caso seguimos manejando modelos de la familia boosting. 
+En este caso seguimos manejando modelos de la familia de boosting. 
 
-Adaboosting comienza con un clasificador simple que va siendo modificado dependiendo su nivel de error. En cada iteración se le da peso a la clase que mejor resultado obtuvo. Luego se vuelve a iterar. 
+Adaboosting comienza con un clasificador simple que va siendo modificado dependiendo su nivel de error. En cada iteración se le da peso a la clase que mejor resultado obtuvo y luego se vuelve a iterar. 
 
-Una vez finalizadas las iteraciones crea un promedio ponderado. Esta combinación lineal de los N clasificadores va a ser su clasificador final.
+Una vez finalizadas las iteraciones se crea un promedio ponderado. Esta combinación lineal de los N clasificadores va a ser su clasificador final.
 
 \subsection{Parameter tuning}
 
-En los primeros modelos corridos fue cuando se empezo a notar lo que ya se sabía: los híper-parametros son sencillamente lo más importante de cada algoritmo, y la diferencia entre un buen modelo y uno promedio.
+En los primeros modelos corridos fue cuando se empezo a notar lo que ya se sabía: los híper-parámetros son sencillamente lo más importante de cada algoritmo, y la diferencia entre un buen modelo y uno promedio o incluso malo.
 
-Inicialmente, debido a la gran cantidad de opciones para algunos algoritmos, optamos por un método greedy, que consistía en un pequeño framework donde se van probando distintos híper-parametros con distintos valores progresivamente. Es decir, se parte un grid search grande en varios más pequeños, ya que por la naturaleza del algoritmo este proceso es muy costoso en tiempo. Si bien esto no encuentra la combinación óptima, al menos da resultados bastante favorables y se ahorra mucho tiempo de ejecución.
+Inicialmente, debido a la gran cantidad de opciones para algunos algoritmos, optamos por un método greedy, que consistía en un pequeño framework donde se van probando distintos híper-parámetros con distintos valores progresivamente. Es decir, se parte un grid search grande en varios más pequeños, ya que por la naturaleza del algoritmo este proceso es muy costoso en tiempo. Si bien esto no encuentra la combinación óptima, al menos da resultados bastante favorables y se ahorra mucho tiempo de ejecución.
 
-Esto dio resultados cuestionables, por lo que implementamos una búsqueda aleatoria de híper-parámetros, y luego, utilizamos grid search (un método de fuerza bruta que lo que hace es correr las posibilidades planteadas hasta encontrar la mejor combinación de los híper-parametros a probar) sobre un rango acotado basado en los resultados anteriores.
+Esto dio resultados cuestionables, por lo que implementamos una búsqueda aleatoria de híper-parámetros, y luego, utilizamos grid search (un método de fuerza bruta que lo que hace es correr las posibilidades planteadas hasta encontrar la mejor combinación de los híper-parámetros a probar) sobre un rango acotado basado en los resultados anteriores.
 
 Las herramientas que utilizamos para esto nos permitían elegir la métrica a maximizar, y usamos AUC ROC.
 
@@ -582,25 +589,23 @@ Las herramientas que utilizamos para esto nos permitían elegir la métrica a ma
 
 \subsubsection{Bagging}
 
-El bagging consiste en aplicar un clasificador n veces y luego promediar el resultado final. Es importante que cada una de las corridas del clasificador sea con datos reemplazados en el set de entrenamiento.
+El bagging consiste en aplicar un clasificador n veces y luego promediar el resultado final. Es importante que cada una de las corridas del clasificador sea con datos reemplazados en el set de entrenamiento (\textit{bootstrapping}).
 
-La principal ventaja generada es evitar el overfitting, ya que ningún clasificador conoce el set de entrenameiento completo y por tanto no se puede sobreajustar al set de datos.
+La principal ventaja generada es evitar el overfitting, ya que ningún clasificador conoce el set de entrenamiento completo y por lo tanto no se puede sobreajustar al set de datos.
 
-En el trabajo, lo que se hace es aplicarle Bagging a todos los algoritmos, tanto para poder ejecutar los modelos normalmente como con bagging. Cabe recalcar que además de este explicito uso de la técnica, también es como funcionan por dentro algoritmos como Random Forest.
+En el trabajo, lo que se hace es aplicarle Bagging a todos los algoritmos, tanto para poder ejecutar los modelos normalmente como con esta variante. Cabe recalcar que además de este explicito uso de la técnica, también este método es parte del trabajo mediante los algoritmos que funcionan por dentro con el, como Random Forest.
 
 \subsubsection{Boosting}
 
-El método de boosting consiste en, paritendo de algoritmos muy simples, construir un algoritmo muy preciso. Sencillamente, se empieza de un algoritmo simple (como un árbol), se entrena, se analizan sus resultados, y luego se entrena el siguiente algoritmo simple, dandole mayor peso a los que resultados que tuvieron peor perfomance previamente. En el trabajo, este método fue usado en algoritmos como LightGBM, XGBoost, Gradient Boosting Classifier y Catboost.
+El método de boosting consiste en, partiendo de algoritmos muy simples, construir un algoritmo muy preciso. Sencillamente, se empieza de un algoritmo simple (como un árbol), se entrena, se analizan sus resultados, y luego se entrena el siguiente algoritmo simple, dandole mayor peso a los que resultados que tuvieron peor perfomance previamente. En el trabajo, este método fue usado en algoritmos como LightGBM, XGBoost, Adaboosting, Gradient Boosting Classifier y Catboost.
 
 \subsubsection{Majority Voting}
 
-Ya entrando en los métodos de ensamblar distintos algoritmos, uno de los primeros a considerar para su uso es el de votación por mayoría. La idea es muy sencilla, se utilizan distintos algoritmos para predecir, y el resultado final es la clase que tiene mayoría entre todos los clasificadores. Este método finalmente no fue utilizado en la práctica debido a que no tiene la opción para predecir probabilidades, principal objetivo del trabajo práctico.
+Ya entrando en los métodos de ensamblar distintos algoritmos, uno de los primeros a considerar para su uso es el de votación por mayoría. La idea es muy sencilla, se utilizan distintos algoritmos para predecir, y el resultado final es la clase que tiene mayoría entre todos los clasificadores. Este método finalmente no fue utilizado en la práctica debido a que no tiene la opción para predecir probabilidades, el principal objetivo del trabajo práctico.
 
 \subsubsection{Averaging}
 
-Un método muy parecido a la votación por mayoría es el de quedarse con el promedio de las clasificaciones. Este método también es utilizado\footnote{Con el clasificador de votos con el parametro 'soft' para la votación} sobre los algoritmos que mejor resultado dieron y son de distinta naturaleza. 
-
-De todos los algoritmos corridos, se hace averaging \footnote{Con el clasificador de votos con el parametro 'soft' para la votación} de combinaciones de estos. Este método da mejores predicciones cuando los resultados no tienen correlación entre sí. Es por esto que se agarran los mejores modelos del trabajo, se filtra por los que tengan distinta naturaleza (por ejemplo, no hay sentido en hacer una votación entre modelos de gradient boosting como LightGBM y XGBoost porque ambos tienen la misma idea por detrás) y se hacen majority votings de a pares o incluso tríos de algoritmos.
+Un método muy parecido a la votación por mayoría es el de quedarse con el promedio de las clasificaciones. De todos los algoritmos corridos, se hace averaging\footnote{Con el clasificador de votos con el parametro 'soft' para la votación} de combinaciones de estos. Este método da mejores predicciones cuando los resultados no tienen correlación entre sí. Es por esto que se agarran los mejores modelos del trabajo, se filtra por los que tengan distinta naturaleza (por ejemplo, no hay sentido en hacer una votación entre modelos de gradient boosting como LightGBM y XGBoost porque ambos tienen la misma idea por detrás) y se hace averaging voting de a pares o incluso tríos de este conjunto de algoritmos.
 
 Este método es también muy util para reducir el overfitting.
 
@@ -611,13 +616,13 @@ Este método es también muy util para reducir el overfitting.
 Se define un framework y una serie de funciones para armar las postulaciones de predicciones del trabajo práctico. Las mismas siguen los siguientes pasos:
 
 \begin{enumerate}
-	\item Creación de la matriz \texttt{X} y el vector \texttt{y} para entrenar
-	\item Generación del split para obtener los sets de entrenamiento y de prueba
-	\item Ejecución del algoritmo de Machine Learning que devuelve un dataframe con person como índice y los \textit{labels} como única columna.
+	\item Creación de la matriz \texttt{X} y el vector \texttt{y} para entrenar.
+	\item Generación del split para obtener los sets de entrenamiento y de prueba.
+	\item Ejecución del algoritmo de Machine Learning que devuelve un dataframe con \texttt{person} como índice y los \textit{labels} como única columna.
 	\item Se obtienen las 3 medidas utilizadas como métrica para evaluar el rendimiento del algoritmo: precisión, auc y aucpr.
-	\item Se predicen las probabilidades 
-	\item Se observa información relevante de la ejecución como la importancia de los features elegidos
-	\item Se guardan los resultados como csv para ser submiteados
+	\item Se predicen las probabilidades.
+	\item Se observa información relevante de la ejecución como la importancia de los features elegidos.
+	\item Se guardan los resultados como csv para ser submiteados.
 \end{enumerate}
 
 \subsection{Encontrando el mejor submit}
@@ -628,7 +633,7 @@ Simplemente se definen dos listas que luego se cruzaran en busqueda de la mejor 
 
 Como referencia de puntaje se decidió utilizar la métrica de Area Under Curve (AUC), ya que luego de distintas pruebas (\texttt{precision\_recall}, \texttt{accuracy\_score}, \texttt{f1\_score}) se vió que esta es la más fiel a lo buscado.
 
-Por un lado, se definen todos los algoritmos con sus mejores híper-parametros seleccionados. Luego, se hace tanto el bagging sobre ellos como el ensamble por mayoría de votos sobre combinaciones de a pares de ellos. También, se hacen algunas combinaciones de tres algoritmos por mayoría de votos.
+Por un lado, se definen todos los algoritmos con sus mejores híper-parámetros seleccionados. Luego, se hace tanto el bagging sobre ellos como el ensamble por votos sobre combinaciones de a pares de ellos. También, se hacen algunas combinaciones de tres algoritmos.
 
 Por el otro lado, se definen todos los subconjuntos de features seleccionados por los diversos métodos.
 
@@ -636,13 +641,11 @@ Finalmente, se corren todas las combinaciones de estas dos listas, un proceso su
 
 Es importante notar que no siempre hay que postular el primer resultado, si no que hay que analizar cuáles fueron estos resultados y por qué, para evitar ser víctimas del overfitting. 
 
-\hl{[TO-DO plotsssss]}
-
 \section{Resultados obtenidos}
 
-A partir de los distintos \textit{submits} realizados se deduce como fue mencionado previamente que LightGBM es el algoritmo que arrojó mejores resultados. Así mismo, el mejor submit se constituyó de un ensamble del mismo con gradient boosting y con neural network. En los primeros submits se observó que los mejores resultados se obtuvieron con el algoritmo de XGBoost pero posterior la implementación de los ensambles los algoritmos por sí solos no obtuvieron mejores resultados. El score aumentó notoriamente con el uso de LightGBM pero a pesar de encontrar y revisar los hiperparámetros sucesivas veces no se pudo mejorar el resultado. Por lo tanto fue necesario para subir el score ensamblar distintos algoritmos.
+A partir de los distintos \textit{submits} realizados se deduce como fue mencionado previamente que LightGBM es el algoritmo que arrojó mejores resultados. Así mismo, el mejor submit se constituyó de un ensamble del mismo con gradient boosting y con neural network. En los primeros submits se observó que los mejores resultados se obtuvieron con el algoritmo de XGBoost pero posterior a la implementación de los ensambles los algoritmos por sí solos no obtuvieron mejores resultados. El score aumentó notoriamente con el uso de LightGBM pero a pesar de encontrar y revisar los hiperparámetros sucesivas veces no se pudo mejorar el resultado. Por lo tanto fue necesario para subir el score ensamblar distintos algoritmos.
 
-En un momento del desarrollo en que el score no se pudo mejorar más se procedió al agregado de features y la posterior selección de los mismos. Una vez obtenidos 150 features se llegó a un punto muerto donde se consideró que ya era una cantidad suficiente. Los métodos utilizados para la selección de los mismos arrojaron resultados muy distintos. En general, los mejores resultados se obtuvieron con el método de \texttt{Cumulative Importance} pero resultados muy cercanos se obtuvieron también con el método de \texttt{Forward Selection} y \texttt{Backward Selection}. 
+En un momento del desarrollo en que el score no se pudo mejorar más se procedió al agregado de features y la posterior selección de los mismos. Una vez obtenidos 150 features se llegó a un punto muerto donde se consideró que ya era una cantidad suficiente. Los métodos utilizados para la selección de los mismos arrojaron resultados muy distintos. En general, los mejores resultados se obtuvieron con el método de Cumulative Importance pero resultados muy cercanos se obtuvieron también con el método de Forward Selection y Backward Selection. 
 
 Se procede a exponer los features que más se repiten entre las mejores postulaciones:
 
@@ -660,10 +663,14 @@ Se procede a exponer los features que más se repiten entre las mejores postulac
 
 En cuanto a la obtención de los mejores hiperparámetros se observó que los resultados mejoraron notoriamente después de implementar gridsearch y randomsearch. Así mismo, también se debe destacar que al variar los hiperparámetros dentro de una pequeña éscala el resultado de Kaggle no mejoró. 
 
+Otro resultado muy interesante fue cuando por confusión se empezaron a normalizar los datos en toda postulación. Resultados con XGBoost que deberían haber estado pasado el 80\% estaban ahora entre 50 y 60. Fue recién cuando se notó el cambio en el parametro que se pudo ver como volvía todo a la normalidad. Esto muestra como si no se sabe la teoría de un algoritmo por detras, como que algoritmo requiere normalización, se puede llegar a cualquier tipo de resultado.
+
 \section{Conclusiones}
 
+A modo de conclusión, pudimos comprobar empíricamente que Machine Learning requiere de una serie de trucos. En un primer lugar, pudimos observar que con el agregado de features que a nuestra visión eran irrelevantes para la predicción, el score mejoró notablemente. Un ejemplo de esto es el transformado de fecha de formato \texttt{Timestamp} a \texttt{int} fue seleccionado como uno de los features más importantes. Asímismo, notamos que ante mínimos cambios el score empeoraba o mejoraba de forma notable, demostrando el efecto avalancha de esta disciplina.
 
+Por otro lado, consideramos que aún quedarían distintas opciones por probar como por ejemplo podrían haberse agregado innumerables features o empleado otros tipos de algoritmos de ensamble o algún tipo de codificado de las variables categóricas.
 
-
+A modo de reflexión personal consideramos que es bastante sorprendente que la implementación de una serie de algoritmos y el uso de una cantidad de features limitada pueda generar resultados con el nivel de predicción que se obtuvieron.
 
 \end{document}
