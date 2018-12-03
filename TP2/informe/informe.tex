@@ -376,11 +376,11 @@ Una vez que se tienen todos los atributos en un mismo dataframe y luego de un pa
 
 El modelo usado de referencia para esta sección es el de Random Forest debido a su estabilidad para mostrar la importancia de cada feature. Su funcionamiento radica en que los árboles que crea el algoritmo toman distintos subconjuntos de atributos tomados al azar y arrojan distintos resultados. De esta manera, con cientos o miles de árboles el algoritmo adopta una amplia capacidad predictora de cada atributo.
 
-Es importante notar que a mayor cantidad de árboles generados por Random Forest, más precisa será la importancia del feature, ya que más árboles al azar tendrán los features y mejor se podrá estimar cuánto aportaron en cada árbol. Esto, en cuanto al modelaje para la postulación no es tan importante, ya que eventualmente el retorno de las ganancias será despreciable, pero para lo que es importancia de atributos es muy importante.
+Es importante notar que a mayor cantidad de árboles generados por Random Forest, más precisa será la importancia del feature, ya que más árboles al azar tendrán los features y mejor se podrá estimar cuánto aportaron en cada árbol. Esto, en cuanto al modelaje para la predicción no es tan importante, ya que eventualmente el retorno de las ganancias será despreciable, pero para lo que es importancia de atributos es fundamental.
 
 Se utiliza como métrica el area bajo la curva debido a que es la utilizada por la plataforma de Kaggle para evaluar la eficiencia de los distintos modelos utilizados. 
 
-Siendo este el proceso más costoso de todo el trabajo, al ver que cada método puede llegar a tener que probar modelos que ya fueron probados previamente, en un intento de \textit{programación dinámica} se van guardando todos los resultados corridos para poder acceder a ellos sin tener que hacer una ejecución que ya fue hecha.
+Siendo este el proceso más costoso de todo el trabajo, al ver que cada método puede llegar a tener que evaluar modelos que ya fueron probados previamente, en un intento de \textit{programación dinámica} se van guardando todos los resultados corridos para poder acceder a ellos sin tener que hacer una ejecución que ya fue hecha.
 
 Las distintas formas de selección utilizadas son:
 
@@ -414,11 +414,11 @@ Las distintas formas de selección utilizadas son:
 
 	\item \textbf{Stepwise Selection}
 
-	Este método es una combinación de ambos métodos descritos anteriormente. La idea es partir de una lista vacía como en Forward Selection, y agregar siempre el mejor atributo posible (como Forward Selection). Luego, una vez que se tiene el mejor atributo, se busca recursivamente con Backward Elimination si algun atributo sobra. Es una forma sabia de moverse a traves de los atributos; en cada paso se agrega el mejor posible y saca todos los que empeoraban esa nueva combinación.
+	Este método es una combinación de ambos métodos descritos anteriormente. La idea es partir de una lista vacía como en Forward Selection, y agregar siempre el mejor atributo posible (como Forward Selection). Luego, una vez que se tiene el mejor atributo, se busca recursivamente con Backward Elimination si algún atributo sobra. Es una forma sabia de moverse a traves de los atributos; en cada paso se agrega el mejor posible y saca todos los que empeoraban esa nueva combinación.
 
 \end{itemize}
 
-El mayor problema de estos tres métodos es que, si bien son efectivos en los subconjuntos encontrados, son muy costosos en tiempo (como todo algoritmo de fuerza bruta). Pensar que se hacen n iteraciones (siendo n la cantidad de features) y para cada una de esas iteraciones se hacen n más (y ni pensar en Stepwise Selection, que hace aun n más). Pasados los 100 features ya esto pasa a ser increiblemente costoso. Es por esto que se le agrega una condición de corte, donde si para las x iteraciones no se encuentra una mejora simplemente se corte el proceso. Si bien esto plantea la posibilidad de caer en un máximo local, en tiempo termina siendo rendidor.
+El mayor problema de estos tres métodos es que, si bien son efectivos en los subconjuntos encontrados, son muy costosos en tiempo (como todo algoritmo de fuerza bruta). Pensar que se hacen \texttt{n} iteraciones (siendo \texttt{n} la cantidad de features) y para cada una de esas iteraciones se hacen \texttt{n} más (y ni pensar en Stepwise Selection, que hace aún \texttt{n} más). Pasados los 100 features ya esto pasa a ser increiblemente costoso. Es por esto que se le agrega una condición de corte, donde si para las x iteraciones no se encuentra una mejora simplemente se corte el proceso. Si bien esto plantea la posibilidad de caer en un máximo local, en tiempo termina siendo rendidor.
 
 \item \textbf{Métodos de otras heurísticas}
 
@@ -430,7 +430,7 @@ Se agregan algunos criterios más, para aumentar los subconjuntos a utilizar.
 
 	\item \textbf{Selección a Mano} Para no confiar solamente en los métodos algorítmicos, se hacen selecciones de los features manualmente.
 
-	\item \textbf{Random Selection} También se hacen selecciones azarosas de n atributos, para así en cada corrida ver si se encuentra alguna buena combinación que sirva para la selección manual o de una idea de que atributos ayudan o no.
+	\item \textbf{Random Selection} También se hacen selecciones azarosas de \texttt{n} atributos, para así en cada corrida ver si se encuentra alguna buena combinación que sirva para la selección manual o de una idea de qué atributos ayudan o no.
 
 	\item \textbf{Feature Intersection} Aprovechando que se tienen muchas formas distintas de seleccionar subconjuntos, también se utiliza como método el intersectar todas estas combinaciones, con la idea de que si un feature aparece en varios de los subconjuntos anteriores, pues ciertamente será bueno por si mismo.
 
@@ -445,13 +445,13 @@ Se agregan algunos criterios más, para aumentar los subconjuntos a utilizar.
 
 \subsubsection{Árboles de decisión}
 
-El objetivo de este árbol binario es uno en donde el set de datos se va dividiendo en cada nivel del arbol en dos. Finalmente, es en los nodos hoja donde se clasifican los datos.
+Este algoritmo se constituye de un árbol binario cuyos niveles se dividen en dos a partir del set de datos. Finalmente, es en los nodos hoja donde se clasifican los datos.
 
-Este modelo trajo grandes resultados usado por si solo y es uno de los algoritmos que más fueron postulados.
+Este modelo trajo grandes resultados usado por sí solo y es uno de los algoritmos que más fueron postulados.
 
 \subsubsection{Random forests}
 
-El algoritmo de random forests es un ensamble de árboles decisiones con subconjuntos de los atributos a utilizar, y con la técnica de \textit{bagging} se termina agarrando el promedio de los árboles corridos.
+Se constituye de un ensamble de árboles de decisiones con subconjuntos de los atributos a utilizar, y con la técnica de \textit{bagging} se selecciona finalmente el promedio de los árboles corridos.
 
 Este modelo tan popular trajo buenos resultados, pero bastante a la par con los de árboles de decisiones (se pretendía que sea ampliamente mejor). Una gran ventaja de este modelo es evitar el overfitting, por lo cual es de los modelos más confiables del trabajo. 
 
@@ -465,7 +465,7 @@ XGBoost es un algoritmo muy eficiente de gradient boosting en árboles. Uno de s
 
 Este algoritmo nos dio los mejores resultados hasta ser reemplazado por lightgbm.
 
-La gran cantidad de híper-parámetros que tiene nos llevó a usar una búsqueda aleatoria de estos con cross validation, usando la herramienta RandomizedSearchCV de sklearn.
+La gran cantidad de híper-parámetros que tiene nos llevó a usar una búsqueda aleatoria de estos con cross validation, usando la herramienta \texttt{RandomizedSearchCV} de sklearn.
 
 \subsubsection{KNN}
 
@@ -483,8 +483,11 @@ Si bien no nos dio siempre los mejores resultados, si se noto su rapidez y su fa
 
 \begin{itemize}
 	\item \textbf{Gausiano}
+	
 	\item \textbf{Bernouilli}
-	\item \textbf{Multinomial}
+	
+	\item \textbf{Multinomial}	
+	
  	\item \textbf{Complemento}
 \end{itemize}
 
@@ -518,7 +521,6 @@ Esto dio resultados cuestionables, por lo que implementamos una búsqueda aleato
 
 Las herramientas que utilizamos para esto nos permitían elegir la métrica a maximizar, y usamos AUC ROC.
 
-
 \subsection{Ensambles}
 
 \subsubsection{Bagging}
@@ -535,13 +537,13 @@ El método de boosting consiste en, paritendo de algoritmos muy simples, constru
 
 \subsubsection{Majority Voting}
 
-Ya entrando en los métodos de ensamblar distintos algoritmos, uno de los primero métodos a usar es el de votación por mayoría. La idea es muy sencilla, se utilizan distintos algoritmos para predecir, y el resultado final es la clase que tiene mayoría entre todos los clasificadores.
-
-De todos los algoritmos corridos, se hace majority voting \footnote{Con el clasificador de votos con el parametro 'hard' para la votación} de combinaciones de estos. Este método da mejores predicciones cuando los resultados no tienen correlación entre sí. Es por esto que se agarran los mejores modelos del trabajo, se filtra por los que tengan distinta naturaleza (por ejemplo, no hay sentido en hacer una votación entre modelos de gradient boosting como LightGBM y XGBoost porque ambos tienen la misma idea por detrás) y se hacen majority votings de a pares o incluso tríos de algoritmos.
+Ya entrando en los métodos de ensamblar distintos algoritmos, uno de los primeros a considerar para su uso es el de votación por mayoría. La idea es muy sencilla, se utilizan distintos algoritmos para predecir, y el resultado final es la clase que tiene mayoría entre todos los clasificadores. Este método finalmente no fue utilizado en la práctica debido a que no tiene la opción para predecir probabilidades, principal objetivo del trabajo práctico.
 
 \subsubsection{Averaging}
 
 Un método muy parecido a la votación por mayoría es el de quedarse con el promedio de las clasificaciones. Este método también es utilizado\footnote{Con el clasificador de votos con el parametro 'soft' para la votación} sobre los algoritmos que mejor resultado dieron y son de distinta naturaleza. 
+
+De todos los algoritmos corridos, se hace averaging \footnote{Con el clasificador de votos con el parametro 'soft' para la votación} de combinaciones de estos. Este método da mejores predicciones cuando los resultados no tienen correlación entre sí. Es por esto que se agarran los mejores modelos del trabajo, se filtra por los que tengan distinta naturaleza (por ejemplo, no hay sentido en hacer una votación entre modelos de gradient boosting como LightGBM y XGBoost porque ambos tienen la misma idea por detrás) y se hacen majority votings de a pares o incluso tríos de algoritmos.
 
 Este método es también muy util para reducir el overfitting.
 
@@ -563,7 +565,7 @@ Se define un framework y una serie de funciones para armar las postulaciones de 
 
 \subsection{Encontrando el mejor submit}
 
-Una vez corridos todos los notebooks y creados todos los dataframes necesarios, finalmente se busca el mejor submit. Esta postulación esta compuesta por los dos componentes que se buscaron todo el trabajo: el subconjunto de \textbf{features} y el \textbf{modelo} a utlizar. El procedimiento para encontrarlo fue uno sencillo por fuerza bruta; utilizando todo lo generado en el trabajo simplemente hay que quedarse con lo que mejor puntaje tenga. La elección del algoritmo para realizar el \textit{submit} se hace en base a todos los algoritmos y a combinaciones duales de ellos.
+Una vez corridos todos los notebooks y creados todos los dataframes necesarios, finalmente se busca el mejor submit. Esta postulación está compuesta por los dos componentes que se buscaron todo el trabajo: el subconjunto de \textbf{features} y el \textbf{modelo} a utilizar. El procedimiento para encontrarlo fue uno sencillo por fuerza bruta; utilizando todo lo generado en el trabajo simplemente hay que quedarse con lo que mejor puntaje tenga. La elección del algoritmo para realizar el \textit{submit} se hace en base a todos los algoritmos y a combinaciones duales de ellos.
 
 Simplemente se definen dos listas que luego se cruzaran en busqueda de la mejor combinación de ellas. Por un lado, \texttt{posibilidades\_algoritmos\_y\_ensambles} y por el otro \texttt{posibilidades\_features}.
 
@@ -575,32 +577,36 @@ Por el otro lado, se definen todos los subconjuntos de features seleccionados po
 
 Finalmente, se corren todas las combinaciones de estas dos listas, un proceso sumamente lento y costoso tanto en tiempo como memoria, pero eventualmente este proceso devolverá una lista ordenada según AUC de las combinaciones. De estas, se deciden las que se van a postular y se opta por entrenarlas con todo el dataframe, en vez de con un set de entrenamiento, ya que si bien para el trabajo localmente el entrenamiento es un subconjunto del dataframe, para fines de la predicción se puede tomar a todo el dataframe como el entrenamiento.
 
-Es importante notar que no siempre hay que postular el primer resultado, si no que hay que analizar cuales fueron estos resultados y por que, para evitar ser víctimas del overfitting. 
+Es importante notar que no siempre hay que postular el primer resultado, si no que hay que analizar cuáles fueron estos resultados y por qué, para evitar ser víctimas del overfitting. 
 
 \hl{[TO-DO plotsssss]}
 
 \section{Resultados obtenidos}
 
-Para analizar los resultados obtenidos, en primer lugar, tomamos como muestra los mejores 15. Las obsevaciones que se sacaron de ello son las siguientes
+A partir de los distintos \texit{submits} realizados se deduce como fue mencionado previamente que LightGBM es el algoritmo que arrojó mejores resultados. Así mismo, el mejor submit se constituyó de un ensamble del mismo con gradient boosting y con neural network. En los primeros submits se observó que los mejores resultados se obtuvieron con el algoritmo de XGBoost pero posterior la implementación de los ensambles los algoritmos por sí solos no obtuvieron mejores resultados. El score aumentó notoriamente con el uso de LightGBM pero a pesar de encontrar y revisar los hiperparámetros sucesivas veces no se pudo mejorar el resultado. Por lo tanto fue necesario para subir el score ensamblar distintos algoritmos.
+
+En un momento del desarrollo en que el score no se pudo mejorar más se procedió al agregado de features y la posterior selección de los mismos. Una vez obtenidos 150 features se llegó a un punto muerto donde se consideró que ya era una cantidad suficiente. Los métodos utilizados para la selección de los mismos arrojaron resultados muy distintos. En general, los mejores resultados se obtuvieron con el método de \texttt{Cumulative Importance} pero resultados muy cercanos se obtuvieron también con el método de \texttt{Forward Selection} y \texttt{Backward Selection}. 
+
+Se procede a exponer los features que más se repiten entre las mejores postulaciones:
+
 \begin{enumerate}
-	\item Los features que más se repiten entre los mejores submission son:
-	\begin{enumerate}
-		\item 'avg\_events\_per\_session'
-		\item 'timestamp\_last\_event'
-		\item 'total\_checkouts',
-		\item 'total\_events',
-		\item 'total\_sessions',
-		\item 'has\_checkout',
-		\item 'has\_checkout\_month\_5',
-		\item 'timestamp\_last\_checkout',
-		\item 'days\_to\_last\_event'
-	\end{enumerate}
-	\item Todos los features fueron usados al menos 5 veces distintas dentro. Salvo 'percentage\_last\_week\_conversions' y 'percentage\_last\_month\_checkouts' que son utilizados únicamente una vez.
-	\item La mayor parte de estos clasificadores utilizan lightgbm. Lo cual nos de una idea de su eficiencia.
-	\item Hay una alta predominancia de ensambles. Esto no es sorpresa teniendo en cuenta el poder de los mismo. ES muy raro que un sólo algoritmo de ML logre mejores resultados que un ensamble
+	\item 'avg\_events\_per\_session'
+	\item 'timestamp\_last\_event'
+	\item 'total\_checkouts',
+	\item 'total\_events',
+	\item 'total\_sessions',
+	\item 'has\_checkout',
+	\item 'has\_checkout\_month\_5',
+	\item 'timestamp\_last\_checkout',
+	\item 'days\_to\_last\_event'
 \end{enumerate}
 
+En cuanto a la obtención de los mejores hiperparámetros se observó que los resultados mejoraron notoriamente después de implementar gridsearch y randomsearch. Así mismo, también se debe destacar que al variar los hiperparámetros dentro de una pequeña éscala el resultado de Kaggle no mejoró. 
+
 \section{Conclusiones}
-its a kind of magic
+
+
+
+
 
 \end{document}
