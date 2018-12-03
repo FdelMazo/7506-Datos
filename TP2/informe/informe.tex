@@ -461,7 +461,11 @@ Sus dos hiper-parametros son la cantidad de árboles a utilizar y la cantidad de
 
 \subsubsection{XGBoost}
 
-XGBoost es un algoritmo muy eficiente de boosting de árboles. Uno de sus hiper-parametros más importantes es la funcion objetivo, de la cual se usa la logística binaria, ya que se tiene un problema de clasificación binaria y no uno de regresión. 
+XGBoost es un algoritmo muy eficiente de gradient boosting en árboles. Uno de sus híper-parametros más importantes es la funcion objetivo, de la cual se usa la logística binaria, ya que se tiene un problema de clasificación binaria y no uno de regresión.
+
+Este algoritmo nos dio los mejores resultados hasta ser reemplazado por lightgbm.
+
+La gran cantidad de híper-parámetros que tiene nos llevó a usar una búsqueda aleatoria de estos con cross validation, usando la herramienta RandomizedSearchCV de sklearn.
 
 \subsubsection{KNN}
 
