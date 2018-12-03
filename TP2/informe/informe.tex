@@ -200,54 +200,33 @@ Los atributos refieren a la sumatoria de cantidad de productos vistos, en checko
 }}
 \end{sloppypar}
 
-\hl{[TO-DO: Reemplazar texto de abajo por algo mas generico]}
-
-Se agregan una serie de features relacionados a la cantidad de eventos y sesiones por mes que se consideraron pertinentes al modelo.
-
-\begin{itemize}
-	\item \textbf{\texttt{total\_viewed\_products\_month}}: cantidad de productos vistos por mes por usuario
-	\item \textbf{\texttt{total\_checkouts\_month}}: cantidad de productos que llegaron a checkout por mes por usuario
-	\item \textbf{\texttt{total\_conversions\_month}}: cantidad de productos que llegaron a ser comprados por mes por usuario
-	\item \textbf{\texttt{total\_events\_month}}: cantidad de eventos por mes por usuario
-	\item \textbf{\texttt{total\_sessions\_month\_}}: cantidad total de sesiones por mes
-	\item \textbf{\texttt{total\_session\_checkouts\_month\_}}: cantidad total de sesiones donde el usuario hace checkout por mes
-	\item \textbf{\texttt{total\_session\_conversions\_month\_}}: cantidad total de sesiones donde el usuario compra un producto por mes
-	\item \textbf{\texttt{total\_events\_ad\_session\_month\_}}: cantidad total de sesiones donde el usuario ingresa a la página por una campaña publicitaria por mes
-	\item \textbf{\texttt{total\_ad\_sessions\_month\_}}: cantidad total de sesiones donde el usuario ingresa a la página por primera vez por una campaña publicitaria por mes
-	 
-\end{itemize}
+Se codifican la cantidad de productos vistos por mes por usuario, los productos en checkout, en conversion, las sesiones, y demás.
 
 \subsubsection{Eventos sin contar mayo}
 
-<<<<<<< HEAD
 \begin{sloppypar}
 	\texttt{\detokenize{['total_viewed_products_months_1_to_4', 'total_checkouts_months_1_to_4', 'total_conversions_months_1_to_4', 'total_events_months_1_to_4', 'total_sessions_months_1_to_4', 'total_session_checkouts_months_1_to_4', 'total_session_conversions_months_1_to_4', 'total_events_ad_session_months_1_to_4', 'total_ad_sessions_months_1_to_4', 'has_checkout_months_1_to_4', 'has_conversion_months_1_to_4']
 	}}
 \end{sloppypar}
 
-\subsubsection{Eventos en última semana}
-
-\begin{sloppypar}
-	\texttt{\detokenize{
-
-
-	}}
-\end{sloppypar}
-=======
 La idea de esta funcionalidad es contar la cantidad de checkouts y conversiones por usuario excluyendo a mayo. Luego de hacer este feature notamos una mejora en el rendimiento de las predicciones por lo cual se lo mantuvo.
 
 
 \subsubsection{Eventos en última semana}
 
+\begin{sloppypar}
+	\texttt{\detokenize{
+		['total_viewed_products_last_week', 'total_checkouts_last_week', 'total_conversions_last_week', 'total_events_last_week', 'total_sessions_last_week', 'total_session_checkouts_last_week', 'total_session_conversions_last_week', 'total_events_ad_session_last_week', 'total_ad_sessions_last_week', 'has_checkout_last_week', 'has_conversion_last_week']
+	}}
+\end{sloppypar}
+
 Aquí la idea pensada es reflejar la cantidad de eventos del usuario de la última semana. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
->>>>>>> 1fb7eb4c21485f0a96e251c6428ee60f7a70b314
 
 \subsubsection{Distribución mensual de las conversiones}
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['amount_of_months_that_has_bought']
 	}}
 \end{sloppypar}
 
@@ -257,89 +236,51 @@ Se agrega en cuántos meses el usuario compró suponiendo que dicha distribució
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['timestamp_last_event', 'timestamp_last_checkout', 'timestamp_last_conversion', 'timestamp_last_viewed_product', 'days_to_last_event', 'days_to_last_checkout', 'days_to_last_conversion', 'days_to_last_viewed_product', 'doy_last_event', 'dow_last_event', 'dom_last_event', 'woy_last_event', 'doy_last_checkout', 'dow_last_checkout', 'dom_last_checkout', 'woy_last_checkout', 'doy_last_conversion', 'dow_last_conversion', 'dom_last_conversion', 'woy_last_conversion', 'doy_last_viewed_product', 'dow_last_viewed_product', 'dom_last_viewed_product', 'woy_last_viewed_product']
 	}}
 \end{sloppypar}
 
 Se busca extraer información de los días que transcurrieron hasta el último evento de un usuario. De esta manera se espera que el modelo aprenda un factor importante para la predicción. Por ejemplo, si un usuario vio un producto hace muchos días es muy probable que no lo compre pero si hizo checkout hace 1 dia es probable que en un futuro cercano compre.
-
-\begin{itemize}
-	\item \textbf{\texttt{days\_to\_last\_event}}: cantidad de días hasta el último evento
-	\item \textbf{\texttt{days\_to\_last\_checkout}}: cantidad de días hasta el último checkout. Si el usuario no hizo checkout se considera un número mayor a la cantidad de días del período de tiempo comprendido.
-	\item \textbf{\texttt{days\_to\_last\_conversion}}: cantidad de días hasta la última compra del usuario. Si el usuario nunca compró se considera un número mayor a la cantidad de días del período de tiempo comprendido.
-	\item \textbf{\texttt{days\_to\_last\_viewed\_product}}: cantidad de días hasta el último día que el usuario vio un producto. Si el usuario nunca vio un producto se considera un número mayor a la cantidad de días del período de tiempo comprendido.
-\end{itemize}
 	
 En paralelo con estos features se consideran los días de la semana, del mes, del año y la semana del año donde ocurren estos últimos eventos.	
 	
 \subsubsection{Precios de la ultima conversion realizada por el usuario}
 
-<<<<<<< HEAD
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['last_conversion_sku', 'last_conversion_price']
 	}}
 \end{sloppypar}
 
-Se consideró que podría considerarse el precio de la última conversión del usuario como un feature pero a la hora de la selección reflejó una importancia muy baja. Por lo tanto consideramos impertinente la descripción de la idea que habíamos pensado desarrollar.
-
-\subsubsection{Porcentaje de la actividad de la ultima semana}
-
-\begin{sloppypar}
-	\texttt{\detokenize{
-
-
-	}}
-\end{sloppypar}
-
-Aquí la idea pensada era reflejar la cantidad de eventos del usuario de la última semana sobre el total. Si el usuario ingresó muchas veces a la página en la última semana de mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró la última semana de mayo es probable que no compre por las siguientes dos.
-=======
 Se especuló que podría considerarse el precio de la última conversión del usuario como un feature pero a la hora de la selección reflejó una importancia muy baja. Por lo tanto consideramos impertinente la descripción de la idea que habíamos pensado desarrollar.
 
 \subsubsection{Porcentaje de la actividad de la ultima semana}
 
+\begin{sloppypar}
+	\texttt{\detokenize{
+		['percentage_last_week_activity', 'percentage_last_week_conversions', 'percentage_last_week_checkouts', 'percentage_last_week_viewed_products']
+	}}
+\end{sloppypar}
+
 La intención en este feature es terminar de cerrar un tema que queda inconcluso en el feature 'Eventos en última semana'. Es verdad que un usuario que en el último tiempo viene visitando mucho la página, sin comprar, es más probable que compre que otro que no. Por otro lado, existen usuarios que previo a comprar hacen pocas visitas y no se los estaría teniendo en cuenta. 
 
 En conclusión, con el porcentaje se busca analizar si el usuario comenzó a generar más eventos de lo regular . Es decir, si el cliente modificó su conducta habitual. Y para ello se cacula la cantidad de eventos del usuario de la última semana sobre el total.
->>>>>>> 1fb7eb4c21485f0a96e251c6428ee60f7a70b314
-
-Por lo tanto se pensaron los siguientes features:
-
-\begin{itemize}
-	\item \textbf{\texttt{percentage\_last\_week\_activity}}: porcentaje de la cantidad de eventos de esa semana sobre el total de eventos
-	\item \textbf{\texttt{percentage\_last\_week\_conversions}}:  porcentaje de la cantidad de compras de esa semana sobre el total de eventos
-	\item \textbf{\texttt{percentage\_last\_week\_checkouts}}: porcentaje de la cantidad de checkouts de esa semana sobre el total de eventos
-	\item \textbf{\texttt{percentage\_last\_week\_viewed\_products}}: porcentaje de la cantidad de productos vistos de esa semana sobre el total de eventos
-\end{itemize}
-
 
 \subsubsection{Porcentaje de la actividad del ultimo mes}
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['percentage_last_month_activity', 'percentage_last_month_conversions', 'percentage_last_month_checkouts', 'percentage_last_month_viewed_products']
 	}}
 \end{sloppypar}
 
 Una lógica análoga a la sección precedente se sigue en esta parte. Los motivos de este feature son simplemente una ampliación de la idea anterior. Si el usuario ingresó muchas veces a la página en mayo es muy probable que compre en la primera semana de junio. De la misma manera, si el usuario compró en mayo es algo probable que no compre por las siguientes dos.
 
-De más está decir que se pensaron los siguientes features:
-\begin{itemize}
-	\item \textbf{\texttt{percentage\_last\_month\_activity}}: porcentaje de la cantidad de eventos de ese mes sobre el total de eventos
-	\item \textbf{\texttt{percentage\_last\_month\_conversions}}:  porcentaje de la cantidad de compras de ese mes sobre el total de eventos
-	\item \textbf{\texttt{percentage\_last\_month\_checkouts}}: porcentaje de la cantidad de checkouts de ese mes sobre el total de eventos
-	\item \textbf{\texttt{percentage\_last\_month\_viewed\_products}}: porcentaje de la cantidad de productos vistos de ese mes sobre el total de eventos
-\end{itemize}
-
 \subsubsection{Días entre el último checkout y última actividad}
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['days_between_last_event_and_checkout']
 	}}
 \end{sloppypar}
 
@@ -349,8 +290,7 @@ La intención de este feature es medir la diferencia de días que tiene cada usu
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['percentage_regular_celphones_activity']
 	}}
 \end{sloppypar}
 
@@ -360,8 +300,7 @@ Utilizando la lógica de que hay empresas que compran celulares en mal estado co
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['var_viewed']
 	}}
 \end{sloppypar}
 
@@ -371,8 +310,7 @@ Se propone analizar la varianza en los precios de los productos visitados. Es de
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['conversion_gt_media']
 	}}
 \end{sloppypar}
 
@@ -382,8 +320,7 @@ Se propone como feature evaluar si el usuario compró un celular por encima de l
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['total_max_viewed_product','percentage_max_viewed_product']
 	}}
 \end{sloppypar}
 
@@ -393,8 +330,7 @@ La idea de este atributo es evaluar una cierta correlación entre los usuarios d
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['cant_viewed_brand_last_conversion']
 	}}
 \end{sloppypar}
 
@@ -404,8 +340,7 @@ Una lógica similar a la sección precedente es la que se sigue con este feature
 
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+		['ratio_sessions_last_week_over_total', 'has_event_last_week']
 	}}
 \end{sloppypar}
 
@@ -413,35 +348,26 @@ Se presenta una idea similar a la de las secciones \texttt{3.9} y \texttt{3.10}:
 
 \subsubsection{¿Cuántas veces entró cada usuario a las static pages?}
 
-<<<<<<< HEAD
 \begin{sloppypar}
 	\texttt{\detokenize{
-
-
+	['cant_visitas_customer_service', 'cant_visitas_faq_ecommerce']
 	}}
 \end{sloppypar}
 
-=======
-<<<<<<< HEAD
 Considerando la poca fama de las secciones de "preguntas frecuentes" y similares se pensó que podía exixtir una relación directa entre el compromiso del cliente con la compra/estudio de mercado y la visita a las mismas. Dado que la cantidad de eventos para la mayoría de las static pages son despreciables se tomaron las dos más frecuentes 'FaqEcommerce' y 'CustomerService'.
 
 \subsubsection{¿Cuántas veces vio el modelo que más vio la última semana?}
+
+\begin{sloppypar}
+	\texttt{\detokenize{
+	['total_last_week_viewed_products', 'total_last_week_max_viewed_product', 'percentage_last_week_max_viewed_product']
+	}}
+\end{sloppypar}
 
 Nos parece evidente que existe una correlación entre ver mucho un articulo o modelo y el deseo de comprarlo. Por lo tanto en esta funcionalidad propone analizar cuántas veces el usuario vio alguna publicación del modelo con mayor probabilidad de compra (el que más visitó) indiferentemente de cuál sea este modelo. 
 
 Se propone también analizar esta información para un rango de tiempo no muy extenso y cercano (en función a la fecha) a los labels que se quieren predecir. 
 
-=======
->>>>>>> 1fb7eb4c21485f0a96e251c6428ee60f7a70b314
-\subsubsection{¿Cuántas veces vio el modelo que más vio la última semana?}
->>>>>>> d70f18b5bdaca19720a3ab05b40ac3e0a3b711ee
-
-\begin{sloppypar}
-	\texttt{\detokenize{
-
-
-	}}
-\end{sloppypar}
 
 \subsection{Feature selection}
 
