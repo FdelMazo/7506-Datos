@@ -574,6 +574,25 @@ Es importante notar que no siempre hay que postular el primer resultado, si no q
 
 \section{Resultados obtenidos}
 
+Para analizar los resultados obtenidos, en primer lugar, tomamos como muestra los mejores 15. Las obsevaciones que se sacaron de ello son las siguientes
+\begin{enumerate}
+	\item Los features que más se repiten entre los mejores submission son:
+	\begin{enumerate}
+		\item 'avg\_events\_per\_session'
+		\item 'timestamp\_last\_event'
+		\item 'total\_checkouts',
+		\item 'total\_events',
+		\item 'total\_sessions',
+		\item 'has\_checkout',
+		\item 'has\_checkout\_month\_5',
+		\item 'timestamp\_last\_checkout',
+		\item 'days\_to\_last\_event'
+	\end{enumerate}
+	\item Todos los features fueron usados al menos 5 veces distintas dentro. Salvo 'percentage\_last\_week\_conversions' y 'percentage\_last\_month\_checkouts' que son utilizados únicamente una vez.
+	\item La mayor parte de estos clasificadores utilizan lightgbm. Lo cual nos de una idea de su eficiencia.
+	\item Hay una alta predominancia de ensambles. Esto no es sorpresa teniendo en cuenta el poder de los mismo. ES muy raro que un sólo algoritmo de ML logre mejores resultados que un ensamble
+\end{enumerate}
+
 \section{Conclusiones}
 its a kind of magic
 
