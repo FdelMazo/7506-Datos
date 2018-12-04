@@ -36,8 +36,16 @@ Insights post entrega, fin de competencia y demás
 
 - Hubiese estado bueno poder plotear nuestro AUC contra el AUC de kaggle, y luego crossreferenciarlo con nuestros commits, para ver la evolución de todos nuestros submits. Esto no es muy dificil, el AUC nuestro esta siempre al final del nombre del .csv que se submittea, y el de Kaggle se puede scrappear del sitio. Fue falta de tiempo.
 
-- Fallamos en tan poco encoding. Mean encoding, one hot encoding, hashing trick. Hay varios algoritmos que hacen muy buen uso de esto, y si bien hicimos un poco de pruebas, podrían haber sido más exhaustivas
+- Fallamos en tan poco encoding. Mean encoding, one hot encoding, hashing trick, matrices dispersas, featureunion. Hay varios algoritmos que hacen muy buen uso de esto, y si bien hicimos un poco de pruebas, podrían haber sido más exhaustivas
 
 - GridSearchCV devuelve un *modelo*. Nosotros siempre nos quedamos con sus mejores parametros y luego usamos esos para el modelo final. Tendríamos que haber usado el modelo directamente, porque es mejor que la suma de las partes.
 
-- 
+- Un par de metodos para evitar overfitting no hubiesen estado mal, si bien atajamos bastante con el uso de bagging. Comparar test/train, hacer crossvalidation, dropouts, oversampling, regularización, perturbar los datos de entrada, etc.
+
+- Leer nuestro TP1 y sacar aún más ideas de features hubiese estado bueno. También, ver de cada columna del DF original y pensar 'cómo puedo usar esto?'. Por ejemplo, nos quedamos con las ganas de utilizar los search terms.
+
+- Usar el classification report de sklearn.
+
+- Intentar plotear e identificar el bias y variance, ploteando el error del set de entrenamiento y el error de set de test en funcion de la cantidad de datos en el set de entrenamiento (en el mismo plot)
+
+- Haber gastado más tiempo en el parameter tuning con grid search no modificado. Es verdad, consume un monton de tiempo, pero nos hubiese dado resultados más optimos que el 'GridSearchFede'.
