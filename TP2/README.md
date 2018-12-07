@@ -49,3 +49,7 @@ Insights post entrega, fin de competencia y demás
 - Intentar plotear e identificar el bias y variance, ploteando el error del set de entrenamiento y el error de set de test en funcion de la cantidad de datos en el set de entrenamiento (en el mismo plot)
 
 - Haber gastado más tiempo en el parameter tuning con grid search no modificado. Es verdad, consume un monton de tiempo, pero nos hubiese dado resultados más optimos que el 'GridSearchFede'.
+
+- Sobre la hora mejoro notablemente nuestro puntaje con la técnica de averaging a mano que se puede ver en el notebook `ensambler.ipynb`. Simplemente consiste en agarrar las predicciones de dos (o más) clasificadores, y hacer una combinación ponderada de estos. Es acá por donde deberíamos haber comenzado, y trabajado con eso. 
+
+- Es importantísimo encontrar alguna forma de evaluar directamente el `.csv` en vez de el modelo. De esta forma, se puede buscar la combinación óptima de predicciones, sin tener que entrenar modelos en cada corrida.
