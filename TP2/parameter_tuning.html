@@ -11891,7 +11891,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nbimporter</span> <span class="c1"># pip install nbimporter</span>
@@ -11927,7 +11927,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_users</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user-features.csv&#39;</span><span class="p">,</span><span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;person&#39;</span><span class="p">)</span>
@@ -12782,6 +12782,181 @@ KeyboardInterrupt: Proceso muy costoso en tiempo. Se corta la ejecución, que ya
 </pre></div>
 
 </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Post-Entrega:-Como-persistir-modelos">Post-Entrega: Como persistir modelos<a class="anchor-link" href="#Post-Entrega:-Como-persistir-modelos">&#182;</a></h2><p>GridSearchCV y RandomizedSearchCV no solo encuentran los mejores hiper-parametros, también hacen Cross-Validation sobre los modelos, y por eso es importante quedarse con el modelo una vez que termino la ejecución, sin necesariamente correrlo de nuevo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">lightgbm</span> <span class="k">as</span> <span class="nn">lgb</span> <span class="c1">#conda install -c conda-forge lightgbm </span>
+
+<span class="k">def</span> <span class="nf">find_best_params_random</span><span class="p">(</span><span class="n">df_x</span><span class="p">,</span> <span class="n">df_y</span><span class="p">,</span> <span class="n">orig_model_with_name</span><span class="p">,</span> <span class="n">default_params</span><span class="p">,</span> <span class="n">params_grid</span><span class="p">,</span>
+                            <span class="n">n_iter</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    
+    <span class="n">orig_model_name</span><span class="p">,</span> <span class="n">orig_model</span> <span class="o">=</span> <span class="n">orig_model_with_name</span>
+    <span class="n">orig_model_name</span><span class="o">+=</span><span class="s1">&#39;_RS&#39;</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">1</span>
+
+    <span class="n">model_new</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">orig_model</span><span class="p">(</span><span class="o">**</span><span class="n">default_params</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">),</span> <span class="n">params_grid</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="n">model_with_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">orig_model_name</span><span class="p">,</span><span class="n">model_new</span><span class="p">)</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">auc</span> <span class="o">=</span> <span class="n">SF</span><span class="o">.</span><span class="n">full_framework_wrapper</span><span class="p">(</span><span class="n">df_x</span><span class="p">,</span> <span class="n">df_y</span><span class="p">,</span> <span class="n">model_with_name</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">list_of_progressive_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span>
+                              <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
+
+
+<span class="n">model_with_name</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;lightgbm&#39;</span><span class="p">,</span> <span class="n">lgb</span><span class="o">.</span><span class="n">LGBMClassifier</span><span class="p">)</span>
+
+<span class="n">best_model_lightgbm</span> <span class="o">=</span> <span class="n">find_best_params_random</span><span class="p">(</span><span class="n">df_users</span><span class="p">,</span><span class="n">df_y</span><span class="p">,</span><span class="n">model_with_name</span><span class="p">,{},</span> <span class="n">list_of_progressive_params</span><span class="p">)</span> 
+<span class="n">best_model_lightgbm</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Fitting 5 folds for each of 15 candidates, totalling 75 fits
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  42 tasks      | elapsed:  1.4min
+[Parallel(n_jobs=4)]: Done  75 out of  75 | elapsed:  2.7min finished
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Model: lightgbm_RS - AUC: 0.8595 - AUCPR:0.2359 - Accuracy: 0.9494 
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>RandomizedSearchCV(cv=5, error_score=&#39;raise-deprecating&#39;,
+          estimator=LGBMClassifier(boosting_type=&#39;gbdt&#39;, class_weight=None, colsample_bytree=1.0,
+        importance_type=&#39;split&#39;, learning_rate=0.1, max_depth=-1,
+        min_child_samples=20, min_child_weight=0.001, min_split_gain=0.0,
+        n_estimators=100, n_jobs=-1, num_leaves=31, objective=None,
+        random_state=0, reg_alpha=0.0, reg_lambda=0.0, silent=True,
+        subsample=1.0, subsample_for_bin=200000, subsample_freq=0),
+          fit_params=None, iid=&#39;warn&#39;, n_iter=15, n_jobs=4,
+          param_distributions={&#39;n_estimators&#39;: array([ 25,  40,  55,  70,  85, 100, 115, 130, 145, 160, 175, 190]), &#39;max_depth&#39;: array([ 3,  4,  5,  6,  7,  8,  9, 10, 11])},
+          pre_dispatch=&#39;2*n_jobs&#39;, random_state=None, refit=True,
+          return_train_score=&#39;warn&#39;, scoring=&#39;roc_auc&#39;, verbose=1)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Guardarlo:</span>
+<span class="n">model_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;lightgbm-rg-2.0-8718.pickle.dat&#39;</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">best_model_lightgbm</span><span class="p">,</span> <span class="n">model_file</span><span class="p">)</span>
+<span class="n">model_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Cargarlo:</span>
+<span class="n">model_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;lightgbm-rg-2.0-8718.pickle.dat&#39;</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">loaded_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_file</span><span class="p">)</span>
+<span class="n">model_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loaded_model</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>RandomizedSearchCV(cv=5, error_score=&#39;raise-deprecating&#39;,
+          estimator=LGBMClassifier(boosting_type=&#39;gbdt&#39;, class_weight=None, colsample_bytree=1.0,
+        importance_type=&#39;split&#39;, learning_rate=0.1, max_depth=-1,
+        min_child_samples=20, min_child_weight=0.001, min_split_gain=0.0,
+        n_estimators=100, n_jobs=-1, num_leaves=31, objective=None,
+        random_state=0, reg_alpha=0.0, reg_lambda=0.0, silent=True,
+        subsample=1.0, subsample_for_bin=200000, subsample_freq=0),
+          fit_params=None, iid=&#39;warn&#39;, n_iter=15, n_jobs=4,
+          param_distributions={&#39;n_estimators&#39;: array([ 25,  40,  55,  70,  85, 100, 115, 130, 145, 160, 175, 190]), &#39;max_depth&#39;: array([ 3,  4,  5,  6,  7,  8,  9, 10, 11])},
+          pre_dispatch=&#39;2*n_jobs&#39;, random_state=None, refit=True,
+          return_train_score=&#39;warn&#39;, scoring=&#39;roc_auc&#39;, verbose=1)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 

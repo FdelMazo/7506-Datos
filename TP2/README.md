@@ -53,3 +53,5 @@ Insights post entrega, fin de competencia y demás
 - Sobre la hora mejoro notablemente nuestro puntaje con la técnica de averaging a mano que se puede ver en el notebook `ensambler.ipynb`. Simplemente consiste en agarrar las predicciones de dos (o más) clasificadores, y hacer una combinación ponderada de estos. Es acá por donde deberíamos haber comenzado, y trabajado con eso. 
 
 - Es importantísimo encontrar alguna forma de evaluar directamente el `.csv` en vez de el modelo. De esta forma, se puede buscar la combinación óptima de predicciones, sin tener que entrenar modelos en cada corrida.
+
+- Es clave encontrar una forma de persistir los modelos para no tener que entrenarlos en cada corrida. La librería `pickle` de Python es de gran utilidad. En particular, para guardar los modelos entrenados por GridSearch, y ahorrarse el correrlo de nuevo para tener un modelo mejor. Se puede ver un ejemplo de uso al final de `parameter-tuning`.
